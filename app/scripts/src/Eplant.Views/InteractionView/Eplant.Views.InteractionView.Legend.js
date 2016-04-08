@@ -22,7 +22,7 @@
 		this.domContainer = document.createElement("div");
 		
 		this.domImg = document.createElement("img");
-		this.domImg.src = "img/legendAIV.png";
+		this.domImg.src = "app/img/legendAIV.png";
 		$(this.domContainer).css({
 			//"pointer-events": "none",
 			"position": "absolute",
@@ -39,7 +39,7 @@
 			this.hide();
 		},this));
 		$(this.domClose).text('X');
-		this.domImg.src = "img/legendAIV.png";
+		this.domImg.src = "app/img/legendAIV.png";
 		$(this.domClose).css({
 			//"pointer-events": "none",
 			"position": "absolute",

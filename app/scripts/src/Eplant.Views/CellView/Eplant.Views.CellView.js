@@ -44,9 +44,9 @@
 	Eplant.Views.CellView.magnification = 40;
 	Eplant.Views.CellView.description = "Cell eFP";
 	Eplant.Views.CellView.citation = "";
-	Eplant.Views.CellView.activeIconImageURL = "img/active/cell.png";
-	Eplant.Views.CellView.availableIconImageURL = "img/available/cell.png";
-	Eplant.Views.CellView.unavailableIconImageURL = "img/unavailable/cell.png";
+	Eplant.Views.CellView.activeIconImageURL = "app/img/active/cell.png";
+	Eplant.Views.CellView.availableIconImageURL = "app/img/available/cell.png";
+	Eplant.Views.CellView.unavailableIconImageURL = "app/img/unavailable/cell.png";
 	
 	/* Draw method for Cell View */
 	Eplant.Views.CellView.prototype.draw = function() {

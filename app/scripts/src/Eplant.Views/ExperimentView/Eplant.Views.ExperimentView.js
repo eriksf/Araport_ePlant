@@ -44,9 +44,9 @@ Eplant.Views.ExperimentView.hierarchy = "species";
 Eplant.Views.ExperimentView.magnification = 30;
 Eplant.Views.ExperimentView.description = "Tissue & Experiment eFP viewers";
 Eplant.Views.ExperimentView.citation = "";
-Eplant.Views.ExperimentView.activeIconImageURL = "img/active/experiment.png";
-Eplant.Views.ExperimentView.availableIconImageURL = "img/available/experiment.png";
-Eplant.Views.ExperimentView.unavailableIconImageURL = "img/unavailable/experiment.png";
+Eplant.Views.ExperimentView.activeIconImageURL = "app/img/active/experiment.png";
+Eplant.Views.ExperimentView.availableIconImageURL = "app/img/available/experiment.png";
+Eplant.Views.ExperimentView.unavailableIconImageURL = "app/img/unavailable/experiment.png";
 Eplant.BaseViews.EFPView.viewType = "none";
 
 /**

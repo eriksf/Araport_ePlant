@@ -58,9 +58,9 @@
 	Eplant.Views.SequenceView.magnification = 80;
 	Eplant.Views.SequenceView.description = "Sequence viewer";
 	Eplant.Views.SequenceView.citation = "";
-	Eplant.Views.SequenceView.activeIconImageURL = "img/active/sequence.png";
-	Eplant.Views.SequenceView.availableIconImageURL = "img/available/sequence.png";
-	Eplant.Views.SequenceView.unavailableIconImageURL = "img/unavailable/sequence.png";
+	Eplant.Views.SequenceView.activeIconImageURL = "app/img/active/sequence.png";
+	Eplant.Views.SequenceView.availableIconImageURL = "app/img/available/sequence.png";
+	Eplant.Views.SequenceView.unavailableIconImageURL = "app/img/unavailable/sequence.png";
 	/* Constants */
 	Eplant.Views.SequenceView.domContainer = null;		// DOM container for Dalliance
 	
