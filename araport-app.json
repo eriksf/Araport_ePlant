@@ -4,7 +4,6 @@
   "description": "Araport ePlant",
   "html": "main.html",
   "scripts": [
-  	"scripts/lib/JQuery/jquery-1.10.1.js",
 	"scripts/lib/JQueryUI/jquery-ui.min.js",
 	"scripts/lib/spectrum/spectrum.js",
 	"scripts/lib/JSmol/JSmol.min.nojq.js",
