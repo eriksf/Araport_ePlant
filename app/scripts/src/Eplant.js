@@ -891,6 +891,7 @@
 			},
 			tooltipClass:'top'
 		});
+
 		$('.leftToggle').click(function() {
 			if (Eplant.sidebarOpen == false) {
 				$('.left').animate({
@@ -926,6 +927,7 @@
 				
 			}
 			else {
+				/* Disabling on Araport
 				$('.left').animate({
 					marginLeft: "-245px"
 				}, 500);
@@ -953,9 +955,10 @@
 					evt.initUIEvent('resize', true, false,window,0);
 					window.dispatchEvent(evt);
 					respondCanvas();
-				});
+				}); */
 				
-			}
+			} 
+			
 		});
 	};
 	
@@ -1861,8 +1864,8 @@
 		c.attr('height', $(container).height() ); //max height
 		var $left = $('#left');
 		var leftMargin =$left.width()+$left.outerWidth(true)-$left.innerWidth();
-		var height = $(window).height() - 75;
-		var width = $(window).width()-leftMargin ;
+		var height = $(window).height() - 350; // Araport
+		var width = 1140 -leftMargin;	// Hardcoding 1140 for Araport
 		$('div#left').height(height);
 		$('div.tab').height(height);
 		if(height>600)
@@ -1882,15 +1885,12 @@
 		$('div#ZUI_container').width(width);
 		$('div.tab').css('margin-left',leftMargin );
 		var settings = $('div#settings_container'); 
-		settings.width( $(window).width()- parseInt(settings.css('marginLeft'),10) );
-		$('div#tabUl').width( $(window).width()- parseInt(settings.css('marginLeft'),10) );
+		settings.width( 1140 - parseInt(settings.css('marginLeft'),10) ); // Araport
+		$('div#tabUl').width( 1140 - parseInt(settings.css('marginLeft'),10) ); // Araport
 		Eplant.resizeIconDock(height);
 		if(Eplant.activeView&&Eplant.activeView.resize){
 			Eplant.activeView.resize();
 		}
 	}
-	
-	
-	
 	
 })();																																																																																																											
