@@ -256,18 +256,18 @@
 		/* Mode */
 		if (this.isRelativeEnabled) {
 			this.modeButton = new Eplant.ViewSpecificUIButton(
-			"app/img/efpmode-absolute.png",		// imageSource
+			"img/efpmode-absolute.png",		// imageSource
 			"Toggle data mode: absolute.",	// Description
 			function(data) {			// click
 				/* Update button */
 				if (data.eFPView.mode == "absolute") {
 					data.eFPView.mode = "relative";
-					this.setImageSource("app/img/efpmode-relative.png");
+					this.setImageSource("img/efpmode-relative.png");
 					this.setDescription("Toggle data mode: relative.");
 				}
 				else if (data.eFPView.mode == "relative") {
 					data.eFPView.mode = "absolute";
-					this.setImageSource("app/img/efpmode-absolute.png");
+					this.setImageSource("img/efpmode-absolute.png");
 					this.setDescription("Toggle data mode: absolute.");
 				}
 				
@@ -284,7 +284,7 @@
 		/* Compare */
 		if (this.isRelativeEnabled && this.isCompareEnabled) {
 			this.compareButton = new Eplant.ViewSpecificUIButton(
-			"app/img/available/efpmode-compare.png",		// imageSource
+			"img/available/efpmode-compare.png",		// imageSource
 			"Compare to another gene.",			// Description
 			function(data) {				// click
 				/* Check whether compare mode is already activated */
@@ -293,11 +293,11 @@
 					data.eFPView.mode = "absolute";
 					
 					/* Update mode button */
-					data.eFPView.modeButton.setImageSource("app/img/efpmode-absolute.png");
+					data.eFPView.modeButton.setImageSource("img/efpmode-absolute.png");
 					data.eFPView.modeButton.setDescription("Toggle data mode: absolute.");
 					
 					/* Update compare button */
-					this.setImageSource("app/img/available/efpmode-compare.png");
+					this.setImageSource("img/available/efpmode-compare.png");
 					this.setDescription("Compare to another gene.");
 					
 					/* Update eFP */
@@ -318,13 +318,13 @@
 		/* Mask */
 		if (this.isMaskEnabled) {
 			this.maskButton = new Eplant.ViewSpecificUIButton(
-			"app/img/off/filter.png",		// imageSource
+			"img/off/filter.png",		// imageSource
 			"Mask data with below threshold confidence.",		// description
 			function(data) {				// click
 				/* Check whether masking is already on */
 				if (data.eFPView.isMaskOn) {		// Yes
 					/* Update button */
-					this.setImageSource("app/img/off/filter.png");
+					this.setImageSource("img/off/filter.png");
 					
 					/* Turn off masking */
 					data.eFPView.isMaskOn = false;
@@ -346,18 +346,18 @@
 		
 		/* Legend */
 		var viewSpecificUIButton = new Eplant.ViewSpecificUIButton(
-		"app/img/legend.png",		// imageSource
+		"img/legend.png",		// imageSource
 		"Toggle legend.",		// description
 		function(data) {		// click
 			/* Check whether legend is showing */
 			if (data.eFPView.legend.isVisible) {		// Yes
-				this.setImageSource("app/img/off/legend.png");
+				this.setImageSource("img/off/legend.png");
 				/* Hide legend */
 				data.eFPView.legend.hide();
 				data.eFPView.isLegendVisible=false;
 			}
 			else {		// No
-				this.setImageSource("app/img/on/legend.png");
+				this.setImageSource("img/on/legend.png");
 				/* Show legend */
 				data.eFPView.legend.show();
 				data.eFPView.isLegendVisible=true;
@@ -415,7 +415,7 @@
 				var infoXml = $(response).find('info');
 				if (infoXml.length > 0) {
 					this.infoButton	= new Eplant.ViewSpecificUIButton(
-					"app/img/info.png", // imageSource
+					"img/info.png", // imageSource
 					"Additional information about the efp view", // Description
 					function(data) { // click
 						DialogManager.artDialogDynamic('<p style="font-size:24px">Information for this view</p><br>'+infoXml.html(),{width:'600px'});
@@ -999,11 +999,11 @@
 		this.mode = "compare";
 		
 		/* Update mode button */
-		this.modeButton.setImageSource("app/img/efpmode-relative.png");
+		this.modeButton.setImageSource("img/efpmode-relative.png");
 		this.modeButton.setDescription("Data mode: compare. Click on Compare button to turn off.");
 		
 		/* Update compare button */
-		this.compareButton.setImageSource("app/img/active/efpmode-compare.png");
+		this.compareButton.setImageSource("img/active/efpmode-compare.png");
 		this.compareButton.setDescription("Turn off compare mode.");
 		
 		/* Update eFP */

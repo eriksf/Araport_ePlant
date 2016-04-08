@@ -18,7 +18,7 @@
 	"scripts/js/resize.js",
 	"scripts/js/TabManager.js",
 	"scripts/js/DialogManager.js",
-	"scripts/js/artDialog.source.js?skin=idialog",
+	"scripts/js/artDialog.source.js",
 	"scripts/js/iframeTools.js",
 	"scripts/js/jquery.clearsearch.js",
 	"scripts/js/canvg.js",

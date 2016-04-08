@@ -42,9 +42,9 @@
 	Eplant.Views.LinkoutView.magnification = 100;
 	Eplant.Views.LinkoutView.description = "Linkout Options";
 	Eplant.Views.LinkoutView.citation = "";
-	Eplant.Views.LinkoutView.activeIconImageURL = "app/img/active/externalTools.png";
-	Eplant.Views.LinkoutView.availableIconImageURL = "app/img/available/externalTools.png";
-	Eplant.Views.LinkoutView.unavailableIconImageURL = "app/img/unavailable/externalTools.png";
+	Eplant.Views.LinkoutView.activeIconImageURL = "img/active/externalTools.png";
+	Eplant.Views.LinkoutView.availableIconImageURL = "img/available/externalTools.png";
+	Eplant.Views.LinkoutView.unavailableIconImageURL = "img/unavailable/externalTools.png";
 	Eplant.Views.LinkoutView.viewType = "zui";
 	
 	Eplant.Views.LinkoutView.prototype.show = function() {

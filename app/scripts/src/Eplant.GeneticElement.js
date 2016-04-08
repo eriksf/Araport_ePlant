@@ -325,7 +325,7 @@
 			var domIcon = document.createElement("img");
 			/* Set image */
 			
-			$(domIcon).attr("src", "app/img/list.png");
+			$(domIcon).attr("src", "img/list.png");
 			
 			$(domIcon).attr("data-dropdown", "#dropdown-" + this.identifier);
 			/* Click event handler */
@@ -397,7 +397,7 @@
 			
 			var domIcon = document.createElement("img");
 			/* Set image */                
-			$(domIcon).attr("src", "app/img/info.png");
+			$(domIcon).attr("src", "img/info.png");
 			
 			
 			/* Click event handler */

@@ -85,9 +85,9 @@
 	Eplant.Views.ExpressionAnglerView.magnification = 35;
 	Eplant.Views.ExpressionAnglerView.description = "Experiment viewer";
 	Eplant.Views.ExpressionAnglerView.citation = "";
-	Eplant.Views.ExpressionAnglerView.activeIconImageURL = "app/img/active/experiment.png";
-	Eplant.Views.ExpressionAnglerView.availableIconImageURL = "app/img/available/experiment.png";
-	Eplant.Views.ExpressionAnglerView.unavailableIconImageURL = "app/img/unavailable/experiment.png";
+	Eplant.Views.ExpressionAnglerView.activeIconImageURL = "img/active/experiment.png";
+	Eplant.Views.ExpressionAnglerView.availableIconImageURL = "img/available/experiment.png";
+	Eplant.Views.ExpressionAnglerView.unavailableIconImageURL = "img/unavailable/experiment.png";
 	Eplant.Views.ExpressionAnglerView.viewType = "exp";
 	
     /**

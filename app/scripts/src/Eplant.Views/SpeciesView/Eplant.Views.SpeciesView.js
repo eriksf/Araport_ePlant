@@ -41,9 +41,9 @@ Eplant.Views.SpeciesView.hierarchy = "ePlant";
 Eplant.Views.SpeciesView.magnification = 20;
 Eplant.Views.SpeciesView.description = "Species viewer";
 Eplant.Views.SpeciesView.citation = "";
-Eplant.Views.SpeciesView.activeIconImageURL = "app/img/active/species.png";
-Eplant.Views.SpeciesView.availableIconImageURL = "app/img/available/species.png";
-Eplant.Views.SpeciesView.unavailableIconImageURL = "app/img/unavailable/species.png";
+Eplant.Views.SpeciesView.activeIconImageURL = "img/active/species.png";
+Eplant.Views.SpeciesView.availableIconImageURL = "img/available/species.png";
+Eplant.Views.SpeciesView.unavailableIconImageURL = "img/unavailable/species.png";
 Eplant.Views.SpeciesView.viewType = "zui";
 /**
  * Active callback method.

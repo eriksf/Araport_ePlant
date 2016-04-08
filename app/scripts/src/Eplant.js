@@ -612,10 +612,10 @@
 		$("#viewChangeAnimationIcon").click(function() {
 			Eplant.isAnimateActiveViewChange = !Eplant.isAnimateActiveViewChange;
 			if (Eplant.isAnimateActiveViewChange) {
-				$("#viewChangeAnimationIcon img").attr("src", "app/img/on/zoom.png");
+				$("#viewChangeAnimationIcon img").attr("src", "img/on/zoom.png");
 				$("#viewChangeAnimationIcon span").html("Zoom transitions on");
 				} else {
-				$("#viewChangeAnimationIcon img").attr("src", "app/img/off/zoom.png");
+				$("#viewChangeAnimationIcon img").attr("src", "img/off/zoom.png");
 				$("#viewChangeAnimationIcon span").html("Zoom transitions off");
 			}
 		});
@@ -623,10 +623,10 @@
 		$("#viewIntructionIcon").click(function() {
 			Eplant.showViewIntruction = !Eplant.showViewIntruction;
 			if (Eplant.showViewIntruction) {
-				$("#viewIntructionIcon img").attr("src", "app/img/on/fyi.png");
+				$("#viewIntructionIcon img").attr("src", "img/on/fyi.png");
 				$("#viewIntructionIcon span").html("New user popups on");
 				} else {
-				$("#viewIntructionIcon img").attr("src", "app/img/off/fyi.png");
+				$("#viewIntructionIcon img").attr("src", "img/off/fyi.png");
 				$("#viewIntructionIcon span").html("New user popups off");
 			}
 		});
@@ -642,7 +642,7 @@
 					var domElement = domElements[n];
 					$(domElement).attr("data-enabled", "true");
 				}
-				$("#tooltipIcon img").attr("src", "app/img/on/tooltip.png");
+				$("#tooltipIcon img").attr("src", "img/on/tooltip.png");
 				$("#tooltipIcon span").html("Tooltips on");
 				$( '.hint--right' ).tooltip( "option", "disabled", false );
 				$( '.hint--left' ).tooltip( "option", "disabled", false );
@@ -654,7 +654,7 @@
 					var domElement = domElements[n];
 					$(domElement).attr("data-enabled", "false");
 				}
-				$("#tooltipIcon img").attr("src", "app/img/off/tooltip.png");
+				$("#tooltipIcon img").attr("src", "img/off/tooltip.png");
 				$("#tooltipIcon span").html("Tooltips off");
 				$( '.hint--right' ).tooltip( "option", "disabled", true );
 				$( '.hint--left' ).tooltip( "option", "disabled", true );
@@ -819,9 +819,9 @@
 			
 			Eplant.geneticElementPanelMapOn = !Eplant.geneticElementPanelMapOn;
 			if(Eplant.geneticElementPanelMapOn){
-				$("#heatmapModeIcon img").attr("src", "app/img/on/heatMapMode.png");	
+				$("#heatmapModeIcon img").attr("src", "img/on/heatMapMode.png");	
 				}else{
-				$("#heatmapModeIcon img").attr("src", "app/img/off/heatMapMode.png");
+				$("#heatmapModeIcon img").attr("src", "img/off/heatMapMode.png");
 			}
 			Eplant.updateGeneticElementPanel();
 		});
@@ -915,7 +915,7 @@
 				}, 500);
 				
 				
-				$(".toggleArrow").attr('src',"app/img/arrow-left.png");
+				$(".toggleArrow").attr('src',"img/arrow-left.png");
 				
 				Eplant.sidebarOpen = true;
 				$(":animated").promise().done(function() {
@@ -947,7 +947,7 @@
 					marginLeft: "60px",
 					width: $(window).width()-60+"px"
 				}, 500);
-				$(".toggleArrow").attr('src',"app/img/arrow-right.png");
+				$(".toggleArrow").attr('src',"img/arrow-right.png");
 				Eplant.sidebarOpen = false;
 				
 				$(":animated").promise().done(function() {
@@ -1092,14 +1092,14 @@
 		// Update history icons when the activeItem of the history changes
 		var eventListener = new ZUI.EventListener("update-history-activeItem", Eplant.history, function(event, eventData, listenerData) {
 			if (Eplant.history.isBackPossible()) {
-				$("#historyBackIcon img").attr("src", "app/img/available/history-back.png");
+				$("#historyBackIcon img").attr("src", "img/available/history-back.png");
 				} else {
-				$("#historyBackIcon img").attr("src", "app/img/unavailable/history-back.png");
+				$("#historyBackIcon img").attr("src", "img/unavailable/history-back.png");
 			}
 			if (Eplant.history.isForwardPossible()) {
-				$("#historyForwardIcon img").attr("src", "app/img/available/history-forward.png");
+				$("#historyForwardIcon img").attr("src", "img/available/history-forward.png");
 				} else {
-				$("#historyForwardIcon img").attr("src", "app/img/unavailable/history-forward.png");
+				$("#historyForwardIcon img").attr("src", "img/unavailable/history-forward.png");
 			}
 		}, {});
 		ZUI.addEventListener(eventListener);
@@ -1626,7 +1626,7 @@
 			if (view) {
 				if (ZUI.activeView == view) {
 					if(view.magnification === 35){
-						$("#ExperimentViewIcon").children("img").attr("src", "app/img/active/experiment.png");
+						$("#ExperimentViewIcon").children("img").attr("src", "img/active/experiment.png");
 					}
 					else{
 						$("#" + ViewName + "Icon").children("img").attr("src", View.activeIconImageURL);
@@ -1739,14 +1739,14 @@
 	*/
 	Eplant.updateHistoryIcons = function() {
 		if (Eplant.history.isBackPossible()) {
-			$("#historyBackIcon img").attr("src", "app/img/available/history-back.png");
+			$("#historyBackIcon img").attr("src", "img/available/history-back.png");
 			} else {
-			$("#historyBackIcon img").attr("src", "app/img/unavailable/history-back.png");
+			$("#historyBackIcon img").attr("src", "img/unavailable/history-back.png");
 		}
 		if (Eplant.history.isForwardPossible()) {
-			$("#historyForwardIcon img").attr("src", "app/img/available/history-forward.png");
+			$("#historyForwardIcon img").attr("src", "img/available/history-forward.png");
 			} else {
-			$("#historyForwardIcon img").attr("src", "app/img/unavailable/history-forward.png");
+			$("#historyForwardIcon img").attr("src", "img/unavailable/history-forward.png");
 		}
 	};
 	

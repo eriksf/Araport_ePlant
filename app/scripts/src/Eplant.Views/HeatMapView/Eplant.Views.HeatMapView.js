@@ -57,9 +57,9 @@
 	Eplant.Views.HeatMapView.magnification = 5;
 	Eplant.Views.HeatMapView.description = "Heat Map viewer";
 	Eplant.Views.HeatMapView.citation = "";
-	Eplant.Views.HeatMapView.activeIconImageURL = "app/img/active/heatMap.png";
-	Eplant.Views.HeatMapView.availableIconImageURL = "app/img/available/heatMap.png";
-	Eplant.Views.HeatMapView.unavailableIconImageURL = "app/img/unavailable/heatMap.png";
+	Eplant.Views.HeatMapView.activeIconImageURL = "img/active/heatMap.png";
+	Eplant.Views.HeatMapView.availableIconImageURL = "img/available/heatMap.png";
+	Eplant.Views.HeatMapView.unavailableIconImageURL = "img/unavailable/heatMap.png";
 	
 	/**
 		* Creates view-specific UI buttons.
@@ -68,18 +68,18 @@
 		/* Mode */
 		
 		this.modeButton = new Eplant.ViewSpecificUIButton(
-		"app/img/efpmode-absolute.png",		// imageSource
+		"img/efpmode-absolute.png",		// imageSource
 		"Toggle data mode: absolute.",	// Description
 		function(data) {			// click
 			/* Update button */
 			if (data.view.mode == "absolute") {
 				data.view.mode = "relative";
-				this.setImageSource("app/img/efpmode-relative.png");
+				this.setImageSource("img/efpmode-relative.png");
 				this.setDescription("Toggle data mode: relative.");
 			}
 			else if (data.view.mode == "relative") {
 				data.view.mode = "absolute";
-				this.setImageSource("app/img/efpmode-absolute.png");
+				this.setImageSource("img/efpmode-absolute.png");
 				this.setDescription("Toggle data mode: absolute.");
 			}
 			
@@ -398,17 +398,17 @@
 		var rowData = $('<td></td>').css({'height':'30px'}).appendTo(headerRow);
 		rowData = $('<td></td>').css({'height':'30px'}).appendTo(headerRow);
 		$('<img/>',{
-			'src': "app/img/available/plant.png"
+			'src': "img/available/plant.png"
 		}).addClass('heatmapViewIcon')
 		.appendTo($('<div></div>').addClass('heatmapViewIconDiv').appendTo(rowData));
 		rowData = $('<td></td>').attr('colspan',this.efpExperimentViewCount).css({'height':'30px'}).appendTo(headerRow);
 		$('<img/>',{
-			'src': "app/img/available/experiment.png"
+			'src': "img/available/experiment.png"
 		}).addClass('heatmapViewIcon')
 		.appendTo($('<div></div>').addClass('heatmapViewIconDiv').appendTo(rowData));
 		rowData = $('<td></td>').css({'height':'30px'}).appendTo(headerRow);
 		$('<img/>',{
-			'src': "app/img/available/cell.png"
+			'src': "img/available/cell.png"
 		}).addClass('heatmapViewIcon')
 		.appendTo($('<div></div>').addClass('heatmapViewIconDiv').appendTo(rowData));
 		this.verticalSelectionBox = $('<div></div>').css({
