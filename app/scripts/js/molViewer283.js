@@ -100,7 +100,7 @@
 			//defaultModel : "=2HHB",//1MBN
 			debug : false,
 			disableJ2SLoadMonitor : true,
-			//coverImage : "img/whiteOnePixel.gif",
+			//coverImage : "app/img/whiteOnePixel.gif",
 			//boxmessage : "changinh",
 			disableInitialConsole : true,//If set true, avoids the display of messages ('console') in the Jmol panel while the Jmol object is being built initially.
 			addSelectionOptions : false	//if you want to display, below the Jmol object, a menu with options for loading structures from public databases

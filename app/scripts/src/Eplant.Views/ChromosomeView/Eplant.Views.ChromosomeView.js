@@ -75,9 +75,9 @@
 	Eplant.Views.ChromosomeView.magnification = 50;
 	Eplant.Views.ChromosomeView.description = "Chromosome viewer";
 	Eplant.Views.ChromosomeView.citation = "";
-	Eplant.Views.ChromosomeView.activeIconImageURL = "img/active/chromosome.png";
-	Eplant.Views.ChromosomeView.availableIconImageURL = "img/available/chromosome.png";
-	Eplant.Views.ChromosomeView.unavailableIconImageURL = "img/unavailable/chromosome.png";
+	Eplant.Views.ChromosomeView.activeIconImageURL = "app/img/active/chromosome.png";
+	Eplant.Views.ChromosomeView.availableIconImageURL = "app/img/available/chromosome.png";
+	Eplant.Views.ChromosomeView.unavailableIconImageURL = "app/img/unavailable/chromosome.png";
 	Eplant.Views.ChromosomeView.viewType = "zui";
 	/**
 		* Active callback method.
@@ -244,7 +244,7 @@
 	Eplant.Views.ChromosomeView.prototype.createViewSpecificUIButtons = function() {
 		/* Annotate */
 		var viewSpecificUIButton = new Eplant.ViewSpecificUIButton(
-		"img/annotation.png",	// imageSource
+		"app/img/annotation.png",	// imageSource
 		"Annotate genes. See help tab for instructions.",		// Description
 		function(data) {			// click
 			/* Create and open dialog */
@@ -258,7 +258,7 @@
 		
 		/* Heatmap toggle */
 		var viewSpecificUIButton = new Eplant.ViewSpecificUIButton(
-		"img/heatmap.png",		// imageSource
+		"app/img/heatmap.png",		// imageSource
 		"Toggle heatmap of gene density. Dark - more dense. Light - less dense.",		// Description
 		$.proxy(function() {			// click
 			/* Loop through chromosomes to get the visible segments

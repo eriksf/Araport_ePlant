@@ -6,6 +6,7 @@ var test = function(event){
 	}
 };
 (function (config) {
+ config['skin']='idialog';
  config['okVal'] = 'Ok';
  config['cancelVal'] = 'Cancel';
  config['title'] = '';

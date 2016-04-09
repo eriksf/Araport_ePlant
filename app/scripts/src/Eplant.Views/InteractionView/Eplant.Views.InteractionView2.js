@@ -97,9 +97,9 @@
 	Eplant.Views.InteractionView.magnification = 60;
 	Eplant.Views.InteractionView.description = "Interaction viewer";
 	Eplant.Views.InteractionView.citation = "";
-	Eplant.Views.InteractionView.activeIconImageURL = "img/active/interaction.png";
-	Eplant.Views.InteractionView.availableIconImageURL = "img/available/interaction.png";
-	Eplant.Views.InteractionView.unavailableIconImageURL = "img/unavailable/interaction.png";
+	Eplant.Views.InteractionView.activeIconImageURL = "app/img/active/interaction.png";
+	Eplant.Views.InteractionView.availableIconImageURL = "app/img/available/interaction.png";
+	Eplant.Views.InteractionView.unavailableIconImageURL = "app/img/unavailable/interaction.png";
 	
 	/* Constants */
 	Eplant.Views.InteractionView.domContainer = null;		// DOM container element for Cytoscape
@@ -258,14 +258,14 @@
 	Eplant.Views.InteractionView.prototype.createViewSpecificUIButtons = function() {
 		/* Filter */
 		this.filterButton = new Eplant.ViewSpecificUIButton(
-		"img/off/filter.png",		// imageSource
+		"app/img/off/filter.png",		// imageSource
 		"Filter interactions.",		// description
 		function(data) {		// click
 			/* Check whether filter is already on */
 			if (data.interactionView.isFilterOn) {		// Yes
 				if (data.interactionView.cy) {
 					/* Update button */
-					this.setImageSource("img/off/filter.png");
+					this.setImageSource("app/img/off/filter.png");
 					
 					/* Turn off filter */
 					data.interactionView.isFilterOn = false;
@@ -287,7 +287,7 @@
 		
 		/* Link */
 		var viewSpecificUIButton = new Eplant.ViewSpecificUIButton(
-		"img/link.png",		// imageSource
+		"app/img/link.png",		// imageSource
 		"Go to Arabidopsis Interaction Viewer on BAR.",		// description
 		function(data) {		// click
 			window.open("http://bar.utoronto.ca/~asher/interactions/cgi-bin/arabidopsis_interactions_viewer.cgi?interactions=yes&input=" + data.interactionView.geneticElement.identifier + "&qbar=yes");
@@ -300,7 +300,7 @@
 		
 		/* Legend */
 		var viewSpecificUIButton = new Eplant.ViewSpecificUIButton(
-		"img/legend.png",		// imageSource
+		"app/img/legend.png",		// imageSource
 		"Toggle legend.",			// description
 		function(data) {		// click
 			/* Check whether legend is showing */
@@ -1120,7 +1120,7 @@
 		this.isFilterOn = true;
 		
 		/* Update icon image */
-		this.filterButton.setImageSource("img/on/filter.png");
+		this.filterButton.setImageSource("app/img/on/filter.png");
 	};
 	
 	/**

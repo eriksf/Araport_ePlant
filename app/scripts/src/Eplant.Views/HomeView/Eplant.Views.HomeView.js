@@ -45,9 +45,9 @@
 	Eplant.Views.HomeView.magnification = 0;
 	Eplant.Views.HomeView.description = "Welcome Screen";
 	Eplant.Views.HomeView.citation = "";
-	Eplant.Views.HomeView.activeIconImageURL = "img/active/home.png";
-	Eplant.Views.HomeView.availableIconImageURL = "img/available/home.png";
-	Eplant.Views.HomeView.unavailableIconImageURL = "img/unavailable/home.png";
+	Eplant.Views.HomeView.activeIconImageURL = "app/img/active/home.png";
+	Eplant.Views.HomeView.availableIconImageURL = "app/img/available/home.png";
+	Eplant.Views.HomeView.unavailableIconImageURL = "app/img/unavailable/home.png";
 	Eplant.Views.HomeView.viewType = "home";
 	/**
 		* Active callback method.

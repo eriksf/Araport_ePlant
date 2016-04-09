@@ -40,8 +40,8 @@ Eplant.Views.PlantView.hierarchy = "genetic element";
 Eplant.Views.PlantView.magnification = 20;
 Eplant.Views.PlantView.description = "Plant eFP";
 Eplant.Views.PlantView.citation = "";
-Eplant.Views.PlantView.activeIconImageURL = "img/active/plant.png";
-Eplant.Views.PlantView.availableIconImageURL = "img/available/plant.png";
-Eplant.Views.PlantView.unavailableIconImageURL = "img/unavailable/plant.png";
+Eplant.Views.PlantView.activeIconImageURL = "app/img/active/plant.png";
+Eplant.Views.PlantView.availableIconImageURL = "app/img/available/plant.png";
+Eplant.Views.PlantView.unavailableIconImageURL = "app/img/unavailable/plant.png";
 
 })();
