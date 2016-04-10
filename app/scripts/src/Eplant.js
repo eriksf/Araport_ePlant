@@ -1857,14 +1857,13 @@
 	Eplant.resize = function() {
 		var c = $('#ZUI_canvas');
 		container = $(c).parent();
-		c.attr('width', $(container).width() ); //max width
-		c.attr('height', $(container).height() ); //max height
+		c.attr('width', $(window).width() ); //max width
+		c.attr('height', $(window).height() ); //max height
 		var $left = $('#left');
 		var leftMargin =$left.width()+$left.outerWidth(true)-$left.innerWidth();
 		var height = $(window).height() - 75;
-		window.alert(leftMargin);
-		var width = $(window).width()-leftMargin - 500;
-		window.alert(width);
+		var width = $(window).width()-leftMargin;
+		width = width/1.5;
 		$('div#left').height(height);
 		$('div.tab').height(height);
 		if(height>600)
@@ -1882,17 +1881,16 @@
 		
 		$('div.tab').width(width);
 		$('div#ZUI_container').width(width);
+		$('div#ZUI_container').height(height);
+		$(c).width(width);
+		$(c).height(height);
 		$('div.tab').css('margin-left',leftMargin );
 		var settings = $('div#settings_container'); 
-		settings.width( $(window).width() - 500 - parseInt(settings.css('marginLeft'),10) );
-		$('div#tabUl').width( $(window).width() - parseInt(settings.css('marginLeft'),10) );
+		settings.width(($(window).width() - parseInt(settings.css('marginLeft'),10) )/1.5);
+		$('div#tabUl').width(($(window).width() - parseInt(settings.css('marginLeft'),10))/1.5 );
 		Eplant.resizeIconDock(height);
 		if(Eplant.activeView&&Eplant.activeView.resize){
 			Eplant.activeView.resize();
 		}
 	}
-	
-	
-	
-	
 })();																																																																																																											
