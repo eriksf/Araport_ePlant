@@ -1862,7 +1862,7 @@
 		var $left = $('#left');
 		var leftMargin =$left.width()+$left.outerWidth(true)-$left.innerWidth();
 		var height = $(window).height() - 75;
-		var width = $(window).width()-leftMargin ;
+		var width = $(window).width()-leftMargin - 300;
 		$('div#left').height(height);
 		$('div.tab').height(height);
 		if(height>600)
@@ -1882,8 +1882,8 @@
 		$('div#ZUI_container').width(width);
 		$('div.tab').css('margin-left',leftMargin );
 		var settings = $('div#settings_container'); 
-		settings.width( $(window).width()- parseInt(settings.css('marginLeft'),10) );
-		$('div#tabUl').width( $(window).width()- parseInt(settings.css('marginLeft'),10) );
+		settings.width( $(window).width() - 300 - parseInt(settings.css('marginLeft'),10) );
+		$('div#tabUl').width( $(window).width()- 300 - parseInt(settings.css('marginLeft'),10) );
 		Eplant.resizeIconDock(height);
 		if(Eplant.activeView&&Eplant.activeView.resize){
 			Eplant.activeView.resize();
