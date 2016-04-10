@@ -829,15 +829,15 @@
 		
 		/* about page dialog click */
 		$("#getAbout").on('click', function () {
-			DialogManager.artDialogUrl('pages/about.html');
+			DialogManager.artDialogUrl('app/pages/about.html');
 		});
 		/* help page dialog click */
 		$("#getHelp").on('click', function () {
-			DialogManager.artDialogUrl('pages/help.html');
+			DialogManager.artDialogUrl('app/pages/help.html');
 		});
 		/* contact page dialog click */
 		$("#getComments").on('click', function () {
-			DialogManager.artDialogUrl('pages/comments.html');
+			DialogManager.artDialogUrl('app/pages/comments.html');
 		});
 		$("#expressionAnglerButton").on('click', function () {
 			Eplant.expressionAnglerClick();
