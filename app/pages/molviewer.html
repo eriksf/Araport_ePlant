@@ -1,0 +1,55 @@
+<div id="divMainJsmol" style="position: relative;z-index: 2;height: 100%;width: 100%;">
+	<div id="divJmolcontent" class="jmolcontent">
+		<!-- jsmol will load here -->
+	</div>
+	
+	<div id="divMain" class="noselect main" style="position: relative;z-index: 2;  top: 30px;left: 20px;">
+		<div id="divMenu" style="float: left;display:inline-block;white-space: nowrap;width: 330px;overflow: auto;padding-bottom:20px;">
+			
+			<div style="overflow: auto;"> 
+		    	<button id="btnReset" class='greenbutton'>
+		    		Reset Model 
+		    	</button>
+		    </div>
+			<div style="float: left;width: 100%;">
+		    	<h4 class="features">Options</h4>
+		    	<div id="viewOptions" style="">
+		    		<span id='hydrPolCharg' class='radioMenu'>
+		    			<input type='radio' id='rd1' name='feature' value='hydro'><label for='rd1'>Show hydrophobic/polar & charged residues</label>
+		    		</span>
+					<span id='tempFactor' class='radioMenu'>
+						<input type='radio' id='rd2' name='feature' value='temp'><label for='rd2'>Show temperature factor</label>
+					</span>
+		    	</div>
+		    </div>
+		    <div style="float: left;width: 100%;">
+		    	<h4 class="features">Pfam Domains</h4>
+				<div style="">
+			    	<div id="PfamDomains" style=""></div>
+			    </div>
+		    </div>
+		    <div style="float: left;width: 100%;">
+		    	<h4 class="features">CDD Feature Hits</h4>
+			    <div style=""> 			    	
+			    	<div id="CDDdomains" style=""></div>
+			    </div>
+		    </div>
+		    
+		</div>
+	</div>
+	<div id="divBottomWrapper" class="noselect" style="overflow: hidden;position: absolute; bottom: 0px;width: 100%;margin-top: 30px; z-index: 2;">
+			
+		<div id='divSeqContainner' class="" style="overflow: auto;width: 100%;">		   	 	
+			<div id="protSeq" style="display:inline-block;white-space: nowrap;margin-bottom: 10px;padding-top: 40px;position: absolute;bottom: 0;width: 100%;overflow: auto;">
+			</div>
+		</div>
+		
+		<!-- left fade effect over sequence div -->
+		<div class="fadeOnCornersSequence fadeOnCornersSequenceLeft" id="fadeLeft">
+		</div>
+		<!-- right fade effect over sequence div -->
+		<div class="fadeOnCornersSequence fadeOnCornersSequenceRight" id="fadeRight">
+		</div>
+	</div>
+
+</div>
