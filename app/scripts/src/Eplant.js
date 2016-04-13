@@ -11,7 +11,7 @@
     Eplant = {};
 	
     /* Constants */
-    Eplant.ServiceUrl = 'cgi-bin/'; // Base services url
+    Eplant.ServiceUrl = 'https://api.araport.org/community/v0.3/eplant-dev/eplant_service_v0.2/access/'; // Base services url
 	
     /* Attributes */
     Eplant.species = []; // Array of Species objects
@@ -1291,32 +1291,40 @@
 		* Loads all Species for ePlant
 	*/
 	Eplant.loadSpecies = function() {
+		window.alert(Agave.token.accessToken);
 		if (!this.isLoadedSpecies) {
-			$.getJSON(Eplant.ServiceUrl + 'speciesinfo.cgi', $.proxy(function(response) {
-				/* Loop through species */
-				for (var n = 0; n < response.length; n++) {
-					/* Get data for this species */
-					var speciesData = response[n];
+			$.ajax({
+				beforeSend: function(request) {
+					request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+				},
+				dataType: "json",
+				url: Eplant.ServiceUrl + 'speciesinfo.cgi',
+				success: function(response) {
+					/* Loop through species */
+					for (var n = 0; n < response.length; n++) {
+						/* Get data for this species */
+						var speciesData = response[n];
 					
-					/* Create Species */
-					var species = new Eplant.Species({
-						scientificName: speciesData.scientificName,
-						commonName: speciesData.commonName,
-						exampleQuery: speciesData.exampleQuery
-					});
-					species.loadViews();
+						/* Create Species */
+						var species = new Eplant.Species({
+							scientificName: speciesData.scientificName,
+							commonName: speciesData.commonName,
+							exampleQuery: speciesData.exampleQuery
+						});
+						species.loadViews();
 					
-					/* Add Species to ePlant */
-					Eplant.addSpecies(species);
+						/* Add Species to ePlant */
+						Eplant.addSpecies(species);
+					}
+					
+					/* Set Species load status */
+					Eplant.isLoadedSpecies = true;
+				
+					/* Fire event for loading chromosomes */
+					var event = new ZUI.Event("load-species", Eplant, null);
+					ZUI.fireEvent(event);
 				}
-				
-				/* Set Species load status */
-				Eplant.isLoadedSpecies = true;
-				
-				/* Fire event for loading chromosomes */
-				var event = new ZUI.Event("load-species", Eplant, null);
-				ZUI.fireEvent(event);
-			}, this));
+			});
 		}
 	};
 	
