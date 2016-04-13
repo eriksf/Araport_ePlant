@@ -27,7 +27,7 @@
 		constructor.unavailableIconImageURL	// URL for the unavailable icon image
 		);
 		this.geneticElement = geneticElement;
-		this.xmlURL = 'data/linkout/linkoutOptions.xml';
+		this.xmlURL = 'app/data/linkout/linkoutOptions.xml';
 		this.services = [];
 		this.dialog=null;
 		this.domContainer=null;

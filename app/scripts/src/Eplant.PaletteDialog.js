@@ -185,7 +185,7 @@
 		td = document.createElement("td");
 		$(td).css({width:120});
 		/* Treshold input */
-		$.getJSON( "data/presetColors.json", $.proxy(function( data ) {
+		$.getJSON( "app/data/presetColors.json", $.proxy(function( data ) {
 			var presetColors = data;
 			/* Create Choice objects for the SelectList */
 			for (var n = 0; n < presetColors.length; n++) {

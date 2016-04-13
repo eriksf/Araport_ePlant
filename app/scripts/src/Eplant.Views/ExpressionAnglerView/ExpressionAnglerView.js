@@ -205,7 +205,7 @@
 		.always(function() {
 			if(this.loadSimilarGenesDialog) this.loadSimilarGenesDialog.close();
 		});
-        $.getJSON( "data/expressionAngler/viewNames.json", function( data ) {
+        $.getJSON( "app/data/expressionAngler/viewNames.json", function( data ) {
 			eFPViews = data;
 			/* Create Choice objects for the SelectList */
 			for (var n = 0; n < eFPViews.length; n++) {

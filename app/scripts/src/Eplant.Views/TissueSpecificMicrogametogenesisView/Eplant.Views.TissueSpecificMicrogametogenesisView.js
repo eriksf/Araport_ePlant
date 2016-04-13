@@ -29,8 +29,8 @@ Eplant.Views.TissueSpecificMicrogametogenesisView = function(geneticElement) {
 	
 	/* Call eFP constructor */ 
 
-	var efpSvgURL = 'data/experiment/efps/TissueSpecificMicrogametogenesis/' + geneticElement.species.scientificName.replace(" ", "_") + '.svg';
-	var efpXmlURL = 'data/experiment/efps/TissueSpecificMicrogametogenesis/' + geneticElement.species.scientificName.replace(" ", "_") + '.xml';
+	var efpSvgURL = 'app/data/experiment/efps/TissueSpecificMicrogametogenesis/' + geneticElement.species.scientificName.replace(" ", "_") + '.svg';
+	var efpXmlURL = 'app/data/experiment/efps/TissueSpecificMicrogametogenesis/' + geneticElement.species.scientificName.replace(" ", "_") + '.xml';
 	Eplant.BaseViews.EFPView.call(this, geneticElement, efpSvgURL,efpXmlURL, {
 	});
 

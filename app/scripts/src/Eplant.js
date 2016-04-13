@@ -216,7 +216,7 @@
 	};
 	
 	Eplant.getExpressionAnglerDbMap = function() {
-		$.getJSON( "data/expressionAngler/viewsMap.json", function( data ) {
+		$.getJSON( "app/data/expressionAngler/viewsMap.json", function( data ) {
 			Eplant.expressionAnglerDbMap= data;
 		});
 	}

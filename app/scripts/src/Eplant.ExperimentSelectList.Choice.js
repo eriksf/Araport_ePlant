@@ -48,7 +48,7 @@ Eplant.ExperimentSelectList.Choice.prototype.getSnapshot = function() {
 		this.svgImage = view.snapshot;
 	}
 	else{
-		var svgUrl = 'data/experiment/efps/'+ this.viewName.substring(0, this.viewName.length - 4)  +"/"+ Eplant.activeSpecies.scientificName.replace(' ', '_') + '.svg';
+		var svgUrl = 'app/data/experiment/efps/'+ this.viewName.substring(0, this.viewName.length - 4)  +"/"+ Eplant.activeSpecies.scientificName.replace(' ', '_') + '.svg';
 		this.svgImage = document.createElement('img');
 		this.svgImage.src = svgUrl;
 		$(this.svgImage).css({width:'100%',height:'80%',left:0,top:0});

@@ -35,7 +35,7 @@
         this.selectList = null; // SelectList that handles the selection UI
         this.isAnimating = false; // Whether an animation is taking place
 
-        this.svgURL = 'data/plant/' + geneticElement.species.scientificName.replace(" ", "_") + '.svg';
+        this.svgURL = 'app/data/plant/' + geneticElement.species.scientificName.replace(" ", "_") + '.svg';
         this.svgImage = document.createElement('img');
         this.svgImage.id = 'ArabidopsisMap';
         this.svgImage.src = this.svgURL;
@@ -43,7 +43,7 @@
         this.loadsvg(this.svgImage);
 
 
-        this.efpURL = 'data/plant/' + geneticElement.species.scientificName.replace(" ", "_") + ".xml";
+        this.efpURL = 'app/data/plant/' + geneticElement.species.scientificName.replace(" ", "_") + ".xml";
         this.geneticElement = geneticElement;
         this.minColor = "#0000FF"; // Minimum color
         this.midColor = "#FFFF00"; // Middle color

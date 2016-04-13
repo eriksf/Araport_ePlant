@@ -26,7 +26,7 @@
 			dfd.resolve();
 		}
 		else{
-			$.getJSON( "data/experiment/viewNames.json", $.proxy(function( data ) {
+			$.getJSON( "app/data/experiment/viewNames.json", $.proxy(function( data ) {
 				var eFPViews = data;
 				/* Create Choice objects for the SelectList */
 				for (var n = 0; n < eFPViews.length; n++) {

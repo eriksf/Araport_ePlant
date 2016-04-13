@@ -605,7 +605,7 @@
 	};
 	
 	Eplant.Views.HeatMapView.prototype.loadData = function() {
-		$.getJSON( "data/heatMap/viewsMap.json", $.proxy(function( data ) {
+		$.getJSON( "app/data/heatMap/viewsMap.json", $.proxy(function( data ) {
 			this.views = data;
 			this.viewNames = [];
 			var xmlUrls = [];

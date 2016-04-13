@@ -28,8 +28,8 @@
 		);
 		
 		// Call eFP constructor
-		var efpSvgURL = 'data/cell/' + geneticElement.species.scientificName.replace(" ", "_") + '.svg';
-		var efpXmlURL = 'data/cell/' + geneticElement.species.scientificName.replace(" ", "_") + '.xml';
+		var efpSvgURL = 'app/data/cell/' + geneticElement.species.scientificName.replace(" ", "_") + '.svg';
+		var efpXmlURL = 'app/data/cell/' + geneticElement.species.scientificName.replace(" ", "_") + '.xml';
 		Eplant.BaseViews.EFPView.call(this, geneticElement, efpSvgURL,efpXmlURL, {
 			isRelativeEnabled: false,
 			isCompareEnabled: false,
