@@ -13,4 +13,6 @@ var test = function(event){
  config['defaultinit']=test;
  // [more..]
  })(art.dialog.defaults);
-Eplant.initialize();
+window.addEventListener('Agave::ready', function() {
+	Eplant.initialize();
+});

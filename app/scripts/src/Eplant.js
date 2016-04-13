@@ -1316,10 +1316,16 @@
 
 						/* Add Species to ePlant */
 						Eplant.addSpecies(species);
+
+						/* Araport: Set Arabidopsis as active species for now*/
+						if (n == 0) {
+							Eplant.setActiveSpecies(species);
+						}
 					}
 
 					/* Set Species load status */
 					Eplant.isLoadedSpecies = true;
+
 
 					/* Fire event for loading chromosomes */
 					var event = new ZUI.Event("load-species", Eplant, null);
