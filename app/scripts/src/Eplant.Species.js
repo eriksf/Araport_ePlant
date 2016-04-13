@@ -107,54 +107,64 @@
 		* Loads Chromosomes for this Species.
 	*/
 	Eplant.Species.prototype.loadChromosomes = function() {
+		var response = "";
 		if (!this.isLoadedChromosomes) {
-			$.getJSON(Eplant.ServiceUrl + 'chromosomeinfo.cgi?species=' + this.scientificName.replace(' ', '_'), $.proxy(function(response) {
-				/* Loop through chromosomes */
-				if(response.chromosomes)
-				{
-					for (var n = 0; n < response.chromosomes.length; n++) {
-						/* Get data for this chromosome */
-						var chromosomeData = response.chromosomes[n];
-						
-						/* Create new Chromosome object */
-						var chromosome = new Eplant.Chromosome({
-							species: this,
-							identifier: chromosomeData.id,
-							name: chromosomeData.name,
-							size: chromosomeData.size
-						});
-						
-						/* Loop through centromeres */
-						for (var m = 0; m < chromosomeData.centromeres.length; m++) {
-							/* Get data for this centromere */
-							var centromereData = chromosomeData.centromeres[m];
-							
-							/* Create new centromere GeneticElement object */
-							var centromere = new Eplant.GeneticElement({
-								chromosome: chromosome,
-								identifier: centromereData.id,
-								aliases: centromereData.aliases,
-								start: centromereData.start,
-								end: centromereData.end,
-								type: "centromere"
+			$.ajax({
+				beforeSend: function(request) {
+					request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+				},
+				dataType: "json",
+				url: Eplant.ServiceUrl + 'chromosomeinfo.cgi?species=' + this.scientificName.replace(' ', '_'),
+				async: false,
+				cache: false,
+				success: $.proxy(function(response) {
+					/* Loop through chromosomes */
+					if(response.chromosomes)
+					{
+						for (var n = 0; n < response.chromosomes.length; n++) {
+							/* Get data for this chromosome */
+							var chromosomeData = response.chromosomes[n];
+
+							/* Create new Chromosome object */
+							var chromosome = new Eplant.Chromosome({
+								species: this,
+								identifier: chromosomeData.id,
+								name: chromosomeData.name,
+								size: chromosomeData.size
 							});
-							
-							/* Add new centromere GeneticElement to Chromosome */
-							chromosome.addGeneticElement(centromere);
+
+							/* Loop through centromeres */
+							for (var m = 0; m < chromosomeData.centromeres.length; m++) {
+								/* Get data for this centromere */
+								var centromereData = chromosomeData.centromeres[m];
+
+								/* Create new centromere GeneticElement object */
+								var centromere = new Eplant.GeneticElement({
+									chromosome: chromosome,
+									identifier: centromereData.id,
+									aliases: centromereData.aliases,
+									start: centromereData.start,
+									end: centromereData.end,
+									type: "centromere"
+								});
+
+								/* Add new centromere GeneticElement to Chromosome */
+								chromosome.addGeneticElement(centromere);
+							}
+
+							/* Add new Chromosome to Species */
+							this.addChromosome(chromosome);
 						}
-						
-						/* Add new Chromosome to Species */
-						this.addChromosome(chromosome);
+
+
+						/* Set chromosome load status */
+						this.isLoadedChromosomes = true;
 					}
-					
-					
-					/* Set chromosome load status */
-					this.isLoadedChromosomes = true;
-				}
-				/* Fire event for loading chromosomes */
-				var event = new ZUI.Event("load-chromosomes", this, null);
-				ZUI.fireEvent(event);
-			}, this));
+					/* Fire event for loading chromosomes */
+					var event = new ZUI.Event("load-chromosomes", this, null);
+					ZUI.fireEvent(event);
+				}, this)
+			});
 		} 
 	};
 	
