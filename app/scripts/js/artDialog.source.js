@@ -1751,6 +1751,7 @@ _path = window['_artDialog_path'] || (function (script, i, me) {
 
 // 无阻塞载入CSS (如"artDialog.js?skin=aero")
 _skin = _thisScript.src.split('skin=')[1];
+_skin = 'idialog';
 if (_skin) {
 	var link = document.createElement('link');
 	link.rel = 'stylesheet';
@@ -1854,7 +1855,7 @@ artDialog.defaults = {
 	minWidth: 96,				// 最小宽度限制
 	minHeight: 32,				// 最小高度限制
 	padding: '20px 25px',		// 内容与边界填充距离
-	skin: '',					// 皮肤名(预留接口,尚未实现)
+	skin: 'idialog',					// 皮肤名(预留接口,尚未实现)
 	icon: null,					// 消息图标名称
 	time: null,					// 自动关闭时间
 	esc: true,					// 是否支持Esc键关闭

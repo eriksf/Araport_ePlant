@@ -7,7 +7,6 @@ function respondCanvas(){
 	var leftMargin =$left.width()+$left.outerWidth(true)-$left.innerWidth();
 	var height = $(window).height() - 75;
 	var width = $(window).width()-leftMargin ;
-	width = width/1.75;
 	$('div#left').height(height);
 	$('div.tab').height(height);
 	if(height>600)
@@ -20,8 +19,8 @@ function respondCanvas(){
 	$('div#ZUI_container').width(width);
 	$('div.tab').css('margin-left',leftMargin );
 	var settings = $('div#settings_container'); 
-	settings.width( ($(window).width()- parseInt(settings.css('marginLeft'),10))/1.75 );
-	$('div#tabUl').width( ($(window).width()- parseInt(settings.css('marginLeft'),10))/1.75 );
+	settings.width($(window).width()- parseInt(settings.css('marginLeft'),10));
+	$('div#tabUl').width($(window).width()- parseInt(settings.css('marginLeft'),10));
 	Eplant.resizeIconDock(height);
 }
 
