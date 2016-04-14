@@ -17,7 +17,7 @@ function respondCanvas(){
 	$('div#genePanel_container').height(height-280);
 	$('div.tab').width(width);
 	$('div#ZUI_container').width(width);
-	$('div.tab').css('margin-left', 0);
+	$('div.tab').css('left', leftMargin);
 	var settings = $('div#settings_container'); 
 	settings.width($(window).width()- parseInt(settings.css('marginLeft'),10));
 	$('div#tabUl').width($(window).width()- parseInt(settings.css('marginLeft'),10));

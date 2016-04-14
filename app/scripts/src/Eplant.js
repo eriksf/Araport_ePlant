@@ -1903,7 +1903,7 @@
 		$('div#ZUI_container').height(height);
 		$(c).width(width);
 		$(c).height(height);
-		$('div.tab').css('margin-left',0 );
+		$('div.tab').css('left',leftMargin);
 		var settings = $('div#settings_container'); 
 		settings.width($(window).width() - parseInt(settings.css('marginLeft'),10) );
 		$('div#tabUl').width($(window).width() - parseInt(settings.css('marginLeft'),10));
