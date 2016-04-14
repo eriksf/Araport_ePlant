@@ -105,111 +105,120 @@
 		});
 		$.get("app/pages/molviewer.html",$.proxy(
 		function(data){
-			$.getJSON(Eplant.ServiceUrl + 'JSMol.cgi?agi=' + this.geneticElement.identifier, $.proxy(function(response) {
-				if (response.link != "") {
-					window['oMolViewer' + this.geneticElement.identifier];
-					var clone = $(data).clone();
-					$(clone).find('#divJmolcontent').attr('id', "divJmolcontent" + this.geneticElement.identifier);
-					$(clone).find('#btnReset').attr('id', "btnReset" + this.geneticElement.identifier);
-					$(clone).find('#protSeq').attr('id', "protSeq" + this.geneticElement.identifier);
-					$(clone).find('input:radio').attr('name', "feature" + this.geneticElement.identifier);
-					$(clone).find('#rd1').attr('id', "rd1a" + this.geneticElement.identifier);
-					$(clone).find('#rd2').attr('id', "rd2a" + this.geneticElement.identifier);
-					$(clone).find("[for='rd1']").attr('for', "rd1a" + this.geneticElement.identifier);
-					$(clone).find("[for='rd2']").attr('for', "rd2a" + this.geneticElement.identifier);
-					$(clone).find('#divMenu').attr('id', "divMenu" + this.geneticElement.identifier);
-					$(clone).find('#divMain').attr('id', "divMain" + this.geneticElement.identifier);
-					$('#viewOptions',clone).attr('id',"viewOptions"+this.geneticElement.identifier);
-					$('#PfamDomains',clone).attr('id',"PfamDomains"+this.geneticElement.identifier);
-					$('#CDDdomains',clone).attr('id',"CDDdomains"+this.geneticElement.identifier);
-					$('#divSeqSlider',clone).attr('id',"divSeqSlider"+this.geneticElement.identifier);
-					$('#draggableBar',clone).attr('id',"draggableBar"+this.geneticElement.identifier);
-					$('#divSeqTitle',clone).attr('id',"divSeqTitle"+this.geneticElement.identifier);
-					$('#divSeqContainner',clone).attr('id',"divSeqContainner"+this.geneticElement.identifier);
-					$('#fadeLeft',clone).attr('id',"fadeLeft"+this.geneticElement.identifier);
-					$('#fadeRight',clone).attr('id',"fadeRight"+this.geneticElement.identifier);
-					$('#svgContainner',clone).attr('id',"svgContainner"+this.geneticElement.identifier);
-					$('#btnCDDtryAgain',clone).attr('id',"btnCDDtryAgain"+this.geneticElement.identifier);
-					$('#btnCDDtryAgain',clone).attr('id',"btnCDDtryAgain"+this.geneticElement.identifier);
-					$('#btnPfamTryAgain',clone).attr('id',"btnPfamTryAgain"+this.geneticElement.identifier);
-					var config = {
-						CSS: {
-							IDs: {
-								parentDivId: 'content' + this.geneticElement.identifier,
-								jmolcontent: 'divJmolcontent' + this.geneticElement.identifier,
-								btnReset: 'btnReset' + this.geneticElement.identifier,
-								protSeq: 'protSeq' + this.geneticElement.identifier,
-								jsMolViewer: 'oMolViewer' + this.geneticElement.identifier,
-								divMenu : 'divMenu'+this.geneticElement.identifier,
-								divMain : 'divMain'+this.geneticElement.identifier,
-								viewOptions : 'viewOptions' + this.geneticElement.identifier,
-								PfamDomains : 'PfamDomains' + this.geneticElement.identifier,
-								CDDdomains : 'CDDdomains' + this.geneticElement.identifier,
-								divSeqSlider : 'divSeqSlider' + this.geneticElement.identifier,
-								draggableBar : 'draggableBar' + this.geneticElement.identifier,
-								divSeqTitle : 'divSeqTitle' + this.geneticElement.identifier,
-								divSeqContainner : 'divSeqContainner' + this.geneticElement.identifier,
-								fadeLeft : 'fadeLeft' + this.geneticElement.identifier,
-								fadeRight : 'fadeRight' + this.geneticElement.identifier,
-								svgContainner : 'svgContainner' + this.geneticElement.identifier,
-								btnCDDtryAgain : 'btnCDDtryAgain' + this.geneticElement.identifier,
-								btnPfamTryAgain : 'btnPfamTryAgain' + this.geneticElement.identifier
+			$.ajax({
+				beforeSend: function(request) {
+					request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+				},
+				dataType: "json",
+				async: false,
+				cache: false,
+				url: Eplant.ServiceUrl + 'JSMol.cgi?agi=' + this.geneticElement.identifier, 
+				success: $.proxy(function(response) {
+					if (response.link != "") {
+						window['oMolViewer' + this.geneticElement.identifier];
+						var clone = $(data).clone();
+						$(clone).find('#divJmolcontent').attr('id', "divJmolcontent" + this.geneticElement.identifier);
+						$(clone).find('#btnReset').attr('id', "btnReset" + this.geneticElement.identifier);
+						$(clone).find('#protSeq').attr('id', "protSeq" + this.geneticElement.identifier);
+						$(clone).find('input:radio').attr('name', "feature" + this.geneticElement.identifier);
+						$(clone).find('#rd1').attr('id', "rd1a" + this.geneticElement.identifier);
+						$(clone).find('#rd2').attr('id', "rd2a" + this.geneticElement.identifier);
+						$(clone).find("[for='rd1']").attr('for', "rd1a" + this.geneticElement.identifier);
+						$(clone).find("[for='rd2']").attr('for', "rd2a" + this.geneticElement.identifier);
+						$(clone).find('#divMenu').attr('id', "divMenu" + this.geneticElement.identifier);
+						$(clone).find('#divMain').attr('id', "divMain" + this.geneticElement.identifier);
+						$('#viewOptions',clone).attr('id',"viewOptions"+this.geneticElement.identifier);
+						$('#PfamDomains',clone).attr('id',"PfamDomains"+this.geneticElement.identifier);
+						$('#CDDdomains',clone).attr('id',"CDDdomains"+this.geneticElement.identifier);
+						$('#divSeqSlider',clone).attr('id',"divSeqSlider"+this.geneticElement.identifier);
+						$('#draggableBar',clone).attr('id',"draggableBar"+this.geneticElement.identifier);
+						$('#divSeqTitle',clone).attr('id',"divSeqTitle"+this.geneticElement.identifier);
+						$('#divSeqContainner',clone).attr('id',"divSeqContainner"+this.geneticElement.identifier);
+						$('#fadeLeft',clone).attr('id',"fadeLeft"+this.geneticElement.identifier);
+						$('#fadeRight',clone).attr('id',"fadeRight"+this.geneticElement.identifier);
+						$('#svgContainner',clone).attr('id',"svgContainner"+this.geneticElement.identifier);
+						$('#btnCDDtryAgain',clone).attr('id',"btnCDDtryAgain"+this.geneticElement.identifier);
+						$('#btnCDDtryAgain',clone).attr('id',"btnCDDtryAgain"+this.geneticElement.identifier);
+						$('#btnPfamTryAgain',clone).attr('id',"btnPfamTryAgain"+this.geneticElement.identifier);
+						var config = {
+							CSS: {
+								IDs: {
+									parentDivId: 'content' + this.geneticElement.identifier,
+									jmolcontent: 'divJmolcontent' + this.geneticElement.identifier,
+									btnReset: 'btnReset' + this.geneticElement.identifier,
+									protSeq: 'protSeq' + this.geneticElement.identifier,
+									jsMolViewer: 'oMolViewer' + this.geneticElement.identifier,
+									divMenu : 'divMenu'+this.geneticElement.identifier,
+									divMain : 'divMain'+this.geneticElement.identifier,
+									viewOptions : 'viewOptions' + this.geneticElement.identifier,
+									PfamDomains : 'PfamDomains' + this.geneticElement.identifier,
+									CDDdomains : 'CDDdomains' + this.geneticElement.identifier,
+									divSeqSlider : 'divSeqSlider' + this.geneticElement.identifier,
+									draggableBar : 'draggableBar' + this.geneticElement.identifier,
+									divSeqTitle : 'divSeqTitle' + this.geneticElement.identifier,
+									divSeqContainner : 'divSeqContainner' + this.geneticElement.identifier,
+									fadeLeft : 'fadeLeft' + this.geneticElement.identifier,
+									fadeRight : 'fadeRight' + this.geneticElement.identifier,
+									svgContainner : 'svgContainner' + this.geneticElement.identifier,
+									btnCDDtryAgain : 'btnCDDtryAgain' + this.geneticElement.identifier,
+									btnPfamTryAgain : 'btnPfamTryAgain' + this.geneticElement.identifier
+								},
+								names: {
+									rdFeature: 'feature' + this.geneticElement.identifier
+								}
 							},
-							names: {
-								rdFeature: 'feature' + this.geneticElement.identifier
-							}
-						},
-						application: {
-							jMolObject: 'myJmol' + this.geneticElement.identifier,
-							pfamUrlDev: '../ProxyServlet',
-							cddUrlDev: '../ProxyServlet',
-							defaultLoadScript: "isDssp = false;set defaultVDW babel;" + "select protein or nucleic;cartoons Only;color \"#C9C9C9\";frank OFF;set disablePopupMenu false;" + "select *;zoom 70;translate x 5;translate y -5;display !water;",
-							load: "load \""+response.link+"\""
-						},
-						callback:this.geneticElement.identifier+'_loaded'
-					}
-					var Info = {
-						LoadStructCallback: "oMolViewer" + this.geneticElement.identifier + ".setControls",
-						j2sPath: "j2s",
-						script: "set defaultLoadScript '" + config.application.defaultLoadScript + "';" + config.application.load,
-					}
-					$('#content' + this.geneticElement.identifier).html(clone);
-					window['oMolViewer'+this.geneticElement.identifier] = MolViewer(config, Info);
-					this.applet=window['oMolViewer'+this.geneticElement.identifier].init();
-					//this.applet=window['oMolViewer'+ this.geneticElement.identifier].myJmolOb;
-					window['oMolViewer'+ this.geneticElement.identifier].setControls=$.proxy(window['oMolViewer'+ this.geneticElement.identifier].setControls,window['oMolViewer'+ this.geneticElement.identifier]);
-					this.loadFinish();
-					/*
-					if(!Eplant.Views.MoleculeView.fisrtLoad){
-						Eplant.Views.MoleculeView.fisrtLoad = true;
-						Eplant.Views.MoleculeView.fisrtLoadDfd = $.Deferred();
-						window['oMolViewer'+this.geneticElement.identifier] = MolViewer(config, Info);
-						window['oMolViewer'+this.geneticElement.identifier].init();
-						this.applet=window['oMolViewer'+ this.geneticElement.identifier].myJmolOb;
-						window['oMolViewer'+ this.geneticElement.identifier].setControls=$.proxy(window['oMolViewer'+ this.geneticElement.identifier].setControls,window['oMolViewer'+ this.geneticElement.identifier]);
-						
+							application: {
+								jMolObject: 'myJmol' + this.geneticElement.identifier,
+								pfamUrlDev: '../ProxyServlet',
+								cddUrlDev: '../ProxyServlet',
+								defaultLoadScript: "isDssp = false;set defaultVDW babel;" + "select protein or nucleic;cartoons Only;color \"#C9C9C9\";frank OFF;set disablePopupMenu false;" + "select *;zoom 70;translate x 5;translate y -5;display !water;",
+								load: "load \""+response.link+"\""
+							},
+							callback:this.geneticElement.identifier+'_loaded'
 						}
-						else if(Eplant.Views.MoleculeView.fisrtLoadDfd){
-						Eplant.Views.MoleculeView.fisrtLoadDfd.promise().then($.proxy(function(){	
+						var Info = {
+							LoadStructCallback: "oMolViewer" + this.geneticElement.identifier + ".setControls",
+							j2sPath: "j2s",
+							script: "set defaultLoadScript '" + config.application.defaultLoadScript + "';" + config.application.load,
+						}
+						$('#content' + this.geneticElement.identifier).html(clone);
 						window['oMolViewer'+this.geneticElement.identifier] = MolViewer(config, Info);
-						window['oMolViewer'+this.geneticElement.identifier].init();
-						this.applet=window['oMolViewer'+ this.geneticElement.identifier].myJmolOb;
+						this.applet=window['oMolViewer'+this.geneticElement.identifier].init();
+						//this.applet=window['oMolViewer'+ this.geneticElement.identifier].myJmolOb;
 						window['oMolViewer'+ this.geneticElement.identifier].setControls=$.proxy(window['oMolViewer'+ this.geneticElement.identifier].setControls,window['oMolViewer'+ this.geneticElement.identifier]);
-						Eplant.Views.MoleculeView.fisrtLoadDfd = null;
 						this.loadFinish();
-						},this));
+						/*
+						if(!Eplant.Views.MoleculeView.fisrtLoad){
+							Eplant.Views.MoleculeView.fisrtLoad = true;
+							Eplant.Views.MoleculeView.fisrtLoadDfd = $.Deferred();
+							window['oMolViewer'+this.geneticElement.identifier] = MolViewer(config, Info);
+							window['oMolViewer'+this.geneticElement.identifier].init();
+							this.applet=window['oMolViewer'+ this.geneticElement.identifier].myJmolOb;
+							window['oMolViewer'+ this.geneticElement.identifier].setControls=$.proxy(window['oMolViewer'+ this.geneticElement.identifier].setControls,window['oMolViewer'+ this.geneticElement.identifier]);
+							
+							}
+							else if(Eplant.Views.MoleculeView.fisrtLoadDfd){
+							Eplant.Views.MoleculeView.fisrtLoadDfd.promise().then($.proxy(function(){	
+							window['oMolViewer'+this.geneticElement.identifier] = MolViewer(config, Info);
+							window['oMolViewer'+this.geneticElement.identifier].init();
+							this.applet=window['oMolViewer'+ this.geneticElement.identifier].myJmolOb;
+							window['oMolViewer'+ this.geneticElement.identifier].setControls=$.proxy(window['oMolViewer'+ this.geneticElement.identifier].setControls,window['oMolViewer'+ this.geneticElement.identifier]);
+							Eplant.Views.MoleculeView.fisrtLoadDfd = null;
+							this.loadFinish();
+							},this));
+							
+							}
+							else{
+							window['oMolViewer'+this.geneticElement.identifier] = MolViewer(config, Info);
+							window['oMolViewer'+this.geneticElement.identifier].init();
+							this.applet=window['oMolViewer'+ this.geneticElement.identifier].myJmolOb;
+							window['oMolViewer'+ this.geneticElement.identifier].setControls=$.proxy(window['oMolViewer'+ this.geneticElement.identifier].setControls,window['oMolViewer'+ this.geneticElement.identifier]);
+							
+						}*/
 						
-						}
-						else{
-						window['oMolViewer'+this.geneticElement.identifier] = MolViewer(config, Info);
-						window['oMolViewer'+this.geneticElement.identifier].init();
-						this.applet=window['oMolViewer'+ this.geneticElement.identifier].myJmolOb;
-						window['oMolViewer'+ this.geneticElement.identifier].setControls=$.proxy(window['oMolViewer'+ this.geneticElement.identifier].setControls,window['oMolViewer'+ this.geneticElement.identifier]);
-						
-					}*/
-					
-				}
-			},this));
+					}
+				},this)
+			});
 			/*
 				$(this.domContainer).find('#divJmolcontent').attr('id', "divJmolcontent_"+this.geneticElement.identifier);
 				$(this.domContainer).find('#btnReset').attr('id', "btnReset_"+this.geneticElement.identifier);

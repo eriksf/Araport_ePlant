@@ -426,6 +426,8 @@
 						request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
 					},
 					type: "GET",
+					async: false,
+					cache: false,
 					url: Eplant.ServiceUrl +  "idautocomplete.cgi?species=" + Eplant.activeSpecies.scientificName.split(" ").join("_") + "&term=" + last,
 					dataType: "json"
 					}).done(function(data) {
