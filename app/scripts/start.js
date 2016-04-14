@@ -25,7 +25,6 @@ function inputBlur(i) {
 
 (function() {
 	console.log('Getting ready.');
-	Eplant.initialize();
 	window.addEventListener('Agave::ready', function() {
 		console.log('Agave ready.');
 		$(document).ready(function() {
