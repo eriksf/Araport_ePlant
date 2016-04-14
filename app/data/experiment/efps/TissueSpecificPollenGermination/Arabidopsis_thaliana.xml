@@ -2,7 +2,7 @@
 <!DOCTYPE specimen SYSTEM "http://www.bar.utoronto.ca/efp/cgi-bin/data/efp_config.dtd">
 <specimen name="Arabidopsis">
 <view name="all" class="" db="atgenexp_plus" img="TissueSpecific-pollinGermination.svg">
-<webservice>http://bar.utoronto.ca/eplant/cgi-bin/plantefp.cgi?datasource=atgenexp_plus&amp;</webservice>
+<webservice>plantefp.cgi?datasource=atgenexp_plus&amp;</webservice>
 	<info>
 		<li>Dry pollen grains were harvested by vacuum </li>
 		<li>Pollen was germinated using an in vitro system, and samples were taken at 30 minutes or 4 hours</li>
