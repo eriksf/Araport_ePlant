@@ -56,8 +56,9 @@
 			'width':'100%',
 			'height':'100%'
 		});
-		$(this.domHolder).append(this.domContainer);	
-		$(document.body).append(this.domHolder);	
+		$(this.domHolder).append(this.domContainer);
+		document.getElementById("Cytoscape_container").appendChild(this.domHolder);	
+		//$(document.body).append(this.domHolder);	
 		
 		/* Load data */
 		this.loadData();
