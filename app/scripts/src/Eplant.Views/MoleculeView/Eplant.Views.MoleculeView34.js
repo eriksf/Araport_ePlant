@@ -102,7 +102,7 @@
 			width: '100%',
 			height: '100%',
 			'z-index': '-1'
-		}).load("pages/molviewer.html",$.proxy(
+		}).load("app/pages/molviewer.html",$.proxy(
 		function(data){
 			$(this.domContainer).find('#divJmolcontent').attr('id', "divJmolcontent_"+this.geneticElement.identifier);
 			$(this.domContainer).find('#btnReset').attr('id', "btnReset_"+this.geneticElement.identifier);

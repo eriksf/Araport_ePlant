@@ -426,9 +426,9 @@
 				}
 				var webServiceXml = $(response).find('webservice');
 				if (webServiceXml.length > 0) {
-					this.webService = webServiceXml.text();
+					this.webService = Eplant.ServiceUrl + webServiceXml.text();
 					} else {
-					this.webService = "http://bar.utoronto.ca/eplant/cgi-bin/plantefp.cgi?datasource=atgenexp_plus&";
+					this.webService = Eplant.ServiceUrl + "plantefp.cgi?datasource=atgenexp_plus&";
 				}
 				/* Prepare array for samples loading */
 				var samples = [];
@@ -523,25 +523,29 @@
 					eFPView: this
 				};
 				/* Query */
-				$.getJSON(this.webService + "id=" + this.geneticElement.identifier + "&samples=" + JSON.stringify(sampleNames), $.proxy(function(response) {
-					/* Match results with samples and copy values to samples */
-					for (var n = 0; n < this.samples.length; n++) {
-						for (var m = 0; m < response.length; m++) {
-							if (this.samples[n].name == response[m].name) {
-								this.samples[n].value = Number(response[m].value);
-								break;
+				$.ajax({
+					beforeSend: function(request) {
+						request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+					},
+					dataType: "json",
+					async: false,
+					cache: false,
+					url: this.webService + "id=" + this.geneticElement.identifier + "&samples=" + JSON.stringify(sampleNames), 
+					success: $.proxy(function(response) {
+						/* Match results with samples and copy values to samples */
+						for (var n = 0; n < this.samples.length; n++) {
+							for (var m = 0; m < response.length; m++) {
+								if (this.samples[n].name == response[m].name) {
+									this.samples[n].value = Number(response[m].value);
+									break;
+								}
 							}
 						}
-					}
-					
-					/* Process values */
-					this.eFPView.processValues();
-					
-					
-					
-				}, wrapper));
-				
-				
+						
+						/* Process values */
+						this.eFPView.processValues();
+					}, wrapper)
+				});
 			}, this)
 		});
 	};

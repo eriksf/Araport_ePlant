@@ -705,7 +705,15 @@
 			agi: this.geneticElement.identifier
 		}
 		];
-		$.getJSON("http://bar.utoronto.ca/~asher/get_interactions.php?request=" + JSON.stringify(queryParam), $.proxy(function(response) {
+		$.ajax({
+			beforeSend: function(request) {
+				request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+			},
+			dataType: "json",
+			async: false,
+			cache: false,
+			url: Eplant.ServiceUrl + "get_interactions.php?request=" + JSON.stringify(queryParam), 
+			success: $.proxy(function(response) {
 			/* Get element arrays */
 			var nodes = this.cyConf.elements.nodes;
 			var edges = this.cyConf.elements.edges;
@@ -777,55 +785,64 @@
 				}
 
 			/* Get data */
-				$.getJSON("http://bar.utoronto.ca/eplant/cgi-bin/groupsuba3.cgi?ids=" + JSON.stringify(ids), $.proxy(function(response) {
-					/* Get nodes */
-					var nodes = this.cyConf.elements.nodes;
-					
-					/* Go through localizations data */
-					for (var n = 0; n < response.length; n++) {
-						/* Get localization data */
-						var localizationData = response[n];
-						Eplant.queue.add(function(){
-							
-							
-							/* Get matching node */
-							var node;
-							for (var m = 0; m < nodes.length; m++) {
-								if (this.localizationData.id.toUpperCase() == nodes[m].data.id.toUpperCase()) {
-									node = nodes[m];
-									break;
-								}
-							}
-							
-							/* Get localization compartment with the highest score */
-							var compartment;
-							var maxScore = 0;
-							for (var _compartment in this.localizationData.data) {
-								if (this.localizationData.data[_compartment] > maxScore) {
-									compartment = _compartment;
-									maxScore = this.localizationData.data[_compartment];
-								}
-							}
-							
-							/* Get color corresponding to compartment */
-							var color = this.view.getColorByCompartment(compartment);
-							
-							/* Set node color */
-							if (this.view.cy) {
-								this.view.cy.elements("node#" + node.data.id).data("borderColor", color);
-							}
-							else 
-							{
-								node.data.borderColor = color;
-							}
-						},{view:this,localizationData:localizationData});
+				$.ajax({
+					beforeSend: function(request) {
+						request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+					},
+					dataType: "json",
+					async: false,
+					cache: false,
+					url: Eplant.ServiceUrl + "groupsuba3.cgi?ids=" + JSON.stringify(ids), 
+					success: $.proxy(function(response) {
+						/* Get nodes */
+						var nodes = this.cyConf.elements.nodes;
 						
-					}
-					Eplant.queue.add(function(){
-						$(this.domContainer).cytoscape(this.cyConf);
-					},this);
-					
-				}, this));
+						/* Go through localizations data */
+						for (var n = 0; n < response.length; n++) {
+							/* Get localization data */
+							var localizationData = response[n];
+							Eplant.queue.add(function(){
+								
+								
+								/* Get matching node */
+								var node;
+								for (var m = 0; m < nodes.length; m++) {
+									if (this.localizationData.id.toUpperCase() == nodes[m].data.id.toUpperCase()) {
+										node = nodes[m];
+										break;
+									}
+								}
+								
+								/* Get localization compartment with the highest score */
+								var compartment;
+								var maxScore = 0;
+								for (var _compartment in this.localizationData.data) {
+									if (this.localizationData.data[_compartment] > maxScore) {
+										compartment = _compartment;
+										maxScore = this.localizationData.data[_compartment];
+									}
+								}
+								
+								/* Get color corresponding to compartment */
+								var color = this.view.getColorByCompartment(compartment);
+								
+								/* Set node color */
+								if (this.view.cy) {
+									this.view.cy.elements("node#" + node.data.id).data("borderColor", color);
+								}
+								else 
+								{
+									node.data.borderColor = color;
+								}
+							},{view:this,localizationData:localizationData});
+							
+						}
+						Eplant.queue.add(function(){
+							$(this.domContainer).cytoscape(this.cyConf);
+						},this);
+						
+					}, this)
+				});
 			},this);
 			Eplant.queue.add(function(){
 				/* Set layout to arbor if there are multiple nodes */
@@ -839,7 +856,8 @@
 					
 				}
 			},this);
-		}, this));
+		}, this)
+		});
 	};
 	
 	/**

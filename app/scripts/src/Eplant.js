@@ -11,7 +11,7 @@
     Eplant = {};
 	
     /* Constants */
-    Eplant.ServiceUrl = 'https://api.araport.org/community/v0.3/eplant-dev/eplant_service_v0.2/access/'; // Base services url
+    Eplant.ServiceUrl = 'https://api.araport.org/community/v0.3/asher-dev/eplant_service_v0.2/access/'; // Base services url
 	
     /* Attributes */
     Eplant.species = []; // Array of Species objects
@@ -422,8 +422,11 @@
 			source: function(request, response) {
 				var last = request.term.split(/,\s*/).pop();
 				$.ajax({
+					beforeSend: function(request) {
+						request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+					},
 					type: "GET",
-					url: "cgi-bin/idautocomplete.cgi?species=" + Eplant.activeSpecies.scientificName.split(" ").join("_") + "&term=" + last,
+					url: Eplant.ServiceUrl +  "idautocomplete.cgi?species=" + Eplant.activeSpecies.scientificName.split(" ").join("_") + "&term=" + last,
 					dataType: "json"
 					}).done(function(data) {
 					response(data);

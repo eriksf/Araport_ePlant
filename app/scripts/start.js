@@ -5,6 +5,15 @@ var test = function(event){
 		this.DOM.header.css({height:"0px"});
 	}
 };
+
+function inputFocus(i) {
+	if (i.value == i.defaultValue) { i.value = ""; i.style.color = "#000"; }
+}
+
+function inputBlur(i) {
+	if (i.value == "") { i.value = i.defaultValue; i.style.color = "#666"; }
+}
+
 (function (config) {
  config['skin']='idialog';
  config['okVal'] = 'Ok';
@@ -13,6 +22,16 @@ var test = function(event){
  config['defaultinit']=test;
  // [more..]
  })(art.dialog.defaults);
-window.addEventListener('Agave::ready', function() {
+
+(function() {
+	console.log('Getting ready.');
 	Eplant.initialize();
-});
+	window.addEventListener('Agave::ready', function() {
+		console.log('Agave ready.');
+		$(document).ready(function() {
+			console.log('jQuery ready, starting ePlant...');
+			Eplant.initialize();
+		});
+
+	});
+})();

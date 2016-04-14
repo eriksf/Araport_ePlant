@@ -363,7 +363,7 @@
             url: this.xmlURL,
             dataType: "xml",
             success: $.proxy(function(response) {
-				this.webService = "http://bar.utoronto.ca/eplant/cgi-bin/cellefp.cgi?";
+				this.webService = Eplant.ServiceUrl + "cellefp.cgi?";
                 /* Prepare array for samples loading */
 				var samples = [];
 				
@@ -432,35 +432,44 @@
                     eFPView: this
 				};
                 /* Query */
-                $.getJSON(this.webService + "id=" + this.geneticElement.identifier, $.proxy(function(response) {
-                    /* Match results with samples and copy values to samples */
-                    for (var n = 0; n < this.samples.length; n++) {
-                        for (var m = 0; m < response.length; m++) {
-                            if (this.samples[n].name.toUpperCase() == response[m].name.toUpperCase()) {
-                                this.samples[n].value = Number(response[m].value);
-                                break;
+				$.ajax({
+					beforeSend: function(request) {
+						request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+					},
+					dataType: "json",
+					async: false,
+					cache: false,
+					url: this.webService + "id=" + this.geneticElement.identifier, 
+					success: $.proxy(function(response) {
+                	    /* Match results with samples and copy values to samples */
+                	    for (var n = 0; n < this.samples.length; n++) {
+                	        for (var m = 0; m < response.length; m++) {
+                	            if (this.samples[n].name.toUpperCase() == response[m].name.toUpperCase()) {
+                	                this.samples[n].value = Number(response[m].value);
+                	                break;
+								}
 							}
 						}
-					}
-					
-                    /* Process values */
-					this.eFPView.processValues();
-					
-					/* Update eFP */
-					//this.eFPView.updateDisplay();
-					Eplant.queue.add(this.eFPView.updateDisplay, this.eFPView);
-					
-					/* Finish loading */
-					//this.eFPView.createViewHeatmap();
-					Eplant.queue.add(this.eFPView.createViewHeatmap, this.eFPView);
-					
-					/* bind events to svg elements eFP */
-					//this.eFPView.bindSvgEvents();
-					Eplant.queue.add(this.eFPView.bindSvgEvents, this.eFPView);
-					/* Finish loading */
-					//this.eFPView.loadFinish();
-					Eplant.queue.add(this.eFPView.loadFinish, this.eFPView);
-				}, wrapper));
+						
+                	    /* Process values */
+						this.eFPView.processValues();
+						
+						/* Update eFP */
+						//this.eFPView.updateDisplay();
+						Eplant.queue.add(this.eFPView.updateDisplay, this.eFPView);
+						
+						/* Finish loading */
+						//this.eFPView.createViewHeatmap();
+						Eplant.queue.add(this.eFPView.createViewHeatmap, this.eFPView);
+						
+						/* bind events to svg elements eFP */
+						//this.eFPView.bindSvgEvents();
+						Eplant.queue.add(this.eFPView.bindSvgEvents, this.eFPView);
+						/* Finish loading */
+						//this.eFPView.loadFinish();
+						Eplant.queue.add(this.eFPView.loadFinish, this.eFPView);
+					}, wrapper),
+				});
 				
 				
 			},this)

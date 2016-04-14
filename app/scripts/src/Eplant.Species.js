@@ -286,65 +286,73 @@
 		wrapper.identifier = identifier;
 		if(identifier){
 			/* Query */
-			$.getJSON(Eplant.ServiceUrl + 'querygene.cgi?species=' + this.scientificName.split(' ').join('_') + '&term=' + identifier, $.proxy(function(response) {
-				/* Get Chromosome */
-				var chromosome = this.species.getChromosomeByIdentifier(response.chromosome);
-				
-				/* Check if Chromsome is valid */
-				if (chromosome) {	// Valid
-					/* Confirm GeneticElement is not already created */
-					var geneticElement = this.species.getGeneticElementByIdentifier(response.id);
-					if (!geneticElement) {
-						/* Create GeneticElement */
-						geneticElement = new Eplant.GeneticElement({
-							chromosome: chromosome,
-							identifier: response.id,
-							aliases: response.aliases,
-							annotation: response.annotation,
-							type: "gene",
-							strand: response.strand,
-							start: response.start,
-							end: response.end
-						});
-						chromosome.addGeneticElement(geneticElement);
-					}
-					if(callback){
-						/* Callback */
-						this.callback(geneticElement, this.identifier);
-					}
-					else{
-						/* Load views for GeneticElement */
-						geneticElement.loadViews();
-						
-						if($.grep( Eplant.activeSpecies.displayGeneticElements, function(e){ return e.identifier == geneticElement.identifier; }).length===0){
-							Eplant.activeSpecies.displayGeneticElements.push(geneticElement);
-							}else{
-							DialogManager.artDialogDynamic(geneticElement.identifier+' is already loaded.');
+			$.ajax({
+				beforeSend: function(request) {
+					request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+				},
+				dataType: "json",
+				async: false,
+				cache: false,
+				url: Eplant.ServiceUrl + 'querygene.cgi?species=' + this.scientificName.split(' ').join('_') + '&term=' + identifier,
+				success: $.proxy(function(response) {
+					/* Get Chromosome */
+					var chromosome = this.species.getChromosomeByIdentifier(response.chromosome);
+					
+					/* Check if Chromsome is valid */
+					if (chromosome) {	// Valid
+						/* Confirm GeneticElement is not already created */
+						var geneticElement = this.species.getGeneticElementByIdentifier(response.id);
+						if (!geneticElement) {
+							/* Create GeneticElement */
+							geneticElement = new Eplant.GeneticElement({
+								chromosome: chromosome,
+								identifier: response.id,
+								aliases: response.aliases,
+								annotation: response.annotation,
+								type: "gene",
+								strand: response.strand,
+								start: response.start,
+								end: response.end
+							});
+							chromosome.addGeneticElement(geneticElement);
+						}
+						if(callback){
+							/* Callback */
+							this.callback(geneticElement, this.identifier);
+						}
+						else{
+							/* Load views for GeneticElement */
+							geneticElement.loadViews();
+							
+							if($.grep( Eplant.activeSpecies.displayGeneticElements, function(e){ return e.identifier == geneticElement.identifier; }).length===0){
+								Eplant.activeSpecies.displayGeneticElements.push(geneticElement);
+								}else{
+								DialogManager.artDialogDynamic(geneticElement.identifier+' is already loaded.');
+							}
+							
+							/* Set GeneticElement to active */
+							geneticElement.species.setActiveGeneticElement(geneticElement);
+							
 						}
 						
-						/* Set GeneticElement to active */
-						geneticElement.species.setActiveGeneticElement(geneticElement);
 						
 					}
-					
-					
-				}
-				else {		// Invalid
-					/* Callback */
-					if(callback){
-						this.callback(null, this.identifier);
-						}else{
-						DialogManager.artDialogDynamic('Sorry, we could not find "' + identifier + '".');
+					else {		// Invalid
+						/* Callback */
+						if(callback){
+							this.callback(null, this.identifier);
+							}else{
+							DialogManager.artDialogDynamic('Sorry, we could not find "' + identifier + '".');
+						}
+						
 					}
-					
-				}
-			}, wrapper))
-			.always(function(){
-				if(alwaysCallback){
-					alwaysCallback();
-				}
-				
-			});
+			}, wrapper)
+		}).always(function(){
+			if(alwaysCallback){
+				alwaysCallback();
+			}
+			
+		});
 		}
 		else if(alwaysCallback){
 			alwaysCallback();

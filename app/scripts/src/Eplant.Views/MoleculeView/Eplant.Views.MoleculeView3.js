@@ -103,7 +103,7 @@
 			height: '100%',
 			'z-index': '-1'
 		});
-		$.get("pages/molviewer.html",$.proxy(
+		$.get("app/pages/molviewer.html",$.proxy(
 		function(data){
 			$.getJSON(Eplant.ServiceUrl + 'JSMol.cgi?agi=' + this.geneticElement.identifier, $.proxy(function(response) {
 				if (response.link != "") {
