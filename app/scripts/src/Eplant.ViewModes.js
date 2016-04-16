@@ -54,8 +54,11 @@ Eplant.screenShotForCurrent = function() {
 	containerElement.style.textAlign = "left";
 	containerElement.innerHTML = "Loading citation...";
 	$.ajax({
+		beforeSend: function(request) {
+			request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+		},
 		type: "GET",
-		url: "cgi-bin/citation.cgi?view=" + ZUI.activeView.name,
+		url: Eplant.ServiceUrl + "citation.cgi?view=" + ZUI.activeView.name,
 		dataType: "json"
 		}).done(function(response) {
 		var content = '';
