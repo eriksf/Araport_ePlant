@@ -389,7 +389,7 @@
 		}, obj));
 	};
 	Eplant.expressionAnglerClick = function() {
-		DialogManager.artDialogUrl('ExpressionAngler',{
+		DialogManager.artDialogUrl('app/ExpressionAngler',{
 			close: function () {
 				var expressionAnglerUrl = art.dialog.data('expressionAnglerUrl');
 				var expressionAnglerMainIdentifier = art.dialog.data('expressionAnglerMain');
