@@ -238,8 +238,8 @@ html {
 #add_tab {
 	cursor: pointer;
 	background-color: #DDDDDD;
-	width:12px;
-	height:14px;
+/*	width:12px;
+	height:14px; Araport */
 	margin-top:3px;
 	border-width: 10px;
 	-webkit-border-top-right-radius: 2px;

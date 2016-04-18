@@ -153,8 +153,8 @@ greyText {
 
 /* Icon class */
 .icon {
-	width: 40px;
-	height: 40px;
+/*	width: 40px;
+	height: 40px; Araport */
 	padding: 5px;
 	cursor: pointer;
 	vertical-align: middle;
@@ -810,7 +810,7 @@ greyText {
 
 /* Logo */
 #logo {
-	width: 56px;
+/*	width: 56px; Araport */
 	height: 56px;
 	margin: 6px;
 	
