@@ -4,8 +4,8 @@ jQuery(function() {
 	
 });
 
-window.addEventListener('Agave::ready', function() {
-	console.log('Agave ready.');
+// Commented out for Araport version
+//window.addEventListener('Agave::ready', function() {
 
 jQuery(document).ready(function() {
 	var firstOption = $('#optionsHolder').find('.searchOptionDiv').first();
@@ -260,4 +260,4 @@ jQuery(document).ready(function() {
 	}
 });		
 
-});
+//});
