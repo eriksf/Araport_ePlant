@@ -10,6 +10,7 @@
 
 /* -------------------------------------------------- */
 // Build JSON array to hold all XML group names and sample Names
+var ADAMAUrl = "https://api.araport.org/community/v0.3/asher-dev/expression_angler_service_v0.1/access/"
 var allViews = [ "AbioticStress",
 "Chemical",
 "DevelopmentalMap",
@@ -1127,7 +1128,7 @@ function generateStandardSearchQuery() {
 			var allTissuesInDb = allTissuesLookUp[activeViewLookUp.database];
 			var valid = false;
 			var search = "";
-			var URL = "http://bar.utoronto.ca/ntools/cgi-bin/ntools_expression_angler.cgi?";
+			var URL = ADAMAUrl + "ntools_expression_angler.cgi?";
 			var agiID = "";
 			var agiIDOnly = "";
 			var use_custom_bait = "";  

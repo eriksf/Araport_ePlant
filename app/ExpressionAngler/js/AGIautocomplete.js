@@ -4,6 +4,9 @@ jQuery(function() {
 	
 });
 
+window.addEventListener('Agave::ready', function() {
+	console.log('Agave ready.');
+
 jQuery(document).ready(function() {
 	var firstOption = $('#optionsHolder').find('.searchOptionDiv').first();
 	jQuery("#optionHolder .searchOptionDiv").removeClass('activeSearchOptionDiv');
@@ -23,7 +26,23 @@ jQuery(document).ready(function() {
 		var gene = jQuery("#user_agi").val();
 		geneName_exists(gene, function(data){});
 		}).autocomplete({
-		source: "http://bar.utoronto.ca/ntools/cgi-bin/get_alias.pl",
+		source: function(request, response) {
+			$.ajax({
+				beforeSend: function(request) {
+					request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+				},
+				dataType: "json",
+				data: {
+					term: request.term
+				},
+				async: false,
+				cache: false,
+				url: ADAMAUrl + "get_alias.pl",
+				success: function(data) {
+					response(data);
+				}
+			});
+		},
 		minLength: 2,
 		select: function(event, ui) {
 			//jQuery("#user_agi").val(ui.item.label);
@@ -66,7 +85,23 @@ jQuery(document).ready(function() {
 	});
 	
 	jQuery("#optionHolder .search-input").autocomplete({
-		source: "http://bar.utoronto.ca/ntools/cgi-bin/get_alias.pl",
+		source: function(request, response) {
+			$.ajax({
+				beforeSend: function(request) {
+					request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+				},
+				dataType: "json",
+				data: {
+					term: request.term
+				},
+				async: false,
+				cache: false,
+				url: ADAMAUrl + "get_alias.pl",
+				success: function(data) {
+					response(data);
+				}
+			});
+		},
 		minLength: 2,
 		select: function(event, ui) {
 			//jQuery("#user_agi").val(ui.item.label);
@@ -181,10 +216,12 @@ jQuery(document).ready(function() {
 	function geneName_exists(gene, callback, failCallback) {
 		var regex = "([Aa][Tt][12345CM][Gg][0-9]{5})|([0-9]{6}(_[xsfi])?_at)|[0-9]{6,9};"
 		jQuery.ajax({
-			url: "http://bar.utoronto.ca/ntools/cgi-bin/check_alias.pl",
+			beforeSend: function(request) {
+					request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+			},
+			url:  ADAMAUrl + "check_alias.pl",
 			data: {"gene": gene},
-			type: "post",
-			dataType: "json",
+			type: "get",
 			success: function(data) {
 				
 				if (data == 1) {
@@ -218,8 +255,9 @@ jQuery(document).ready(function() {
 			jQuery("#user_agi_valid").text('AGI ID Service Encoutner a problem.');
 			jQuery("#user_agi_valid_icon").attr('src','images/incorrect.png');
 			jQuery("#user_agi").val('');
-			failCallback();
 		});
 		return false;
 	}
-});							
+});		
+
+});
