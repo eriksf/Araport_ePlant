@@ -5,9 +5,14 @@ jQuery(function() {
 });
 
 // Commented out for Araport version
-window.addEventListener('Agave::ready', function() {
+window.addEventListener(‘message’, function(event) {
+    console.log(‘iFrame received token from ‘ + event.origin + ‘: ‘ + event.data);
+    $(‘#api-token’).val(event.data);
+}, false);
 
 jQuery(document).ready(function() {
+
+
 	var firstOption = $('#optionsHolder').find('.searchOptionDiv').first();
 	jQuery("#optionHolder .searchOptionDiv").removeClass('activeSearchOptionDiv');
 	$(firstOption).addClass('activeSearchOptionDiv');
@@ -260,4 +265,3 @@ jQuery(document).ready(function() {
 	}
 });		
 
-});
