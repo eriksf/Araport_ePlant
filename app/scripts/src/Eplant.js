@@ -389,7 +389,7 @@
 		}, obj));
 	};
 	Eplant.expressionAnglerClick = function() {
-		DialogManager.artDialogUrl('app/ExpressionAngler/index.html',{
+		DialogManager.artDialogUrl('app/ExpressionAngler/index.html?data=' + Agave.token.accessToken, {
 			close: function () {
 				var expressionAnglerUrl = art.dialog.data('expressionAnglerUrl');
 				var expressionAnglerMainIdentifier = art.dialog.data('expressionAnglerMain');
@@ -401,6 +401,7 @@
 			},
 			width:"95%"
 		});
+
 	};
 	/**
 		* Bind events for ePlant DOM UI elements.

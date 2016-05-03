@@ -1,18 +1,15 @@
 // autocomplete AGI ID function
 
+// Get token
+APIurl = window.location.href;
+var match = APIurl.match(/^http.+data=(.+)/);
+APIToken = match[1];
+
 jQuery(function() {
 	
 });
 
-// Commented out for Araport version
-window.addEventListener(‘message’, function(event) {
-    console.log(‘iFrame received token from ‘ + event.origin + ‘: ‘ + event.data);
-    $(‘#api-token’).val(event.data);
-}, false);
-
 jQuery(document).ready(function() {
-
-
 	var firstOption = $('#optionsHolder').find('.searchOptionDiv').first();
 	jQuery("#optionHolder .searchOptionDiv").removeClass('activeSearchOptionDiv');
 	$(firstOption).addClass('activeSearchOptionDiv');
@@ -34,7 +31,7 @@ jQuery(document).ready(function() {
 		source: function(request, response) {
 			$.ajax({
 				beforeSend: function(request) {
-					request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+					request.setRequestHeader('Authorization', 'Bearer ' + APIToken );
 				},
 				dataType: "json",
 				data: {
@@ -93,7 +90,7 @@ jQuery(document).ready(function() {
 		source: function(request, response) {
 			$.ajax({
 				beforeSend: function(request) {
-					request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+					request.setRequestHeader('Authorization', 'Bearer ' + APIToken);
 				},
 				dataType: "json",
 				data: {
@@ -222,7 +219,7 @@ jQuery(document).ready(function() {
 		var regex = "([Aa][Tt][12345CM][Gg][0-9]{5})|([0-9]{6}(_[xsfi])?_at)|[0-9]{6,9};"
 		jQuery.ajax({
 			beforeSend: function(request) {
-					request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+					request.setRequestHeader('Authorization', 'Bearer ' + APIToken);
 			},
 			url:  ADAMAUrl + "check_alias.pl",
 			data: {"gene": gene},
