@@ -102,58 +102,63 @@
 				var doc = $.parseHTML(data)
 				var tempLinkEle = $('b:contains("View data set as text")', doc);
 				if(tempLinkEle.length>0){
-					var tempFileLink = tempLinkEle.parent().attr('href').replace('..','http://bar.utoronto.ca/ntools');
-					Eplant.expressionXhrLink = $.get( tempFileLink,  $.proxy(function( list ) {
-						var allTextLines = list.split(/\r\n|\n/);
-						var headers = allTextLines[0].split(/\t/);
-						var lines = [];
-						
-						for (var i=1; i<allTextLines.length; i++) {
-							var data = allTextLines[i].split(/\t/);
-							if (data.length == headers.length) {
-								
-								var tarr = [];
-								for (var j=0; j<2; j++) {
-									tarr.push(data[j]);
-								}
-								if(/^[a-z0-9]+$/i.test(tarr[0])){//&&!tarr[0].toUpperCase().contains(mainIdentifier.toUpperCase())){
-									lines.push(tarr);
-								}
-							}
-						}
-						var list = [];
-						if(mainIdentifier&&lines[0][0].toUpperCase()===mainIdentifier.toUpperCase()){
-							var term = lines[0][0];
-							var rv = lines[0][1].split('|')[0];
+					var tempFileLink = tempLinkEle.parent().attr('href').replace(/..\/.+_/i,'');
+					var dataId = tempFileLink.replace(/.txt/i,'');
+					Eplant.expressionXhrLink = $.ajax({
+						beforeSend: function(request) {
+							request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+						},
+  						url: ExpressionAnglerUrl + 'getData.php?id=' + dataId,
+						type: 'get',
+						success: $.proxy(function( list ) {
+							var allTextLines = list.split(/\r\n|\n/);
+							var headers = allTextLines[0].split(/\t/);
+							var lines = [];
 							
-							list.push({
-								term:term,
-								rValue:rv
-							});
-							
-						}
-						for(var i = 1;i<lines.length;i++){
-							if(lines[i][0]){
-								if(!mainIdentifier||lines[i][0].toUpperCase()!==mainIdentifier.toUpperCase()){
-									var term = lines[i][0];
-									var rv = lines[i][1].split('|')[0];
-									if(parseInt(rv)<1){
-										list.push({
-											term:term,
-											rValue:rv
-										});
+							for (var i=1; i<allTextLines.length; i++) {
+								var data = allTextLines[i].split(/\t/);
+								if (data.length == headers.length) {
+									
+									var tarr = [];
+									for (var j=0; j<2; j++) {
+										tarr.push(data[j]);
+									}
+									if(/^[a-z0-9]+$/i.test(tarr[0])){
+										lines.push(tarr);
 									}
 								}
+							}
+							var list = [];
+							if(mainIdentifier&&lines[0][0].toUpperCase()===mainIdentifier.toUpperCase()){
+								var term = lines[0][0];
+								var rv = lines[0][1].split('|')[0];
+								
+								list.push({
+									term:term,
+									rValue:rv
+								});
 								
 							}
-						}
-						//var count = parseInt(unescape(URL.replace(new RegExp("^(?:.*[&\\?]" + escape('match_count').replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1")));				
-						list= list.slice(0, (mainIdentifier)?resultCount+1:resultCount);
-						if(Eplant.expressionAnglerLoadingDialog) Eplant.expressionAnglerLoadingDialog.close();
-						this.showFoundGenes(list,mainIdentifier,URL,resultCount);
-						
-						
-					},this));
+							for(var i = 1;i<lines.length;i++){
+								if(lines[i][0]){
+									if(!mainIdentifier||lines[i][0].toUpperCase()!==mainIdentifier.toUpperCase()){
+										var term = lines[i][0];
+										var rv = lines[i][1].split('|')[0];
+										if(parseInt(rv)<1){
+											list.push({
+												term:term,
+												rValue:rv
+											});
+										}
+									}
+									
+								}
+							}
+							list= list.slice(0, (mainIdentifier)?resultCount+1:resultCount);
+							if(Eplant.expressionAnglerLoadingDialog) Eplant.expressionAnglerLoadingDialog.close();
+							this.showFoundGenes(list,mainIdentifier,URL,resultCount);
+						},this)
+					});
 				} else {
 					var dom = $('<div/>', {
 					});
@@ -173,7 +178,7 @@
 		.always(function() {
 			if(Eplant.expressionAnglerLoadingDialog) Eplant.expressionAnglerLoadingDialog.close();
 		});
-	}
+	};
 	
 	Eplant.showFoundGenes = function(list,mainIdentifier,URL,resultCount) {
 		var dom = $('<div/>', {
