@@ -32,17 +32,17 @@
 			text: 'Loading, click cancel to stop loading.'
 		});
 		var propgressBar = $('<div/>', {
-			'class': 'progressBar'
+			'class': 'progressbar'
 		});
 		var propgressLabel = $('<div/>', {
-			'class': 'progressLabel'
+			'class': 'progresslabel'
 		});
 		
 		
 		var cancelButton = $('<input/>', {
 			type: 'button',
 			value: "cancel",
-			'class':'button greenButton'
+			'class':'button greenbutton'
 		});
 		cancelButton.css({'margin-top':'10px'});
 		cancelButton.on('click',$.proxy(function(){
@@ -60,7 +60,7 @@
 		$(dom).append(p).append(propgressBar.append(propgressLabel)).append(cancelButton);
 		Eplant.expressionAnglerLoadingDialog = DialogManager.artDialogDynamic(dom[0]);
 		var $progressbar = $( ".progressbar",dom ),
-		$progressLabel = $( ".progressLabel",dom );
+		$progressLabel = $( ".progresslabel",dom );
 		
 		$progressbar.progressbar({
 			value: false,
@@ -164,7 +164,7 @@
 					});
 					dom.css({'text-align':'center'});
 					var p = $('<div/>', {
-						html: '<pre style="font-weight:bold">Results:</pre> <br> Expression Angler found 0 matches. <br>'
+						html: '<pre style="font-weight:bold;background-color: #ffffff;">Results:</pre> <br> Expression Angler found 0 matches. <br>'
 						}).css({
 						'max-height': '400px',
 						'overflow': 'auto'
@@ -183,11 +183,11 @@
 	Eplant.showFoundGenes = function(list,mainIdentifier,URL,resultCount) {
 		var dom = $('<div/>', {
 		});
-		dom.css({'text-align':'center','width': '250px'});
+		dom.css({'text-align':'center','width': '250px','background-color': '#ffffff'});
 		var text = mainIdentifier?'Expression Angler found '+(list.length-1)+' matches with similar expression patterns to '+mainIdentifier
 		:'Expression Angler found '+list.length+' matches.';
 		var pHead = $('<div/>', {
-			html: '<pre style="font-weight:bold">Results:</pre> '+text+' <br>'
+			html: '<pre style="font-weight:bold; background-color: #ffffff;">Results:</pre> '+text+' <br>'
 			}).css({
 			'max-height': '400px',
 			'overflow': 'auto'
@@ -219,16 +219,16 @@
 		});
 		$(dom).append(p);
 		if(list.length>0){
-		p.append('<pre style="font-weight:bold">&#9;    Gene&#9; &#9;r-value    &#9;<br></pre>');
+		p.append('<pre style="font-weight:bold;background-color: #ffffff;">&#9;    Gene&#9; &#9;r-value    &#9;<br></pre>');
 		if(parseInt(list[0].rValue,10)>=1)
 		{
-			p.append('<pre><input type="checkbox" name="found gene '+0+'" value="'+0+'" style="margin-right: 10px;vertical-align: middle;" checked>'+list[0].term+' &#9;'+list[0].rValue+' &#9;<br></pre>');
+			p.append('<pre style="background-color: #ffffff;"><input type="checkbox" name="found gene '+0+'" value="'+0+'" style="margin-right: 10px;vertical-align: middle;" checked>'+list[0].term+' &#9;'+list[0].rValue+' &#9;<br></pre>');
 			}else{
-			p.append('<pre><input type="checkbox" name="found gene '+0+'" value="'+0+'" style="margin-right: 10px;vertical-align: middle;" >'+list[0].term+' &#9;'+list[0].rValue+' &#9;<br></pre>');
+			p.append('<pre style="background-color: #ffffff;"><input type="checkbox" name="found gene '+0+'" value="'+0+'" style="margin-right: 10px;vertical-align: middle;" >'+list[0].term+' &#9;'+list[0].rValue+' &#9;<br></pre>');
 		}
 		
 		for(var i = 1; i<list.length;i++){
-			p.append('<pre><input type="checkbox" name="found gene '+i+'" value="'+i+'" style="margin-right: 10px;vertical-align: middle;">'+list[i].term+' &#9;'+list[i].rValue+' &#9;<br></pre>');
+			p.append('<pre style="background-color: #ffffff;"><input type="checkbox" name="found gene '+i+'" value="'+i+'" style="margin-right: 10px;vertical-align: middle;">'+list[i].term+' &#9;'+list[i].rValue+' &#9;<br></pre>');
 		}
 		
 		/*var cancelButton = $('<input/>', {
@@ -267,7 +267,7 @@
 		var continueButton = $('<input/>', {
 			type: 'button',
 			value: "Get data for selected genes",
-			'class':'greenButton'
+			'class':'greenbutton'
 		});
 		continueButton.css({'margin-top':'10px',width:'220px'});
 		continueButton.on('click',$.proxy(function(){

@@ -122,6 +122,7 @@
 	"scripts/start.js"	
   ],
   "styles": [
+    "styles/reset.css",
   	"scripts/lib/spectrum/spectrum.css",
 	"scripts/js/styles28.css",
 	"scripts/lib/hint/hint.css",
