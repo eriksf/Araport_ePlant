@@ -222,13 +222,13 @@
 		p.append('<pre style="font-weight:bold;background-color: #ffffff;border: 0;font-size: 100%;margin: 0;padding: 0;">&#9;    Gene&#9; &#9;r-value    &#9;<br></pre>');
 		if(parseInt(list[0].rValue,10)>=1)
 		{
-			p.append('<pre style="background-color: #ffffff;"><input type="checkbox" name="found gene '+0+'" value="'+0+'" style="margin-right: 10px;vertical-align: middle;" checked>'+list[0].term+' &#9;'+list[0].rValue+' &#9;<br></pre>');
+			p.append('<pre style="background-color: #ffffff;border: 0;font-size: 100%;margin: 0;padding: 0;"><input type="checkbox" name="found gene '+0+'" value="'+0+'" style="margin-right: 10px;vertical-align: middle;" checked>'+list[0].term+' &#9;'+list[0].rValue+' &#9;<br></pre>');
 			}else{
-			p.append('<pre style="background-color: #ffffff;"><input type="checkbox" name="found gene '+0+'" value="'+0+'" style="margin-right: 10px;vertical-align: middle;" >'+list[0].term+' &#9;'+list[0].rValue+' &#9;<br></pre>');
+			p.append('<pre style="background-color: #ffffff;border: 0;font-size: 100%;margin: 0;padding: 0;"><input type="checkbox" name="found gene '+0+'" value="'+0+'" style="margin-right: 10px;vertical-align: middle;" >'+list[0].term+' &#9;'+list[0].rValue+' &#9;<br></pre>');
 		}
 		
 		for(var i = 1; i<list.length;i++){
-			p.append('<pre style="background-color: #ffffff;"><input type="checkbox" name="found gene '+i+'" value="'+i+'" style="margin-right: 10px;vertical-align: middle;">'+list[i].term+' &#9;'+list[i].rValue+' &#9;<br></pre>');
+			p.append('<pre style="background-color: #ffffff;border: 0;font-size: 100%;margin: 0;padding: 0;"><input type="checkbox" name="found gene '+i+'" value="'+i+'" style="margin-right: 10px;vertical-align: middle;">'+list[i].term+' &#9;'+list[i].rValue+' &#9;<br></pre>');
 		}
 		
 		/*var cancelButton = $('<input/>', {
