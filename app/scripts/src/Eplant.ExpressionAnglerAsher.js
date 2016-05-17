@@ -164,7 +164,7 @@
 					});
 					dom.css({'text-align':'center'});
 					var p = $('<div/>', {
-						html: '<pre style="font-weight:bold;background-color: #ffffff;">Results:</pre> <br> Expression Angler found 0 matches. <br>'
+						html: '<pre style="font-weight:bold;background-color: #ffffff;border: 0;font-size: 100%;margin: 0;padding: 0;">Results:</pre> <br> Expression Angler found 0 matches. <br>'
 						}).css({
 						'max-height': '400px',
 						'overflow': 'auto'
@@ -187,7 +187,7 @@
 		var text = mainIdentifier?'Expression Angler found '+(list.length-1)+' matches with similar expression patterns to '+mainIdentifier
 		:'Expression Angler found '+list.length+' matches.';
 		var pHead = $('<div/>', {
-			html: '<pre style="font-weight:bold; background-color: #ffffff;">Results:</pre> '+text+' <br>'
+			html: '<pre style="font-weight:bold; background-color: #ffffff;border: 0;font-size: 100%;margin: 0;padding: 0;">Results:</pre> '+text+' <br>'
 			}).css({
 			'max-height': '400px',
 			'overflow': 'auto'
@@ -219,7 +219,7 @@
 		});
 		$(dom).append(p);
 		if(list.length>0){
-		p.append('<pre style="font-weight:bold;background-color: #ffffff;">&#9;    Gene&#9; &#9;r-value    &#9;<br></pre>');
+		p.append('<pre style="font-weight:bold;background-color: #ffffff;border: 0;font-size: 100%;margin: 0;padding: 0;">&#9;    Gene&#9; &#9;r-value    &#9;<br></pre>');
 		if(parseInt(list[0].rValue,10)>=1)
 		{
 			p.append('<pre style="background-color: #ffffff;"><input type="checkbox" name="found gene '+0+'" value="'+0+'" style="margin-right: 10px;vertical-align: middle;" checked>'+list[0].term+' &#9;'+list[0].rValue+' &#9;<br></pre>');
