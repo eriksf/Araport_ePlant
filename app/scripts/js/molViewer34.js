@@ -66,7 +66,8 @@ var MolViewer = function(customConfig, customInfo) {
 		width : '100%',
 		use : "HTML5",
 		//to use the php from my server http://104.197.50.15/myphptest/php/jsmol.php
-		serverURL : "http://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+		//serverURL : "http://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+		serverURL: "https://bar.utoronto.ca/eplant/cgi-bin/jsmol.php",
 		src : null,
 		LoadStructCallback : config.CSS.IDs.jsMolViewer+".setControls",
 		script: "set defaultLoadScript '" + config.application.defaultLoadScript + "';"+config.application.load,
