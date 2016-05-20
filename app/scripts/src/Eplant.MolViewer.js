@@ -55,13 +55,13 @@
 				//the name to use to create the jmol object
 				jMolObject : 'myJmol',
 				//
-				pfamUrlBar : 'http://bar.utoronto.ca/~gfucile/cdd3d/cgi-bin/PfamAnnot.cgi',
+				pfamUrlBar : Eplant.cdd3dUrl + 'PfamAnnot.cgi',
 				//
 				pfamUrlDev : 'ProxyServlet',
 				//
 				pfamParams : 'FASTAseq',
 				//
-				cddUrlBar : 'http://bar.utoronto.ca/~gfucile/cdd3d/cgi-bin/CDDannot.cgi',
+				cddUrlBar : Eplant.cdd3dUrl + 'CDDannot.cgi',
 				//
 				cddUrlDev : 'ProxyServlet',
 				//
@@ -318,6 +318,9 @@
 		$(this.jq(this.config.CSS.IDs.CDDdomains)).empty().append("<span class='loading'>Loading CDD features</span>");
 		
 		$.ajax({
+			beforeSend: function(request) {
+				request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+			},
 			type: 'POST',
 			dataType: 'json',
 			url: this.config.application.cddUrlBar,
@@ -384,6 +387,9 @@
 		$(this.jq(this.config.CSS.IDs.PfamDomains)).empty().append("<span class='loading' >Loading Pfam domains</span>");
 		
 		$.ajax({
+			beforeSend: function(request) {
+				request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+			},
 			type: 'POST',
 			dataType: 'json',
 			url: this.config.application.pfamUrlBar,

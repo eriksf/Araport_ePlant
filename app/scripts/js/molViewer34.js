@@ -4,6 +4,8 @@ var MolViewer = function(customConfig, customInfo) {
 		* http://www.w3.org/wiki/JavaScript_best_practices
 		* configuration options
 	*/
+	window.alert(Eplant.cdd3dUrl);
+	window.alert(Agave.token.accessToken);
 	var config = {
 		CSS : {
 			IDs : {
@@ -34,13 +36,13 @@ var MolViewer = function(customConfig, customInfo) {
 			//the name to use to create the jmol object
 			jMolObject : 'myJmol',
 			//
-			pfamUrlBar : 'http://bar.utoronto.ca/~gfucile/cdd3d/cgi-bin/PfamAnnot.cgi',
+			pfamUrlBar : Eplant.cdd3dUrl + 'PfamAnnot.cgi',
 			//
 			pfamUrlDev : 'ProxyServlet',
 			//
 			pfamParams : 'FASTAseq',
 			//
-			cddUrlBar : 'http://bar.utoronto.ca/~gfucile/cdd3d/cgi-bin/CDDannot.cgi',
+			cddUrlBar : Eplant.cdd3dUrl + 'CDDannot.cgi',
 			//
 			cddUrlDev : 'ProxyServlet',
 			//
@@ -293,6 +295,9 @@ var MolViewer = function(customConfig, customInfo) {
 	    $(pDiv+jq(config.CSS.IDs.CDDdomains)).empty().append("<span class='loading'>Loading CDD features</span>");
 		
 		$.ajax({
+			beforeSend: function(request) {
+				request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+			},
 		    type: 'POST',
 		    dataType: 'json',
 		    url: config.application.cddUrlBar,
@@ -358,6 +363,9 @@ var MolViewer = function(customConfig, customInfo) {
 		$(pDiv+jq(config.CSS.IDs.PfamDomains)).empty().append("<span class='loading' >Loading Pfam domains</span>");
 		
 		$.ajax({
+			beforeSend: function(request) {
+				request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+			},
 		    type: 'POST',
 		    dataType: 'json',
 		    url: config.application.pfamUrlBar,
