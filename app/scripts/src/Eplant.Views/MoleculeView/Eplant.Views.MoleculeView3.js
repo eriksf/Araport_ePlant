@@ -79,7 +79,7 @@
 			width: ZUI.width,
 			height: ZUI.height,
 			use: "HTML5",
-			j2sPath: "lib/JSmol/j2s",
+			j2sPath: "app/scripts/lib/JSmol/j2s",
 			script: 'set defaultloadscript "' + this.defaultLoadScript + '";',
 			disableJ2SLoadMonitor: true,
 			disableInitialConsole: true

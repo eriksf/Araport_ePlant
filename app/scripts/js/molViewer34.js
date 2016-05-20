@@ -99,7 +99,8 @@ var MolViewer = function(customConfig, customInfo) {
 		pDiv = jq(config.CSS.IDs.parentDivId)+" "; //just to make the var name shorter
 		
 		console.log('initializing MolViewer');
-		
+	
+		// Araport comment out this:	
 	    //abort all running ajax requests
 	    xhrPool.abortAll = function() {
 	    	console.log('aborting all ajax requests');
