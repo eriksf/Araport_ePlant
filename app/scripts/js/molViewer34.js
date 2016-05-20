@@ -4,8 +4,6 @@ var MolViewer = function(customConfig, customInfo) {
 		* http://www.w3.org/wiki/JavaScript_best_practices
 		* configuration options
 	*/
-	window.alert(Eplant.cdd3dUrl);
-	window.alert(Agave.token.accessToken);
 	var config = {
 		CSS : {
 			IDs : {
