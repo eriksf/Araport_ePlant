@@ -285,7 +285,7 @@
 			this.webService = response.webService;
 
 			/* Override for Araport */
-			this.webservice = Eplant.ServiceUrl + 'worldefp.cgi';
+			this.webService = Eplant.ServiceUrl + 'worldefp.cgi';
 			
 			/* Get marker shape */
 			this.markerIcon = response.marker;
@@ -431,10 +431,11 @@
 						request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
 					},
 					dataType: "json",
+					type: "get",
 					async: false,
 					cache: false,
-					url: this.webService + "id=" + this.geneticElement.identifier + "&samples=" + JSON.stringify(sampleNames), 
-					ssuccess: $.proxy(function(response) {
+					url: this.webService + "?id=" + this.geneticElement.identifier + "&samples=" + JSON.stringify(sampleNames), 
+					success: $.proxy(function(response) {
 						/* Match results with samples and copy values to samples */
 						for (var n = 0; n < this.samples.length; n++) {
 							for (var m = 0; m < response.length; m++) {
@@ -458,7 +459,7 @@
 					
 					}, wrapper)
 				});
-			},this)
+			},this);
 		}, this));
 	};
 	
