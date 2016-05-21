@@ -29,6 +29,10 @@ function inputBlur(i) {
 		console.log('Agave ready.');
 		$(document).ready(function() {
 			console.log('jQuery ready, starting ePlant...');
+			/* Google maps initailiz */
+			
+			//	GoogleMapsLoader.KEY = "AIzaSyAj876MbMPM8roSi2JZFgGFUzTPpZ56kzU";
+			//	GoogleMapsLoader.load(function(google) {
 			Eplant.initialize();
 		});
 

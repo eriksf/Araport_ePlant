@@ -102,6 +102,7 @@
 	"scripts/src/Eplant.Views/TissueSpecificStigmaAndOvariesView/Eplant.Views.TissueSpecificStigmaAndOvariesView.js",
 	"scripts/src/Eplant.Views/TissueSpecificTrichomesView/Eplant.Views.TissueSpecificTrichomesView.js",
 	"scripts/src/Eplant.Views/TissueSpecificXylemAndCorkView/Eplant.Views.TissueSpecificXylemAndCorkView.js",
+	"scripts/src/Eplant.Views/WorldView/Eplant.Views.WorldView.js",
 	"scripts/src/Eplant.Views/ExperimentView/Eplant.Views.ExperimentView.js",
 	"scripts/src/Eplant.Views/ExperimentView/Eplant.Views.ExperimentView.SelectList.js",
 	"scripts/src/Eplant.Views/ExperimentView/Eplant.Views.ExperimentView.SelectList.Choice.js",

@@ -283,6 +283,9 @@
 		$.getJSON(this.efpURL, $.proxy(function(response) {
 			/* Get web service URL */
 			this.webService = response.webService;
+
+			/* Override for Araport */
+			this.webservice = Eplant.ServiceUrl + 'worldefp.cgi';
 			
 			/* Get marker shape */
 			this.markerIcon = response.marker;
@@ -423,31 +426,39 @@
 					eFPView: this
 				};
 				/* Query */
-				$.getJSON(this.webService + "id=" + this.geneticElement.identifier + "&samples=" + JSON.stringify(sampleNames), $.proxy(function(response) {
-					/* Match results with samples and copy values to samples */
-					for (var n = 0; n < this.samples.length; n++) {
-						for (var m = 0; m < response.length; m++) {
-							if (this.samples[n].name == response[m].name) {
-								this.samples[n].value = Number(response[m].value);
-								break;
+				$.ajax({
+					beforeSend: function(request) {
+						request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+					},
+					dataType: "json",
+					async: false,
+					cache: false,
+					url: this.webService + "id=" + this.geneticElement.identifier + "&samples=" + JSON.stringify(sampleNames), 
+					ssuccess: $.proxy(function(response) {
+						/* Match results with samples and copy values to samples */
+						for (var n = 0; n < this.samples.length; n++) {
+							for (var m = 0; m < response.length; m++) {
+								if (this.samples[n].name == response[m].name) {
+									this.samples[n].value = Number(response[m].value);
+									break;
+								}
 							}
 						}
-					}
+						
+						/* Process values */
+						this.eFPView.processValues();
+						
+						/* Update eFP */
+						//this.eFPView.updateDisplay();
+						Eplant.queue.add(this.eFPView.updateDisplay, this.eFPView);
+						
+						/* Finish loading */
+						//this.eFPView.loadFinish();
+						Eplant.queue.add(this.eFPView.loadFinish, this.eFPView);
 					
-					/* Process values */
-					this.eFPView.processValues();
-					
-					/* Update eFP */
-					//this.eFPView.updateDisplay();
-					Eplant.queue.add(this.eFPView.updateDisplay, this.eFPView);
-					
-					/* Finish loading */
-					//this.eFPView.loadFinish();
-					Eplant.queue.add(this.eFPView.loadFinish, this.eFPView);
-					
-				}, wrapper));
+					}, wrapper)
+				});
 			},this)
-			
 		}, this));
 	};
 	
