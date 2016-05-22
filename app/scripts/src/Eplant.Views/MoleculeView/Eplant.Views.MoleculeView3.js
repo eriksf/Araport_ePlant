@@ -178,7 +178,7 @@
 						}
 						var Info = {
 							LoadStructCallback: "oMolViewer" + this.geneticElement.identifier + ".setControls",
-							j2sPath: "app/scripts/j2s",
+							j2sPath: "app/scripts/lib/JSmol/j2s",
 							script: "set defaultLoadScript '" + config.application.defaultLoadScript + "';" + config.application.load
 						}
 						$('#content' + this.geneticElement.identifier).html(clone);
