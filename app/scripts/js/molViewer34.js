@@ -36,13 +36,9 @@ var MolViewer = function(customConfig, customInfo) {
 			//
 			pfamUrlBar : Eplant.cdd3dUrl + 'PfamAnnot.cgi',
 			//
-			pfamUrlDev : 'ProxyServlet',
-			//
 			pfamParams : 'FASTAseq',
 			//
 			cddUrlBar : Eplant.cdd3dUrl + 'CDDannot.cgi',
-			//
-			cddUrlDev : 'ProxyServlet',
 			//
 			cddParams : 'FASTAseq',
 			//
