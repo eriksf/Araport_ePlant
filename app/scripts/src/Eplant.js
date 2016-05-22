@@ -1842,16 +1842,16 @@
 				newMargin = 5;
 			}
 			for (i = 0; i < Eplant.iconList.length; i++) {
-				
 				$(Eplant.iconList[i]).css({
 					'width': newWidth,
 					'height': newWidth,
 					'margin':'5px '+newMargin+'px'
-				});
+				}); 
 				$('img', Eplant.iconList[i]).css({
 					'width': newWidth,
 					'height': newWidth
 				});
+			
 			}
 			
 		} 
