@@ -52,28 +52,19 @@ var autocompleteOptions = [
 	  { label: "What is RSVP?", value: "help-whatIsRSVP" },
 	  { label: "I want to re-order the genes in my list.", value: "help-sortGenes" },
 	  { label: "Is it possible to sort genes by expression level?", value: "help-sortGenes" },
-	  { label: "How do I save a copy of a chart?", value: "help-screengrab" },
+	  { label: "How do I make a copy of a chart?", value: "help-screengrab" },
 	  { label: "I want to download a screen capture.", value: "help-screengrab" },
-	  { label: "Is there a screengrab feature?", value: "help-screengrab" },
-	  { label: "I have difficulty seeing red.", value: "help-colorPalette" },
-	  { label: "Can I change the colours?", value: "help-colorPalette" },
+	  { label: "I can't see red.", value: "help-colorPalette" },
+	  { label: "How do I change the color gradient?", value: "help-colorPalette" },
 	  { label: "Where can I post a comment?", value: "help-comments" },
 	  { label: "I'd like to give you some feedback.", value: "help-comments" },
 	  { label: "Report an error.", value: "help-bugReport" },
 	  { label: "I found a bug.", value: "help-bugReport" },
-	  { label: "How do I change the colour gradient settings?", value: "help-colourGradientInformation" },
-	  { label: "What do local, global and custom colour gradient settings mean?", value: "help-colourGradientInformation" },
-	  { label: "What is the difference between absolute and relative data mode?", value: "help-absoluteRelative" },
-	  { label: "How do I switch from absolute to relative view?", value: "help-absoluteRelative" },
-	  { label: "What are Gene RIFs?", value: "help-publicationsGeneRIFS" },
-	  { label: "What articles have been published about my gene of interest?", value: "help-publicationsGeneRIFS" },
-	  { label: "Show me the most recent publications about my gene of interest.", value: "help-publicationsGeneRIFS" },
-	  { label: "How do I compare the expression patterns of two genes?", value: "help-compareGenes" },
-	  { label: "Does the eFP viewer have a 'compare' mode?", value: "help-compareGenes" },
-	  { label: "How do I download the raw data?", value: "help-downloadData" },
-	  { label: "Is it possible to view the raw data?", value: "help-downloadData" },
-	  { label: "Looking for citation information?", value: "help-citationInformation" },
-	  { label: "Where does the data come from?", value: "help-citationInformation" }
+
+	  { label: "", value: "help-" },
+	  { label: "", value: "help-" },
+	  { label: "", value: "help-" },
+	  { label: "", value: "help-" }
 	  
 	 ]
 

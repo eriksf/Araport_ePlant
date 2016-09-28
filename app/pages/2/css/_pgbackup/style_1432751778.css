@@ -21,6 +21,7 @@ Primary style
 body
 {
     font-size: 100%;
+    font-family: Helvetica, sans-serif;
     color: #4e5359;
     background-color: #f3f3f5;
 }
@@ -32,7 +33,7 @@ body::after
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(83, 83, 83, 0.8);
+    background-color: rgba(78, 83, 89, 0.8);
     visibility: hidden;
     opacity: 0;
     -webkit-transition: opacity .3s 0s, visibility 0s .3s;
@@ -49,6 +50,13 @@ body.cd-overlay::after
     transition: opacity .3s 0s, visibility 0s 0s;
 }
 
+@media only screen and (min-width: 768px)
+{
+    body::after
+    {
+        display: none;
+    }
+}
 
 a
 {
@@ -69,7 +77,6 @@ header
     line-height: 100px;
     text-align: center;
     background-color: #99CC00;
-    top:-20px;
 }
 
 header h1 {
@@ -80,18 +87,18 @@ header h1 {
   font-size: 1.25rem;
 }
 
-h2 {
-    font-weight: bold;
-    font-size:14px;
-}
-
-ul {
-    font-size: 14px;
-    color: black;
-}
-
-p {
-    margin-bottom: 10px;
+@media only screen and (min-width: 1024px)
+{
+    header
+    {
+        height: 100px;
+        line-height: 100px;
+    }
+header h1 {
+    font-size: 36px;
+    font-size: 2.25rem;
+    font-weight: 300;
+  }
 }
 
 .cd-faq
@@ -109,7 +116,7 @@ p {
     clear: both;
 }
 
-@media only screen and (min-width: 320px)
+@media only screen and (min-width: 768px)
 {
     .cd-faq
     {
@@ -127,12 +134,12 @@ p {
     height: 50px;
     line-height: 50px;
     padding: 0 28px 0 16px;
-    background-color: #555555;
+    background-color: #4e5359;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #ffffff;
     white-space: nowrap;
-    border-bottom: 1px solid #555555;
+    border-bottom: 1px solid #555b61;
     text-overflow: ellipsis;
 }
 
@@ -161,7 +168,7 @@ p {
     border-bottom: none;
 }
 
-@media only screen and (min-width: 320px)
+@media only screen and (min-width: 768px)
 {
     .cd-faq-categories
     {
@@ -170,6 +177,8 @@ p {
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
     }
 .cd-faq-categories a {
+    font-size: 13px;
+    font-size: 0.8125rem;
     font-weight: 600;
     padding-left: 24px;
     padding: 0 24px;
@@ -183,7 +192,7 @@ p {
     }
     .no-touch .cd-faq-categories a:hover
     {
-        background: #555555;
+        background: #555b61;
     }
     .no-js .cd-faq-categories
     {
@@ -192,7 +201,7 @@ p {
     }
 }
 
-@media only screen and (min-width: 640px)
+@media only screen and (min-width: 1024px)
 {
     .cd-faq-categories
     {
@@ -209,8 +218,8 @@ p {
         right: auto;
         left: 0;
         height: 100%;
-        width: 13px;
-        background-color: #99CC00;
+        width: 3px;
+        background-color: #a9c056;
         opacity: 0;
         -webkit-transition: opacity 0.2s;
         -moz-transition: opacity 0.2s;
@@ -218,7 +227,7 @@ p {
     }
     .cd-faq-categories .selected
     {
-        background: #444444 !important;
+        background: #42464b !important;
     }
     .cd-faq-categories .selected::before
     {
@@ -279,7 +288,7 @@ p {
     transform: translateX(0);
 }
 
-@media only screen and (min-width: 320px)
+@media only screen and (min-width: 768px)
 {
     .cd-faq-items
     {
@@ -298,7 +307,7 @@ p {
     }
 }
 
-@media only screen and (min-width: 640px)
+@media only screen and (min-width: 1024px)
 {
     .cd-faq-items
     {
@@ -370,7 +379,7 @@ p {
     right: 2%;
 }
 
-@media only screen and (min-width: 320px)
+@media only screen and (min-width: 768px)
 {
     .cd-close-panel
     {
@@ -401,8 +410,9 @@ p {
 }
 
 .cd-faq-group .cd-faq-title h2 {
+  text-transform: uppercase;
   font-size: 12px;
-  font-size: 1.5rem;
+  font-size: 0.75rem;
   font-weight: 700;
   color: #bbbbc7;
 }
@@ -412,7 +422,7 @@ p {
     display: block;
 }
 
-@media only screen and (min-width: 320px)
+@media only screen and (min-width: 768px)
 {
     .cd-faq-group
     {
@@ -449,7 +459,7 @@ p {
     line-height: 1.2;
 }
 
-@media only screen and (min-width: 320px)
+@media only screen and (min-width: 768px)
 {
 .cd-faq-trigger {
     font-size: 24px;
@@ -465,7 +475,7 @@ p {
         top: 50%;
         height: 2px;
         width: 13px;
-        background: #99CC00;
+        background: #cfdca0;
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
         -webkit-transition-property: -webkit-transform;
@@ -517,7 +527,7 @@ p {
   color: #000000;
 }
 
-@media only screen and (min-width: 320px)
+@media only screen and (min-width: 768px)
 {
     .cd-faq-content
     {
@@ -534,35 +544,13 @@ p {
     }
 }
 
-
-
-/*  CUSTOM ELEMENTS */
-
-.header
-    {
-        line-height: 100px;
-        text-align: center;
-    }
-
-.topLine {
-    font-size: 36px;
-    font-size: 2.25rem;
-    font-weight: bold;
-}
-
-
-.menuItem {
-    font-size: 14px;
-}
-
 #helpInput
 {
     margin-bottom: 30px;
-    width: 100%;
+    width: 300px;
     font-size: 16px;
     padding: 5px;
 }
-
 
 .helpIcon
 {
@@ -571,13 +559,3 @@ p {
     margin-right: 20px;
 }
 
-.exampleImage {
-    margin-top:10px;
-    margin-bottom:10px;
-    border: solid 1px lightgrey;
-    max-width: 100%;
-}
-
-.bullet {
-    margin-left: 30px;
-}
