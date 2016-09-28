@@ -1,7 +1,7 @@
 {
 	"width": 560,
 	"height": 420,
-	"webService": "http://bar.utoronto.ca/eplant/cgi-bin/cellefp.cgi?",
+	"webService": "//bar.utoronto.ca/eplant/cgi-bin/cellefp.cgi?",
 	"labels": [
 	],
 	"control": {

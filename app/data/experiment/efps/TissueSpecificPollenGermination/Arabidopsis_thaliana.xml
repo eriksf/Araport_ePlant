@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE specimen SYSTEM "http://www.bar.utoronto.ca/efp/cgi-bin/data/efp_config.dtd">
+<!DOCTYPE specimen SYSTEM "//bar.utoronto.ca/efp/cgi-bin/data/efp_config.dtd">
 <specimen name="Arabidopsis">
-<view name="all" class="" db="atgenexp_plus" img="TissueSpecific-pollinGermination.svg">
-<webservice>plantefp.cgi?datasource=atgenexp_plus&amp;</webservice>
+<view name="all" class="" db="atgenexp_plus" img="TissueSpecific-PollinGermination.svg">
+<webservice>//bar.utoronto.ca/eplant/cgi-bin/plantefp.cgi?datasource=atgenexp_plus&amp;</webservice>
 	<info>
 		<li>Dry pollen grains were harvested by vacuum </li>
 		<li>Pollen was germinated using an in vitro system, and samples were taken at 30 minutes or 4 hours</li>
@@ -26,7 +26,7 @@
 			<sample name="GSM433644"/> 
 			<sample name="GSM433645"/> 
 		</tissue>
-		<tissue id="Pollen_germinated_in_vitro_for_30 minutes" name="Pollen, germinated in vitro for 30 minutes" colorKey="#00AAFF">
+		<tissue id="Pollen_germinated_in_vitro_for_30_minutes" name="Pollen, germinated in vitro for 30 minutes" colorKey="#00AAFF">
 			<link url="http://www.plosgenetics.org/article/info%3Adoi%2F10.1371%2Fjournal.pgen.1000621"/> 			 
 			<sample name="GSM433638"/> 
 			<sample name="GSM433639"/> 

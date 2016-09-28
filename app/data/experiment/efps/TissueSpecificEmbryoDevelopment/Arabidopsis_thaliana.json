@@ -1,7 +1,7 @@
 {
 	"width": 900,
 	"height": 600,
-	"webService": "plantefp.cgi?datasource=atgenexp_plus&",
+	"webService": "//bar.utoronto.ca/eplant/cgi-bin/plantefp.cgi?datasource=atgenexp_plus&",
 	"labels": [
 		{
 			"x": 210,
@@ -167,7 +167,7 @@
 			
 			],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?ExpID=55"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?ExpID=55"
 		},
 		{
 			"paths": [
@@ -184,7 +184,7 @@
 			
 			],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?ExpID=55"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?ExpID=55"
 		},
 		{
 			"paths": [
@@ -201,7 +201,7 @@
 			
 			],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?ExpID=55"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?ExpID=55"
 		},
 		{
 			"paths": [
@@ -218,7 +218,7 @@
 			
 			],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?ExpID=55"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?ExpID=55"
 		},
 		{
 			"paths": [
@@ -235,7 +235,7 @@
 			
 			],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?ExpID=55"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?ExpID=55"
 		},
 		{
 			"paths": [
@@ -253,7 +253,7 @@
 			
 			],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?ExpID=55"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?ExpID=55"
 		},
 		{
 			"paths": [
@@ -270,7 +270,7 @@
 			
 			],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?ExpID=55"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?ExpID=55"
 		},
 		{
 			"paths": [
@@ -287,7 +287,7 @@
 			
 			],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?ExpID=55"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?ExpID=55"
 		},
 		{
 			"paths": [
@@ -304,7 +304,7 @@
 			
 			],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?ExpID=55"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?ExpID=55"
 		}
 		
 	]

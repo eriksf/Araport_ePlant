@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE specimen SYSTEM "http://www.bar.utoronto.ca/efp/cgi-bin/data/efp_config.dtd">
+<!DOCTYPE specimen SYSTEM "//bar.utoronto.ca/efp/cgi-bin/data/efp_config.dtd">
 <specimen name="Arabidopsis">
 <view name="all" class="" db="atgenexp_plus" img="TissueSpecific-StigmaAndOvaries.svg">
-<webservice>plantefp.cgi?datasource=atgenexp_plus&amp;</webservice>
+<webservice>//bar.utoronto.ca/eplant/cgi-bin/plantefp.cgi?datasource=atgenexp_plus&amp;</webservice>
 	<group name="CTRL_7">
 		<info>
 			<li>Stigma and ovary tissues were isolated from pistils after emasculating stage 8 buds of Landsberg erecta (Ler) flowers. After 1 day of growth, pistils were harvested and frozen in liquid N2. </li>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE specimen SYSTEM "http://www.bar.utoronto.ca/efp/cgi-bin/data/efp_config.dtd">
+<!DOCTYPE specimen SYSTEM "//bar.utoronto.ca/efp/cgi-bin/data/efp_config.dtd">
 <specimen name="Arabidopsis">
-<webservice>plantefp.cgi?datasource=guard_cell&amp;</webservice>
+<webservice>//bar.utoronto.ca/eplant/cgi-bin/plantefp.cgi?datasource=guard_cell&amp;</webservice>
 <view name="all" db="guard_cell" img="GuardCell-xxxx-2015-01-13.svg">
 	<group name="GSM738872_C2;GSM738873_C3;GSM738874_C4">
 		<control sample="GSM738872_C2"/>
