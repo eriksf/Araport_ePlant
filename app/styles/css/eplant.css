@@ -155,8 +155,8 @@ greyText {
 
 /* Icon class */
 .icon {
-/*	width: 40px;
-	height: 40px; Araport */
+	width: 40px;
+	height: 40px;
 	padding: 5px;
 	cursor: pointer;
 	vertical-align: middle;
@@ -1032,7 +1032,7 @@ greyText {
 /* Green Bar at bottom of page */
 #greenBottom {
 	/*background-color: #99CC00;*/
-	background-image: url('http://bar.utoronto.ca/~eplant/img/soil-and-grass.jpg');
+	background-image: url('//bar.utoronto.ca/eplant/img/soil-and-grass.jpg');
 	width: 100%;
 	height: 130px;
 	position:absolute;
@@ -1044,7 +1044,7 @@ greyText {
 /* button that takes people back to the top */
 .back-top {
 	background-color: #99CC00;
-	background-image: url("http://bar.utoronto.ca/~eplant/img/arrow-up.png");
+	background-image: url("//bar.utoronto.ca/eplant/img/arrow-up.png");
 	background-position: center center;
 	background-repeat: no-repeat;
 	display: block;
