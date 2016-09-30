@@ -17,7 +17,8 @@ Eplant.Views.GuardCellMeristemoidsView = function(geneticElement) {
 
 	// Call parent constructor
 	Eplant.View.call(this,
-		constructor.viewName,			// Name of the View visible to the user
+		constructor.displayName,			// Name of the View visible to the user
+		constructor.viewName,
 		constructor.hierarchy,			// Hierarchy of the View
 		constructor.magnification,			// Magnification level of the View
 		constructor.description,			// Description of the View visible to the user
@@ -28,15 +29,16 @@ Eplant.Views.GuardCellMeristemoidsView = function(geneticElement) {
 	);
 	
 	/* Call eFP constructor */ 
-	var efpSvgURL = 'app/data/experiment/efps/GuardCellMeristemoids/' + geneticElement.species.scientificName.replace(" ", "_") + '.svg';
-	var efpXmlURL = 'app/data/experiment/efps/GuardCellMeristemoids/' + geneticElement.species.scientificName.replace(" ", "_") + '.xml';
+	var efpSvgURL = 'data/experiment/efps/GuardCellMeristemoids/' + geneticElement.species.scientificName.replace(" ", "_") + '.svg';
+	var efpXmlURL = 'data/experiment/efps/GuardCellMeristemoids/' + geneticElement.species.scientificName.replace(" ", "_") + '.xml';
 	Eplant.BaseViews.EFPView.call(this, geneticElement, efpSvgURL,efpXmlURL, {
 	});
 	
 };
 ZUI.Util.inheritClass(Eplant.BaseViews.EFPView, Eplant.Views.GuardCellMeristemoidsView);	// Inherit parent prototype
 
-Eplant.Views.GuardCellMeristemoidsView.viewName = "Guard Cell Meristemoids eFP";
+Eplant.Views.GuardCellMeristemoidsView.viewName = "GuardCellMeristemoidsView";
+Eplant.Views.GuardCellMeristemoidsView.displayName = "Guard Cell Meristemoids eFP";
 Eplant.Views.GuardCellMeristemoidsView.hierarchy = "genetic element";
 Eplant.Views.GuardCellMeristemoidsView.magnification = 35;
 Eplant.Views.GuardCellMeristemoidsView.description = "Guard Cell Meristemoids eFP";

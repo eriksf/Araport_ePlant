@@ -66,7 +66,6 @@
 		/* Table */
 		var table = document.createElement("table");
 		$(table).width(300).css({
-			'margin-bottom': '20px',
 			'border-spacing': '0 5px',
 		'border-collapse': 'separate'});
 		
@@ -183,44 +182,45 @@
 		$(td).append(label);
 		$(tr).append(td);
 		td = document.createElement("td");
-		$(td).css({width:120});
-		/* Treshold input */
-		$.getJSON( "app/data/presetColors.json", $.proxy(function( data ) {
-			var presetColors = data;
-			/* Create Choice objects for the SelectList */
-			for (var n = 0; n < presetColors.length; n++) {
-				/* Get Species */
-				var presetColor = presetColors[n];
-				
-				this.createPresetButton(presetColor.minColor,presetColor.midColor, presetColor.maxColor).appendTo(td);
-			}
-		},this));
-		
-		$(tr).append(td);
-		$(table).append(tr);
-		this.domOk = document.createElement("input");
+		$(td).css({width:160});
+		var div = document.createElement("div");
+		$(div).css({width:160});
+		$(td).append(div);
+	/* Treshold input */
+	$.getJSON( "data/presetColors.json", $.proxy(function( data ) {
+		var presetColors = data;
+		/* Create Choice objects for the SelectList */
+		for (var n = 0; n < presetColors.length; n++) {
+			/* Get Species */
+			var presetColor = presetColors[n];
+			
+			this.createPresetButton(presetColor.minColor,presetColor.midColor, presetColor.maxColor).appendTo(div);
+		}
+	},this));
+	
+	$(tr).append(td);
+	$(table).append(tr);
+	/*this.domOk = document.createElement("input");
 		$(this.domOk).attr("type", "button");
 		$(this.domOk).css({"width":"100px"});
 		$(this.domOk).addClass("button greenButton");
 		$(this.domOk).val("OK");
 		$(this.domContainer).append(this.domOk);
 		$(this.domOk).on('click',$.proxy(function(event, ui) {
-			
-			Eplant.minColor= this.minColor;
-			Eplant.midColor= this.midColor;
-			Eplant.maxColor= this.maxColor;
-			
-			var event = new ZUI.Event("update-colors", Eplant, null);
-			ZUI.fireEvent(event);
-			
-			/* Update eFP */
-			if(Eplant.activeView.updateDisplay){
-				Eplant.activeView.updateDisplay();
-			}
-			
-			
-			/* Close dialog */
-			this.close();
+		
+		Eplant.minColor= this.minColor;
+		Eplant.midColor= this.midColor;
+		Eplant.maxColor= this.maxColor;
+		
+		var event = new ZUI.Event("update-colors", Eplant, null);
+		ZUI.fireEvent(event);
+		
+		if(Eplant.activeView.updateDisplay){
+		Eplant.activeView.updateDisplay();
+		}
+		
+		
+		this.close();
 		}, this));
 		this.domCancel = document.createElement("input");
 		$(this.domCancel).attr("type", "button");
@@ -229,71 +229,134 @@
 		$(this.domCancel).val("Cancel");
 		$(this.domContainer).append(this.domCancel);
 		$(this.domCancel).on('click',$.proxy(function(event, ui) {
-			this.close()
-		}, this));
-	};
-	
-	
-	
-	/**
-		* Creates and opens the dialog.
-	*/
-	Eplant.PaletteDialog.prototype.createDialog = function() {
-		$(this.domContainer).dialog({
-			title: "Color Settings",
-			width: 320,
-			height: "auto",
-			minHeight: 0,
-			resizable: false,
-			modal: true,
-			open: $.proxy(function(event, ui) {
-				$(".ui-dialog-titlebar-close").hide();
-				$(".ui-dialog-buttonpane").css({'border-top-width':'0px'});
-				if(!Eplant.activeView.mode||Eplant.activeView.mode!=='absolute'){
-					$("#minColorInput").spectrum({
-						clickoutFiresChange: true,
-						color: this.minColor,
-						change: $.proxy(function(color) {
-							this.minColor =	color.toHexString(); // #ff0000
-						},this)
-					});
-				}
-				
-				$("#midColorInput").spectrum({
-					clickoutFiresChange: true,
-					color: this.midColor,
-					change: $.proxy(function(color) {
-						this.midColor =	color.toHexString(); // #ff0000
-					},this)
-				});
-				$("#maxColorInput").spectrum({
-					clickoutFiresChange: true,
-					color: this.maxColor,
-					change: $.proxy(function(color) {
-						this.maxColor =	color.toHexString(); // #ff0000
-					},this)
-				});
-			}, this),	
-			close: $.proxy(function(event, ui) {
-				this.remove();
-			}, this)
+		this.close()
+	}, this));*/
+};
+
+
+
+/**
+	* Creates and opens the dialog.
+*/
+Eplant.PaletteDialog.prototype.createDialog = function() {
+	/*$(this.domContainer).dialog({
+		title: "Color Settings",
+		width: 320,
+		height: "auto",
+		minHeight: 0,
+		resizable: false,
+		modal: true,
+		open: $.proxy(function(event, ui) {
+		$(".ui-dialog-titlebar-close").hide();
+		$(".ui-dialog-buttonpane").css({'border-top-width':'0px'});
+		if(!Eplant.activeView.mode||Eplant.activeView.mode!=='absolute'){
+		$("#minColorInput").spectrum({
+		clickoutFiresChange: true,
+		color: this.minColor,
+		change: $.proxy(function(color) {
+		this.minColor =	color.toHexString(); // #ff0000
+		},this)
 		});
-	};
-	
-	/**
-		* Closes the dialog.
-	*/
-	Eplant.PaletteDialog.prototype.close = function() {
+		}
+		
+		$("#midColorInput").spectrum({
+		clickoutFiresChange: true,
+		color: this.midColor,
+		change: $.proxy(function(color) {
+		this.midColor =	color.toHexString(); // #ff0000
+		},this)
+		});
+		$("#maxColorInput").spectrum({
+		clickoutFiresChange: true,
+		color: this.maxColor,
+		change: $.proxy(function(color) {
+		this.maxColor =	color.toHexString(); // #ff0000
+		},this)
+		});
+		}, this),	
+		close: $.proxy(function(event, ui) {
+		this.remove();
+		}, this)
+	});*/
+	var options = {};
+	options.content = this.domContainer;
+	options.title = "Color Settings";
+	options.lock = true;
+	options.background = '#000'; 
+	options.opacity = 0.6;
+	options.width = 320;
+	options.window = 'top'; 
+	options.fixed= true; 
+	options.drag= false;
+	options.resize= false;
+	options.init= $.proxy(function() {
+		if(!Eplant.activeView.mode||Eplant.activeView.mode!=='absolute'){
+			$("#minColorInput").spectrum({
+				clickoutFiresChange: true,
+				color: this.minColor,
+				change: $.proxy(function(color) {
+					this.minColor =	color.toHexString(); // #ff0000
+				},this)
+			});
+		}
+		
+		$("#midColorInput").spectrum({
+			clickoutFiresChange: true,
+			color: this.midColor,
+			change: $.proxy(function(color) {
+				this.midColor =	color.toHexString(); // #ff0000
+			},this)
+		});
+		$("#maxColorInput").spectrum({
+			clickoutFiresChange: true,
+			color: this.maxColor,
+			change: $.proxy(function(color) {
+				this.maxColor =	color.toHexString(); // #ff0000
+			},this)
+			// });
+		}, this);
+	}, this);
+	options.close= $.proxy(function() {
+		//this.remove();
+	}, this);
+	options.ok =$.proxy(function(event, ui) {
+		Eplant.minColor= this.minColor;
+		Eplant.midColor= this.midColor;
+		Eplant.maxColor= this.maxColor;
+		
+		var event = new ZUI.Event("update-colors", Eplant, null);
+		ZUI.fireEvent(event);
+		
+		/* Update eFP */
+		if(Eplant.activeView.updateDisplay){
+			Eplant.activeView.updateDisplay();
+		}
+		
+		
 		/* Close dialog */
-		$(this.domContainer).dialog("close");
-	};
-	
-	/**
-		* Removes the dialog.
-	*/
-	Eplant.PaletteDialog.prototype.remove = function() {
-		/* Remove DOM elements */
-		$(this.domContainer).remove();
-	};
-	
+		this.close();
+		
+	}, this);
+	/*options.cancel = $.proxy(function(event, ui) {
+		this.close();
+	}, this);*/
+	this.dialog = window.top.art.dialog(options);
+};
+
+/**
+	* Closes the dialog.
+*/
+Eplant.PaletteDialog.prototype.close = function() {
+	/* Close dialog */
+	this.dialog.close();
+};
+
+/**
+	* Removes the dialog.
+*/
+Eplant.PaletteDialog.prototype.remove = function() {
+	/* Remove DOM elements */
+	this.dialog.close();
+};
+
 })();

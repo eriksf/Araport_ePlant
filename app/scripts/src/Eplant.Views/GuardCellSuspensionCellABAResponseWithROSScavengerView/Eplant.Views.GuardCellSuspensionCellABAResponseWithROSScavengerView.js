@@ -17,7 +17,8 @@ Eplant.Views.GuardCellSuspensionCellABAResponseWithROSScavengerView = function(g
 
 	// Call parent constructor
 	Eplant.View.call(this,
-		constructor.viewName,			// Name of the View visible to the user
+		constructor.displayName,			// Name of the View visible to the user
+		constructor.viewName,
 		constructor.hierarchy,			// Hierarchy of the View
 		constructor.magnification,			// Magnification level of the View
 		constructor.description,			// Description of the View visible to the user
@@ -28,15 +29,16 @@ Eplant.Views.GuardCellSuspensionCellABAResponseWithROSScavengerView = function(g
 	);
 	
 	/* Call eFP constructor */ 
-	var efpSvgURL = 'app/data/experiment/efps/GuardCellSuspensionCellABAResponseWithROSScavenger/' + geneticElement.species.scientificName.replace(" ", "_") + '.svg';
-	var efpXmlURL = 'app/data/experiment/efps/GuardCellSuspensionCellABAResponseWithROSScavenger/' + geneticElement.species.scientificName.replace(" ", "_") + '.xml';
+	var efpSvgURL = 'data/experiment/efps/GuardCellSuspensionCellABAResponseWithROSScavenger/' + geneticElement.species.scientificName.replace(" ", "_") + '.svg';
+	var efpXmlURL = 'data/experiment/efps/GuardCellSuspensionCellABAResponseWithROSScavenger/' + geneticElement.species.scientificName.replace(" ", "_") + '.xml';
 	Eplant.BaseViews.EFPView.call(this, geneticElement, efpSvgURL,efpXmlURL, {
 	});
 	
 };
 ZUI.Util.inheritClass(Eplant.BaseViews.EFPView, Eplant.Views.GuardCellSuspensionCellABAResponseWithROSScavengerView);	// Inherit parent prototype
 
-Eplant.Views.GuardCellSuspensionCellABAResponseWithROSScavengerView.viewName = "Guard Cell Suspension Cell ABA Response With ROS Scavenger eFP";
+Eplant.Views.GuardCellSuspensionCellABAResponseWithROSScavengerView.viewName = "GuardCellSuspensionCellABAResponseWithROSScavengerView";
+Eplant.Views.GuardCellSuspensionCellABAResponseWithROSScavengerView.displayName = "Guard Cell Suspension Cell ABA Response With ROS Scavenger eFP";
 Eplant.Views.GuardCellSuspensionCellABAResponseWithROSScavengerView.hierarchy = "genetic element";
 Eplant.Views.GuardCellSuspensionCellABAResponseWithROSScavengerView.magnification = 35;
 Eplant.Views.GuardCellSuspensionCellABAResponseWithROSScavengerView.description = "Guard Cell Suspension Cell ABA Response With ROS Scavenger eFP";

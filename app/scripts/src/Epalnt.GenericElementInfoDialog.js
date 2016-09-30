@@ -1,5 +1,5 @@
 (function() {
-	
+
 	/**
 		* Eplant.GeneticElementInfoDialog class
 		* Coded by Hans Yu
@@ -27,58 +27,58 @@
 		this.domViewIcons = null;				// DOM element for view icons
 		this.domMinimize = null;				// DOM element for the minimize button
 		this.domFocus = null;				// DOM element for the focus button
-		
+
 		/* Reference this GeneticElementInfoDialog in the parent GeneticElement */
 		this.geneticElement.geneticElementInfoDialog = this;
-		
+
 		/* Create DOM elements */
 		this.createDOM();
-		
+
 		/* Create dialog */
 		this.createDialog();
-		
+
 		/* Bind events */
 		this.bindEvents();
-		
+
 		/* Fire event for opening dialog */
 		var event = new ZUI.Event("update-geneticElementInfoDialog", this.geneticElement, {
 			type: "open"
 		});
 		ZUI.fireEvent(event);
 	};
-	
+
 	/**
 		* Binds events.
 	*/
 	Eplant.GeneticElementInfoDialog.prototype.bindEvents = function() {
-		
+
 	};
-	
+
 	/**
 		* Creates the DOM elements of this dialog.
 	*/
 	Eplant.GeneticElementInfoDialog.prototype.createDOM = function() {
 		/* DOM container */
 		this.domContainer = document.createElement("div");
-		
+
 		this.title = document.createElement("p");
-		
+
 		$(this.title).css({
 			'font-size':'24px',
 			'margin': '10px',
 			'margin-left': '18px'
-			
+
 		}).html("Annotation Information").appendTo(this.domContainer);
-		
+
 		/* DOM data container */
 		var container = document.createElement("div");
 		$(container).width(350);
 		$(container).css({
 			"padding": "5px",
-			"max-height": 130,
+			//"max-height": 130,
 			"overflow": "auto"
 		});
-		
+
 		/* Table */
 		var table = document.createElement("table");
 		$(table).css({
@@ -93,13 +93,13 @@
 		$(td).css({"vertical-align": "top"});
 		$(td).html("<label>Identifier:</label>");
 		$(tr).append(td);
-		
+
 		/* Content */
 		this.domIdentifier = document.createElement("td");
 		$(this.domIdentifier).html(this.geneticElement.identifier);
 		$(tr).append(this.domIdentifier);
 		$(table).append(tr);
-		
+
 		/* Aliases */
 		var tr = document.createElement("tr");
 		/* Label */
@@ -107,7 +107,7 @@
 		$(td).css({"vertical-align": "top"});
 		$(td).html("<label>Aliases:</label>");
 		$(tr).append(td);
-		
+
 		/* Content */
 		this.domAliases = document.createElement("td");
 		if (this.geneticElement.aliases.length && this.geneticElement.aliases[0].length) {
@@ -118,7 +118,7 @@
 		}
 		$(tr).append(this.domAliases);
 		$(table).append(tr);
-		
+
 		/* Strand */
 		var tr = document.createElement("tr");
 		/* Label */
@@ -126,13 +126,13 @@
 		$(td).css({"vertical-align": "top"});
 		$(td).html("<label>Strand:</label>");
 		$(tr).append(td);
-		
+
 		/* Content */
 		this.domStrand = document.createElement("td");
 		$(this.domStrand).html(this.geneticElement.strand);
 		$(tr).append(this.domStrand);
 		$(table).append(tr);
-		
+
 		/* Annotation */
 		var tr = document.createElement("tr");
 		/* Label */
@@ -140,7 +140,7 @@
 		$(td).css({"vertical-align": "top"});
 		$(td).html("<label>Annotation:</label>");
 		$(tr).append(td);
-		
+
 		/* Content */
 		this.domAnnotation = document.createElement("td");
 		if (this.geneticElement.annotation && this.geneticElement.annotation.length) {
@@ -154,26 +154,44 @@
 		/* Strand */
 		$(container).append(table);
 		if(this.geneticElement.isRelated){
-			$(container).append($('<label>',{
-				text:"This gene is found by Expression Angler, "+this.geneticElement.identifier+" correlates to "+this.geneticElement.relatedGene.identifier+" with an r-value of "+this.geneticElement.rValueToRelatedGene
-			}));
+			tr = document.createElement("tr");
+			/* Label */
+			td = document.createElement("td");
+			$(td).attr("colspan","2");
+
+			$(tr).append(td);
+			$(table).append(tr);
+			if(this.geneticElement.isUsingCustomBait){
+				$(td).html("<div style='font-size: 0.9em;color: #999;margin-left: 3px;'> This gene was found by Expression Angler. <br> "+this.geneticElement.identifier+" correlates to the expression pattern defined with an r-value of "+this.geneticElement.rValueToRelatedGene+"</div>");
+				/*$(container).append($('<label>',{
+					html:"This gene was found by Expression Angler, <br>"+this.geneticElement.identifier+" correlates to the expression pattern defined with an r-value of "+this.geneticElement.rValueToRelatedGene
+				}));*/
+			}
+			else if(this.geneticElement.relatedGene){
+				$(td).html("<div style='font-size: 0.9em;color: #999;margin-left: 3px;'> This gene was found by Expression Angler. <br> "+this.geneticElement.identifier+" correlates to "+this.geneticElement.relatedGene+" with an r-value of "+this.geneticElement.rValueToRelatedGene+"</div>");
+
+				/*$(container).append($('<label>',{
+					html:"This gene was found by Expression Angler, <br>"+this.geneticElement.identifier+" correlates to "+this.geneticElement.relatedGene+" with an r-value of "+this.geneticElement.rValueToRelatedGene
+				}));*/
+			}
+
 		}
 		$(this.domContainer).append(container);
-		
+
 	};
-	
+
 	/**
 		* Creates and opens the dialog.
 	*/
 	Eplant.GeneticElementInfoDialog.prototype.createDialog = function() {
-		
+
 		var options = {};
 		options.content = this.domContainer;
 		options.lock = true;
-		options.background = '#000'; 
+		options.background = '#000';
 		options.opacity = 0.6;
-		options.window = 'top'; 
-		options.fixed= true; 
+		options.window = 'top';
+		options.fixed= true;
 		options.drag= false;
 		options.resize= true;
 		options.close= $.proxy(function() {
@@ -181,66 +199,65 @@
 		}, this)
 		var dialog = window.top.art.dialog(options);
 		$.extend(true,this, dialog );
-		
+
 	};
 	/**
-	* Selects this GeneticElementInfoDialog.
+		* Selects this GeneticElementInfoDialog.
 	*/
 	Eplant.GeneticElementInfoDialog.prototype.select = function() {
-	/* Update CSS style */
-	$(this.domContainer.parentNode).addClass("eplant-geneticElementInfoDialog-active");
-	
-	/* Fire event for selecting dialog */
-	var event = new ZUI.Event("update-geneticElementInfoDialog", this.geneticElement, {
-	type: "select"
-	});
-	ZUI.fireEvent(event);
+		/* Update CSS style */
+		$(this.domContainer.parentNode).addClass("eplant-geneticElementInfoDialog-active");
+
+		/* Fire event for selecting dialog */
+		var event = new ZUI.Event("update-geneticElementInfoDialog", this.geneticElement, {
+			type: "select"
+		});
+		ZUI.fireEvent(event);
 	};
-	
+
 	/**
-	* Unselects this GeneticElementInfoDialog.
+		* Unselects this GeneticElementInfoDialog.
 	*/
 	Eplant.GeneticElementInfoDialog.prototype.unselect = function() {
-	/* Update CSS style */
-	$(this.domContainer.parentNode).removeClass("eplant-geneticElementInfoDialog-active");
-	
-	/* Fire event for unselecting dialog */
-	var event = new ZUI.Event("update-geneticElementInfoDialog", this.geneticElement, {
-	type: "unselect"
-	});
-	ZUI.fireEvent(event);
+		/* Update CSS style */
+		$(this.domContainer.parentNode).removeClass("eplant-geneticElementInfoDialog-active");
+
+		/* Fire event for unselecting dialog */
+		var event = new ZUI.Event("update-geneticElementInfoDialog", this.geneticElement, {
+			type: "unselect"
+		});
+		ZUI.fireEvent(event);
 	};
-	
+
 	/**
-	* Opens the GeneticElementInfoDialog.
+		* Opens the GeneticElementInfoDialog.
 	*/
 	Eplant.GeneticElementInfoDialog.prototype.open = function() {
-	$(this.domContainer).dialog("open");
+		$(this.domContainer).dialog("open");
 	};
-	
+
 	/**
-	* Closes the GeneticElementInfoDialog.
+		* Closes the GeneticElementInfoDialog.
 	*/
 	Eplant.GeneticElementInfoDialog.prototype.close = function() {
-	$(this.domContainer).dialog("close");
+		$(this.domContainer).dialog("close");
 	};
-	
+
 	/**
-	* Cleans up the GeneticElementInfoDialog.
+		* Cleans up the GeneticElementInfoDialog.
 	*/
 	Eplant.GeneticElementInfoDialog.prototype.remove = function() {
-	/* Clean up DOM elements */
-	$(this.domContainer).remove();
-	
-	/* Remove reference from GeneticElement */
-	this.geneticElement.geneticElementInfoDialog = null;
-	
-	/* Fire event for removing dialog */
-	var event = new ZUI.Event("update-geneticElementInfoDialog", this.geneticElement, {
-	type: "remove"
-	});
-	ZUI.fireEvent(event);
+		/* Clean up DOM elements */
+		$(this.domContainer).remove();
+
+		/* Remove reference from GeneticElement */
+		this.geneticElement.geneticElementInfoDialog = null;
+
+		/* Fire event for removing dialog */
+		var event = new ZUI.Event("update-geneticElementInfoDialog", this.geneticElement, {
+			type: "remove"
+		});
+		ZUI.fireEvent(event);
 	};
-	
-	})();
-		
+
+})();

@@ -517,7 +517,7 @@ ZUI.ViewObject = function(attributes) {
 				for (var n = 0; n < this.content.length; n++) {
 					attributes.content = this.content[n];
 					this.private.texts.push(new ZUI.ViewObject(attributes));
-					attributes.y += this.private.size;
+					attributes.y += this.private.size+5;
 				}
 			}
 		});
@@ -530,7 +530,7 @@ ZUI.ViewObject = function(attributes) {
 		for (var n = 0; n < this.content.length; n++) {
 			attributes.content = this.content[n];
 			this.private.texts.push(new ZUI.ViewObject(attributes));
-			attributes.y += this.private.size;
+			attributes.y += this.private.size+5;
 		}
 	}
 	else if (this.shape == "svg") {

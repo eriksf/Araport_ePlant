@@ -10,7 +10,7 @@
  */
 Eplant.ViewInstructions = {
 "Chromosome Viewer":"The Chromosome Viewer shows where genes are situated on chromosomes.",
-"Interaction Viewer":"The Interactions Viewer displays protein interactors from our database of 70,944 predicted and 36,306 confirmed interacting proteins for the currently selected gene product.",
+"Interaction Viewer":"The Interactions Viewer displays protein interactors from our database of 70,944 predicted and 36,306 confirmed interacting proteins for the currently selected gene product, and 1784 protein-DNA interactions.",
 "World eFP":'The World eFP Viewer displays natural variation of gene expression levels from ecotypes collected from around the world.',
 "Plant eFP" :"The Plant eFP Viewer displays the currently selected gene's expression levels in various tissues.",
 "Cell eFP":"The Cell eFP Viewer depicts subcellular localization of a gene product. The color gradient represents quality of localization information from the SUBA database.",

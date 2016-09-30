@@ -17,7 +17,8 @@ Eplant.Views.TissueSpecificStemEpidermisView = function(geneticElement) {
 
 	// Call parent constructor
 	Eplant.View.call(this,
-		constructor.viewName,			// Name of the View visible to the user
+		constructor.displayName,			// Name of the View visible to the user
+		constructor.viewName,
 		constructor.hierarchy,			// Hierarchy of the View
 		constructor.magnification,			// Magnification level of the View
 		constructor.description,			// Description of the View visible to the user
@@ -29,15 +30,16 @@ Eplant.Views.TissueSpecificStemEpidermisView = function(geneticElement) {
 	
 	/* Call eFP constructor */ 
 
-	var efpSvgURL = 'app/data/experiment/efps/TissueSpecificStemEpidermis/' + geneticElement.species.scientificName.replace(" ", "_") + '.svg';
-	var efpXmlURL = 'app/data/experiment/efps/TissueSpecificStemEpidermis/' + geneticElement.species.scientificName.replace(" ", "_") + '.xml';
+	var efpSvgURL = 'data/experiment/efps/TissueSpecificStemEpidermis/' + geneticElement.species.scientificName.replace(" ", "_") + '.svg';
+	var efpXmlURL = 'data/experiment/efps/TissueSpecificStemEpidermis/' + geneticElement.species.scientificName.replace(" ", "_") + '.xml';
 	Eplant.BaseViews.EFPView.call(this, geneticElement, efpSvgURL,efpXmlURL, {
 	});
 
 };
 ZUI.Util.inheritClass(Eplant.BaseViews.EFPView, Eplant.Views.TissueSpecificStemEpidermisView);	// Inherit parent prototype
 
-Eplant.Views.TissueSpecificStemEpidermisView.viewName = "Tissue SpecificStem Epidermis eFP";
+Eplant.Views.TissueSpecificStemEpidermisView.viewName = "TissueSpecificStemEpidermisView";
+Eplant.Views.TissueSpecificStemEpidermisView.displayName = "Tissue Specific Stem Epidermis eFP";
 Eplant.Views.TissueSpecificStemEpidermisView.hierarchy = "genetic element";
 Eplant.Views.TissueSpecificStemEpidermisView.magnification = 35;
 Eplant.Views.TissueSpecificStemEpidermisView.description = "Tissue Specific Stem Epidermis eFP";

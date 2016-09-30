@@ -258,18 +258,18 @@ Eplant.BaseViews.EFPView.prototype.createViewSpecificUIButtons = function() {
 	/* Mode */
 	if (this.isRelativeEnabled) {
 		this.modeButton = new Eplant.ViewSpecificUIButton(
-			"app/img/efpmode-absolute.png",		// imageSource
+			"img/efpmode-absolute.png",		// imageSource
 			"Toggle data mode: absolute.",	// Description
 			function(data) {			// click
 				/* Update button */
 				if (data.eFPView.mode == "absolute") {
 					data.eFPView.mode = "relative";
-					this.setImageSource("app/img/efpmode-relative.png");
+					this.setImageSource("img/efpmode-relative.png");
 					this.setDescription("Toggle data mode: relative.");
 				}
 				else if (data.eFPView.mode == "relative") {
 					data.eFPView.mode = "absolute";
-					this.setImageSource("app/img/efpmode-absolute.png");
+					this.setImageSource("img/efpmode-absolute.png");
 					this.setDescription("Toggle data mode: absolute.");
 				}
 
@@ -286,7 +286,7 @@ Eplant.BaseViews.EFPView.prototype.createViewSpecificUIButtons = function() {
 	/* Compare */
 	if (this.isRelativeEnabled && this.isCompareEnabled) {
 		this.compareButton = new Eplant.ViewSpecificUIButton(
-			"app/img/available/efpmode-compare.png",		// imageSource
+			"img/available/efpmode-compare.png",		// imageSource
 			"Compare to another gene.",			// Description
 			function(data) {				// click
 				/* Check whether compare mode is already activated */
@@ -295,11 +295,11 @@ Eplant.BaseViews.EFPView.prototype.createViewSpecificUIButtons = function() {
 					data.eFPView.mode = "relative";
 
 					/* Update mode button */
-					data.eFPView.modeButton.setImageSource("app/img/efpmode-relative.png");
+					data.eFPView.modeButton.setImageSource("img/efpmode-relative.png");
 					data.eFPView.modeButton.setDescription("Toggle data mode: relative.");
 
 					/* Update compare button */
-					this.setImageSource("app/img/available/efpmode-compare.png");
+					this.setImageSource("img/available/efpmode-compare.png");
 					this.setDescription("Compare to another gene.");
 
 					/* Update eFP */
@@ -320,13 +320,13 @@ Eplant.BaseViews.EFPView.prototype.createViewSpecificUIButtons = function() {
 	/* Mask */
 	if (this.isMaskEnabled) {
 		this.maskButton = new Eplant.ViewSpecificUIButton(
-			"app/img/off/filter.png",		// imageSource
+			"img/off/filter.png",		// imageSource
 			"Mask data with below threshold confidence.",		// description
 			function(data) {				// click
 				/* Check whether masking is already on */
 				if (data.eFPView.isMaskOn) {		// Yes
 					/* Update button */
-					this.setImageSource("app/img/off/filter.png");
+					this.setImageSource("img/off/filter.png");
 
 					/* Turn off masking */
 					data.eFPView.isMaskOn = false;
@@ -348,7 +348,7 @@ Eplant.BaseViews.EFPView.prototype.createViewSpecificUIButtons = function() {
 
 	/* Legend */
 	var viewSpecificUIButton = new Eplant.ViewSpecificUIButton(
-		"app/img/legend.png",		// imageSource
+		"img/legend.png",		// imageSource
 		"Toggle legend.",		// description
 		function(data) {		// click
 			/* Check whether legend is showing */
@@ -369,7 +369,7 @@ Eplant.BaseViews.EFPView.prototype.createViewSpecificUIButtons = function() {
 
 	/* Palette */
 	var viewSpecificUIButton = new Eplant.ViewSpecificUIButton(
-		"app/img/palette.png",		// imageSource
+		"img/palette.png",		// imageSource
 		"Set eFP colors.",		// description
 		function(data) {		// click
 			var paletteDialog = new Eplant.BaseViews.EFPView.PaletteDialog(data.eFPView);
@@ -883,11 +883,11 @@ Eplant.BaseViews.EFPView.prototype.compare = function(geneticElement) {
 	this.mode = "compare";
 
 	/* Update mode button */
-	this.modeButton.setImageSource("app/img/efpmode-relative.png");
+	this.modeButton.setImageSource("img/efpmode-relative.png");
 	this.modeButton.setDescription("Data mode: compare. Click on Compare button to turn off.");
 
 	/* Update compare button */
-	this.compareButton.setImageSource("app/img/active/efpmode-compare.png");
+	this.compareButton.setImageSource("img/active/efpmode-compare.png");
 	this.compareButton.setDescription("Turn off compare mode.");
 
 	/* Update eFP */

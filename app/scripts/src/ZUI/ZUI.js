@@ -29,6 +29,7 @@ var c = $('#ZUI_canvas');
 var container = $(c).parent();
 var width = $(container).width(); //max width
 var height = $(container).height(); //max height
+
 /* Variables */
 ZUI.container = container;		// Container div element
 ZUI.canvas = null;			// Canvas element
@@ -36,7 +37,7 @@ ZUI.context = null;			// Canvas 2D context
 ZUI.frameRate = 60;			// Frame rate
 ZUI.lastTimestamp = 0;		// Last timestamp taken
 ZUI.width = width;			// Canvas width
-ZUI.height = height;			// Canvas height 
+ZUI.height = height;			// Canvas height
 ZUI.activeView = null;		// Active view
 ZUI.viewObjects = [];		// All view objects
 ZUI.customContextMenu = null;	// Custom context menu
@@ -73,14 +74,14 @@ ZUI.eventListeners = null;		// Event listeners hash table, initialized in ZUI.in
 ZUI.initialize = function(settings) {
 	/* Initialize eventListeners */
 	ZUI.eventListeners = new ZUI.HashMap();
-	
+
 	/* Set canvas and container handles */
 	if (settings.canvas) {
 		ZUI.canvas = settings.canvas;
 		ZUI.context = ZUI.canvas.getContext("2d");
 		ZUI.context.advArcTo = function() {
 			ZUI.context.save();
-			
+
 			ZUI.context.restore();
 		}
 		ZUI.container = ZUI.canvas.parentNode;
@@ -88,19 +89,19 @@ ZUI.initialize = function(settings) {
 	else {
 		//TODO
 	}
-	
+
 	/* Disable default context menu */
 	ZUI.canvas.oncontextmenu = function(event) {
 		ZUI.contextMenu(event);
 		return false;
 	};
-	
+
 	/* Define custom context menu */
 	ZUI.customContextMenu = new ZUI.ContextMenu();
-	
+
 	/* Set cursor to default */
 	ZUI.container.style.cursor = "default";
-	
+
 	/* Set width and height */
 	if (settings.width && settings.height) {
 		ZUI.width = settings.width;
@@ -112,17 +113,17 @@ ZUI.initialize = function(settings) {
 		ZUI.width = ZUI.canvas.width;
 		ZUI.height = ZUI.canvas.height;
 	}
-	
+
 	/* Set background */
 	ZUI.background = (settings.background === undefined) ? "#ffffff" : settings.background;
 	ZUI.backgroundAlpha = (settings.backgroundAlpha === undefined) ? 1 : settings.backgroundAlpha;
-	
+
 	/* Set frame rate */
 	ZUI.frameRate = (settings.frameRate === undefined) ? 60 : settings.frameRate;
-	
+
 	/* Set camera move rate */
 	ZUI.camera.moveRate = (settings.cameraMoveRate === undefined) ? 1 : settings.cameraMoveRate;
-	
+
 	/* Add listeneres for input events */
 	ZUI.canvas.addEventListener("mousedown", ZUI.mouseDown, false);
 	document.addEventListener("mouseup", ZUI.mouseUp, false);
@@ -135,13 +136,13 @@ ZUI.initialize = function(settings) {
 	ZUI.canvas.addEventListener("gesturestart", ZUI.gestureStart, false);
 	ZUI.canvas.addEventListener("gesturechange", ZUI.gestureChange, false);
 	ZUI.canvas.addEventListener("gestureend", ZUI.gestureEnd, false);
-	
+
 	/* Set first view */
 	ZUI.activeView = new ZUI.View();
-	
+
 	/* Activate first view */
 	ZUI.activeView.active();
-	
+
 	ZUI.isActive=true;
 	/* Begin draw loop */
 	requestAnimationFrame(ZUI.draw);
@@ -158,21 +159,21 @@ ZUI.draw = function(timestamp) {
 	if (timestamp - ZUI.lastTimestamp > 1000 / ZUI.frameRate) {
 		/* Update lastTimestamp */
 		ZUI.lastTimestamp = timestamp - ((timestamp - ZUI.lastTimestamp) % 1000 / ZUI.frameRate);
-		
+
 		/* Update app status */
 		if (ZUI.appStatus.start == null) {
 			ZUI.appStatus.start = timestamp;
 		}
 		ZUI.appStatus.progress = timestamp - ZUI.appStatus.start;
-		
+
 		/* Call update function */
 		ZUI.update();
-		
+
 		/* Update camera */
 		if (ZUI.camera.autoUpdate) {
 			ZUI.camera.update();
 		}
-		
+
 		/* Clear canvas */
 		ZUI.context.clearRect(0, 0, ZUI.width, ZUI.height);
 		ZUI.context.save();
@@ -181,7 +182,7 @@ ZUI.draw = function(timestamp) {
 		ZUI.context.fillStyle = ZUI.background;
 		ZUI.context.fillRect(0, 0, ZUI.width, ZUI.height)
 		ZUI.context.restore();
-		
+
 		/* Auto-draw */
 		var viewObjects = ZUI.activeView.viewObjects;
 		for (var n = 0; n < viewObjects.length; n++) {
@@ -189,7 +190,7 @@ ZUI.draw = function(timestamp) {
 				viewObjects[n].draw();
 			}
 		}
-		
+
 		/* Draw */
 		if (ZUI.activeView.animation) {
 			ZUI.activeView.animation.draw();
@@ -197,7 +198,7 @@ ZUI.draw = function(timestamp) {
 		else {
 			ZUI.activeView.draw();
 		}
-		
+
 		/* Check for mouse over/out events */
 		var x = ZUI.mouseStatus.x;
 		var y = ZUI.mouseStatus.y;
@@ -230,7 +231,7 @@ ZUI.changeActiveView = function(view) {
 
 /* Update application at every frame, override with custom function */
 ZUI.update = function() {
-	
+
 };
 
 /* Mouse down event callback */
@@ -245,7 +246,7 @@ ZUI.mouseDown = function(event) {
 			break;
 		}
 	}
-	
+
 	if (event.button == 0) {
 		ZUI.mouseStatus.leftDown = true;
 		ZUI.activeView.leftMouseDown();
@@ -268,17 +269,18 @@ ZUI.mouseDown = function(event) {
 
 /* Resize event callback */
 ZUI.resize = function(event) {
+	var height = $(container).height;
 	var c = $('#ZUI_canvas');
 	var container = $(c).parent();
 	c.attr('width', $(container).width() ); //max width
-	c.attr('height', $(container).height() ); //max height
-	
+	c.attr('height',$(container).height() ); //max height
+
 	ZUI.width =  $(container).width() ; //max width
 	ZUI.height = $(container).height() ; //max height
 	if(ZUI.activeView.height)
 	{
-		ZUI.activeView.width =  $(container).width() ; //max width
-		ZUI.activeView.height = $(container).height() ; //max height
+		ZUI.activeView.width =  $(container).width(); //max width
+		ZUI.activeView.height = $(container).height(); //max height
 	}
 };
 
@@ -296,7 +298,7 @@ ZUI.mouseUp = function(event) {
 			break;
 		}
 	}
-	
+
 	if (event.button == 0) {
 		ZUI.mouseStatus.leftDown = false;
 		ZUI.activeView.leftMouseUp();
@@ -325,7 +327,7 @@ ZUI.mouseMove = function(event) {
 	ZUI.mouseStatus.yLast = ZUI.mouseStatus.y;
 	ZUI.mouseStatus.x = mousePosition.x;
 	ZUI.mouseStatus.y = mousePosition.y;
-	
+
 	var x = ZUI.mouseStatus.x;
 	var y = ZUI.mouseStatus.y;
 	var viewObjects = ZUI.activeView.viewObjects;
@@ -335,7 +337,7 @@ ZUI.mouseMove = function(event) {
 			viewObject = viewObjects[n];
 		}
 	}
-	
+
 	ZUI.activeView.mouseMove();
 	for (n = 0; n < viewObjects.length; n++) {
 		if (viewObjects[n] != viewObject && viewObjects[n].isHovered) {
@@ -350,7 +352,7 @@ ZUI.mouseMove = function(event) {
 			viewObject.mouseOver();
 		}
 	}
-	
+
 	if (ZUI.passInputEvent != null) {
 		ZUI.passInputEvent(event);
 	}
@@ -368,7 +370,7 @@ ZUI.click = function(event) {
 			break;
 		}
 	}
-	
+
 	if (event.button == 0) {
 		if (ZUI.customContextMenu.active) {
 			ZUI.customContextMenu.close();
@@ -402,7 +404,7 @@ ZUI.doubleClick = function(event) {
 			break;
 		}
 	}
-	
+
 	if (event.button == 0) {
 		ZUI.activeView.leftDoubleClick();
 		if (viewObject) viewObject.leftDoubleClick();
@@ -420,7 +422,7 @@ ZUI.doubleClick = function(event) {
 ZUI.mouseWheel = function(event) {
 	event.preventDefault();
 	var scroll = Math.max(-1, Math.min(1, (event.wheelDelta || -event.detail)));
-	
+
 	var x = ZUI.mouseStatus.x;
 	var y = ZUI.mouseStatus.y;
 	var viewObjects = ZUI.activeView.viewObjects;
@@ -431,7 +433,7 @@ ZUI.mouseWheel = function(event) {
 			break;
 		}
 	}
-	
+
 	ZUI.activeView.mouseWheel(scroll);
 	if (viewObject) viewObject.mouseWheel(scroll);
 	if (ZUI.passInputEvent != null) {
@@ -451,7 +453,7 @@ ZUI.contextMenu = function(event) {
 			break;
 		}
 	}
-	
+
 	ZUI.activeView.contextMenu();
 	if (viewObject) viewObject.contextMenu();
 	if (ZUI.passInputEvent != null) {
@@ -478,7 +480,7 @@ ZUI.gestureChange = function(event) {
 		ZUI.activeView.pinch(event.scale / ZUI.touchStatus.lastPinch);
 		ZUI.touchStatus.lastPinch = event.scale;
 	}
-	
+
 	/* Update rotate */
 	if (!ZUI.touchStatus.isRotate && event.rotation != 0) {
 		ZUI.touchStatus.isRotate = true;
@@ -525,7 +527,7 @@ ZUI.fireEvent = function(event) {
 	if (!eventListeners1) {
 		return;
 	}
-	
+
 	/* Filter event listeners by target */
 	var eventListeners2 = eventListeners1.get(event.target);
 	if (eventListeners2) {
@@ -534,7 +536,7 @@ ZUI.fireEvent = function(event) {
 			eventListeners2[n].callback(event, event.data, eventListeners2[n].data);
 		}
 	}
-	
+
 	/* Execute callback functions with no particular target */
 	var eventListeners3 = eventListeners1.get("_all");
 	if (eventListeners3) {
@@ -552,7 +554,7 @@ ZUI.addEventListener = function(eventListener) {
 		eventListeners1 = new ZUI.HashMap();
 		ZUI.eventListeners.put(eventListener.type, eventListeners1);
 	}
-	
+
 	/* Filter event listeners by target */
 	var target = eventListener.target;
 	if (target === undefined || target === null) {
@@ -563,7 +565,7 @@ ZUI.addEventListener = function(eventListener) {
 		eventListeners2 = [];
 		eventListeners1.put(target, eventListeners2);
 	}
-	
+
 	/* Add event listener */
 	eventListeners2.push(eventListener);
 };
@@ -575,7 +577,7 @@ ZUI.removeEventListener = function(eventListener) {
 	if (!eventListeners1) {
 		return;
 	}
-	
+
 	/* Filter event listeners by target */
 	var target = eventListener.target;
 	if (target === undefined || target === null) {
@@ -585,19 +587,19 @@ ZUI.removeEventListener = function(eventListener) {
 	if (!eventListeners2) {
 		return;
 	}
-	
+
 	/* Remove event listener */
 	var index = eventListeners2.indexOf(eventListener);
 	if (index < 0) {
 		return;
 	}
 	eventListeners2.splice(index, 1);
-	
+
 	/* Remove target level eventListeners if empty */
 	if (eventListeners2.length == 0) {
 		eventListeners1.delete(target);
 	}
-	
+
 	/* Remove type level eventListeners if empty */
 	if (eventListeners1.length == 0) {
 		ZUI.eventListeners.delete(eventListener.type);
@@ -620,10 +622,11 @@ ZUI.removeEventListenersForTarget = function(target) {
 };
 
 ZUI.active = function() {
-	
+	ZUI.isActive=true;
+	requestAnimationFrame(ZUI.draw);
 };
 ZUI.inactive = function() {
-	
+	ZUI.isActive=false;
 };
 
 /* Function for passing input events to another element, override with custom function if needed */

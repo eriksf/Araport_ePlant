@@ -17,7 +17,8 @@ Eplant.Views.TissueSpecificEmbryoDevelopmentView = function(geneticElement) {
 
 	// Call parent constructor
 	Eplant.View.call(this,
-		constructor.viewName,			// Name of the View visible to the user
+		constructor.displayName,			// Name of the View visible to the user
+		constructor.viewName,
 		constructor.hierarchy,			// Hierarchy of the View
 		constructor.magnification,			// Magnification level of the View
 		constructor.description,			// Description of the View visible to the user
@@ -28,8 +29,8 @@ Eplant.Views.TissueSpecificEmbryoDevelopmentView = function(geneticElement) {
 	);
 	
 	/* Call eFP constructor */ 
-	var efpSvgURL = 'app/data/experiment/efps/TissueSpecificEmbryoDevelopment/' + geneticElement.species.scientificName.replace(" ", "_") + '.svg';
-	var efpXmlURL = 'app/data/experiment/efps/TissueSpecificEmbryoDevelopment/' + geneticElement.species.scientificName.replace(" ", "_") + '.xml';
+	var efpSvgURL = 'data/experiment/efps/TissueSpecificEmbryoDevelopment/' + geneticElement.species.scientificName.replace(" ", "_") + '.svg';
+	var efpXmlURL = 'data/experiment/efps/TissueSpecificEmbryoDevelopment/' + geneticElement.species.scientificName.replace(" ", "_") + '.xml';
 	Eplant.BaseViews.EFPView.call(this, geneticElement, efpSvgURL,efpXmlURL, {
 	}); 
 	
@@ -37,7 +38,8 @@ Eplant.Views.TissueSpecificEmbryoDevelopmentView = function(geneticElement) {
 };
 ZUI.Util.inheritClass(Eplant.BaseViews.EFPView, Eplant.Views.TissueSpecificEmbryoDevelopmentView);	// Inherit parent prototype
 
-Eplant.Views.TissueSpecificEmbryoDevelopmentView.viewName = "Tissue Specific Embryo Development eFP";
+Eplant.Views.TissueSpecificEmbryoDevelopmentView.viewName = "TissueSpecificEmbryoDevelopmentView";
+Eplant.Views.TissueSpecificEmbryoDevelopmentView.displayName = "Tissue Specific Embryo Development eFP";
 Eplant.Views.TissueSpecificEmbryoDevelopmentView.hierarchy = "genetic element";
 Eplant.Views.TissueSpecificEmbryoDevelopmentView.magnification = 35;
 Eplant.Views.TissueSpecificEmbryoDevelopmentView.description = "Tissue Specific Embryo Development eFP";

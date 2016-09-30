@@ -1,5 +1,5 @@
 (function() {
-	
+
 	/**
 		* Eplant.Views.ExperimentalView class
 		* Coded by Hans Yu
@@ -14,10 +14,11 @@
 	Eplant.Views.AbioticStressView = function(geneticElement) {
 		// Get constructor
 		var constructor = Eplant.Views.AbioticStressView;
-		
+
 		// Call parent constructor
 		Eplant.View.call(this,
-		constructor.viewName,			// Name of the View visible to the user
+		constructor.displayName,			// Name of the View visible to the user
+		constructor.viewName,
 		constructor.hierarchy,			// Hierarchy of the View
 		constructor.magnification,			// Magnification level of the View
 		constructor.description,			// Description of the View visible to the user
@@ -26,16 +27,17 @@
 		constructor.availableIconImageURL,		// URL for the available icon image
 		constructor.unavailableIconImageURL	// URL for the unavailable icon image
 		);
-		
-		/* Call eFP constructor */ 
-		var efpSvgURL = 'app/data/experiment/efps/AbioticStress/' + geneticElement.species.scientificName.replace(" ", "_") + '.svg';
-		var efpXmlURL = 'app/data/experiment/efps/AbioticStress/' + geneticElement.species.scientificName.replace(" ", "_") + '.xml';
+
+		/* Call eFP constructor */
+		var efpSvgURL = 'data/experiment/efps/AbioticStress/' + geneticElement.species.scientificName.replace(" ", "_") + '.svg';
+		var efpXmlURL = 'data/experiment/efps/AbioticStress/' + geneticElement.species.scientificName.replace(" ", "_") + '.xml';
 		Eplant.BaseViews.EFPView.call(this, geneticElement, efpSvgURL,efpXmlURL, {
 		});
 	};
 	ZUI.Util.inheritClass(Eplant.BaseViews.EFPView, Eplant.Views.AbioticStressView);	// Inherit parent prototype
-	
-	Eplant.Views.AbioticStressView.viewName = "Abiotic Stress eFP";
+
+Eplant.Views.AbioticStressView.viewName = "AbioticStressView";
+	Eplant.Views.AbioticStressView.displayName = "Abiotic Stress eFP";
 	Eplant.Views.AbioticStressView.hierarchy = "genetic element";
 	Eplant.Views.AbioticStressView.magnification = 35;
 	Eplant.Views.AbioticStressView.description = "Abiotic Stress eFP";
@@ -43,29 +45,23 @@
 	Eplant.Views.AbioticStressView.activeIconImageURL = "";
 	Eplant.Views.AbioticStressView.availableIconImageURL = "";
 	Eplant.Views.AbioticStressView.unavailableIconImageURL = "";
-	
-	Eplant.Views.AbioticStressView.prototype.loadsvg = function(svgimage) {
-		var $img = jQuery(svgimage);
-		var imgID = $img.attr('id');
-		var imgClass = $img.attr('class');
-		var imgURL = $img.attr('src');
-		
-		$.get(imgURL, $.proxy(function(data) {
+
+	Eplant.Views.AbioticStressView.prototype.loadsvg = function() {
+
+		this.Xhrs.loadsvgXhr=$.get(this.svgURL, $.proxy(function(data) {
+			this.Xhrs.loadsvgXhr=null;
 			// Get the SVG tag, ignore the rest
 			var $svg = $(data).find('svg');
 			$("g", $svg).not('[id*=label],[id*=Label]').attr('stroke', "black");
 			$("text", $svg).attr('stroke','');
 			$("#Info_Buttons *", $svg).attr('stroke','none');
 			$("text", $svg).attr('fill','black');
-			// Add replaced image's ID to the new SVG
-			if (typeof imgID !== 'undefined') {
-				$svg = $svg.attr('id', imgID);
-			}
+
 			// Add replaced image's classes to the new SVG
 			$svg = $svg.attr('class', 'efp-view-svg');
 			// Remove any invalid XML tags as per http://validator.w3.org
 			$svg = $svg.removeAttr('xmlns:a');
-			
+
 			$svg = $svg.attr('width', '100%');
 			$svg = $svg.attr('height', '100%');
 			// Replace image with new SVG
@@ -74,9 +70,9 @@
 			this.svgdom = $svg;
 			this.isSvgLoaded=true;
 		}, this), 'xml');
-		
+
 	};
-	
+
 	Eplant.Views.AbioticStressView.prototype.bindSvgEvents = function() {
 		Eplant.BaseViews.EFPView.prototype.bindSvgEvents.call(this);
 		this.infoButtons = [
@@ -116,7 +112,7 @@
 			ele:$('#condition_Heat',this.svgdom),
 			info:'3 hours at 38ºC followed by recovery at 25ºC'
 		},
-		
+
 		];
 		var changeTooltipPosition = function(event) {
 			var tooltipX = event.pageX;
@@ -137,16 +133,16 @@
 			if($(event.currentTarget).attr('fill')){
 				$("*", event.currentTarget).attr('stroke-width', "0");
 			}
-			
+
 		},this);
-		
+
 		for (var n = 0; n < this.infoButtons.length; n++) {
 			var infoButton = this.infoButtons[n];
 			var obj = {
 				infoButton:infoButton,
 				view:this
 			};
-			
+
 			var showTooltip = $.proxy(function(event) {
 				$("*", this.view).attr('stroke', "1");
 				//$('div #efpTooltip').remove();
@@ -162,7 +158,7 @@
 				//$(toolTipString).appendTo('body');
 				//changeTooltipPosition(event);
 			}, obj);
-			
+
 			$(infoButton.ele).on({
 				//mousemove: changeTooltipPosition,
 				mouseenter: showTooltip,
@@ -172,8 +168,8 @@
 				}
 			});
 		}
-		
+
 	};
-	
-	
+
+
 })();

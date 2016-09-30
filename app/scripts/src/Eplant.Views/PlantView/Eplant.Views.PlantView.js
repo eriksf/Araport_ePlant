@@ -17,7 +17,8 @@ Eplant.Views.PlantView = function(geneticElement) {
 
 	// Call parent constructor
 	Eplant.View.call(this,
-		constructor.viewName,			// Name of the View visible to the user
+		constructor.displayName,			// Name of the View visible to the user
+		constructor.viewName,
 		constructor.hierarchy,			// Hierarchy of the View
 		constructor.magnification,			// Magnification level of the View
 		constructor.description,			// Description of the View visible to the user
@@ -28,20 +29,21 @@ Eplant.Views.PlantView = function(geneticElement) {
 	);
 
 	/* Call eFP constructor */
-	var efpSvgURL = 'app/data/plant/' + geneticElement.species.scientificName.replace(" ", "_") + '.svg';
-	var efpXmlURL = 'app/data/plant/' + geneticElement.species.scientificName.replace(" ", "_") + '.xml';
+	var efpSvgURL = 'data/plant/' + geneticElement.species.scientificName.replace(" ", "_") + '.svg';
+	var efpXmlURL = 'data/plant/' + geneticElement.species.scientificName.replace(" ", "_") + '.xml';
 	Eplant.BaseViews.EFPView.call(this, geneticElement, efpSvgURL,efpXmlURL, {
 	});
 };
 ZUI.Util.inheritClass(Eplant.BaseViews.EFPView, Eplant.Views.PlantView);	// Inherit parent prototype
 
-Eplant.Views.PlantView.viewName = "Plant eFP";
+Eplant.Views.PlantView.viewName = "PlantView";
+Eplant.Views.PlantView.displayName = "Plant eFP";
 Eplant.Views.PlantView.hierarchy = "genetic element";
 Eplant.Views.PlantView.magnification = 20;
 Eplant.Views.PlantView.description = "Plant eFP";
 Eplant.Views.PlantView.citation = "";
-Eplant.Views.PlantView.activeIconImageURL = "app/img/active/plant.png";
-Eplant.Views.PlantView.availableIconImageURL = "app/img/available/plant.png";
-Eplant.Views.PlantView.unavailableIconImageURL = "app/img/unavailable/plant.png";
+Eplant.Views.PlantView.activeIconImageURL = "img/active/plant.png";
+Eplant.Views.PlantView.availableIconImageURL = "img/available/plant.png";
+Eplant.Views.PlantView.unavailableIconImageURL = "img/unavailable/plant.png";
 
 })();

@@ -193,8 +193,12 @@
 		options.window = 'top'; 
 		options.top = this.y;
 		options.left = this.x;
+		//options.lock = true;
+		//options.background = '#000'; 
+		options.opacity = 0.6;
+		options.window = 'top'; 
 		options.fixed= true; 
-		options.drag= true;
+		options.drag= false;
 		options.resize= true;
 		options.padding= '10px';
 		options.close= $.proxy(function() {
@@ -218,15 +222,7 @@
 					Eplant.activeSpecies.activeGeneticElement.geneticElementDialog.unselect();
 				}
 				
-				if($.grep( Eplant.activeSpecies.displayGeneticElements, $.proxy(function(e){ return e.identifier == this.geneticElement.identifier; },this)).length===0)
-				{
-					Eplant.activeSpecies.displayGeneticElements.push(this.geneticElement);
-					}else{
-					DialogManager.artDialogDynamic(this.geneticElement.identifier+' is already loaded.');
-				}
-				
-				/* Load Views for this GeneticElement */
-				this.geneticElement.loadViews();
+				Eplant.activeSpecies.loadGeneticElementByIdentifier(this.geneticElement.identifier);
 				
 				/* Change to Drop Data */
 				this.toDropData();
@@ -242,16 +238,11 @@
 					Eplant.activeSpecies.setActiveGeneticElement(this.geneticElement);
 				}
 				
-				/* Remove GeneticElementList if current View is ChromosomeView */
-				// TODO Consider replacing this code with something more maintainable
-				if (ZUI.activeView instanceof Eplant.Views.ChromosomeView) {
-					if (ZUI.activeView.geneticElementList) {
-						ZUI.activeView.geneticElementList.close();
-						ZUI.activeView.geneticElementList = null;
-					}
-				}
+				
 				this.close();
 			}, this);
+			}else{
+			this.toDropData();
 		}
 		
 	};
@@ -265,7 +256,7 @@
 		this.domGetDropData.onclick = $.proxy(function() {
 			/* Drop Views for this GeneticElement */
 			this.geneticElement.dropViews();
-			
+			this.geneticElement.remove();
 			/* Change to Get Data */
 			this.toGetData();
 			
@@ -274,7 +265,14 @@
 			
 			/* Reset tags */
 			// TODO
-			
+			/* Remove GeneticElementList if current View is ChromosomeView */
+			// TODO Consider replacing this code with something more maintainable
+			if (ZUI.activeView instanceof Eplant.Views.ChromosomeView) {
+				if (ZUI.activeView.geneticElementList) {
+					ZUI.activeView.geneticElementList.close();
+					ZUI.activeView.geneticElementList = null;
+				}
+			}
 			/* Close this GeneticElementDialog */
 			this.close();
 		}, this);

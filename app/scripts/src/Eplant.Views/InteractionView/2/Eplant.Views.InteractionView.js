@@ -18,7 +18,8 @@
 		
 		// Call parent constructor
 		Eplant.View.call(this,
-		constructor.viewName,				// Name of the View visible to the user
+		constructor.displayName,				// Name of the View visible to the user
+		constructor.viewName,
 		constructor.hierarchy,			// Hierarchy of the View
 		constructor.magnification,			// Magnification level of the View
 		constructor.description,			// Description of the View visible to the user
@@ -65,24 +66,18 @@
 		/* Create legend */
 		this.legend = new Eplant.Views.InteractionView.Legend(this);
 		
-		this.labelDom = document.createElement("div");
-		$(this.labelDom).css({
-			"position": "absolute",
-			"z-index": 1,
-			"left":10,
-			"top":10,
-			"font-size":'1.5em',
-			"line-height":'1.5em'
-		});
 		if(this.name)
 		{
+			$(this.labelDom).empty();
 			this.viewNameDom = document.createElement("span");
-			
-			var text = this.name+': '+this.geneticElement.identifier;
-			if(this.geneticElement.isRelated){
-				text += ", "+this.geneticElement.identifier+" correlates to "+this.geneticElement.relatedGene.identifier+" with an r-value of "+this.geneticElement.rValueToRelatedGene;
+			var labelText = this.geneticElement.identifier;
+			if (this.geneticElement.aliases && this.geneticElement.aliases.length && this.geneticElement.aliases[0].length) {
+				labelText += " / " + this.geneticElement.aliases.join(", ");
 			}
-			
+			var text = this.name+': '+labelText;
+			/*if(this.geneticElement.isRelated){
+				text += ", "+this.geneticElement.identifier+" correlates to "+this.geneticElement.relatedGene.identifier+" with an r-value of "+this.geneticElement.rValueToRelatedGene;
+			}*/
 			this.viewNameDom.appendChild(document.createTextNode(text)); 
 			$(this.viewNameDom).appendTo(this.labelDom);
 		}
@@ -92,14 +87,15 @@
 	};
 	ZUI.Util.inheritClass(Eplant.View, Eplant.Views.InteractionView);	// Inherit parent prototype
 	
-	Eplant.Views.InteractionView.viewName = "Interaction Viewer";
+	Eplant.Views.InteractionView.viewName = "InteractionView";
+	Eplant.Views.InteractionView.displayName = "Interaction Viewer";
 	Eplant.Views.InteractionView.hierarchy = "genetic element";
 	Eplant.Views.InteractionView.magnification = 60;
 	Eplant.Views.InteractionView.description = "Interaction viewer";
 	Eplant.Views.InteractionView.citation = "";
-	Eplant.Views.InteractionView.activeIconImageURL = "app/img/active/interaction.png";
-	Eplant.Views.InteractionView.availableIconImageURL = "app/img/available/interaction.png";
-	Eplant.Views.InteractionView.unavailableIconImageURL = "app/img/unavailable/interaction.png";
+	Eplant.Views.InteractionView.activeIconImageURL = "img/active/interaction.png";
+	Eplant.Views.InteractionView.availableIconImageURL = "img/available/interaction.png";
+	Eplant.Views.InteractionView.unavailableIconImageURL = "img/unavailable/interaction.png";
 	
 	/* Constants */
 	Eplant.Views.InteractionView.domContainer = null;		// DOM container element for Cytoscape
@@ -258,14 +254,14 @@
 	Eplant.Views.InteractionView.prototype.createViewSpecificUIButtons = function() {
 		/* Filter */
 		this.filterButton = new Eplant.ViewSpecificUIButton(
-		"app/img/off/filter.png",		// imageSource
-		"Filter interactions.",		// description
+		"img/off/filter.png",		// imageSource
+		"Filter interactions",		// description
 		function(data) {		// click
 			/* Check whether filter is already on */
 			if (data.interactionView.isFilterOn) {		// Yes
 				if (data.interactionView.cy) {
 					/* Update button */
-					this.setImageSource("app/img/off/filter.png");
+					this.setImageSource("img/off/filter.png");
 					
 					/* Turn off filter */
 					data.interactionView.isFilterOn = false;
@@ -285,22 +281,22 @@
 		);
 		this.viewSpecificUIButtons.push(this.filterButton);
 		
-		/* Link */
-		var viewSpecificUIButton = new Eplant.ViewSpecificUIButton(
-		"app/img/link.png",		// imageSource
-		"Go to Arabidopsis Interaction Viewer on BAR.",		// description
-		function(data) {		// click
-			window.open("http://bar.utoronto.ca/~asher/interactions/cgi-bin/arabidopsis_interactions_viewer.cgi?interactions=yes&input=" + data.interactionView.geneticElement.identifier + "&qbar=yes");
-		},
-		{
+		/* Link 
+			var viewSpecificUIButton = new Eplant.ViewSpecificUIButton(
+			"img/link.png",		// imageSource
+			"Go to Arabidopsis Interaction Viewer on BAR.",		// description
+			function(data) {		// click
+			window.open("//bar.utoronto.ca/interactions/cgi-bin/arabidopsis_interactions_viewer.cgi?interactions=yes&input=" + data.interactionView.geneticElement.identifier + "&qbar=yes");
+			},
+			{
 			interactionView: this
-		}
-		);
-		this.viewSpecificUIButtons.push(viewSpecificUIButton);
-		
+			}
+			);
+			this.viewSpecificUIButtons.push(viewSpecificUIButton);
+		*/
 		/* Legend */
 		var viewSpecificUIButton = new Eplant.ViewSpecificUIButton(
-		"app/img/legend.png",		// imageSource
+		"img/legend.png",		// imageSource
 		"Toggle legend.",			// description
 		function(data) {		// click
 			/* Check whether legend is showing */
@@ -388,7 +384,7 @@
 					// etc...
 					data: {
 						id:'noInteractionLabel',
-						label: 'No Interactions Found For This Gene',
+						label: 'No interactions found for this gene.',
 						textOutlineWidth:0,
 						backgroundColor:'#fff',
 						borderColor:'#fff',
@@ -423,6 +419,10 @@
 				ZUI.camera.setDistance(Eplant.Views.InteractionView.getZUIDistance(this.cy.zoom()));
 				this.zoom = this.cy.zoom();
 				this.cyConf.zoom=this.zoom;
+				
+			}, this));
+			this.cy.on("tap", "edge", $.proxy(function(event) {
+				
 				
 			}, this));
 			this.cy.on("pan", $.proxy(function(event) {
@@ -480,7 +480,7 @@
 				}
 				else {		// GeneticElement doesn't exist, create it
 					/* Create GeneticElement */
-					this.geneticElement.species.loadGeneticElementByIdentifier(node.data("id"), $.proxy(function(geneticElement) {
+					this.geneticElement.species.loadGeneticElementByIdentifier(node.data("id"), {callback:$.proxy(function(geneticElement) {
 						/* Get node */
 						var node = this.cy.nodes("node#" + geneticElement.identifier.toUpperCase())[0];
 						
@@ -511,7 +511,7 @@
 								geneticElement.geneticElementDialog = geneticElementDialog;
 							}
 						}
-					}, this));
+					}, this)});
 				}
 			}, this));
 			this.cy.on("mouseout", "node", $.proxy(function(event) {
@@ -563,7 +563,7 @@
 				}
 				else {		// GeneticElement doesn't exist, create it
 					/* Create GeneticElement */
-					this.geneticElement.species.loadGeneticElementByIdentifier(node.data("id"), $.proxy(function(geneticElement) {
+					this.geneticElement.species.loadGeneticElementByIdentifier(node.data("id"), {callback:$.proxy(function(geneticElement) {
 						/* Get node */
 						var node = this.cy.nodes("node#" + geneticElement.identifier.toUpperCase())[0];
 						
@@ -591,7 +591,7 @@
 								geneticElement.geneticElementDialog = geneticElementDialog;
 							}
 						}
-					}, this));
+					}, this)});
 				}
 				/* Check whether GeneticElement is created */
 				if (geneticElement) {	// Yes
@@ -610,7 +610,7 @@
 					}
 				}
 				else {		// No
-					this.geneticElement.species.loadGeneticElementByIdentifier(node.data("id"), $.proxy(function(geneticElement) {
+					this.geneticElement.species.loadGeneticElementByIdentifier(node.data("id"), {callback:$.proxy(function(geneticElement) {
 						/* Get node */
 						var node = this.cy.nodes("node#" + geneticElement.identifier.toUpperCase())[0];
 						
@@ -630,7 +630,7 @@
 								pin: true
 							};
 						}
-					}, this));
+					}, this)});
 				}
 			}, this));
 			this.cy.on("position", "node", $.proxy(function(event) {	// Node is moved
@@ -661,7 +661,7 @@
 					var tooltip = new Eplant.Tooltip({
 						content: "Co-expression coefficient: " + interaction.correlation + 
 						//"<br>Interolog confidence: " + interaction.confidence,
-						"<br>Confidence Value: " + interaction.confidence,
+						"<br>Confidence Value: " + (interaction.published?"Experimentally determined":interaction.confidence),
 						x:event.originalEvent.clientX,
 						y:event.originalEvent.clientY-25
 					});
@@ -695,12 +695,13 @@
 		* Loads data.
 	*/
 	Eplant.Views.InteractionView.prototype.loadData = function() {
+		
 		var queryParam = [
-		{
-			agi: this.geneticElement.identifier
-		}
+			{
+				agi: this.geneticElement.identifier
+			}
 		];
-		$.getJSON("http://bar.utoronto.ca/~asher/get_interactions.php?request=" + JSON.stringify(queryParam), $.proxy(function(response) {
+		$.getJSON("//bar.utoronto.ca/~asher/get_interactions.php?request=" + JSON.stringify(queryParam), $.proxy(function(response) {
 			/* Get element arrays */
 			var nodes = this.cyConf.elements.nodes;
 			var edges = this.cyConf.elements.edges;
@@ -730,100 +731,121 @@
 				for (var n = 0; n < interactionsData.length; n++) {
 					/* Get interaction data */
 					var interactionData = interactionsData[n];
-					/* Check whether nodes are created, create them if not */
-					var isCreated = false;
-					for (var m = 0; m < nodes.length; m++) {
-						if (nodes[m].data.id.toUpperCase() == interactionData.source.toUpperCase()) {
-							isCreated = true;
-							break;
+					Eplant.queue.add(function(){
+						/* Check whether nodes are created, create them if not */
+						var isCreated = false;
+						for (var m = 0; m < nodes.length; m++) {
+							if (nodes[m].data.id.toUpperCase() == this.interactionData.source.toUpperCase()) {
+								isCreated = true;
+								break;
+							}
 						}
-					}
-					if (!isCreated) {
-						var node = this.createNode(interactionData.source);
-						nodes.push(node);
-					}
-					var isCreated = false;
-					for (var m = 0; m < nodes.length; m++) {
-						if (nodes[m].data.id.toUpperCase() == interactionData.target.toUpperCase()) {
-							isCreated = true;
-							break;
+						if (!isCreated) {
+							var node = this.view.createNode(this.interactionData.source);
+							nodes.push(node);
 						}
-					}
-					if (!isCreated) {
-						var node = this.createNode(interactionData.target);
-						nodes.push(node);
-					}
-					
-					/* Create edge */
-					var edge = this.createEdge(interactionData);
-					edges.push(edge);
+						var isCreated = false;
+						for (var m = 0; m < nodes.length; m++) {
+							if (nodes[m].data.id.toUpperCase() == this.interactionData.target.toUpperCase()) {
+								isCreated = true;
+								break;
+							}
+						}
+						if (!isCreated) {
+							var node = this.view.createNode(this.interactionData.target);
+							nodes.push(node);
+						}
+						
+						/* Create edge */
+						var edge = this.view.createEdge(this.interactionData);
+						edges.push(edge);
+					},{view:this,interactionData:interactionData});
 					
 				}
 			}
 			
 			/* Get subcellular localization data */
 			/* Generate a list of query identifiers */
-			var ids = [];
-			for (var n = 0; n < nodes.length; n++) {
-				ids.push(nodes[n].data.id);
-			}
-			/* Get data */
-			$.getJSON("http://bar.utoronto.ca/eplant/cgi-bin/groupsuba3.cgi?ids=" + JSON.stringify(ids), $.proxy(function(response) {
-				/* Get nodes */
-				var nodes = this.cyConf.elements.nodes;
+			Eplant.queue.add(function(){
+				var ids = [];
+				for (var n = 0; n < nodes.length; n++) {
+					ids.push(nodes[n].data.id);
+				}
 				
-				/* Go through localizations data */
-				for (var n = 0; n < response.length; n++) {
-					/* Get localization data */
-					var localizationData = response[n];
+				/* Get data */
+				$.ajax({
+					url: "//bar.utoronto.ca/eplant/cgi-bin/groupsuba3.cgi?ids=" + JSON.stringify(ids),
+					dataType: 'json',
 					
-					/* Get matching node */
-					var node;
-					for (var m = 0; m < nodes.length; m++) {
-						if (localizationData.id.toUpperCase() == nodes[m].data.id.toUpperCase()) {
-							node = nodes[m];
-							break;
+					success: $.proxy(function(response) {
+						/* Get nodes */
+						var nodes = this.cyConf.elements.nodes;
+						
+						/* Go through localizations data */
+						for (var n = 0; n < response.length; n++) {
+							/* Get localization data */
+							var localizationData = response[n];
+							Eplant.queue.add(function(){
+								
+								
+								/* Get matching node */
+								var node;
+								for (var m = 0; m < nodes.length; m++) {
+									if (this.localizationData.id.toUpperCase() == nodes[m].data.id.toUpperCase()) {
+										node = nodes[m];
+										break;
+									}
+								}
+								
+								/* Get localization compartment with the highest score */
+								var compartment;
+								var maxScore = 0;
+								for (var _compartment in this.localizationData.data) {
+									if (this.localizationData.data[_compartment] > maxScore) {
+										compartment = _compartment;
+										maxScore = this.localizationData.data[_compartment];
+									}
+								}
+								
+								/* Get color corresponding to compartment */
+								var color = this.view.getColorByCompartment(compartment);
+								
+								/* Set node color */
+								if (this.view.cy) {
+									this.view.cy.elements("node#" + node.data.id).data("borderColor", color);
+								}
+								else 
+								{
+									node.data.borderColor = color;
+								}
+							},{view:this,localizationData:localizationData});
+							
 						}
-					}
+						Eplant.queue.add(function(){
+							$(this.domContainer).cytoscape(this.cyConf);
+						},this);
+						
+					}, this),
+					error: $.proxy(function(jqXHR, status, errorThrown){   //the status returned will be "timeout" 
+						this.errorLoadingMessage="The sample database is not responding. Try again later.";
+						this.loadFinish();
+					}, this),
+					timeout: 50000 //50 second timeout
+				});
 				
-				/* Get localization compartment with the highest score */
-				var compartment;
-				var maxScore = 0;
-				for (var _compartment in localizationData.data) {
-					if (localizationData.data[_compartment] > maxScore) {
-						compartment = _compartment;
-						maxScore = localizationData.data[_compartment];
-					}
+			},this);
+			Eplant.queue.add(function(){
+				/* Set layout to arbor if there are multiple nodes */
+				if (nodes.length > 1) {
+					this.cyConf.layout.name = "arbor";
+					var size = Math.sqrt(nodes.length)*250;
+					this.cyConf.layout.boundingBox={x1:0, y1:0, x2:size, y2:size*window.innerHeight/window.innerWidth}
 				}
-				
-				/* Get color corresponding to compartment */
-				var color = this.getColorByCompartment(compartment);
-				
-				/* Set node color */
-				if (this.cy) {
-					this.cy.elements("node#" + node.data.id).data("borderColor", color);
+				else {
+					this.cyConf.layout.name = "grid";
+					
 				}
-				else 
-				{
-					node.data.borderColor = color;
-				}
-				
-			}
-			
-			$(this.domContainer).cytoscape(this.cyConf);
-			
-			}, this));
-			
-			/* Set layout to arbor if there are multiple nodes */
-			if (nodes.length > 1) {
-				this.cyConf.layout.name = "arbor";
-				var size = Math.sqrt(nodes.length)*250;
-				this.cyConf.layout.boundingBox={x1:0, y1:0, x2:size, y2:size*window.innerHeight/window.innerWidth}
-			}
-			else {
-				this.cyConf.layout.name = "grid";
-				
-			}
+			},this);
 		}, this));
 	};
 	
@@ -1031,7 +1053,7 @@
 		/* Set edge style and size based on confidence */
 		if (interactionData.published) {
 			edge.data.lineStyle = "solid";
-			edge.data.size = 1
+			edge.data.size = 8
 		}
 		else if (interactionData.interolog_confidence > 10) {
 			edge.data.lineStyle = "solid";
@@ -1120,7 +1142,7 @@
 		this.isFilterOn = true;
 		
 		/* Update icon image */
-		this.filterButton.setImageSource("app/img/on/filter.png");
+		this.filterButton.setImageSource("img/on/filter.png");
 	};
 	
 	/**
@@ -1296,7 +1318,7 @@
 	
 	Eplant.Views.InteractionView.prototype.zoomIn = function() {
 		if (this.cy) {
-			this.zoom = this.zoom+0.50;
+			this.zoom = this.zoom+0.10;
 			this.cy.zoom({
 				level:this.zoom,
 				position: this.queryNode.position()
@@ -1307,7 +1329,7 @@
 	
 	Eplant.Views.InteractionView.prototype.zoomOut = function() {
 		if (this.cy) {
-			this.zoom = this.zoom-0.50;
+			this.zoom = this.zoom-0.10;
 			this.cy.zoom({
 				level:this.zoom,
 				position: this.queryNode.position()

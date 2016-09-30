@@ -102,7 +102,7 @@
 			width: '100%',
 			height: '100%',
 			'z-index': '-1'
-		}).load("app/pages/molviewer.html",$.proxy(
+		}).load("pages/molviewer.html",$.proxy(
 		function(data){
 			$(this.domContainer).find('#divJmolcontent').attr('id', "divJmolcontent_"+this.geneticElement.identifier);
 			$(this.domContainer).find('#btnReset').attr('id', "btnReset_"+this.geneticElement.identifier);
@@ -261,9 +261,9 @@
 	Eplant.Views.MoleculeView.magnification = 70;
 	Eplant.Views.MoleculeView.description = "Molecule viewer";
 	Eplant.Views.MoleculeView.citation = "";
-	Eplant.Views.MoleculeView.activeIconImageURL = "app/img/active/molecule.png";
-	Eplant.Views.MoleculeView.availableIconImageURL = "app/img/available/molecule.png";
-	Eplant.Views.MoleculeView.unavailableIconImageURL = "app/img/unavailable/molecule.png";
+	Eplant.Views.MoleculeView.activeIconImageURL = "img/active/molecule.png";
+	Eplant.Views.MoleculeView.availableIconImageURL = "img/available/molecule.png";
+	Eplant.Views.MoleculeView.unavailableIconImageURL = "img/unavailable/molecule.png";
 	Eplant.Views.MoleculeView.viewType = "zui";
 	/* Constants */
 	Eplant.Views.MoleculeView.domContainer = null;		// DOM container for JSmol

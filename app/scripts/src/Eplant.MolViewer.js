@@ -55,13 +55,13 @@
 				//the name to use to create the jmol object
 				jMolObject : 'myJmol',
 				//
-				pfamUrlBar : Eplant.cdd3dUrl + 'PfamAnnot.cgi',
+				pfamUrlBar : '//bar.utoronto.ca/~gfucile/cdd3d/cgi-bin/PfamAnnot.cgi',
 				//
 				pfamUrlDev : 'ProxyServlet',
 				//
 				pfamParams : 'FASTAseq',
 				//
-				cddUrlBar : Eplant.cdd3dUrl + 'CDDannot.cgi',
+				cddUrlBar : '//bar.utoronto.ca/~gfucile/cdd3d/cgi-bin/CDDannot.cgi',
 				//
 				cddUrlDev : 'ProxyServlet',
 				//
@@ -104,7 +104,7 @@
 			//defaultModel : "=2HHB",//1MBN
 			debug : false,
 			disableJ2SLoadMonitor : true,
-			//coverImage : "app/img/whiteOnePixel.gif",
+			//coverImage : "img/whiteOnePixel.gif",
 			//boxmessage : "changinh",
 			disableInitialConsole : true,//If set true, avoids the display of messages ('console') in the Jmol panel while the Jmol object is being built initially.
 			addSelectionOptions : false	//if you want to display, below the Jmol object, a menu with options for loading structures from public databases
@@ -318,9 +318,6 @@
 		$(this.jq(this.config.CSS.IDs.CDDdomains)).empty().append("<span class='loading'>Loading CDD features</span>");
 		
 		$.ajax({
-			beforeSend: function(request) {
-				request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
-			},
 			type: 'POST',
 			dataType: 'json',
 			url: this.config.application.cddUrlBar,
@@ -387,9 +384,6 @@
 		$(this.jq(this.config.CSS.IDs.PfamDomains)).empty().append("<span class='loading' >Loading Pfam domains</span>");
 		
 		$.ajax({
-			beforeSend: function(request) {
-				request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
-			},
 			type: 'POST',
 			dataType: 'json',
 			url: this.config.application.pfamUrlBar,

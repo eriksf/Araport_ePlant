@@ -53,9 +53,9 @@ Eplant.Views.PathwayView.hierarchy = "genetic element";
 Eplant.Views.PathwayView.magnification = 60;
 Eplant.Views.PathwayView.description = "Pathway viewer";
 Eplant.Views.PathwayView.citation = "";
-Eplant.Views.PathwayView.activeIconImageURL = "app/img/active/pathway.png";
-Eplant.Views.PathwayView.availableIconImageURL = "app/img/available/pathway.png";
-Eplant.Views.PathwayView.unavailableIconImageURL = "app/img/unavailable/pathway.png";
+Eplant.Views.PathwayView.activeIconImageURL = "img/active/pathway.png";
+Eplant.Views.PathwayView.availableIconImageURL = "img/available/pathway.png";
+Eplant.Views.PathwayView.unavailableIconImageURL = "img/unavailable/pathway.png";
 Eplant.Views.PathwayView.viewType = "zui";
 /* Constants */
 Eplant.Views.PathwayView.domContainer = null;		// DOM container element for Cytoscape
@@ -234,7 +234,7 @@ Eplant.Views.PathwayView.prototype.setCyConf = function() {
  * Loads data.
  */
 Eplant.Views.PathwayView.prototype.loadData = function() {
-	$.getJSON("http://bar.utoronto.ca/eplant/cgi-bin/pathwaydiagram.cgi?agi=" + this.geneticElement.identifier, $.proxy(function(response) {
+	$.getJSON("//bar.utoronto.ca/eplant/cgi-bin/pathwaydiagram.cgi?agi=" + this.geneticElement.identifier, $.proxy(function(response) {
 		// Get element arrays
 		var nodes = this.cytoscapeConf.elements.nodes;
 		var edges = this.cytoscapeConf.elements.edges;

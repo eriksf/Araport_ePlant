@@ -17,7 +17,8 @@ Eplant.Views.TissueSpecificXylemAndCorkView = function(geneticElement) {
 
 	// Call parent constructor
 	Eplant.View.call(this,
-		constructor.viewName,			// Name of the View visible to the user
+		constructor.displayName,			// Name of the View visible to the user
+		constructor.viewName,
 		constructor.hierarchy,			// Hierarchy of the View
 		constructor.magnification,			// Magnification level of the View
 		constructor.description,			// Description of the View visible to the user
@@ -29,14 +30,15 @@ Eplant.Views.TissueSpecificXylemAndCorkView = function(geneticElement) {
 	
 	/* Call eFP constructor */ 
 
-	var efpSvgURL = 'app/data/experiment/efps/TissueSpecificXylemAndCork/' + geneticElement.species.scientificName.replace(" ", "_") + '.svg';
-	var efpXmlURL = 'app/data/experiment/efps/TissueSpecificXylemAndCork/' + geneticElement.species.scientificName.replace(" ", "_") + '.xml';
+	var efpSvgURL = 'data/experiment/efps/TissueSpecificXylemAndCork/' + geneticElement.species.scientificName.replace(" ", "_") + '.svg';
+	var efpXmlURL = 'data/experiment/efps/TissueSpecificXylemAndCork/' + geneticElement.species.scientificName.replace(" ", "_") + '.xml';
 	Eplant.BaseViews.EFPView.call(this, geneticElement, efpSvgURL,efpXmlURL, {
 	});
 };
 ZUI.Util.inheritClass(Eplant.BaseViews.EFPView, Eplant.Views.TissueSpecificXylemAndCorkView);	// Inherit parent prototype
 
-Eplant.Views.TissueSpecificXylemAndCorkView.viewName = "Tissue Specific Xylem And Cork eFP";
+Eplant.Views.TissueSpecificXylemAndCorkView.viewName = "TissueSpecificXylemAndCorkView";
+Eplant.Views.TissueSpecificXylemAndCorkView.displayName = "Tissue Specific Xylem And Cork eFP";
 Eplant.Views.TissueSpecificXylemAndCorkView.hierarchy = "genetic element";
 Eplant.Views.TissueSpecificXylemAndCorkView.magnification = 35;
 Eplant.Views.TissueSpecificXylemAndCorkView.description = "Tissue Specific Xylem And Cork eFP";

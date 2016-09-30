@@ -120,7 +120,7 @@
 	centerAt: "center center",
 	x: ZUI.width / 6,
 	y: 0,
-	url: 'app/data/species/' + this.species.scientificName.replace(' ', '_') + '.svg'
+	url: 'data/species/' + this.species.scientificName.replace(' ', '_') + '.svg'
 	});
 	};
 */
@@ -147,7 +147,7 @@ Eplant.Views.ExperimentView.SelectList.Choice.prototype.getSnapshot = function()
 		this.svgImage = view.snapshot;
 	}
 	else{
-		var svgUrl = 'app/data/experiment/efps/'+ this.viewName.substring(0, this.viewName.length - 4)  +"/"+ Eplant.activeSpecies.scientificName.replace(' ', '_') + '.svg';
+		var svgUrl = 'data/experiment/efps/'+ this.viewName.substring(0, this.viewName.length - 4)  +"/"+ Eplant.activeSpecies.scientificName.replace(' ', '_') + '.svg';
 		this.svgImage = document.createElement('img');
 		this.svgImage.src = svgUrl;
 		$(this.svgImage).css({width:'100%',height:'80%',left:0,top:0});

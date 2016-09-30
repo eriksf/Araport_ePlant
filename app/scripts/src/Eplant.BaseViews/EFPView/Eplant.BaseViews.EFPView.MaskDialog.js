@@ -56,12 +56,13 @@
 		this.domInput = document.createElement("input");
 		$(this.domInput).css({
 			'margin-left': '5px',
+			'padding-left': '5px',
 			width: '50px',
 			'vertical-align': 'middle',
-			'-webkit-border-radius': '7px',
-			'-moz-border-radius': '7px',
-			'border-radius': '7px',
-		'height': '25px'})
+			'-webkit-border-radius': '3px',
+			'-moz-border-radius': '3px',
+			'border-radius': '3px',
+		'height': '25px'});
 		$(td).append(this.domInput);
 		/*$(this.domInput).spinner({
 			spin: function(event, ui) {
@@ -78,6 +79,7 @@
 			});
 			
 		$(this.domInput).spinner("value", 50);*/
+				$(td).append("%");
 		this.domSlider = document.createElement("div");
 		$(td).append(this.domSlider);
 		$(this.domSlider).css({  
@@ -123,27 +125,27 @@
 		
 		this.domOk = document.createElement("input");
 		$(this.domOk).attr("type", "button");
-		$(this.domOk).css({"width":"130px"});
 		$(this.domOk).addClass("button greenButton");
 		$(this.domOk).val("Mask Thresholds");
 		$(this.domContainer).append(this.domOk);
 		$(this.domOk).on('click',  $.proxy(function(event, ui) {
 			/* Get threshold */
-			var value = $(this.domInput).spinner("value");
+			var value = $(this.domInput).val();//.spinner("value");
 			if (value < 0) value = 0;
 			
 			/* Turn on masking */
-			this.eFPView.maskThreshold = value / 100;
-			this.eFPView.isMaskOn = true;
+			Eplant.maskThreshold = value / 100;
+			Eplant.isMaskOn = true;
 			
 			/* Update icon image */
-			this.eFPView.maskButton.setImageSource("app/img/on/filter.png");
+			this.eFPView.maskButton.setImageSource("img/on/filter.png");
 			
 			/* Update eFP */
 			this.eFPView.updateDisplay();
-			
+			var event = new ZUI.Event("update-colors", Eplant, null);
+			ZUI.fireEvent(event);	
 			/* Close dialog */
-			this.close();
+			this.dialog.close();
 		}, this));
 	};
 	
@@ -159,10 +161,10 @@
 			resizable: false,
 			modal: true,
 			open: function(event, ui) { $(".ui-dialog-titlebar-close").hide();
-				$(".ui-dialog-buttonpane").css({'border-top-width':'0px'});
+			$(".ui-dialog-buttonpane").css({'border-top-width':'0px'});
 			},
 			close: $.proxy(function(event, ui) {
-				this.remove();
+			this.remove();
 			}, this)
 		});*/
 		
@@ -176,11 +178,11 @@
 		options.fixed= true; 
 		options.drag= false;
 		options.resize= false;
-		options.close= $.proxy(function() {
-			this.remove();
-		}, this)
-		var dialog = window.top.art.dialog(options);
-		$.extend(true,this, dialog );
+		/*options.close= $.proxy(function() {
+			this.dialog.close();
+		}, this)*/
+		this.dialog = art.dialog(options);
+		//$.extend(true,this, dialog );
 	};
 	
 	/**
@@ -188,7 +190,8 @@
 	*/
 	Eplant.BaseViews.EFPView.MaskDialog.prototype.close = function() {
 		/* Close dialog */
-		$(this.domContainer).dialog("close");
+		//this.dialog.close();
+		this.dialog.close();
 	};
 	
 	/**
@@ -196,7 +199,8 @@
 	*/
 	Eplant.BaseViews.EFPView.MaskDialog.prototype.remove = function() {
 		/* Remove DOM elements */
-		$(this.domContainer).remove();
+		//this.dialog.remove();
+		this.dialog.close();
 	};
 	
 })();					

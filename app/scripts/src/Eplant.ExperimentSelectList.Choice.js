@@ -17,7 +17,7 @@
 		this.vo = null;			// ViewObject associated with this Choice object
 		this.svgImage = null;
 		this.viewName = this.view.replace(/ /g, "") + "View";
-		this.viewFullName = Eplant.Views[this.viewName].viewName;
+		this.viewFullName = Eplant.Views[this.viewName].displayName;
 		/* Create DOM */
 		//this.updateMax();
 		//this.createDOM();
@@ -44,16 +44,16 @@
 
 Eplant.ExperimentSelectList.Choice.prototype.getSnapshot = function() {
 	var view = Eplant.activeSpecies.activeGeneticElement.views[this.viewName];
-	if(view.isLoadedData&&view.snapshot){
-		this.svgImage = view.snapshot;
-	}
+	//if(view.isLoadedData&&view.snapshot){
+		this.svgImage = view.svgImage;
+	/*}
 	else{
-		var svgUrl = 'app/data/experiment/efps/'+ this.viewName.substring(0, this.viewName.length - 4)  +"/"+ Eplant.activeSpecies.scientificName.replace(' ', '_') + '.svg';
+		var svgUrl = 'data/experiment/efps/'+ this.viewName.substring(0, this.viewName.length - 4)  +"/"+ Eplant.activeSpecies.scientificName.replace(' ', '_') + '.svg';
 		this.svgImage = document.createElement('img');
 		this.svgImage.src = svgUrl;
 		$(this.svgImage).css({width:'100%',height:'80%',left:0,top:0});
-	}
-	$('text',this.svgImage).remove();
+	}*/
+	
 	return this.svgImage;
 };
 

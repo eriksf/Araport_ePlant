@@ -38,6 +38,7 @@
 		this.isRelativeEnabled = true;		// Whether relative mode is enabled
 		this.isCompareEnabled = true;		// Whether compare mode is enabled
 		this.isMaskEnabled = true;			// Whether masking is enabled
+		this.isLegendVisible = true;
 		this.compareEFPView = null;			// EFP view for comparing to
 		this.mode = "absolute";			// EFP mode
 		this.tooltipInfo = null;			// Information for creating tooltip
@@ -64,7 +65,7 @@
 			}
 			if (configs.isMaskEnabled !== undefined) {
 				this.isMaskEnabled = configs.isMaskEnabled;
-			}
+				}
 		}
 		
 		/* Create view-specific UI buttons */
@@ -74,7 +75,8 @@
 		this.loadData();
 		
 		/* Create legend */
-		this.legend = new Eplant.BaseViews.EFPViewJson.Legend(this);
+		this.legend = new Eplant.BaseViews.EFPView.Legend(this);
+		this.geneDistributionChart = new Eplant.BaseViews.EFPView.GeneDistributionChart(this);
 		
 		/* Bind events */
 		this.bindEvents();
@@ -91,8 +93,9 @@
 		Eplant.View.prototype.active.call(this);
 		
 		/* Attach legend */
-		if (this.legend.isVisible) {
-			this.legend.attach();
+        if (this.isLegendVisible) {
+            this.legend.attach();
+			this.geneDistributionChart.attach();
 		}
 		/* Update eFP */
 		this.updateDisplay();
@@ -110,6 +113,8 @@
 		/* Detach legend */
 		if (this.legend.isVisible) {
 			this.legend.detach();
+			
+			this.geneDistributionChart.detach();
 		}
 		
 		/* Remove tooltip info */
@@ -269,56 +274,64 @@
 		/* Mode */
 		if (this.isRelativeEnabled) {
 			this.modeButton = new Eplant.ViewSpecificUIButton(
-			"app/img/efpmode-absolute.png",		// imageSource
+			"img/efpmode-absolute.png",		// imageSource
 			"Toggle data mode: absolute.",	// Description
 			function(data) {			// click
 				/* Update button */
-				if (data.eFPView.mode == "absolute") {
-					data.eFPView.mode = "relative";
-					this.setImageSource("app/img/efpmode-relative.png");
+				if (Eplant.viewColorMode == "absolute") {
+					Eplant.viewColorMode = "relative";
+					this.setImageSource("img/efpmode-relative.png");
 					this.setDescription("Toggle data mode: relative.");
 				}
-				else if (data.eFPView.mode == "relative") {
-					data.eFPView.mode = "absolute";
-					this.setImageSource("app/img/efpmode-absolute.png");
+				else if (Eplant.viewColorMode == "relative") {
+					Eplant.viewColorMode = "absolute";
+					this.setImageSource("img/efpmode-absolute.png");
 					this.setDescription("Toggle data mode: absolute.");
 				}
 				
 				/* Update eFP */
 				data.eFPView.updateDisplay();
+				var event = new ZUI.Event("update-colors", Eplant, null);
+				ZUI.fireEvent(event);	
 			},
 			{
 				eFPView: this
 			}
 			);
 			this.viewSpecificUIButtons.push(this.modeButton);
+			
 		}
 		
 		/* Compare */
 		if (this.isRelativeEnabled && this.isCompareEnabled) {
-			this.compareButton = new Eplant.ViewSpecificUIButton(
-			"app/img/available/efpmode-compare.png",		// imageSource
-			"Compare to another gene.",			// Description
+						this.compareButton = new Eplant.ViewSpecificUIButton(
+			"img/unavailable/efpmode-compare.png",		// imageSource
+			"Compare to another gene. Please load another gene first.",			// Description
 			function(data) {				// click
 				/* Check whether compare mode is already activated */
-				if (data.eFPView.mode == "compare") {	// Yes
+				
+				if (Eplant.viewColorMode == "compare") {	// Yes
 					/* Change mode to relative */
-					data.eFPView.mode = "absolute";
+					Eplant.viewColorMode = "absolute";
 					
 					/* Update mode button */
-					data.eFPView.modeButton.setImageSource("app/img/efpmode-absolute.png");
+					data.eFPView.modeButton.setImageSource("img/efpmode-absolute.png");
 					data.eFPView.modeButton.setDescription("Toggle data mode: absolute.");
 					
 					/* Update compare button */
-					this.setImageSource("app/img/available/efpmode-compare.png");
+					this.setImageSource("img/available/efpmode-compare.png");
 					this.setDescription("Compare to another gene.");
 					
 					/* Update eFP */
 					data.eFPView.updateDisplay();
+					var event = new ZUI.Event("update-colors", Eplant, null);
+					ZUI.fireEvent(event);
 				}
 				else {		// No
 					/* Create compare dialog */
-					var compareDialog = new Eplant.BaseViews.EFPViewJson.CompareDialog(data.eFPView);
+					if(data.eFPView.geneticElement.species.displayGeneticElements.length > 1){
+						var compareDialog = new Eplant.BaseViews.EFPView.CompareDialog(data.eFPView);
+					}
 				}
 			},
 			{
@@ -326,28 +339,66 @@
 			}
 			);
 			this.viewSpecificUIButtons.push(this.compareButton);
+			var eventListener = new ZUI.EventListener("remove-geneticElement", null, function(event, eventData, listenerData) {
+				if(listenerData.view.geneticElement.species.displayGeneticElements.length > 1){
+					listenerData.compareButton.setImageSource("img/available/efpmode-compare.png");
+					listenerData.compareButton.setDescription("Compare to another gene.");
+					listenerData.compareButton.domContainer.setAttribute("data-enabled",true);
+				}
+				else{
+					listenerData.compareButton.setImageSource("img/unavailable/efpmode-compare.png");
+					listenerData.compareButton.setDescription("Compare to another gene. Please load another gene first.");
+					listenerData.compareButton.domContainer.setAttribute("data-enabled",false);
+				}
+				
+				}, {
+				compareButton: this.compareButton,
+				view:this
+			});
+			ZUI.addEventListener(eventListener);
+			
+			/* Update GeneticElement panel when the activeGeneticElement of activeSpecies changes */
+			var eventListener = new ZUI.EventListener("add-geneticElement", null, function(event, eventData, listenerData) {
+				if(listenerData.view.geneticElement.species.displayGeneticElements.length > 1){
+					listenerData.compareButton.setImageSource("img/available/efpmode-compare.png");
+					listenerData.compareButton.setDescription("Compare to another gene.");
+					listenerData.compareButton.domContainer.setAttribute("data-enabled",true);
+				}
+				else{
+					listenerData.compareButton.setImageSource("img/unavailable/efpmode-compare.png");
+					listenerData.compareButton.setDescription("Compare to another gene. Please load another gene first.");
+					listenerData.compareButton.domContainer.setAttribute("data-enabled",false);
+				}
+				
+				}, {
+				compareButton: this.compareButton,
+				view:this
+			});
+			ZUI.addEventListener(eventListener);
+			
+			
 		}
 		
 		/* Mask */
 		if (this.isMaskEnabled) {
 			this.maskButton = new Eplant.ViewSpecificUIButton(
-			"app/img/off/filter.png",		// imageSource
+			"img/off/filter.png",		// imageSource
 			"Mask data with below threshold confidence.",		// description
 			function(data) {				// click
 				/* Check whether masking is already on */
-				if (data.eFPView.isMaskOn) {		// Yes
+				if (Eplant.isMaskOn) {		// Yes
 					/* Update button */
-					this.setImageSource("app/img/off/filter.png");
+					this.setImageSource("img/off/filter.png");
 					
 					/* Turn off masking */
-					data.eFPView.isMaskOn = false;
+					Eplant.isMaskOn = false;
 					
 					/* Update eFP */
 					data.eFPView.updateDisplay();
 				}
 				else {		// No
 					/* Create mask dialog */
-					var maskDialog = new Eplant.BaseViews.EFPViewJson.MaskDialog(data.eFPView);
+					var maskDialog = new Eplant.BaseViews.EFPView.MaskDialog(data.eFPView);
 				}
 			},
 			{
@@ -359,19 +410,23 @@
 		
 		/* Legend */
 		var viewSpecificUIButton = new Eplant.ViewSpecificUIButton(
-		"app/img/on/legend.png",		// imageSource
+		"img/legend.png",		// imageSource
 		"Toggle legend.",		// description
 		function(data) {		// click
 			/* Check whether legend is showing */
 			if (data.eFPView.legend.isVisible) {		// Yes
-				this.setImageSource("app/img/off/legend.png");
+				this.setImageSource("img/off/legend.png");
 				/* Hide legend */
 				data.eFPView.legend.hide();
+				data.eFPView.geneDistributionChart.hide();
+				data.eFPView.isLegendVisible=false;
 			}
 			else {		// No
-				this.setImageSource("app/img/on/legend.png");
+				this.setImageSource("img/on/legend.png");
 				/* Show legend */
 				data.eFPView.legend.show();
+				data.eFPView.geneDistributionChart.show();
+				data.eFPView.isLegendVisible=true;
 			}
 		},
 		{
@@ -380,7 +435,66 @@
 		);
 		this.viewSpecificUIButtons.push(viewSpecificUIButton);
 		
-
+		/*
+				this.downloadButton = new Eplant.ViewSpecificUIButton(
+		"img/download.png",		// imageSource
+		"Download raw data of this view",		// description
+		function(data) {		// click
+			if(data.eFPView.rawSampleData){
+				var downloadString = "";
+				var currentdate = new Date(); 
+				var datetime = "This file contains raw data downloaded from ePlant on " + currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/" 
+                + currentdate.getFullYear() + " @ "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+				downloadString+=datetime+"\n";
+				downloadString+=data.eFPView.name+": "+data.eFPView.geneticElement.identifier+"\n";
+				downloadString+="URL: "+Eplant.urlForCurrentState()+"\n";
+				downloadString+="JSON data: \n";
+				downloadString+=data.eFPView.rawSampleData;
+				var blob = new Blob([downloadString], {type: "text/plain;charset=utf-8"});
+				saveAs(blob, data.eFPView.name+"-"+data.eFPView.geneticElement.identifier+".txt");
+			}
+			else{
+				alert("No loaded information available.")
+			}
+		},
+		{
+			eFPView: this
+		}
+		);
+		this.viewSpecificUIButtons.push(this.downloadButton);
+		*/
+		
+		var viewSpecificUIButton = new Eplant.ViewSpecificUIButton(
+		"img/palette.png",		// imageSource
+		"Set eFP colors",		// description
+		function(data) {		// click
+			var paletteDialog = new Eplant.PaletteDialog();
+		},
+		{
+			eFPView: this
+		}
+		);
+		this.viewSpecificUIButtons.push(viewSpecificUIButton);
+		
+		
+		
+		var viewSpecificUIButton = new Eplant.ViewSpecificUIButton(
+		"img/setting.png",		// imageSource
+		"Change the Color Gradient Settings",		// description
+		function(data) {		// click
+			var globalColorModeDialog = new Eplant.GlobalColorModeDialog();
+			
+		},
+		{
+			eFPView: this
+		}
+		);
+		this.viewSpecificUIButtons.push(viewSpecificUIButton);
+		
 	};
 	
 	/**
@@ -574,6 +688,8 @@
 			};
 			/* Query */
 			$.getJSON(this.webService + "id=" + this.geneticElement.identifier + "&samples=" + JSON.stringify(sampleNames), $.proxy(function(response) {
+			
+					this.eFPView.rawSampleData= JSON.stringify(response);
 				/* Match results with samples and copy values to samples */
 				for (var n = 0; n < this.samples.length; n++) {
 					for (var m = 0; m < response.length; m++) {
@@ -663,172 +779,17 @@
 					this.max = group.mean;
 				}
 			}
-			
+			this.geneDistributionChart.update(this.max);
+			this.extremum = Math.abs(ZUI.Math.log(this.groups[0].mean / this.groups[0].ctrlMean, 2));
+			for (var n = 1; n < this.groups.length; n++) {
+				var group = this.groups[n];
+				if (group.absLog2Value > this.extremum) {
+					if (isNaN(group.absLog2Value) || !isFinite(group.absLog2Value)) {} else {
+						this.extremum = group.absLog2Value;
+					}
+				}
+			}
 		}, this);
-	};
-	
-	/**
-		* Updates eFP.
-	*/
-	Eplant.BaseViews.EFPViewJson.prototype.updateDisplay = function() {
-		/* Return if data are not loaded */
-		if (!this.isLoadedData) {
-			return;
-		}
-		
-		/* Update eFP */
-		if (this.mode == "absolute") {
-			/* Find maximum value */
-			var max = this.groups[0].mean;
-			for (var n = 1; n < this.groups.length; n++) {
-				var group = this.groups[n];
-				if (group.mean > max) {
-					max = group.mean;
-				}
-			}
-			
-			/* Color groups */
-			var minColor = ZUI.Util.getColorComponents(Eplant.midColor);
-			var maxColor = ZUI.Util.getColorComponents(Eplant.maxColor);
-			for (var n = 0; n < this.groups.length; n++) {
-				/* Get group */
-				var group = this.groups[n];
-				
-				/* Get value ratio relative to maximum */
-				var ratio = group.mean / max;
-				
-				/* Check whether ratio is invalid */
-				if (isNaN(ratio) || !isFinite(ratio)) {		// Invalid
-					group.color = this.errorColor;
-				}
-				else {		// Valid
-					var red = minColor.red + Math.round((maxColor.red - minColor.red) * ratio);
-					var green = minColor.green + Math.round((maxColor.green - minColor.green) * ratio);
-					var blue = minColor.blue + Math.round((maxColor.blue - minColor.blue) * ratio);
-					group.color = ZUI.Util.makeColorString(red, green, blue);
-				}
-				
-				/* Set color of ViewObject */
-				group.vo.fillColor = group.color;
-			}
-		}
-		else if (this.mode == "relative") {
-			/* Find extremum log2 value */
-			var extremum = Math.abs(ZUI.Math.log(this.groups[0].mean / this.groups[0].ctrlMean, 2));
-			for (var n = 1; n < this.groups.length; n++) {
-				var group = this.groups[n];
-				var absLog2Value = Math.abs(ZUI.Math.log(group.mean / group.ctrlMean, 2));
-				if (absLog2Value > extremum) {
-					if (isNaN(absLog2Value) || !isFinite(absLog2Value)) {
-						} else {
-						extremum = absLog2Value;
-					}
-				}
-			}
-			
-			/* Color groups */
-			var minColor = ZUI.Util.getColorComponents(Eplant.minColor);
-			var midColor = ZUI.Util.getColorComponents(Eplant.midColor);
-			var maxColor = ZUI.Util.getColorComponents(Eplant.maxColor);
-			for (var n = 0; n < this.groups.length; n++) {
-				/* Get group */
-				var group = this.groups[n];
-				var log2Value = ZUI.Math.log(group.mean / group.ctrlMean, 2);
-				
-				/* Get log2 value ratio relative to extremum */
-				var ratio = log2Value / extremum;
-				
-				/* Check whether ratio is invalid */
-				if (isNaN(ratio) || !isFinite(ratio)) {		// Invalid
-					group.color = this.errorColor;
-				}
-				else {		// Valid
-					var color1, color2;
-					if (ratio < 0) {
-						color1 = midColor;
-						color2 = minColor;
-						ratio *= -1;
-					}
-					else {
-						color1 = midColor;
-						color2 = maxColor;
-					}
-					var red = color1.red + Math.round((color2.red - color1.red) * ratio);
-					var green = color1.green + Math.round((color2.green - color1.green) * ratio);
-					var blue = color1.blue + Math.round((color2.blue - color1.blue) * ratio);
-					group.color = ZUI.Util.makeColorString(red, green, blue);
-				}
-				
-				/* Set color of ViewObject */
-				group.vo.fillColor = group.color;
-			}
-		}
-		else if (this.mode == "compare") {
-			/* Find extremum log2 value */
-			var extremum = Math.abs(ZUI.Math.log(this.groups[0].mean / this.compareEFPView.groups[0].mean, 2));
-			for (var n = 1; n < this.groups.length; n++) {
-				var group = this.groups[n];
-				var compareGroup = this.compareEFPView.groups[n];
-				var absLog2Value = Math.abs(ZUI.Math.log(group.mean / compareGroup.mean, 2));
-				if (absLog2Value > extremum) {
-					extremum = absLog2Value;
-				}
-			}
-			
-			/* Color groups */
-			var minColor = ZUI.Util.getColorComponents(Eplant.minColor);
-			var midColor = ZUI.Util.getColorComponents(Eplant.midColor);
-			var maxColor = ZUI.Util.getColorComponents(Eplant.maxColor);
-			for (var n = 0; n < this.groups.length; n++) {
-				/* Get group */
-				var group = this.groups[n];
-				var compareGroup = this.compareEFPView.groups[n];
-				
-				/* Get log2 value relative to control */
-				var log2Value = ZUI.Math.log(group.mean / compareGroup.mean, 2);
-				
-				/* Get log2 value ratio relative to extremum */
-				var ratio = log2Value / extremum;
-				
-				/* Check whether ratio is invalid */
-				if (isNaN(ratio) || !isFinite(ratio)) {		// Invalid
-					group.color = this.errorColor;
-				}
-				else {		// Valid
-					var color1, color2;
-					if (ratio < 0) {
-						color1 = midColor;
-						color2 = minColor;
-						ratio *= -1;
-					}
-					else {
-						color1 = midColor;
-						color2 = maxColor;
-					}
-					var red = color1.red + Math.round((color2.red - color1.red) * ratio);
-					var green = color1.green + Math.round((color2.green - color1.green) * ratio);
-					var blue = color1.blue + Math.round((color2.blue - color1.blue) * ratio);
-					group.color = ZUI.Util.makeColorString(red, green, blue);
-				}
-				
-				/* Set color of ViewObject */
-				group.vo.fillColor = group.color;
-			}
-		}
-		
-		/* Apply masking */
-		if (this.isMaskOn) {
-			for (var n = 0; n < this.groups.length; n++) {
-				var group = this.groups[n];
-				if (isNaN(group.sterror) || group.sterror >= group.mean * this.maskThreshold) {
-					group.color = this.maskColor;
-					group.vo.fillColor = group.color;
-				}
-			}
-		}
-		
-		/* Update legend */
-		this.legend.update();
 	};
 	
 	/**
@@ -871,7 +832,7 @@
 	*/
 	Eplant.BaseViews.EFPViewJson.prototype.compare = function(geneticElement) {
 		/* Confirm GeneticElement that is compared to has views loaded */
-		if (!geneticElement.isLoadedViews) {
+		if (!geneticElement.isLoadedEFPViewsData) {
 			alert("Please load data for " + geneticElement.identifier + " first.");
 			return;
 		}
@@ -881,18 +842,20 @@
 		
 		/* Switch to compare mode */
 		this.compareEFPView = geneticElement.views[viewName];
-		this.mode = "compare";
-		
-		/* Update mode button */
-		this.modeButton.setImageSource("app/img/efpmode-relative.png");
-		this.modeButton.setDescription("Data mode: compare. Click on Compare button to turn off.");
-		
-		/* Update compare button */
-		this.compareButton.setImageSource("app/img/active/efpmode-compare.png");
-		this.compareButton.setDescription("Turn off compare mode.");
-		
+		Eplant.viewColorMode = "compare";
+		if(this.modeButton){
+			/* Update mode button */
+			this.modeButton.setImageSource("img/efpmode-relative.png");
+			this.modeButton.setDescription("Data mode: compare. Click on Compare button to turn off.");
+			
+		}
+		if(this.compareButton){
+			/* Update compare button */
+			this.compareButton.setImageSource("img/active/efpmode-compare.png");
+			this.compareButton.setDescription("Turn off compare mode.");
+		}
 		/* Update eFP */
-		this.updateDisplay();
+		//this.updateDisplay();
 	};
 	
 })();
