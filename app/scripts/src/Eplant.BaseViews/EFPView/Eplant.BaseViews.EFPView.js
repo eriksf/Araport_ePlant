@@ -250,16 +250,16 @@
 	Eplant.BaseViews.EFPView.prototype.checkButtons = function() {
 		if(this.modeButton&&Eplant.viewColorMode==="relative"){
 			/* Update mode button */
-			this.modeButton.setImageSource("img/efpmode-relative.png");
+			this.modeButton.setImageSource("app/img/efpmode-relative.png");
 			this.modeButton.setDescription("Toggle data mode: relative.");
 		}
 		if(this.modeButton&&this.compareButton&&Eplant.viewColorMode==="compare"){
 			/* Update mode button */
-			this.modeButton.setImageSource("img/efpmode-relative.png");
+			this.modeButton.setImageSource("app/img/efpmode-relative.png");
 			this.modeButton.setDescription("Data mode: compare. Click on Compare button to turn off.");
 			
 			/* Update compare button */
-			this.compareButton.setImageSource("img/active/efpmode-compare.png");
+			this.compareButton.setImageSource("app/img/active/efpmode-compare.png");
 			this.compareButton.setDescription("Turn off compare mode.");
 		}
 	};
@@ -307,18 +307,18 @@
 		/* Mode */
 		if (this.isRelativeEnabled) {
 			this.modeButton = new Eplant.ViewSpecificUIButton(
-			"img/efpmode-absolute.png",		// imageSource
+			"app/img/efpmode-absolute.png",		// imageSource
 			"Toggle data mode: absolute.",	// Description
 			function(data) {			// click
 				/* Update button */
 				if (Eplant.viewColorMode == "absolute") {
 					Eplant.viewColorMode = "relative";
-					this.setImageSource("img/efpmode-relative.png");
+					this.setImageSource("app/img/efpmode-relative.png");
 					this.setDescription("Toggle data mode: relative.");
 				}
 				else if (Eplant.viewColorMode == "relative" ||Eplant.viewColorMode == "compare") {
 					Eplant.viewColorMode = "absolute";
-					this.setImageSource("img/efpmode-absolute.png");
+					this.setImageSource("app/img/efpmode-absolute.png");
 					this.setDescription("Toggle data mode: absolute.");
 				}
 				
@@ -338,7 +338,7 @@
 		/* Compare */
 		if (this.isRelativeEnabled && this.isCompareEnabled) {
 			this.compareButton = new Eplant.ViewSpecificUIButton(
-			"img/unavailable/efpmode-compare.png",		// imageSource
+			"app/img/unavailable/efpmode-compare.png",		// imageSource
 			"Compare to another gene. Please load another gene first.",			// Description
 			function(data) {				// click
 				/* Check whether compare mode is already activated */
@@ -348,15 +348,15 @@
 					Eplant.viewColorMode = "absolute";
 					
 					/* Update mode button */
-					data.eFPView.modeButton.setImageSource("img/efpmode-absolute.png");
+					data.eFPView.modeButton.setImageSource("app/img/efpmode-absolute.png");
 					data.eFPView.modeButton.setDescription("Toggle data mode: absolute.");
 					/* Update compare button */
 					if(data.eFPView.geneticElement.species.displayGeneticElements.length > 1){
-						this.setImageSource("img/available/efpmode-compare.png");
+						this.setImageSource("app/img/available/efpmode-compare.png");
 						this.setDescription("Compare to another gene.");
 					}
 					else{
-						this.setImageSource("img/unavailable/efpmode-compare.png");
+						this.setImageSource("app/img/unavailable/efpmode-compare.png");
 						this.setDescription("Compare to another gene. Please load another gene first.");
 					}
 					
@@ -382,11 +382,11 @@
 				if (Eplant.viewColorMode !== "compare") {
 					if(listenerData.view.geneticElement.species.displayGeneticElements.length > 2){
 						
-						listenerData.compareButton.setImageSource("img/unavailable/efpmode-compare.png");
+						listenerData.compareButton.setImageSource("app/img/unavailable/efpmode-compare.png");
 						listenerData.compareButton.setDescription("Compare to another gene. Please load another gene first.");
 					}
 					else{
-						listenerData.compareButton.setImageSource("img/available/efpmode-compare.png");
+						listenerData.compareButton.setImageSource("app/img/available/efpmode-compare.png");
 						listenerData.compareButton.setDescription("Compare to another gene.");
 					}
 				}
@@ -400,11 +400,11 @@
 			var eventListener = new ZUI.EventListener("add-geneticElement", null, function(event, eventData, listenerData) {
 				if (!Eplant.viewColorMode == "compare") {
 					if(listenerData.view.geneticElement.species.displayGeneticElements.length > 1){
-						listenerData.compareButton.setImageSource("img/available/efpmode-compare.png");
+						listenerData.compareButton.setImageSource("app/img/available/efpmode-compare.png");
 						listenerData.compareButton.setDescription("Compare to another gene.");
 					}
 					else{
-						listenerData.compareButton.setImageSource("img/unavailable/efpmode-compare.png");
+						listenerData.compareButton.setImageSource("app/img/unavailable/efpmode-compare.png");
 						listenerData.compareButton.setDescription("Compare to another gene. Please load another gene first.");
 					}
 				}
@@ -419,13 +419,13 @@
 		/* Mask */
 		if (this.isMaskEnabled) {
 		this.maskButton = new Eplant.ViewSpecificUIButton(
-		"img/off/filter.png",		// imageSource
+		"app/img/off/filter.png",		// imageSource
 		"Mask data with below threshold confidence.",		// description
 		function(data) {				// click
 			/* Check whether masking is already on */
 			if (Eplant.isMaskOn) {		// Yes
 				/* Update button */
-				this.setImageSource("img/off/filter.png");
+				this.setImageSource("app/img/off/filter.png");
 				
 				/* Turn off masking */
 				Eplant.isMaskOn = false;
@@ -450,12 +450,12 @@
 		
 		/* Legend */
 		var viewSpecificUIButton = new Eplant.ViewSpecificUIButton(
-		"img/legend.png",		// imageSource
+		"app/img/legend.png",		// imageSource
 		"Toggle legend.",		// description
 		function(data) {		// click
 			/* Check whether legend is showing */
 			if (data.eFPView.legend.isVisible) {		// Yes
-				this.setImageSource("img/off/legend.png");
+				this.setImageSource("app/img/off/legend.png");
 				/* Hide legend */
 				if(data.eFPView.legend){
 					data.eFPView.legend.hide();
@@ -468,7 +468,7 @@
 				data.eFPView.isLegendVisible=false;
 			}
 			else {		// No
-				this.setImageSource("img/on/legend.png");
+				this.setImageSource("app/img/on/legend.png");
 				/* Show legend */
 				if(data.eFPView.legend){
 					data.eFPView.legend.show();
@@ -490,7 +490,7 @@
 		
 		
 		var viewSpecificUIButton = new Eplant.ViewSpecificUIButton(
-		"img/palette.png",		// imageSource
+		"app/img/palette.png",		// imageSource
 		"Set eFP colors",		// description
 		function(data) {		// click
 			var paletteDialog = new Eplant.PaletteDialog();
@@ -504,7 +504,7 @@
 		
 		
 		var viewSpecificUIButton = new Eplant.ViewSpecificUIButton(
-		"img/setting.png",		// imageSource
+		"app/img/setting.png",		// imageSource
 		"Change the Color Gradient Settings",		// description
 		function(data) {		// click
 			var globalColorModeDialog = new Eplant.GlobalColorModeDialog();
@@ -1415,13 +1415,13 @@
 		Eplant.viewColorMode = "compare";
 		if(this.modeButton){
 			/* Update mode button */
-			this.modeButton.setImageSource("img/efpmode-relative.png");
+			this.modeButton.setImageSource("app/img/efpmode-relative.png");
 			this.modeButton.setDescription("Data mode: compare. Click on Compare button to turn off.");
 			
 		}
 		if(this.compareButton){
 			/* Update compare button */
-			this.compareButton.setImageSource("img/active/efpmode-compare.png");
+			this.compareButton.setImageSource("app/img/active/efpmode-compare.png");
 			this.compareButton.setDescription("Turn off compare mode.");
 		}
 		/* Update eFP */

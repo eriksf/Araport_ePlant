@@ -500,8 +500,8 @@
 	// generate serach query
 	
 	Eplant.ExpressionAngler.generateStandardSearchQuery =function(viewName,view,group,excluded) {
-		var mapUrl = "data/lookUp.json";
-		var allTissuesLookUpJson = "data/AllTissuesLookUp.json";
+		var mapUrl = "app/data/lookUp.json";
+		var allTissuesLookUpJson = "app/data/AllTissuesLookUp.json";
 		$.getJSON(allTissuesLookUpJson, $.proxy(
 		function(allTissuesLookUp) {
 			$.getJSON(mapUrl, $.proxy(

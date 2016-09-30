@@ -63,20 +63,20 @@
 	Eplant.Views.HeatMapView.magnification = 5;
 	Eplant.Views.HeatMapView.description = "Heat Map viewer";
 	Eplant.Views.HeatMapView.citation = "";
-	Eplant.Views.HeatMapView.activeIconImageURL = "img/active/heatMap.png";
-	Eplant.Views.HeatMapView.availableIconImageURL = "img/available/heatMap.png";
-	Eplant.Views.HeatMapView.unavailableIconImageURL = "img/unavailable/heatMap.png";
+	Eplant.Views.HeatMapView.activeIconImageURL = "app/img/active/heatMap.png";
+	Eplant.Views.HeatMapView.availableIconImageURL = "app/img/available/heatMap.png";
+	Eplant.Views.HeatMapView.unavailableIconImageURL = "app/img/unavailable/heatMap.png";
 
 
 	Eplant.Views.HeatMapView.prototype.checkButtons = function() {
 		if(this.modeButton&&Eplant.viewColorMode==="relative"){
 			/* Update mode button */
-			this.modeButton.setImageSource("img/efpmode-relative.png");
+			this.modeButton.setImageSource("app/img/efpmode-relative.png");
 			this.modeButton.setDescription("Toggle data mode: relative.");
 		}
 		if(this.modeButton&&this.compareButton&&Eplant.viewColorMode==="compare"){
 			/* Update mode button */
-			this.modeButton.setImageSource("img/efpmode-relative.png");
+			this.modeButton.setImageSource("app/img/efpmode-relative.png");
 			this.modeButton.setDescription("Data mode: compare. Click on Compare button to turn off.");
 		}
 	};
@@ -87,7 +87,7 @@
 		/* Mode */
 
 		this.modeButton = new Eplant.ViewSpecificUIButton(
-		"img/efpmode-absolute.png",		// imageSource
+		"app/img/efpmode-absolute.png",		// imageSource
 		"Toggle data mode: absolute.",	// Description
 		function(data) {			// click
 			/* Update button */
@@ -98,12 +98,12 @@
 
 			if (Eplant.viewColorMode == "absolute") {
 				Eplant.viewColorMode = "relative";
-				this.setImageSource("img/efpmode-relative.png");
+				this.setImageSource("app/img/efpmode-relative.png");
 				this.setDescription("Toggle data mode: relative.");
 			}
 			else if (Eplant.viewColorMode == "relative" ||Eplant.viewColorMode == "compare") {
 				Eplant.viewColorMode = "absolute";
-				this.setImageSource("img/efpmode-absolute.png");
+				this.setImageSource("app/img/efpmode-absolute.png");
 				this.setDescription("Toggle data mode: absolute.");
 			}
 
@@ -123,7 +123,7 @@
 
 
 		var viewSpecificUIButton = new Eplant.ViewSpecificUIButton(
-		"img/setting.png",		// imageSource
+		"app/img/setting.png",		// imageSource
 		"Change the Color Gradient Settings",		// description
 		function(data) {		// click
 			/*if(Eplant.updatingColors){
@@ -142,12 +142,12 @@
 		this.viewSpecificUIButtons.push(viewSpecificUIButton);
 		/* Legend */
 		var viewSpecificUIButton = new Eplant.ViewSpecificUIButton(
-		"img/legend.png",		// imageSource
+		"app/img/legend.png",		// imageSource
 		"Toggle legend.",		// description
 		function(data) {		// click
 			/* Check whether legend is showing */
 			if (data.eFPView.legend.isVisible) {		// Yes
-				this.setImageSource("img/off/legend.png");
+				this.setImageSource("app/img/off/legend.png");
 				/* Hide legend */
 				if(data.eFPView.legend){
 					data.eFPView.legend.hide();
@@ -157,7 +157,7 @@
 				data.eFPView.isLegendVisible=false;
 			}
 			else {		// No
-				this.setImageSource("img/on/legend.png");
+				this.setImageSource("app/img/on/legend.png");
 				/* Show legend */
 				if(data.eFPView.legend){
 					data.eFPView.legend.show();
@@ -578,17 +578,17 @@
 		$(rowData).css({"cursor":"pointer"});
 		rowData = $('<td></td>').css({'height':'30px'}).appendTo(headerRow);
 		$('<img/>',{
-			'src': "img/available/plant.png"
+			'src': "app/img/available/plant.png"
 		}).addClass('heatmapViewIcon')
 		.appendTo($('<div></div>').addClass('heatmapViewIconDiv').appendTo(rowData));
 		rowData = $('<td></td>').attr('colspan',this.efpExperimentViewCount).css({'height':'30px'}).appendTo(headerRow);
 		$('<img/>',{
-			'src': "img/available/experiment.png"
+			'src': "app/img/available/experiment.png"
 		}).addClass('heatmapViewIcon')
 		.appendTo($('<div></div>').addClass('heatmapViewIconDiv').appendTo(rowData));
 		rowData = $('<td></td>').css({'height':'30px'}).appendTo(headerRow);
 		$('<img/>',{
-			'src': "img/available/cell.png"
+			'src': "app/img/available/cell.png"
 		}).addClass('heatmapViewIcon')
 		.appendTo($('<div></div>').addClass('heatmapViewIconDiv').appendTo(rowData));
 		this.verticalSelectionBox = $('<div></div>').css({
@@ -796,7 +796,7 @@
 		return this.headerDfd;
 	};
 	Eplant.Views.HeatMapView.prototype.loadData = function() {
-		$.getJSON( "data/heatMap/viewsMap.json", $.proxy(function( data ) {
+		$.getJSON( "app/data/heatMap/viewsMap.json", $.proxy(function( data ) {
 			this.views = data;
 			this.viewNames = [];
 			var xmlUrls = [];

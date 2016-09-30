@@ -64,9 +64,9 @@
 	Eplant.Views.GeneInfoView.magnification = 1;
 	Eplant.Views.GeneInfoView.description = "Gene Info Viewer";
 	Eplant.Views.GeneInfoView.citation = "";
-	Eplant.Views.GeneInfoView.activeIconImageURL = "img/active/info.png";
-	Eplant.Views.GeneInfoView.availableIconImageURL = "img/available/info.png";
-	Eplant.Views.GeneInfoView.unavailableIconImageURL = "img/unavailable/info.png";
+	Eplant.Views.GeneInfoView.activeIconImageURL = "app/img/active/info.png";
+	Eplant.Views.GeneInfoView.availableIconImageURL = "app/img/available/info.png";
+	Eplant.Views.GeneInfoView.unavailableIconImageURL = "app/img/unavailable/info.png";
 	Eplant.Views.GeneInfoView.viewType = "geneinfo";
 	/* Constants */
 	Eplant.Views.GeneInfoView.domContainer = null;		// DOM container for JSmol

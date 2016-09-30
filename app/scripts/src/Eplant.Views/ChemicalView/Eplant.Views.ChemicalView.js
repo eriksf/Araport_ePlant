@@ -43,9 +43,9 @@ Eplant.Views.ChemicalView.viewName = "ChemicalView";
 	Eplant.Views.ChemicalView.magnification = 35;
 	Eplant.Views.ChemicalView.description = "Chemical eFP";
 	Eplant.Views.ChemicalView.citation = "";
-	Eplant.Views.ChemicalView.activeIconImageURL = "img/active/plant.png";
-	Eplant.Views.ChemicalView.availableIconImageURL = "img/available/plant.png";
-	Eplant.Views.ChemicalView.unavailableIconImageURL = "img/unavailable/plant.png";
+	Eplant.Views.ChemicalView.activeIconImageURL = "app/img/active/plant.png";
+	Eplant.Views.ChemicalView.availableIconImageURL = "app/img/available/plant.png";
+	Eplant.Views.ChemicalView.unavailableIconImageURL = "app/img/unavailable/plant.png";
 
 	Eplant.Views.ChemicalView.prototype.loadsvg = function() {
 

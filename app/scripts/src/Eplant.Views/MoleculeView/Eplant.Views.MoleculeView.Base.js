@@ -1862,7 +1862,7 @@
 	
 	Eplant.Views.MoleculeView.Base.prototype.getEcotypesSpan= function(snpsDetailMap,key) {
 		
-		var ecotypesSpan = $('<span style="font-size:14px;white-space: nowrap;" class="ecotypesSpan"><img src="img/available/world.png" style="width:20px;vertical-align: middle;margin: -2px 5px 0px 2px;"/>View ecotypes with this SNP</span>');
+		var ecotypesSpan = $('<span style="font-size:14px;white-space: nowrap;" class="ecotypesSpan"><img src="app/img/available/world.png" style="width:20px;vertical-align: middle;margin: -2px 5px 0px 2px;"/>View ecotypes with this SNP</span>');
 		
 		var ecotypesText = '<div style="overflow-y: auto;"><div class="selectable" style="max-height:200px;overflow: auto;font-size: 14px;padding-right: 25px;"><table class="SNPTable">';
 		

@@ -137,7 +137,7 @@
 			this.EFPViewJson.isMaskOn = true;
 			
 			/* Update icon image */
-			this.EFPViewJson.maskButton.setImageSource("img/on/filter.png");
+			this.EFPViewJson.maskButton.setImageSource("app/img/on/filter.png");
 			
 			/* Update eFP */
 			this.EFPViewJson.updateDisplay();

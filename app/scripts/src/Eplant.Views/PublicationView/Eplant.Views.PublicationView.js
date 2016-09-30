@@ -64,9 +64,9 @@
 	Eplant.Views.PublicationView.magnification = 2;
 	Eplant.Views.PublicationView.description = "Publication Viewer";
 	Eplant.Views.PublicationView.citation = "";
-	Eplant.Views.PublicationView.activeIconImageURL = "img/active/publications.png";
-	Eplant.Views.PublicationView.availableIconImageURL = "img/available/publications.png";
-	Eplant.Views.PublicationView.unavailableIconImageURL = "img/unavailable/publications.png";
+	Eplant.Views.PublicationView.activeIconImageURL = "app/img/active/publications.png";
+	Eplant.Views.PublicationView.availableIconImageURL = "app/img/available/publications.png";
+	Eplant.Views.PublicationView.unavailableIconImageURL = "app/img/unavailable/publications.png";
 	Eplant.Views.PublicationView.viewType = "geneinfo";
 	/* Constants */
 	Eplant.Views.PublicationView.domContainer = null;		// DOM container for JSmol

@@ -109,9 +109,9 @@
 	Eplant.Views.MoleculeView.magnification = 70;
 	Eplant.Views.MoleculeView.description = "Molecule viewer";
 	Eplant.Views.MoleculeView.citation = "";
-	Eplant.Views.MoleculeView.activeIconImageURL = "img/active/molecule.png";
-	Eplant.Views.MoleculeView.availableIconImageURL = "img/available/molecule.png";
-	Eplant.Views.MoleculeView.unavailableIconImageURL = "img/unavailable/molecule.png";
+	Eplant.Views.MoleculeView.activeIconImageURL = "app/img/active/molecule.png";
+	Eplant.Views.MoleculeView.availableIconImageURL = "app/img/available/molecule.png";
+	Eplant.Views.MoleculeView.unavailableIconImageURL = "app/img/unavailable/molecule.png";
 	Eplant.Views.MoleculeView.viewType = "zui";
 	/* Constants */
 	Eplant.Views.MoleculeView.domContainer = null;		// DOM container for JSmol
@@ -136,7 +136,7 @@
 			jsFile: "WebContent/mysj/molViewer41.js",
 			page_fragment: "pages/molviewer.html",
 			page_css: "WebContent/css/styles41.css",
-			acidLetterMapUrl: "data/molecule/AcidLetterMap.json",
+			acidLetterMapUrl: "app/data/molecule/AcidLetterMap.json",
 			acidLetterMap:null,
 			mycounter: 0,
 			maxFrequency:400,
@@ -239,7 +239,7 @@
 	Eplant.Views.MoleculeView.prototype.createViewSpecificUIButtons = function() {
 		/* Filter */
 		this.settinggButton = new Eplant.ViewSpecificUIButton(
-		"img/setting.png",		// imageSource
+		"app/img/setting.png",		// imageSource
 		"Molecule View Setting",		// description
 		function(data) {		// click
 			data.moleculeView.createSettingDialog();

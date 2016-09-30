@@ -44,9 +44,9 @@ Eplant.Views.ExperimentView.hierarchy = "species";
 Eplant.Views.ExperimentView.magnification = 100;
 Eplant.Views.ExperimentView.description = "Experiment viewer";
 Eplant.Views.ExperimentView.citation = "";
-Eplant.Views.ExperimentView.activeIconImageURL = "img/active/experiment.png";
-Eplant.Views.ExperimentView.availableIconImageURL = "img/available/experiment.png";
-Eplant.Views.ExperimentView.unavailableIconImageURL = "img/unavailable/experiment.png";
+Eplant.Views.ExperimentView.activeIconImageURL = "app/img/active/experiment.png";
+Eplant.Views.ExperimentView.availableIconImageURL = "app/img/available/experiment.png";
+Eplant.Views.ExperimentView.unavailableIconImageURL = "app/img/unavailable/experiment.png";
 
 /**
  * Active callback method.

@@ -65,9 +65,9 @@
 		Eplant.Views.WorldView.magnification = 10;			// Magnification level of the View
 		Eplant.Views.WorldView.description = "World eFP viewer";	// Description of the View visible to the user
 		Eplant.Views.WorldView.citaiton = "";			// Citation template of the View
-		Eplant.Views.WorldView.activeIconImageURL = "img/active/world.png";		// URL for the active icon image
-		Eplant.Views.WorldView.availableIconImageURL = "img/available/world.png";		// URL for the available icon image
-		Eplant.Views.WorldView.unavailableIconImageURL = "img/unavailable/world.png";	// URL for the unavailable icon image
+		Eplant.Views.WorldView.activeIconImageURL = "app/img/active/world.png";		// URL for the active icon image
+		Eplant.Views.WorldView.availableIconImageURL = "app/img/available/world.png";		// URL for the available icon image
+		Eplant.Views.WorldView.unavailableIconImageURL = "app/img/unavailable/world.png";	// URL for the unavailable icon image
 		Eplant.Views.WorldView.viewType = "zui";
 		/* Static constants */
 		Eplant.Views.WorldView.map = null;			// GoogleMaps object

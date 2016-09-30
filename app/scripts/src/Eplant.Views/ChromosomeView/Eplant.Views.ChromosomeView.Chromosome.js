@@ -359,7 +359,7 @@ Eplant.Views.ChromosomeView.Chromosome.prototype.draw = function() {
 	
 	/* Set icon */
 	img = document.createElement("img");
-	img.src = "img/heatmap.png";												
+	img.src = "app/img/heatmap.png";												
 };
 
 /**

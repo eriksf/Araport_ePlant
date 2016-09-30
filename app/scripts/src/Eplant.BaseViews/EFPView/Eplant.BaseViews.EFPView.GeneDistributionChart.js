@@ -34,7 +34,7 @@
 			return false;
 		};
 		/* Create canvas */
-		this.svgSrc = "data/experiment/GeneDistributionChart.svg";
+		this.svgSrc = "app/data/experiment/GeneDistributionChart.svg";
 
 		if(!Eplant.BaseViews.EFPView.GeneDistributionChart.svgDom){
 			$.get(this.svgSrc, $.proxy(function(data) {

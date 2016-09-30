@@ -11,7 +11,10 @@
 	Eplant = {};
 	
 	/* Constants */
-	Eplant.ServiceUrl = 'cgi-bin/'; // Base services url
+	Eplant.ServiceUrl = 'https://api.araport.org/community/v0.3/asher-dev/eplant_service_v0.4/access/'; // Base services url
+	Eplant.cdd3dUrl = 'https://api.araport.org/community/v0.3/asher-dev/cdd3d_service_v0.1/access/'; // CDD3D url
+	ExpressionAnglerUrl = 'https://api.araport.org/community/v0.3/asher-dev/expression_angler_service_v0.2/access/'; // Expression Angler URL
+
 	Eplant.Year = "2016";
 	Eplant.Authours = "Waese, Fan, Yu, Pasha & Provart";
 	Eplant.AuthoursW = "Waese et al.";
@@ -250,14 +253,14 @@
 	
 	Eplant.loadSharedResources = function(){
 		if(!Eplant.BaseViews.EFPView.GeneDistributionChart.svgDom){
-			$.get("data/experiment/GeneDistributionChart.svg", function(data) {
+			$.get("app/data/experiment/GeneDistributionChart.svg", function(data) {
 				Eplant.BaseViews.EFPView.GeneDistributionChart.svgDom = $(data).find('svg');
 			});
 		}
-		$.getJSON( "data/expressionAngler/viewsMap.json", function( data ) {
+		$.getJSON( "app/data/expressionAngler/viewsMap.json", function( data ) {
 			Eplant.expressionAnglerDbMap= data;
 		});
-		$.getJSON( "data/expressionAngler/viewNameMap.json", function( data ) {
+		$.getJSON( "app/data/expressionAngler/viewNameMap.json", function( data ) {
 			Eplant.expressionAnglerViewNameMap= data;
 		});
 	};
@@ -434,7 +437,7 @@
 		Eplant.citations={};
 		$.ajax({
 			type: "GET",
-			url: "data/citations.json",
+			url: "app/data/citations.json",
 			dataType: "json"
 		}).done(Eplant.loadCitationsCallback);
 		
@@ -527,7 +530,7 @@
 		dialog.content(Eplant.citations[Eplant.activeSpecies.scientificName][Eplant.activeView.name]);
 	};
 	Eplant.expressionAnglerClick = function() {
-		DialogManager.artDialogUrl('ExpressionAngler',{
+		DialogManager.artDialogUrl('app/ExpressionAngler/index.html?data=' + Agave.token.accessToken, {
 			close: function () {
 				var expressionAnglerUrl = art.dialog.data('expressionAnglerUrl');
 				var expressionAnglerMainIdentifier = art.dialog.data('expressionAnglerMain');
@@ -610,8 +613,13 @@
 			source: function(request, response) {
 				var last = request.term.split(/,\s*/).pop();
 				$.ajax({
+					beforeSend: function(request) {
+						request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+					},
+					async: false,
+					cache: false,
 					type: "GET",
-					url: "cgi-bin/idautocomplete.cgi?species=" + Eplant.activeSpecies.scientificName.split(" ").join("_") + "&term=" + last,
+					url: Eplant.ServiceUrl +  "idautocomplete.cgi?species=" + Eplant.activeSpecies.scientificName.split(" ").join("_") + "&term=" + last,
 					dataType: "json"
 					}).done(function(data) {
 					response(data);
@@ -793,10 +801,10 @@
 		$("#viewChangeAnimationIcon").click(function() {
 			Eplant.isAnimateActiveViewChange = !Eplant.isAnimateActiveViewChange;
 			if (Eplant.isAnimateActiveViewChange) {
-				$("#viewChangeAnimationIcon img").attr("src", "img/on/zoom.png");
+				$("#viewChangeAnimationIcon img").attr("src", "app/img/on/zoom.png");
 				$("#viewChangeAnimationIcon span").html("Zoom transitions on");
 				} else {
-				$("#viewChangeAnimationIcon img").attr("src", "img/off/zoom.png");
+				$("#viewChangeAnimationIcon img").attr("src", "app/img/off/zoom.png");
 				$("#viewChangeAnimationIcon span").html("Zoom transitions off");
 			}
 		});
@@ -804,10 +812,10 @@
 		$("#viewIntructionIcon").click(function() {
 			Eplant.showViewIntruction = !Eplant.showViewIntruction;
 			if (Eplant.showViewIntruction) {
-				$("#viewIntructionIcon img").attr("src", "img/on/fyi.png");
+				$("#viewIntructionIcon img").attr("src", "app/img/on/fyi.png");
 				$("#viewIntructionIcon span").html("New user popups on");
 				} else {
-				$("#viewIntructionIcon img").attr("src", "img/off/fyi.png");
+				$("#viewIntructionIcon img").attr("src", "app/img/off/fyi.png");
 				$("#viewIntructionIcon span").html("New user popups off");
 			}
 		});
@@ -823,7 +831,7 @@
 					var domElement = domElements[n];
 					$(domElement).attr("data-enabled", "true");
 				}
-				$("#tooltipIcon img").attr("src", "img/on/tooltip.png");
+				$("#tooltipIcon img").attr("src", "app/img/on/tooltip.png");
 				$("#tooltipIcon span").html("Tooltips on");
 				$( '.hint--right' ).tooltip( "option", "disabled", false );
 				$( '.hint--left' ).tooltip( "option", "disabled", false );
@@ -835,7 +843,7 @@
 					var domElement = domElements[n];
 					$(domElement).attr("data-enabled", "false");
 				}
-				$("#tooltipIcon img").attr("src", "img/off/tooltip.png");
+				$("#tooltipIcon img").attr("src", "app/img/off/tooltip.png");
 				$("#tooltipIcon span").html("Tooltips off");
 				$( '.hint--right' ).tooltip( "option", "disabled", true );
 				$( '.hint--left' ).tooltip( "option", "disabled", true );
@@ -972,13 +980,13 @@
 			if (Eplant.viewColorMode === "absolute") {
 				$(this).attr("data-hint", "Toggle data mode: relative.");
 				Eplant.viewColorMode = "relative";
-				img.attr("src","img/efpmode-relative.png");
+				img.attr("src","app/img/efpmode-relative.png");
 				$("#dropdown-color-mode .customAbsoluteValue").val(Eplant.customGlobalExtremum);
 			}
 			else if (Eplant.viewColorMode === "relative") {
 				$(this).attr("data-hint", "Toggle data mode: absolute.");
 				Eplant.viewColorMode = "absolute";
-				img.attr("src","img/efpmode-absolute.png");
+				img.attr("src","app/img/efpmode-absolute.png");
 				$("#dropdown-color-mode .customAbsoluteValue").val(Eplant.customGlobalMax);
 			}
 			
@@ -1059,9 +1067,9 @@
 			
 			Eplant.geneticElementPanelMapOn = !Eplant.geneticElementPanelMapOn;
 			if(Eplant.geneticElementPanelMapOn){
-				$("#heatmapModeIcon img").attr("src", "img/on/heatMapMode.png");
+				$("#heatmapModeIcon img").attr("src", "app/img/on/heatMapMode.png");
 				}else{
-				$("#heatmapModeIcon img").attr("src", "img/off/heatMapMode.png");
+				$("#heatmapModeIcon img").attr("src", "app/img/off/heatMapMode.png");
 			}
 			Eplant.updateGeneticElementPanel();
 		});
@@ -1077,15 +1085,15 @@
 		});
 		/* about page dialog click */
 		$("#getAbout").on('click', function () {
-			DialogManager.artDialogUrl('pages/about.html');
+			DialogManager.artDialogUrl('app/pages/about.html');
 		});
 		/* help page dialog click */
 		$("#getHelp").on('click', function () {
-			DialogManager.artDialogUrl('pages/help.html');
+			DialogManager.artDialogUrl('app/pages/help.html');
 		});
 		/* contact page dialog click */
 		$("#getComments").on('click', function () {
-			DialogManager.artDialogUrl('pages/comments.html');
+			DialogManager.artDialogUrl('app/pages/comments.html');
 		});
 		$("#expressionAnglerButton").on('click', function () {
 			Eplant.expressionAnglerClick();
@@ -1164,7 +1172,7 @@
 				}, 500);
 				
 				
-				$(".toggleArrow").attr('src',"img/arrow-left-clear-bg.png");
+				$(".toggleArrow").attr('src',"app/img/arrow-left-clear-bg.png");
 				
 				Eplant.sidebarOpen = true;
 				$(":animated").promise().done(function() {
@@ -1194,7 +1202,7 @@
 					marginLeft: left,
 					width: $(window).width()-Eplant.viewPortLeftOffset+"px"
 				}, 500);
-				$(".toggleArrow").attr('src',"img/arrow-right-clear-bg.png");
+				$(".toggleArrow").attr('src',"app/img/arrow-right-clear-bg.png");
 				Eplant.sidebarOpen = false;
 				
 				$(":animated").promise().done(function() {
@@ -1264,7 +1272,7 @@
 				if (Eplant.RSVPOn){
 					$("#RSVPIcon").click();
 				}
-				$("#smallMultipleIcon img").attr("src", "img/on/smallMultiples.png");
+				$("#smallMultipleIcon img").attr("src", "app/img/on/smallMultiples.png");
 				$("#SmallMultipleContainer").show();
 				//Eplant.smallMultipleOriginalHolder=Eplant.ViewModes[Eplant.activeView.viewMode];
 				$("#SmallMultipleHolder").empty();
@@ -1332,7 +1340,7 @@
 			}
 			else{
 				Eplant.smallMultipleOn = false;
-				$("#smallMultipleIcon img").attr("src", "img/off/smallMultiples.png");
+				$("#smallMultipleIcon img").attr("src", "app/img/off/smallMultiples.png");
 				$("#SmallMultipleContainer").hide();
 				
 				var errorInfo='This feature is only available for eFP viewers.';
@@ -1348,7 +1356,7 @@
 			
 		}
 		else {
-			$("#smallMultipleIcon img").attr("src", "img/off/smallMultiples.png");
+			$("#smallMultipleIcon img").attr("src", "app/img/off/smallMultiples.png");
 			$("#SmallMultipleContainer").hide();
 			/*var children = $("#SmallMultipleHolder").children();
 				if(children.length>0&&Eplant.smallMultipleOriginalHolder){
@@ -1367,7 +1375,7 @@
 	Eplant.UpdateSmallMultiplesActiveGene = function() {
 		
 		if (Eplant.smallMultipleOn&&Eplant.activeView.isEFPView){
-			$("#smallMultipleIcon img").attr("src", "img/on/smallMultiples.png");
+			$("#smallMultipleIcon img").attr("src", "app/img/on/smallMultiples.png");
 			$("#SmallMultipleContainer").show();
 			var viewName = Eplant.activeView.viewName;
 			var genes = Eplant.activeSpecies.displayGeneticElements;
@@ -1499,14 +1507,14 @@
 		// Update history icons when the activeItem of the history changes
 		var eventListener = new ZUI.EventListener("update-history-activeItem", Eplant.history, function(event, eventData, listenerData) {
 			if (Eplant.history.isBackPossible()) {
-				$("#historyBackIcon img").attr("src", "img/available/history-back.png");
+				$("#historyBackIcon img").attr("src", "app/img/available/history-back.png");
 				} else {
-				$("#historyBackIcon img").attr("src", "img/unavailable/history-back.png");
+				$("#historyBackIcon img").attr("src", "app/img/unavailable/history-back.png");
 			}
 			if (Eplant.history.isForwardPossible()) {
-				$("#historyForwardIcon img").attr("src", "img/available/history-forward.png");
+				$("#historyForwardIcon img").attr("src", "app/img/available/history-forward.png");
 				} else {
-				$("#historyForwardIcon img").attr("src", "img/unavailable/history-forward.png");
+				$("#historyForwardIcon img").attr("src", "app/img/unavailable/history-forward.png");
 			}
 		}, {});
 		ZUI.addEventListener(eventListener);
@@ -1549,14 +1557,14 @@
 			if(species.displayGeneticElements.length > 4){
 				$("#wordCloudIcon img").attr('data-hint',"Create a word cloud based on semantic terms from gene descriptions");
 				Eplant.wordCloudButtonOn = true;
-				$("#wordCloudIcon img").attr("src", "img/on/wordCloud.png");
+				$("#wordCloudIcon img").attr("src", "app/img/on/wordCloud.png");
 			}
 			else if(species.displayGeneticElements.length > 1){
 				species.setActiveGeneticElement(species.displayGeneticElements[species.displayGeneticElements.length-1]);
 				$("#wordCloudIcon img").attr('data-hint',"Word Cloud. A minimum of 5 genes must be loaded to use this tool.");
 				Eplant.wordCloudButtonOn = false;
 				
-				$("#wordCloudIcon img").attr("src", "img/off/wordCloud.png");
+				$("#wordCloudIcon img").attr("src", "app/img/off/wordCloud.png");
 			}
 			else{
 				Eplant.changeActiveView(Eplant.views['HomeView']);
@@ -1564,7 +1572,7 @@
 				
 				Eplant.wordCloudButtonOn = false;
 				
-				$("#wordCloudIcon img").attr("src", "img/off/wordCloud.png");
+				$("#wordCloudIcon img").attr("src", "app/img/off/wordCloud.png");
 				$("#wordCloudIcon img").attr('data-hint',"Word Cloud. A minimum of 5 genes must be loaded to use this tool.");
 			}
 			/* Check if Species is the activeSpecies */
@@ -1593,12 +1601,12 @@
 			if(species.displayGeneticElements.length > 4){
 				$("#wordCloudIcon img").attr('data-hint',"Create a word cloud based on semantic terms from gene descriptions");
 				Eplant.wordCloudButtonOn = true;
-				$("#wordCloudIcon img").attr("src", "img/on/wordCloud.png");
+				$("#wordCloudIcon img").attr("src", "app/img/on/wordCloud.png");
 			}
 			else{
 				$("#wordCloudIcon img").attr('data-hint',"Word Cloud. A minimum of 5 genes must be loaded to use this tool.");
 				Eplant.wordCloudButtonOn = false;
-				$("#wordCloudIcon img").attr("src", "img/off/wordCloud.png");
+				$("#wordCloudIcon img").attr("src", "app/img/off/wordCloud.png");
 			}
 			Eplant.CreateSmallMultiples();
 		}, {});
@@ -1781,31 +1789,40 @@
 	*/
 	Eplant.loadSpecies = function() {
 		if (!this.isLoadedSpecies) {
-			$.getJSON(Eplant.ServiceUrl + 'speciesinfo.cgi', $.proxy(function(response) {
-				/* Loop through species */
-				for (var n = 0; n < response.length; n++) {
-					/* Get data for this species */
-					var speciesData = response[n];
+			$.ajax({
+				beforeSend: function(request) {
+					request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+				},
+				dataType: "json",
+				async: false,
+				cache: false,
+				url: Eplant.ServiceUrl + 'speciesinfo.cgi',
+				success: $.proxy(function(response) {
+					/* Loop through species */
+					for (var n = 0; n < response.length; n++) {
+						/* Get data for this species */
+						var speciesData = response[n];
+						
+						/* Create Species */
+						var species = new Eplant.Species({
+							scientificName: speciesData.scientificName,
+							commonName: speciesData.commonName,
+							exampleQuery: speciesData.exampleQuery
+						});
+						species.loadViews();
+						
+						/* Add Species to ePlant */
+						Eplant.addSpecies(species);
+					}
 					
-					/* Create Species */
-					var species = new Eplant.Species({
-						scientificName: speciesData.scientificName,
-						commonName: speciesData.commonName,
-						exampleQuery: speciesData.exampleQuery
-					});
-					species.loadViews();
+					/* Set Species load status */
+					Eplant.isLoadedSpecies = true;
 					
-					/* Add Species to ePlant */
-					Eplant.addSpecies(species);
-				}
-				
-				/* Set Species load status */
-				Eplant.isLoadedSpecies = true;
-				
-				/* Fire event for loading chromosomes */
-				var event = new ZUI.Event("load-species", Eplant, null);
-				ZUI.fireEvent(event);
-			}, this));
+					/* Fire event for loading chromosomes */
+					var event = new ZUI.Event("load-species", Eplant, null);
+					ZUI.fireEvent(event);
+				}, this))
+			});
 		}
 	};
 	
@@ -2139,10 +2156,10 @@
 			if(ViewName === "ExperimentView"){
 				if (Eplant.activeView.magnification === 35) {
 					$("#" + ViewName + "Icon").addClass("selected");
-					$("#ExperimentViewIcon").children("img").attr("src", "img/active/experiment.png");
+					$("#ExperimentViewIcon").children("img").attr("src", "app/img/active/experiment.png");
 				}
 				else if(Eplant.activeSpecies && Eplant.activeSpecies.displayGeneticElements.length>0){
-					$("#ExperimentViewIcon").children("img").attr("src", "img/available/experiment.png");
+					$("#ExperimentViewIcon").children("img").attr("src", "app/img/available/experiment.png");
 				}
 				else{
 					$("#ExperimentViewIcon").children("img").attr("src", View.unavailableIconImageURL);
@@ -2155,7 +2172,7 @@
 					if (Eplant.activeView == view) {
 						if(view.magnification === 35){
 							$("#ExperimentViewIcon").addClass("selected");
-							$("#ExperimentViewIcon").children("img").attr("src", "img/active/experiment.png");
+							$("#ExperimentViewIcon").children("img").attr("src", "app/img/active/experiment.png");
 						}
 						else{
 							$("#" + ViewName + "Icon").addClass("selected");
@@ -2301,14 +2318,14 @@
 	*/
 	Eplant.updateHistoryIcons = function() {
 		if (Eplant.history.isBackPossible()) {
-			$("#historyBackIcon img").attr("src", "img/available/history-back.png");
+			$("#historyBackIcon img").attr("src", "app/img/available/history-back.png");
 			} else {
-			$("#historyBackIcon img").attr("src", "img/unavailable/history-back.png");
+			$("#historyBackIcon img").attr("src", "app/img/unavailable/history-back.png");
 		}
 		if (Eplant.history.isForwardPossible()) {
-			$("#historyForwardIcon img").attr("src", "img/available/history-forward.png");
+			$("#historyForwardIcon img").attr("src", "app/img/available/history-forward.png");
 			} else {
-			$("#historyForwardIcon img").attr("src", "img/unavailable/history-forward.png");
+			$("#historyForwardIcon img").attr("src", "app/img/unavailable/history-forward.png");
 		}
 	};
 	
@@ -2497,7 +2514,7 @@
 	Eplant.showLoading = function(str) {
 		var domContainer = document.createElement("div");
 		
-		$(domContainer).append(/*'<img src="img/loading.gif"/><br/>'+*/str);
+		$(domContainer).append(/*'<img src="app/img/loading.gif"/><br/>'+*/str);
 		var options = {};
 		options.content = domContainer;
 		options.lock = true;

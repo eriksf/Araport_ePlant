@@ -55,7 +55,7 @@
 		});
 		
 		this.canvas = document.createElement('canvas');
-		$(this.canvas).attr('data-processing-sources',"data/geneSlider/GeneSlider.pde");
+		$(this.canvas).attr('data-processing-sources',"app/data/geneSlider/GeneSlider.pde");
 		$(this.canvas).attr('id','geneSlider'+this.geneticElement.identifier);
 		$(this.domContainer).append(this.canvas);
 		$(Eplant.Views.GeneSliderView.domContainer).append(this.domContainer);
@@ -75,9 +75,9 @@
 	Eplant.Views.GeneSliderView.magnification = 300;
 	Eplant.Views.GeneSliderView.description = "Gene Slider Viewer";
 	Eplant.Views.GeneSliderView.citation = "";
-	Eplant.Views.GeneSliderView.activeIconImageURL = "img/active/info.png";
-	Eplant.Views.GeneSliderView.availableIconImageURL = "img/available/info.png";
-	Eplant.Views.GeneSliderView.unavailableIconImageURL = "img/unavailable/info.png";
+	Eplant.Views.GeneSliderView.activeIconImageURL = "app/img/active/info.png";
+	Eplant.Views.GeneSliderView.availableIconImageURL = "app/img/available/info.png";
+	Eplant.Views.GeneSliderView.unavailableIconImageURL = "app/img/unavailable/info.png";
 	Eplant.Views.GeneSliderView.viewType = "geneslider";
 	
 	/* Static methods */

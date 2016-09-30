@@ -264,7 +264,7 @@
 				position: 'absolute',
 				width: '100%'
 			});
-			$(holder).html("Reloading<br><img src='img/loading.gif'></img>");
+			$(holder).html("Reloading<br><img src='app/img/loading.gif'></img>");
 			$(this.reloadingMessageDom).append(holder);
 		}
 		
@@ -332,10 +332,10 @@
 				
 			}
 			if(content){
-				var viewInstructionControlLink = $('<a>').html('<img src="img/on/fyi.png" style="margin-right: 10px;">Click here to turn off new user info popups. They can be turned on again from the options menu.');
+				var viewInstructionControlLink = $('<a>').html('<img src="app/img/on/fyi.png" style="margin-right: 10px;">Click here to turn off new user info popups. They can be turned on again from the options menu.');
 				$(viewInstructionControlLink).click($.proxy(function(){
 					Eplant.showViewIntruction = false;
-					$("#viewIntructionIcon img").attr("src", "img/off/fyi.png");
+					$("#viewIntructionIcon img").attr("src", "app/img/off/fyi.png");
 					$("#viewIntructionIcon span").html("New user popups off");
 					if(this.instructionDialog){
 						this.instructionDialog.close();

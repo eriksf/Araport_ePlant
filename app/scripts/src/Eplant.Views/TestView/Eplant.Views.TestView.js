@@ -96,9 +96,9 @@
     Eplant.Views.TestView.magnification = -30;
     Eplant.Views.TestView.description = "Plant viewer";
     Eplant.Views.TestView.citation = "";
-    Eplant.Views.TestView.activeIconImageURL = "img/active/plant.png";
-    Eplant.Views.TestView.availableIconImageURL = "img/available/plant.png";
-    Eplant.Views.TestView.unavailableIconImageURL = "img/unavailable/plant.png";
+    Eplant.Views.TestView.activeIconImageURL = "app/img/active/plant.png";
+    Eplant.Views.TestView.availableIconImageURL = "app/img/available/plant.png";
+    Eplant.Views.TestView.unavailableIconImageURL = "app/img/unavailable/plant.png";
 
 
 

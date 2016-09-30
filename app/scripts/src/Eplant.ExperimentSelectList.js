@@ -26,7 +26,7 @@
 			dfd.resolve();
 		}
 		else{
-			$.getJSON( "data/experiment/viewNames.json", $.proxy(function( data ) {
+			$.getJSON( "app/data/experiment/viewNames.json", $.proxy(function( data ) {
 				var eFPViews = data;
 				/* Create Choice objects for the SelectList */
 				for (var n = 0; n < eFPViews.length; n++) {
@@ -109,7 +109,7 @@
 				$(this.domContainer).append(btnSort);
 				
 				var sortImg = document.createElement("img");
-				$(sortImg).attr("src",'img/sort-highlow-black.png');
+				$(sortImg).attr("src",'app/img/sort-highlow-black.png');
 				$(btnSort).prepend(sortImg);
 				
 				if(!this.sortDiv){
@@ -174,7 +174,7 @@
 			$(this.domContainer).append(btnSelect);
 			
 			var selectImg = document.createElement("img");
-			$(selectImg).attr("src",'img/list.png');
+			$(selectImg).attr("src",'app/img/list.png');
 			$(btnSelect).prepend(selectImg);
 			
 			if(!this.selectDiv){

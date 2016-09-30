@@ -154,53 +154,63 @@
 	*/
 	Eplant.Species.prototype.loadChromosomes = function() {
 		if (!this.isLoadedChromosomes) {
-			$.getJSON(Eplant.ServiceUrl + 'chromosomeinfo.cgi?species=' + this.scientificName.replace(' ', '_'), $.proxy(function(response) {
-				/* Loop through chromosomes */
-				if(response.chromosomes)
-				{
-					for (var n = 0; n < response.chromosomes.length; n++) {
-						/* Get data for this chromosome */
-						var chromosomeData = response.chromosomes[n];
+			$.ajax({
+				beforeSend: function(request) {
+					request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+				},
+				dataType: "json",
+				url: Eplant.ServiceUrl + 'chromosomeinfo.cgi?species=' + this.scientificName.replace(' ', '_'),
+				async: false,
+				cache: false,
+				success: $.proxy(function(response) {
 
-						/* Create new Chromosome object */
-						var chromosome = new Eplant.Chromosome({
-							species: this,
-							identifier: chromosomeData.id,
-							name: chromosomeData.name,
-							size: chromosomeData.size
-						});
+					/* Loop through chromosomes */
+					if(response.chromosomes)
+					{
+						for (var n = 0; n < response.chromosomes.length; n++) {
+							/* Get data for this chromosome */
+							var chromosomeData = response.chromosomes[n];
 
-						/* Loop through centromeres */
-						for (var m = 0; m < chromosomeData.centromeres.length; m++) {
-							/* Get data for this centromere */
-							var centromereData = chromosomeData.centromeres[m];
-
-							/* Create new centromere GeneticElement object */
-							var centromere = new Eplant.GeneticElement({
-								chromosome: chromosome,
-								identifier: centromereData.id,
-								aliases: centromereData.aliases,
-								start: centromereData.start,
-								end: centromereData.end,
-								type: "centromere"
+							/* Create new Chromosome object */
+							var chromosome = new Eplant.Chromosome({
+								species: this,
+								identifier: chromosomeData.id,
+								name: chromosomeData.name,
+								size: chromosomeData.size
 							});
 
-							/* Add new centromere GeneticElement to Chromosome */
-							chromosome.addGeneticElement(centromere);
+							/* Loop through centromeres */
+							for (var m = 0; m < chromosomeData.centromeres.length; m++) {
+								/* Get data for this centromere */
+								var centromereData = chromosomeData.centromeres[m];
+
+								/* Create new centromere GeneticElement object */
+								var centromere = new Eplant.GeneticElement({
+									chromosome: chromosome,
+									identifier: centromereData.id,
+									aliases: centromereData.aliases,
+									start: centromereData.start,
+									end: centromereData.end,
+									type: "centromere"
+								});
+
+								/* Add new centromere GeneticElement to Chromosome */
+								chromosome.addGeneticElement(centromere);
+							}
+
+							/* Add new Chromosome to Species */
+							this.addChromosome(chromosome);
 						}
 
-						/* Add new Chromosome to Species */
-						this.addChromosome(chromosome);
+
+						/* Set chromosome load status */
+						this.isLoadedChromosomes = true;
 					}
-
-
-					/* Set chromosome load status */
-					this.isLoadedChromosomes = true;
-				}
-				/* Fire event for loading chromosomes */
-				var event = new ZUI.Event("load-chromosomes", this, null);
-				ZUI.fireEvent(event);
-			}, this));
+					/* Fire event for loading chromosomes */
+					var event = new ZUI.Event("load-chromosomes", this, null);
+					ZUI.fireEvent(event);
+				}, this)
+			});
 		}
 	};
 
@@ -339,74 +349,83 @@
 		wrapper.callback = (options)?options.callback:null;
 		wrapper.identifier = identifier;
 		wrapper.relationOptions = (options)?options.relationOptions:null;
-		if(identifier){
+		if(identifier) {
 			/* Query */
-			$.getJSON(Eplant.ServiceUrl + 'querygene.cgi?species=' + this.scientificName.split(' ').join('_') + '&term=' + identifier, $.proxy(function(response) {
-				/* Get Chromosome */
-				var chromosome = this.species.getChromosomeByIdentifier(response.chromosome);
 
-				/* Check if Chromsome is valid */
-				if (chromosome) {	// Valid
-					/* Confirm GeneticElement is not already created */
-					var geneticElement = this.species.getGeneticElementByIdentifier(response.id);
-					if (!geneticElement) {
-						/* Create GeneticElement */
-						geneticElement = new Eplant.GeneticElement({
-							chromosome: chromosome,
-							identifier: response.id,
-							aliases: response.aliases,
-							annotation: response.annotation,
-							type: "gene",
-							strand: response.strand,
-							start: response.start,
-							end: response.end,
-							relationOptions:this.relationOptions
-						});
-						chromosome.addGeneticElement(geneticElement);
-					}
-					var notExisted =$.grep( Eplant.activeSpecies.displayGeneticElements, function(e){ return e.identifier == geneticElement.identifier; }).length===0 ;
+			$.ajax({
+				beforeSend: function(request) {
+					request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+				},
+				dataType: "json",
+				async: false,
+				cache: false,
+				url: Eplant.ServiceUrl + 'querygene.cgi?species=' + this.scientificName.split(' ').join('_') + '&term=' + identifier,
+				success: $.proxy(function(response) {
 
-					if(this.callback){
-						/* Callback */
-						this.callback(geneticElement, this.identifier);
-					}
-					else{
+					/* Get Chromosome */
+					var chromosome = this.species.getChromosomeByIdentifier(response.chromosome);
 
-						/* Load views for GeneticElement */
-						geneticElement.loadViews();
-						if(notExisted){
-							Eplant.activeSpecies.displayGeneticElements.push(geneticElement);
-							Eplant.updateGeneticElementPanel();
+					/* Check if Chromsome is valid */
+					if (chromosome) {	// Valid
+						/* Confirm GeneticElement is not already created */
+						var geneticElement = this.species.getGeneticElementByIdentifier(response.id);
+						if (!geneticElement) {
+							/* Create GeneticElement */
+							geneticElement = new Eplant.GeneticElement({
+								chromosome: chromosome,
+								identifier: response.id,
+								aliases: response.aliases,
+								annotation: response.annotation,
+								type: "gene",
+								strand: response.strand,
+								start: response.start,
+								end: response.end,
+								relationOptions:this.relationOptions
+							});
+							chromosome.addGeneticElement(geneticElement);
+						}
+						var notExisted =$.grep( Eplant.activeSpecies.displayGeneticElements, function(e){ return e.identifier == geneticElement.identifier; }).length===0 ;
 
+						if(this.callback){
+							/* Callback */
+							this.callback(geneticElement, this.identifier);
 						}
 						else{
-							DialogManager.artDialogDynamic(geneticElement.identifier+' is already loaded.');
+
+							/* Load views for GeneticElement */
+							geneticElement.loadViews();
+							if(notExisted){
+								Eplant.activeSpecies.displayGeneticElements.push(geneticElement);
+								Eplant.updateGeneticElementPanel();
+
+							}
+							else{
+								DialogManager.artDialogDynamic(geneticElement.identifier+' is already loaded.');
+							}
+							/* Set GeneticElement to active */
+							geneticElement.species.setActiveGeneticElement(geneticElement);
+
 						}
-						/* Set GeneticElement to active */
-						geneticElement.species.setActiveGeneticElement(geneticElement);
+						if(notExisted){
+							var event = new ZUI.Event("add-geneticElement", geneticElement, null);
+							ZUI.fireEvent(event);
+						}
 
 					}
-					if(notExisted){
-						var event = new ZUI.Event("add-geneticElement", geneticElement, null);
-						ZUI.fireEvent(event);
-					}
+					else {		// Invalid
+						/* Callback */
+						if(this.callback){
+							this.callback(null, this.identifier);
+						}else{
+							DialogManager.artDialogDynamic('Sorry, we could not find "' + identifier + '".');
+						}
 
-				}
-				else {		// Invalid
-					/* Callback */
-					if(this.callback){
-						this.callback(null, this.identifier);
-					}else{
-						DialogManager.artDialogDynamic('Sorry, we could not find "' + identifier + '".');
 					}
-
-				}
-			}, wrapper))
-			.always(function(){
+				}, wrapper)
+			}).always(function(){
 				if(options&&options.alwaysCallback){
 					options.alwaysCallback();
 				}
-
 			});
 		}
 		else if(options&&options.alwaysCallback){

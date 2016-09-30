@@ -60,7 +60,7 @@ Eplant.Views.BioticStressErysipheorontiiView.unavailableIconImageURL = "";
 				var infoXml = $(response).find('info');
 				if (infoXml.length > 0) {
 					this.infoButton	= new Eplant.ViewSpecificUIButton(
-					"img/info.png", // imageSource
+					"app/img/info.png", // imageSource
 					"Additional information about the efp view", // Description
 					function(data) { // click
 						DialogManager.artDialogDynamic('<p style="font-size:24px">Information for this view</p><br>'+infoXml.html(),{width:'600px'});
