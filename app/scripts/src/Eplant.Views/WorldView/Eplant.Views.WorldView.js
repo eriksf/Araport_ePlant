@@ -1223,51 +1223,60 @@
 						eFPView: this
 					};
 					/* Query */
-					$.getJSON(this.webService + "id=" + this.geneticElement.identifier + "&samples=" + JSON.stringify(sampleNames), $.proxy(function(response) {
-						var haveNulls = false;
-						var numNulls = 0;
-						for (var m = 0; m < response.length; m++) {
-							if(response[m].value===null||response[m].value==="None"){
-								numNulls++;
-							}
-						}
-						if(((numNulls / response.length) >> 0)===1){
-							haveNulls = true;
-						}
-						this.eFPView.rawSampleData= JSON.stringify(response);
-						/* Match results with samples and copy values to samples */
-						
-						if(haveNulls){
-							this.eFPView.errorLoadingMessage="The sample database does not have any information for this gene.";
-						}
-						else{
-							this.eFPView.rawSampleData= JSON.stringify(response);
-							/* Match results with samples and copy values to samples */
-							for (var n = 0; n < this.samples.length; n++) {
-								for (var m = 0; m < response.length; m++) {
-									if (this.samples[n].name == response[m].name) {
-										this.samples[n].value = Number(response[m].value);
-										break;
-									}
+	 				$.ajax({
+						beforeSend: function(request) {
+							request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+						},
+						dataType: "json",
+						type: "get",
+						async: false,
+						cache: false,
+						url: this.webService + "?id=" + this.geneticElement.identifier + "&samples=" + JSON.stringify(sampleNames), 
+						success: $.proxy(function(response) {
+							var haveNulls = false;
+							var numNulls = 0;
+							for (var m = 0; m < response.length; m++) {
+								if(response[m].value===null||response[m].value==="None"){
+									numNulls++;
 								}
 							}
+							if(((numNulls / response.length) >> 0)===1){
+								haveNulls = true;
+							}
+							this.eFPView.rawSampleData= JSON.stringify(response);
+							/* Match results with samples and copy values to samples */
 							
-							/* Process values */
-							this.eFPView.processValues();
-							
-							/* Update eFP */
-							this.eFPView.updateDisplay();
-							//Eplant.queue.add(this.eFPView.updateDisplay, this.eFPView);
-							
-							/* Finish loading */
-							this.eFPView.loadFinish();
-							
-						}
-						//Eplant.queue.add(this.eFPView.loadFinish, this.eFPView);
+							if(haveNulls){
+								this.eFPView.errorLoadingMessage="The sample database does not have any information for this gene.";
+							}
+							else{
+								this.eFPView.rawSampleData= JSON.stringify(response);
+								/* Match results with samples and copy values to samples */
+								for (var n = 0; n < this.samples.length; n++) {
+									for (var m = 0; m < response.length; m++) {
+										if (this.samples[n].name == response[m].name) {
+											this.samples[n].value = Number(response[m].value);
+											break;
+										}
+									}
+								}
+								
+								/* Process values */
+								this.eFPView.processValues();
+								
+								/* Update eFP */
+								this.eFPView.updateDisplay();
+								//Eplant.queue.add(this.eFPView.updateDisplay, this.eFPView);
+								
+								/* Finish loading */
+								this.eFPView.loadFinish();
+								
+							}
+							//Eplant.queue.add(this.eFPView.loadFinish, this.eFPView);
 						
-					}, wrapper));
+						}, wrapper)
+					});
 				},this,null,this.geneticElement.identifier+"_Loading");
-				
 			}, this));
 		};
 		
