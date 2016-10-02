@@ -29,8 +29,8 @@
 		);
 		
 		// Call eFP constructor
-		var efpSvgURL = 'data/cell/' + geneticElement.species.scientificName.replace(" ", "_") + '.svg';
-		var efpXmlURL = 'data/cell/' + geneticElement.species.scientificName.replace(" ", "_") + '.xml';
+		var efpSvgURL = 'app/data/cell/' + geneticElement.species.scientificName.replace(" ", "_") + '.svg';
+		var efpXmlURL = 'app/data/cell/' + geneticElement.species.scientificName.replace(" ", "_") + '.xml';
 		Eplant.BaseViews.EFPView.call(this, geneticElement, efpSvgURL,efpXmlURL, {
 			isRelativeEnabled: false,
 			isCompareEnabled: false,
@@ -638,8 +638,13 @@
 				};
 				
 				this.Xhrs.loadSamplesXhr=$.ajax({
-					url: this.webService + "id=" + this.geneticElement.identifier,
-					dataType: 'json',
+					beforeSend: function(request) {
+						request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+					},
+					dataType: "json",
+					async: false,
+					cache: false,
+					url: this.webService + "id=" + this.geneticElement.identifier, 
 					success: $.proxy(function(response) {
 						this.eFPView.Xhrs.loadSamplesXhr=null;
 						this.eFPView.rawSampleData= JSON.stringify(response);

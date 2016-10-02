@@ -34,7 +34,7 @@
 		this.dom=$('#sequence');
 		/* Create SelectList */
 		this.isLoadedData = true;
-		this.svgURL = 'data/BiologicalLevelsInteractive.svg';
+		this.svgURL = 'app/data/BiologicalLevelsInteractive.svg';
 		this.labelDom = document.createElement("div");  //remove label
 		this.viewInstruction='<p>Select a gene with the box on the left, or use the Expression Angler to describe an expression pattern and find genes that match it.</p>';
 		this.loadData();

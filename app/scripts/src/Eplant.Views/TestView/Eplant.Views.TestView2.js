@@ -43,7 +43,7 @@
         this.loadsvg(this.svgImage);
 
 
-        this.efpURL = 'data/plant/' + geneticElement.species.scientificName.replace(" ", "_") + ".json";
+        this.efpURL = 'app/data/plant/' + geneticElement.species.scientificName.replace(" ", "_") + ".json";
         this.geneticElement = geneticElement;
         this.minColor = "#0000FF"; // Minimum color
         this.midColor = "#FFFF00"; // Middle color

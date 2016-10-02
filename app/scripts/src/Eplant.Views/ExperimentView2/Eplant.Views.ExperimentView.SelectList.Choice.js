@@ -99,7 +99,7 @@ Eplant.Views.ExperimentView.SelectList.Choice.prototype.createVO = function() {
 		centerAt: "center center",
 		x: ZUI.width / 6,
 		y: 0,
-		url: 'data/species/' + this.species.scientificName.replace(' ', '_') + '.svg'
+		url: 'app/data/species/' + this.species.scientificName.replace(' ', '_') + '.svg'
 	});
 };
 */

@@ -32,7 +32,7 @@
 			this.domContainer =Eplant.Views.WorldView.domContainer;
 			
 			// Call eFP constructor
-			var efpURL = 'data/world/' + geneticElement.species.scientificName.replace(' ', '_') + '.json';
+			var efpURL = 'app/data/world/' + geneticElement.species.scientificName.replace(' ', '_') + '.json';
 			Eplant.BaseViews.EFPViewJson.call(this, geneticElement, efpURL, {
 			});
 			

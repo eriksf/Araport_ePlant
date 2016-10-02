@@ -30,8 +30,8 @@ Eplant.Views.TissueSpecificXylemAndCorkView = function(geneticElement) {
 	
 	/* Call eFP constructor */ 
 
-	var efpSvgURL = 'data/experiment/efps/TissueSpecificXylemAndCork/' + geneticElement.species.scientificName.replace(" ", "_") + '.svg';
-	var efpXmlURL = 'data/experiment/efps/TissueSpecificXylemAndCork/' + geneticElement.species.scientificName.replace(" ", "_") + '.xml';
+	var efpSvgURL = 'app/data/experiment/efps/TissueSpecificXylemAndCork/' + geneticElement.species.scientificName.replace(" ", "_") + '.svg';
+	var efpXmlURL = 'app/data/experiment/efps/TissueSpecificXylemAndCork/' + geneticElement.species.scientificName.replace(" ", "_") + '.xml';
 	Eplant.BaseViews.EFPView.call(this, geneticElement, efpSvgURL,efpXmlURL, {
 	});
 };

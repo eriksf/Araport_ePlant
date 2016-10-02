@@ -60,7 +60,7 @@
 		$(this.domContainer).append(this.canvas);
 		$(Eplant.Views.GeneSliderView.domContainer).append(this.domContainer);
 		
-		Processing.loadSketchFromSources(this.canvas, ['data/geneSlider/GeneSlider.pde']);
+		Processing.loadSketchFromSources(this.canvas, ['app/data/geneSlider/GeneSlider.pde']);
 		
 		
 		this.loadData();
