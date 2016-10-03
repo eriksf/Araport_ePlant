@@ -157,39 +157,48 @@
 	Eplant.Views.MoleculeView.prototype.loadData = function(fileURL) {
 
 		$.when(Eplant.Views.MoleculeView.Params.htmlPage).then($.proxy(function( data ) {
-			$.getJSON(Eplant.ServiceUrl + 'JSMol.cgi?agi=' + this.geneticElement.identifier, $.proxy(function(response) {
-				var moleculeSequenceStringArr = [];
-				if (response.link != "") {
-					this.moleculeModelRawText = JSON.stringify(response);
-					$.get( response.link, $.proxy(function( raw ) {
-						var divided = this.divideSequence(raw, moleculeSequenceStringArr, response);
+			$.ajax({
+				beforeSend: function(request) {
+					request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+				},
+				dataType: "json",
+				async: false,
+				cache: false,
+				url: Eplant.ServiceUrl + 'JSMol.cgi?agi=' + this.geneticElement.identifier, 
+				success: $.proxy(function(response) {
+					var moleculeSequenceStringArr = [];
+					if (response.link != "") {
+						this.moleculeModelRawText = JSON.stringify(response);
+						$.get( response.link, $.proxy(function( raw ) {
+							var divided = this.divideSequence(raw, moleculeSequenceStringArr, response);
 
-						$.ajax({
-							url: '//bar.utoronto.ca/webservices/araport/api/bar_get_protein_sequence_by_identifier.php/search?identifier='+this.geneticElement.identifier+'.1&source=Araport',
-							type: 'GET',
-							timeout: 50000,
-							error: $.proxy(function() {
-								this.getConfig(data,response,divided.moleculeSequenceStringArr,divided.gaps);
-							},this),
-							success: $.proxy(function(summary) {
-								if(summary.result&&summary.result.length>0){
-
-									this.fullSequenceRawText = JSON.stringify(summary);
-									var sequenceArr = summary.result[0].sequence.split("");
-									this.getConfig(data,response,divided.moleculeSequenceStringArr,divided.gaps,sequenceArr);
-								}
-								else{
+							$.ajax({
+								url: '//bar.utoronto.ca/webservices/araport/api/bar_get_protein_sequence_by_identifier.php/search?identifier='+this.geneticElement.identifier+'.1&source=Araport',
+								type: 'GET',
+								timeout: 50000,
+								error: $.proxy(function() {
 									this.getConfig(data,response,divided.moleculeSequenceStringArr,divided.gaps);
-								}
-							},this)});
-					},this));
-				}
-				else{
-					this.errorLoadingMessage="No molecule structure found for this gene";
-					this.loadFinish();
-				}
+								},this),
+								success: $.proxy(function(summary) {
+									if(summary.result&&summary.result.length>0){
 
-			},this))
+										this.fullSequenceRawText = JSON.stringify(summary);
+										var sequenceArr = summary.result[0].sequence.split("");
+										this.getConfig(data,response,divided.moleculeSequenceStringArr,divided.gaps,sequenceArr);
+									}
+									else{
+										this.getConfig(data,response,divided.moleculeSequenceStringArr,divided.gaps);
+									}
+								},this)});
+						},this));
+					}
+					else{
+						this.errorLoadingMessage="No molecule structure found for this gene";
+						this.loadFinish();
+					}
+
+				},this)
+			})
 			.fail($.proxy(function(d, textStatus, error) {
 				this.errorLoadingMessage="No molecule structure found for this gene";
 				this.loadFinish();
