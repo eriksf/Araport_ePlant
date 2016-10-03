@@ -87,23 +87,7 @@ jQuery(document).ready(function() {
 	});
 	
 	jQuery("#optionHolder .search-input").autocomplete({
-		source: function(request, response) {
-			$.ajax({
-				beforeSend: function(request) {
-					request.setRequestHeader('Authorization', 'Bearer ' + APIToken);
-				},
-				dataType: "json",
-				data: {
-					term: request.term
-				},
-				async: false,
-				cache: false,
-				url: ADAMAUrl + "get_alias.pl",
-				success: function(data) {
-					response(data);
-				}
-			});
-		},
+		source: "//bar.utoronto.ca/ntools/cgi-bin/get_alias.pl",
 		minLength: 2,
 		select: function(event, ui) {
 			//jQuery("#user_agi").val(ui.item.label);
@@ -219,11 +203,12 @@ jQuery(document).ready(function() {
 		var regex = "([Aa][Tt][12345CM][Gg][0-9]{5})|([0-9]{6}(_[xsfi])?_at)|[0-9]{6,9};"
 		jQuery.ajax({
 			beforeSend: function(request) {
-					request.setRequestHeader('Authorization', 'Bearer ' + APIToken);
+				request.setRequestHeader('Authorization', 'Bearer ' + APIToken);
 			},
 			url:  ADAMAUrl + "check_alias.pl",
 			data: {"gene": gene},
 			type: "get",
+			dataType: "json",
 			success: function(data) {
 				
 				if (data == 1) {
@@ -257,8 +242,8 @@ jQuery(document).ready(function() {
 			jQuery("#user_agi_valid").text('AGI ID Service Encoutner a problem.');
 			jQuery("#user_agi_valid_icon").attr('src','images/incorrect.png');
 			jQuery("#user_agi").val('');
+			failCallback();
 		});
 		return false;
 	}
-});		
-
+});							

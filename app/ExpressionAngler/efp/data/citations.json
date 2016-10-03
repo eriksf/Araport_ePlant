@@ -15,7 +15,7 @@
 		"view": "World eFP Viewer",
 		"source": "Weigel Lab (Lempe <i>et al.</i>, 2005, PLOS Genetics 1:e6)",
 		"notes": "<br><br>Aerial parts of 4 day old seedlings greenhouse-grown in soil at 23C under continuous light were sampled. Data normalized by GCOS method, TGT value of 100.",
-		"URL": "<br><br><a href=\"http://bar.utoronto.ca/efp/cgi-bin/efpWeb.cgi?dataSource=Natural_Variation\" target=\"_new\">BAR eFP Natural Variation Viewer</a>."
+		"URL": "<br><br><a href=\"//bar.utoronto.ca/efp/cgi-bin/efpWeb.cgi?dataSource=Natural_Variation\" target=\"_new\">BAR eFP Natural Variation Viewer</a>."
 	},
 	{
 		"view": "Plant Viewer",

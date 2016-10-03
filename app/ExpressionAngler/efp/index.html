@@ -9,7 +9,7 @@
    Design & UI by Jamie Waese
    Code by Jim Fan
    
-   It is based on an earlier version of ePlant by Nicholas Provart: http://bar.utoronto.ca/eplant/
+   It is based on an earlier version of ePlant by Nicholas Provart: //bar.utoronto.ca/eplant/
    
    -->
 <html style="height: 100%;width:100%;">
@@ -54,7 +54,7 @@ Gene:<br>
 	overflow:hidden;"></div>
 <script type="text/javascript">
 $('#enter').on('click',function(){
-$.getJSON(' http://bar.utoronto.ca/eplant/cgi-bin/querygene.cgi?species=Arabidopsis_thaliana&term=' + $('#geneInput').val(), $.proxy(function(response) {
+$.getJSON(' //bar.utoronto.ca/eplant/cgi-bin/querygene.cgi?species=Arabidopsis_thaliana&term=' + $('#geneInput').val(), $.proxy(function(response) {
 if(response)
 {
 				this.geneticElement = new GeneticElement({
