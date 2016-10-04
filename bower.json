@@ -1,5 +1,7 @@
 {
   "name": "araport-eplant",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "jquery-ui": "1.10.3"
+  }
 }
