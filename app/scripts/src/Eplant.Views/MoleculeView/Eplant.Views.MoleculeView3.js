@@ -134,7 +134,7 @@
 		Eplant.Views.MoleculeView.Params = {
 			htmlPage: '',
 			jsFile: "WebContent/mysj/molViewer41.js",
-			page_fragment: "pages/molviewer.html",
+			page_fragment: "app/pages/molviewer.html",
 			page_css: "WebContent/css/styles41.css",
 			acidLetterMapUrl: "app/data/molecule/AcidLetterMap.json",
 			acidLetterMap:null,

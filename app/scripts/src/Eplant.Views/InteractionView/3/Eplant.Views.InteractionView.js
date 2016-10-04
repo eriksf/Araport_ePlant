@@ -152,9 +152,9 @@
 	Eplant.Views.InteractionView.magnification = 60;
 	Eplant.Views.InteractionView.description = 'Interaction viewer';
 	Eplant.Views.InteractionView.citation = '';
-	Eplant.Views.InteractionView.activeIconImageURL = 'img/active/interaction.png';
-	Eplant.Views.InteractionView.availableIconImageURL = 'img/available/interaction.png';
-	Eplant.Views.InteractionView.unavailableIconImageURL = 'img/unavailable/interaction.png';
+	Eplant.Views.InteractionView.activeIconImageURL = 'app/img/active/interaction.png';
+	Eplant.Views.InteractionView.availableIconImageURL = 'app/img/available/interaction.png';
+	Eplant.Views.InteractionView.unavailableIconImageURL = 'app/img/unavailable/interaction.png';
 	
 	// Constants
 	// DOM container element for Cytoscape
@@ -332,7 +332,7 @@
 		// Filter
 		this.filterButton = new Eplant.ViewSpecificUIButton(
 		// imageSource
-		'img/filter-interaction.png',
+		'app/img/filter-interaction.png',
 		// description
 		'Filter interactions.',
 		function (data) {
@@ -350,7 +350,7 @@
 		// Legend
 		var viewSpecificUIButton = new Eplant.ViewSpecificUIButton(
 		// imageSource
-		'img/legend.png',
+		'app/img/legend.png',
 		// description
 		'Toggle legend.',
 		function (data) {

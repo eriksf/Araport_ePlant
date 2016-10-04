@@ -85,7 +85,7 @@
 
 		Eplant.Views.PublicationView.Params = {
 			htmlPage: '',
-			page_fragment: "pages/publication.html"
+			page_fragment: "app/pages/publication.html"
 		}
 
 		Eplant.Views.PublicationView.Params.htmlPage = $.get(Eplant.Views.PublicationView.Params.page_fragment, function(data) {

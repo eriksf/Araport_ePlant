@@ -46,7 +46,7 @@
 
 		this.domContainer = document.createElement("div");
 
-		$(this.domContainer).attr('id','geneInfo'+this.geneticElement.identifier);
+		$(this.domContainer).attr('id','app/geneInfo'+this.geneticElement.identifier);
 		$(this.domContainer).css({
 			position: 'relative',
 			width: '100%',
@@ -85,7 +85,7 @@
 
 		Eplant.Views.GeneInfoView.Params = {
 			htmlPage: '',
-			page_fragment: "pages/geneInfo.html"
+			page_fragment: "app/pages/geneInfo.html"
 		}
 
 		Eplant.Views.GeneInfoView.Params.htmlPage = $.get(Eplant.Views.GeneInfoView.Params.page_fragment, function(data) {

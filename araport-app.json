@@ -166,5 +166,6 @@
     "scripts/js/jquery.dropdown.css",
     "scripts/js/jquery.mCustomScrollbar.css",
     "styles/eplant.css"
-  ]
+  ],
+  "fullscreen": "require"
 }
