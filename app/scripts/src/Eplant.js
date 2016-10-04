@@ -1821,7 +1821,7 @@
 					/* Fire event for loading chromosomes */
 					var event = new ZUI.Event("load-species", Eplant, null);
 					ZUI.fireEvent(event);
-				}, this))
+				}, this)
 			});
 		}
 	};
