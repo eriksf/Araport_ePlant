@@ -17,7 +17,8 @@ Eplant.Views.TissueSpecificMicrogametogenesisView = function(geneticElement) {
 
 	// Call parent constructor
 	Eplant.View.call(this,
-		constructor.viewName,			// Name of the View visible to the user
+		constructor.displayName,			// Name of the View visible to the user
+		constructor.viewName,
 		constructor.hierarchy,			// Hierarchy of the View
 		constructor.magnification,			// Magnification level of the View
 		constructor.description,			// Description of the View visible to the user
@@ -37,7 +38,8 @@ Eplant.Views.TissueSpecificMicrogametogenesisView = function(geneticElement) {
 };
 ZUI.Util.inheritClass(Eplant.BaseViews.EFPView, Eplant.Views.TissueSpecificMicrogametogenesisView);	// Inherit parent prototype
 
-Eplant.Views.TissueSpecificMicrogametogenesisView.viewName = "Tissue Specific Microgametogenesis eFP";
+Eplant.Views.TissueSpecificMicrogametogenesisView.viewName = "TissueSpecificMicrogametogenesisView";
+Eplant.Views.TissueSpecificMicrogametogenesisView.displayName = "Tissue Specific Microgametogenesis eFP";
 Eplant.Views.TissueSpecificMicrogametogenesisView.hierarchy = "genetic element";
 Eplant.Views.TissueSpecificMicrogametogenesisView.magnification = 35;
 Eplant.Views.TissueSpecificMicrogametogenesisView.description = "Tissue Specific Microgametogenesis eFP";

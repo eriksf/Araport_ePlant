@@ -17,7 +17,8 @@ Eplant.Views.TissueSpecificGuardAndMesophyllCellsView = function(geneticElement)
 
 	// Call parent constructor
 	Eplant.View.call(this,
-		constructor.viewName,			// Name of the View visible to the user
+		constructor.displayName,			// Name of the View visible to the user
+		constructor.viewName,
 		constructor.hierarchy,			// Hierarchy of the View
 		constructor.magnification,			// Magnification level of the View
 		constructor.description,			// Description of the View visible to the user
@@ -36,7 +37,8 @@ Eplant.Views.TissueSpecificGuardAndMesophyllCellsView = function(geneticElement)
 };
 ZUI.Util.inheritClass(Eplant.BaseViews.EFPView, Eplant.Views.TissueSpecificGuardAndMesophyllCellsView);	// Inherit parent prototype
 
-Eplant.Views.TissueSpecificGuardAndMesophyllCellsView.viewName = "Tissue Specific Guard And Mesophyl Cells eFP";
+Eplant.Views.TissueSpecificGuardAndMesophyllCellsView.viewName = "TissueSpecificGuardAndMesophyllCellsView";
+Eplant.Views.TissueSpecificGuardAndMesophyllCellsView.displayName = "Tissue Specific Guard And Mesophyl Cells eFP";
 Eplant.Views.TissueSpecificGuardAndMesophyllCellsView.hierarchy = "genetic element";
 Eplant.Views.TissueSpecificGuardAndMesophyllCellsView.magnification = 35;
 Eplant.Views.TissueSpecificGuardAndMesophyllCellsView.description = "Tissue Specific Guard And Mesophyll Cells eFP";

@@ -91,4 +91,10 @@ Eplant.ViewSpecificUIButton.prototype.remove = function() {
 	ZUI.removeEventListener(this.updateIsTooltipOnListener);
 };
 
+Eplant.ViewSpecificUIButton.prototype.doClick = function() {
+	/* Remove DOM elements */
+	this.click(this.data);
+};
+
+
 })();

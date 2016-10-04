@@ -34,15 +34,11 @@ var MolViewer = function(customConfig, customInfo) {
 			//the name to use to create the jmol object
 			jMolObject : 'myJmol',
 			//
-			pfamUrlBar : 'http://bar.utoronto.ca/~gfucile/cdd3d/cgi-bin/PfamAnnot.cgi',
-			//
-			pfamUrlDev : 'ProxyServlet',
+			pfamUrlBar : Eplant.cdd3dUrl + 'PfamAnnot.cgi',
 			//
 			pfamParams : 'FASTAseq',
 			//
-			cddUrlBar : 'http://bar.utoronto.ca/~gfucile/cdd3d/cgi-bin/CDDannot.cgi',
-			//
-			cddUrlDev : 'ProxyServlet',
+			cddUrlBar : Eplant.cdd3dUrl + 'CDDannot.cgi',
 			//
 			cddParams : 'FASTAseq',
 			//
@@ -66,7 +62,8 @@ var MolViewer = function(customConfig, customInfo) {
 		width : '100%',
 		use : "HTML5",
 		//to use the php from my server http://104.197.50.15/myphptest/php/jsmol.php
-		serverURL : "http://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+		//serverURL : "http://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+		serverURL: "https://bar.utoronto.ca/eplant/cgi-bin/jsmol.php",
 		src : null,
 		LoadStructCallback : config.CSS.IDs.jsMolViewer+".setControls",
 		script: "set defaultLoadScript '" + config.application.defaultLoadScript + "';"+config.application.load,
@@ -98,7 +95,8 @@ var MolViewer = function(customConfig, customInfo) {
 		pDiv = jq(config.CSS.IDs.parentDivId)+" "; //just to make the var name shorter
 		
 		console.log('initializing MolViewer');
-		
+	
+		// Araport comment out this:	
 	    //abort all running ajax requests
 	    xhrPool.abortAll = function() {
 	    	console.log('aborting all ajax requests');
@@ -292,6 +290,9 @@ var MolViewer = function(customConfig, customInfo) {
 	    $(pDiv+jq(config.CSS.IDs.CDDdomains)).empty().append("<span class='loading'>Loading CDD features</span>");
 		
 		$.ajax({
+			beforeSend: function(request) {
+				request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+			},
 		    type: 'POST',
 		    dataType: 'json',
 		    url: config.application.cddUrlBar,
@@ -357,6 +358,9 @@ var MolViewer = function(customConfig, customInfo) {
 		$(pDiv+jq(config.CSS.IDs.PfamDomains)).empty().append("<span class='loading' >Loading Pfam domains</span>");
 		
 		$.ajax({
+			beforeSend: function(request) {
+				request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+			},
 		    type: 'POST',
 		    dataType: 'json',
 		    url: config.application.pfamUrlBar,

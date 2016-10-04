@@ -80,7 +80,7 @@ if (jQuery) (function ($) {
             // Is it a dropdown menu?
             if (targetGroup.is('.dropdown-menu')) {
                 // Did we click on an option? If so close it.
-                if (!targetGroup.is('A')) return;
+                if (!targetGroup.is('li')) return;
             } else {
                 // Nope, it's a panel. Leave it open.
                 return;
@@ -130,6 +130,7 @@ if (jQuery) (function ($) {
 
     $(document).on('click.dropdown', '[data-dropdown]', show);
     $(document).on('click.dropdown', hide);
+	//$(document).on('click.dropdown li', hide);
     $(window).on('resize', position);
 
 })(jQuery);

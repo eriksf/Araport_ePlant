@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
-<!DOCTYPE specimen SYSTEM "http://www.bar.utoronto.ca/efp/cgi-bin/data/efp_config.dtd">
+<!DOCTYPE specimen SYSTEM "//bar.utoronto.ca/efp/cgi-bin/data/efp_config.dtd">
 <specimen name="Arabidopsis">
 <view name="all" class="" db="atgenexp_plus" img="TissueSpecific-GuardAndMesophyllCells-2015-01-12.svg">
 	<info>
@@ -35,11 +35,11 @@
 			<link url="http://biology.ucsd.edu/labs/schroeder/guardcellchips.html" /> 
 			<sample name="JS85" /> 
 		</tissue>
-		<tissue id="Mesophyll_cells_no_ABA_no_cordycepin_nor_actinomycin" name="Mesophyll cells, no ABA, no cordycepin nor actinomycin">
+		<tissue id="Mesophyll_cells_no_ABA_no_cordycepin_nor_actinomycin" name="Mesophyll cells, no ABA, no cordycepin nor actinomycin" colorKey="#226622">
 			<link url="http://biology.ucsd.edu/labs/schroeder/guardcellchips.html" /> 
 			<sample name="JS87" /> 
 		</tissue>
-		<tissue id="Mesophyll_cells_no_ABA_cordycepin_and_actinomycin_added_during_protoplasting" name="Mesophyll cells, no ABA, cordycepin and actinomycin added during protoplasting" colorKey="#226622">
+		<tissue id="Mesophyll_cells_no_ABA_cordycepin_and_actinomycin_added_during_protoplasting" name="Mesophyll cells, no ABA, cordycepin and actinomycin added during protoplasting" colorKey="#446644">
 			<link url="http://biology.ucsd.edu/labs/schroeder/guardcellchips.html" /> 			 
 			<sample name="JS35" /> 
 		</tissue>

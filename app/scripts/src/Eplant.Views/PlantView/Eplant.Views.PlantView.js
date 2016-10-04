@@ -17,7 +17,8 @@ Eplant.Views.PlantView = function(geneticElement) {
 
 	// Call parent constructor
 	Eplant.View.call(this,
-		constructor.viewName,			// Name of the View visible to the user
+		constructor.displayName,			// Name of the View visible to the user
+		constructor.viewName,
 		constructor.hierarchy,			// Hierarchy of the View
 		constructor.magnification,			// Magnification level of the View
 		constructor.description,			// Description of the View visible to the user
@@ -35,7 +36,8 @@ Eplant.Views.PlantView = function(geneticElement) {
 };
 ZUI.Util.inheritClass(Eplant.BaseViews.EFPView, Eplant.Views.PlantView);	// Inherit parent prototype
 
-Eplant.Views.PlantView.viewName = "Plant eFP";
+Eplant.Views.PlantView.viewName = "PlantView";
+Eplant.Views.PlantView.displayName = "Plant eFP";
 Eplant.Views.PlantView.hierarchy = "genetic element";
 Eplant.Views.PlantView.magnification = 20;
 Eplant.Views.PlantView.description = "Plant eFP";

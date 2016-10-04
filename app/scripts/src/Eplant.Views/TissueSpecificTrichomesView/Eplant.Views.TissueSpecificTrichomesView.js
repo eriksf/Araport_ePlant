@@ -17,7 +17,8 @@ Eplant.Views.TissueSpecificTrichomesView = function(geneticElement) {
 
 	// Call parent constructor
 	Eplant.View.call(this,
-		constructor.viewName,			// Name of the View visible to the user
+		constructor.displayName,			// Name of the View visible to the user
+		constructor.viewName,
 		constructor.hierarchy,			// Hierarchy of the View
 		constructor.magnification,			// Magnification level of the View
 		constructor.description,			// Description of the View visible to the user
@@ -37,7 +38,8 @@ Eplant.Views.TissueSpecificTrichomesView = function(geneticElement) {
 };
 ZUI.Util.inheritClass(Eplant.BaseViews.EFPView, Eplant.Views.TissueSpecificTrichomesView);	// Inherit parent prototype
 
-Eplant.Views.TissueSpecificTrichomesView.viewName = "Tissue Specific Trichomes eFP";
+Eplant.Views.TissueSpecificTrichomesView.viewName = "TissueSpecificTrichomesView";
+Eplant.Views.TissueSpecificTrichomesView.displayName = "Tissue Specific Trichomes eFP";
 Eplant.Views.TissueSpecificTrichomesView.hierarchy = "genetic element";
 Eplant.Views.TissueSpecificTrichomesView.magnification = 35;
 Eplant.Views.TissueSpecificTrichomesView.description = "Tissue Specific Trichomes eFP";

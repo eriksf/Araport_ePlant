@@ -28,7 +28,10 @@
 	Eplant.BaseViews.EFPView.CompareDialog.prototype.createDOM = function() {
 		/* Container */
 		this.domContainer = document.createElement("div");
-		
+		/*this.domDesc = document.createElement("div");
+		$(this.domDesc).css({'color':'#999', "margin-bottom": "20px"});
+		$(this.domDesc).html("Mask interactions with confidence and/or correlation values beneath a certain threshold.");
+		$(this.domContainer).append(this.domDesc);*/
 		/* Get GeneticElements of the parent Species */
 		var geneticElements = this.eFPView.geneticElement.species.geneticElements;
 		
@@ -41,7 +44,7 @@
 			var geneticElement = geneticElements[n];
 			
 			/* Skip if views of this GeneticElement are not loaded or this is the GeneticElement that is to be compared */
-			if (!geneticElement.isLoadedViews || geneticElement == this.eFPView.geneticElement) {
+			if (!geneticElement.isLoadedEFPViewsData || geneticElement == this.eFPView.geneticElement) {
 				continue;
 			}
 			
@@ -62,31 +65,31 @@
 			$(this.domSelect).prop("selectedIndex", 0);
 		}
 		$(this.domContainer).append(this.domSelect);
-		this.domOk = document.createElement("input");
-		$(this.domOk).attr("type", "button");
-		$(this.domOk).css({"width":"100px"});
-		$(this.domOk).addClass("button greenButton");
-		$(this.domOk).val("Compare");
-		$(this.domContainer).append(this.domOk);
-		$(this.domOk).on('click', $.proxy(function(event, ui) {
-			/* Check whether something is selected */
+		/*this.domOk = document.createElement("input");
+			$(this.domOk).attr("type", "button");
+			$(this.domOk).css({"width":"100px"});
+			$(this.domOk).addClass("button greenButton");
+			$(this.domOk).val("Compare");
+			$(this.domContainer).append(this.domOk);
+			$(this.domOk).on('click', $.proxy(function(event, ui) {
+			// Check whether something is selected 
 			if ($(this.domSelect).prop("selectedIndex") < 0) {	// No
-				alert("Please select a gene! If you don't see the gene you want, please load the data for the gene and try again.");
+			alert("Please select a gene! If you don't see the gene you want, please load the data for the gene and try again.");
 			}
 			else {		// Yes
-				var identifier = $(this.domSelect).children("option:selected").val();
-				var geneticElement = this.eFPView.geneticElement.species.getGeneticElementByIdentifier(identifier);
-				this.eFPView.compare(geneticElement);
+			var identifier = $(this.domSelect).children("option:selected").val();
+			var geneticElement = this.eFPView.geneticElement.species.getGeneticElementByIdentifier(identifier);
+			this.eFPView.compare(geneticElement);
 			}
 			this.close();
-		}, this));
+		}, this));*/
 	};
 	
 	/**
 		* Creates and opens the dialog.
 	*/
 	Eplant.BaseViews.EFPView.CompareDialog.prototype.createDialog = function() {
-		$(this.domContainer).dialog({
+		/*$(this.domContainer).dialog({
 			title: "Compare " + this.eFPView.geneticElement.identifier + " to...",
 			width: 250,
 			height: "auto",
@@ -94,28 +97,67 @@
 			resizable: false,
 			modal: true,
 			open: function(event, ui) { $(".ui-dialog-titlebar-close").hide();
-				$(".ui-dialog-buttonpane").css({'border-top-width':'0px'});
+			$(".ui-dialog-buttonpane").css({'border-top-width':'0px'});
 			},
 			close: $.proxy(function(event, ui) {
-				this.remove();
+			this.remove();
 			}, this)
-		});
-	};
-	
-	/**
-		* Closes the dialog.
-	*/
-	Eplant.BaseViews.EFPView.CompareDialog.prototype.close = function() {
-		/* Close dialog */
-		$(this.domContainer).dialog("close");
-	};
-	
-	/**
-		* Removes the dialog.
-	*/
-	Eplant.BaseViews.EFPView.CompareDialog.prototype.remove = function() {
+			});
+		*/
+		var options = {};
+		options.content = this.domContainer;
+		options.title = "Compare " + this.eFPView.geneticElement.identifier + " to...";
+		options.lock = true;
+		options.background = '#000'; 
+		options.opacity = 0.6;
+		options.width = 250;
+		options.window = 'top'; 
+		options.fixed= true; 
+		options.drag= false;
+		options.resize= false;
+		options.init= $.proxy(function() {
+			
+		}, this);
+		options.close= $.proxy(function() {
+			//this.remove();
+		}, this);
+		options.ok =$.proxy(function(event, ui) {
+			if ($(this.domSelect).prop("selectedIndex") < 0) {	// No
+				alert("Please select a gene! If you don't see the gene you want, please load the data for the gene and try again.");
+			}
+			else {		// Yes
+				var identifier = $(this.domSelect).children("option:selected").val();
+				var geneticElement = this.eFPView.geneticElement.species.getGeneticElementByIdentifier(identifier);
+				Eplant.compareGeneticElement = geneticElement;
+				this.eFPView.compare(geneticElement);
+				this.eFPView.updateDisplay();
+				var event = new ZUI.Event("update-colors", Eplant, null);
+				ZUI.fireEvent(event);	
+			}
+		this.close();
+	}, this);
+	/*options.cancel = $.proxy(function(event, ui) {
+		this.remove();
+	}, this);*/
+	this.dialog = window.top.art.dialog(options);
+};
+
+/**
+	* Closes the dialog.
+*/
+Eplant.BaseViews.EFPView.CompareDialog.prototype.close = function() {
+	/* Close dialog */
+	//$(this.domContainer).dialog("close");
+	this.dialog.close();
+};
+
+/**
+	* Removes the dialog.
+*/
+Eplant.BaseViews.EFPView.CompareDialog.prototype.remove = function() {
 	/* Remove DOM elements */
-	$(this.domContainer).remove();
-	};
-	
-	})();	
+	//$(this.domContainer).remove();
+	this.dialog.close();
+};
+
+})();	

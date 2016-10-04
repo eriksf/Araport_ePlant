@@ -4,15 +4,17 @@ $(document).ready(function(){
         prevButton: true,
         pagination: true,
         animateStartingFrameIn: true,
-        autoPlay: true,
-        autoPlayDelay: 5000,
+        autoPlay: false,
+        autoPlayDelay: 3000,
         preloader: true,
-        pauseOnHover:true,
+		pauseButton:false,
         preloadTheseFrames: [1],
         preloadTheseImages: [
         ]
     };
     
     var sequence = $("#sequence").sequence(options).data("sequence");
+
+	
 
 });

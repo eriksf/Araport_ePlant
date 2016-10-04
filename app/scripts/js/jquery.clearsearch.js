@@ -77,8 +77,8 @@
 					function update() {
 						var width = $this.outerWidth(), height = $this.outerHeight();
 						btn.css({
-							top : 13,//height / 2 - btn.height() / 2,
-							right : 17//left : width - height / 2 - btn.height() / 2
+							//top : 11,//height / 2 - btn.height() / 2,
+							//right : 17//left : width - height / 2 - btn.height() / 2
 						});
 					}
 

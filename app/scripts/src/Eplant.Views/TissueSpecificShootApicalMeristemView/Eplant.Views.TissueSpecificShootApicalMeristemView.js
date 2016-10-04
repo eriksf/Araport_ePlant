@@ -17,7 +17,8 @@ Eplant.Views.TissueSpecificShootApicalMeristemView = function(geneticElement) {
 
 	// Call parent constructor
 	Eplant.View.call(this,
-		constructor.viewName,			// Name of the View visible to the user
+		constructor.displayName,			// Name of the View visible to the user
+		constructor.viewName,
 		constructor.hierarchy,			// Hierarchy of the View
 		constructor.magnification,			// Magnification level of the View
 		constructor.description,			// Description of the View visible to the user
@@ -37,7 +38,8 @@ Eplant.Views.TissueSpecificShootApicalMeristemView = function(geneticElement) {
 };
 ZUI.Util.inheritClass(Eplant.BaseViews.EFPView, Eplant.Views.TissueSpecificShootApicalMeristemView);	// Inherit parent prototype
 
-Eplant.Views.TissueSpecificShootApicalMeristemView.viewName = "Tissue Specific Shoot Apical Meristem eFP";
+Eplant.Views.TissueSpecificShootApicalMeristemView.viewName = "TissueSpecificShootApicalMeristemView";
+Eplant.Views.TissueSpecificShootApicalMeristemView.displayName = "Tissue Specific Shoot Apical Meristem eFP";
 Eplant.Views.TissueSpecificShootApicalMeristemView.hierarchy = "genetic element";
 Eplant.Views.TissueSpecificShootApicalMeristemView.magnification = 35;
 Eplant.Views.TissueSpecificShootApicalMeristemView.description = "Tissue Specific Shoot Apical Meristem eFP";

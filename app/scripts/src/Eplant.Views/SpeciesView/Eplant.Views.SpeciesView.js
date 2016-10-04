@@ -16,7 +16,8 @@ Eplant.Views.SpeciesView = function() {
 
 	// Call parent constructor
 	Eplant.View.call(this,
-		constructor.viewName,			// Name of the View visible to the user
+		constructor.displayName,			// Name of the View visible to the user
+		constructor.viewName,
 		constructor.hierarchy,			// Hierarchy of the View
 		constructor.magnification,			// Magnification level of the View
 		constructor.description,			// Description of the View visible to the user
@@ -36,7 +37,8 @@ Eplant.Views.SpeciesView = function() {
 };
 ZUI.Util.inheritClass(Eplant.View, Eplant.Views.SpeciesView);		// Inherit parent prototype
 
-Eplant.Views.SpeciesView.viewName = "Species Viewer";
+Eplant.Views.SpeciesView.viewName = "SpeciesView";
+Eplant.Views.SpeciesView.displayName = "Species Viewer";
 Eplant.Views.SpeciesView.hierarchy = "ePlant";
 Eplant.Views.SpeciesView.magnification = 20;
 Eplant.Views.SpeciesView.description = "Species viewer";

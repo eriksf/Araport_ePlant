@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
-<!DOCTYPE specimen SYSTEM "http://www.bar.utoronto.ca/efp/cgi-bin/data/efp_config.dtd">
+<!DOCTYPE specimen SYSTEM "//bar.utoronto.ca/efp/cgi-bin/data/efp_config.dtd">
 <specimen name="Arabidopsis">
 <view name="all" class="" db="atgenexp_plus" img="TissueSpecific-StigmaAndOvaries.svg">
 	<group name="CTRL_7">

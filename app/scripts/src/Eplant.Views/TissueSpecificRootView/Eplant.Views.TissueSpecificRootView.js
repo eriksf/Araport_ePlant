@@ -17,7 +17,8 @@ Eplant.Views.TissueSpecificRootView = function(geneticElement) {
 
 	// Call parent constructor
 	Eplant.View.call(this,
-		constructor.viewName,			// Name of the View visible to the user
+		constructor.displayName,			// Name of the View visible to the user
+		constructor.viewName,
 		constructor.hierarchy,			// Hierarchy of the View
 		constructor.magnification,			// Magnification level of the View
 		constructor.description,			// Description of the View visible to the user
@@ -36,7 +37,8 @@ Eplant.Views.TissueSpecificRootView = function(geneticElement) {
 };
 ZUI.Util.inheritClass(Eplant.BaseViews.EFPView, Eplant.Views.TissueSpecificRootView);	// Inherit parent prototype
 
-Eplant.Views.TissueSpecificRootView.viewName = "Tissue Specific Root eFP";
+Eplant.Views.TissueSpecificRootView.viewName = "TissueSpecificRootView";
+Eplant.Views.TissueSpecificRootView.displayName = "Tissue Specific Root eFP";
 Eplant.Views.TissueSpecificRootView.hierarchy = "genetic element";
 Eplant.Views.TissueSpecificRootView.magnification = 35;
 Eplant.Views.TissueSpecificRootView.description = "Tissue Specific Root eFP";

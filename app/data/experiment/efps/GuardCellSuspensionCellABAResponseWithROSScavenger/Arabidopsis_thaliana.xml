@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
-<!DOCTYPE specimen SYSTEM "http://www.bar.utoronto.ca/efp/cgi-bin/data/efp_config.dtd">
+<!DOCTYPE specimen SYSTEM "//bar.utoronto.ca/efp/cgi-bin/data/efp_config.dtd">
 <specimen name="Arabidopsis">
-<webservice>plantefp.cgi?datasource=guard_cell&amp;</webservice>
+<webservice>//bar.utoronto.ca/eplant/cgi-bin/plantefp.cgi?datasource=guard_cell&amp;</webservice>
 <view name="all" db="guard_cell" img="GuardCell-SuspensionCellABAResponseWithROSScavenger-2015-01-13.svg">
 	<info>
 		<li>Material from 5 dy old <i>Arabidopsis thaliana</i> T87 suspension cells of the Columbia-0 ecotype was analyzed.</li>

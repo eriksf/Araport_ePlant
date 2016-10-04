@@ -17,7 +17,8 @@ Eplant.Views.TissueSpecificStigmaAndOvariesView = function(geneticElement) {
 
 	// Call parent constructor
 	Eplant.View.call(this,
-		constructor.viewName,			// Name of the View visible to the user
+		constructor.displayName,			// Name of the View visible to the user
+		constructor.viewName,
 		constructor.hierarchy,			// Hierarchy of the View
 		constructor.magnification,			// Magnification level of the View
 		constructor.description,			// Description of the View visible to the user
@@ -36,7 +37,9 @@ Eplant.Views.TissueSpecificStigmaAndOvariesView = function(geneticElement) {
 };
 ZUI.Util.inheritClass(Eplant.BaseViews.EFPView, Eplant.Views.TissueSpecificStigmaAndOvariesView);	// Inherit parent prototype
 
-Eplant.Views.TissueSpecificStigmaAndOvariesView.viewName = "Tissue Specific Stigma And Ovaries eFP";
+
+Eplant.Views.TissueSpecificStigmaAndOvariesView.viewName = "TissueSpecificStigmaAndOvariesView";
+Eplant.Views.TissueSpecificStigmaAndOvariesView.displayName = "Tissue Specific Stigma And Ovaries eFP";
 Eplant.Views.TissueSpecificStigmaAndOvariesView.hierarchy = "genetic element";
 Eplant.Views.TissueSpecificStigmaAndOvariesView.magnification = 35;
 Eplant.Views.TissueSpecificStigmaAndOvariesView.description = "Tissue Specific Stigma And Ovaries eFP";

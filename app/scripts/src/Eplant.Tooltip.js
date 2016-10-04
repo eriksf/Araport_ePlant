@@ -28,8 +28,17 @@
 		$(this.domContainer).append(this.content);
 		
 		/* Get tooltip orientation */
-		var x = configs.x;
-		var y = configs.y;
+		var x;
+		var y ;
+		if(configs.x&&configs.y){
+			x = configs.x;
+			y = configs.y;
+			}
+		else{
+			x = cursorX;
+			y = cursorY;
+		}
+		
 		var my = (x > ZUI.width / 2) ? "right-25" : "left+25";
 		
 		var classes = "eplant-tooltip";//"+configs.classes;

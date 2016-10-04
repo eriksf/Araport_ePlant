@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
-<!DOCTYPE specimen SYSTEM "http://www.bar.utoronto.ca/efp/cgi-bin/data/efp_config.dtd">
+<!DOCTYPE specimen SYSTEM "//bar.utoronto.ca/efp/cgi-bin/data/efp_config.dtd">
 <specimen name="Arabidopsis">
 <view name="all" class="" db="atgenexp_plus" img="TissueSpecific-ShootApicalMeristem.svg">
-<webservice>plantefp.cgi?datasource=atgenexp_plus&amp;</webservice>
+<webservice>//bar.utoronto.ca/eplant/cgi-bin/plantefp.cgi?datasource=atgenexp_plus&amp;</webservice>
 	<info>
 		<li>Fluorescent reporters were introduced into an ap1-1;cal1-1 background (this double produces several hundred SAMs due to conversion of floral meristems into shoot meristems) to label zones as follows:</li>
 		<li>CZ CENTRAL ZONE pCLV3::mGFP5-ER Note: CLV3 expression extends into the 4th layer</li>

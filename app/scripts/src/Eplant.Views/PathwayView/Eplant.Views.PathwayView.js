@@ -234,7 +234,7 @@ Eplant.Views.PathwayView.prototype.setCyConf = function() {
  * Loads data.
  */
 Eplant.Views.PathwayView.prototype.loadData = function() {
-	$.getJSON("http://bar.utoronto.ca/eplant/cgi-bin/pathwaydiagram.cgi?agi=" + this.geneticElement.identifier, $.proxy(function(response) {
+	$.getJSON("//bar.utoronto.ca/eplant/cgi-bin/pathwaydiagram.cgi?agi=" + this.geneticElement.identifier, $.proxy(function(response) {
 		// Get element arrays
 		var nodes = this.cytoscapeConf.elements.nodes;
 		var edges = this.cytoscapeConf.elements.edges;

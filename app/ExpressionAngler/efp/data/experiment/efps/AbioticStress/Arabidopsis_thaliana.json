@@ -1,7 +1,7 @@
 {
     "width": 900,
     "height": 600,
-	"webService": "http://bar.utoronto.ca/eplant/cgi-bin/plantefp.cgi?datasource=atgenexp_stress&",
+	"webService": "//bar.utoronto.ca/eplant/cgi-bin/plantefp.cgi?datasource=atgenexp_stress&",
 
 	"labels": [
 		
@@ -1369,7 +1369,7 @@
 				"AtGen_6_0011",
 				"AtGen_6_0012"
 			],
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-001"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-001"
 		},
 		{
 			"paths": [
@@ -1386,7 +1386,7 @@
 				"AtGen_6_0012"
 			],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-001"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-001"
 		},
 		{
 			"paths": [
@@ -1403,7 +1403,7 @@
 				"AtGen_6_0012"
 			],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-001"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-001"
 		},
 		{
 			"paths": [
@@ -1420,7 +1420,7 @@
 				"AtGen_6_0012"
 			],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-001"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-001"
 		},
 		{
 			"paths": [
@@ -1437,7 +1437,7 @@
 				"AtGen_6_0012"
 			],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-001"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-001"
 		},
 		{
 			"paths": [
@@ -1454,7 +1454,7 @@
 				"AtGen_6_0012"
 			],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-001"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-001"
 		},
 		{
 			"paths": [
@@ -1470,7 +1470,7 @@
 				"AtGen_6_0011",
 				"AtGen_6_0012"
 			],
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-001"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-001"
 		},
 		{
 			"paths": [
@@ -1486,7 +1486,7 @@
 				"AtGen_6_0011",
 				"AtGen_6_0012"
 			],
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-001"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-001"
 		},
 		{
 			"paths": [
@@ -1502,7 +1502,7 @@
 				"AtGen_6_0011",
 				"AtGen_6_0012"
 			],
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-001"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-001"
 		},
 		{
 			"paths": [
@@ -1518,7 +1518,7 @@
 				"AtGen_6_0011",
 				"AtGen_6_0012"
 			],
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-001"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-001"
 		},
 
 	
@@ -1538,7 +1538,7 @@
 				"AtGen_6_0021",
 				"AtGen_6_0022"
 		],
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-002"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-002"
 		},
        {
 			"paths": [
@@ -1555,7 +1555,7 @@
 				"AtGen_6_0022"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-002"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-002"
 		},
        {
 			"paths": [
@@ -1572,7 +1572,7 @@
 				"AtGen_6_0022"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-002"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-002"
 		},
        {
 			"paths": [
@@ -1589,7 +1589,7 @@
 				"AtGen_6_0022"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-002"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-002"
 		},
        {
 			"paths": [
@@ -1606,7 +1606,7 @@
 				"AtGen_6_0022"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-002"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-002"
 		},        
        {
 			"paths": [
@@ -1623,7 +1623,7 @@
 				"AtGen_6_0022"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-002"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-002"
 		},     
        {
 			"paths": [
@@ -1640,7 +1640,7 @@
 				"AtGen_6_0022"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-002"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-002"
 		},  
        {
 			"paths": [
@@ -1657,7 +1657,7 @@
 				"AtGen_6_0022"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-002"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-002"
 		},  
        {
 			"paths": [
@@ -1674,7 +1674,7 @@
 				"AtGen_6_0022"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-002"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-002"
 		},  
        {
 			"paths": [
@@ -1691,7 +1691,7 @@
 				"AtGen_6_0022"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-002"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-002"
 		},
 
  {      
@@ -1708,7 +1708,7 @@
 				"AtGen_6_0711",
 				"AtGen_6_0712"
 		],
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-071"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-071"
 		},
        {
 			"paths": [
@@ -1725,7 +1725,7 @@
 				"AtGen_6_0712"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-471"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-471"
 		},
   {
 			"paths": [
@@ -1742,7 +1742,7 @@
 				"AtGen_6_0712"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-771"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-771"
 		},
   {
 			"paths": [
@@ -1759,7 +1759,7 @@
 				"AtGen_6_0712"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-871"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-871"
 		},
   {
 			"paths": [
@@ -1776,7 +1776,7 @@
 				"AtGen_6_0712"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-971"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-971"
 		},
 
 	
@@ -1797,7 +1797,7 @@
 				"AtGen_6_0722"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-072"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-072"
 		},
 {
 			"paths": [
@@ -1814,7 +1814,7 @@
 				"AtGen_6_0722"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-472"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-472"
 		},
 {
 			"paths": [
@@ -1831,7 +1831,7 @@
 				"AtGen_6_0722"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-772"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-772"
 		},
 {
 			"paths": [
@@ -1848,7 +1848,7 @@
 				"AtGen_6_0722"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-872"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-872"
 		},
 {
 			"paths": [
@@ -1865,7 +1865,7 @@
 				"AtGen_6_0722"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-972"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-972"
 		},
 {
 	
@@ -1883,7 +1883,7 @@
 				"AtGen_6_0112"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-011"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-011"
 		},
 {
 			"paths": [
@@ -1900,7 +1900,7 @@
 				"AtGen_6_0112"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-111"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-111"
 		},
 {
 			"paths": [
@@ -1917,7 +1917,7 @@
 				"AtGen_6_0112"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-211"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-211"
 		},
 {
 			"paths": [
@@ -1934,7 +1934,7 @@
 				"AtGen_6_0112"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-311"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-311"
 		},
 {
 			"paths": [
@@ -1951,7 +1951,7 @@
 				"AtGen_6_0112"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-411"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-411"
 		},
 {
 			"paths": [
@@ -1968,7 +1968,7 @@
 				"AtGen_6_0112"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-511"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-511"
 		},
 {
 			"paths": [
@@ -1985,7 +1985,7 @@
 				"AtGen_6_0112"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-611"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-611"
 		},
 {
 			"paths": [
@@ -2002,7 +2002,7 @@
 				"AtGen_6_0112"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-711"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-711"
 		},
 {
 			"paths": [
@@ -2019,7 +2019,7 @@
 				"AtGen_6_0112"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-811"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-811"
 		},
 {
 			"paths": [
@@ -2036,7 +2036,7 @@
 				"AtGen_6_0112"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-911"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-911"
 		},
 {
 	
@@ -2054,7 +2054,7 @@
 				"AtGen_6_0122"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-012"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-012"
 		},
 {
 			"paths": [
@@ -2071,7 +2071,7 @@
 				"AtGen_6_0122"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-112"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-112"
 		},
 {
 			"paths": [
@@ -2088,7 +2088,7 @@
 				"AtGen_6_0122"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-212"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-212"
 		},
 {
 			"paths": [
@@ -2105,7 +2105,7 @@
 				"AtGen_6_0122"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-312"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-312"
 		},
 {
 			"paths": [
@@ -2122,7 +2122,7 @@
 				"AtGen_6_0122"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-412"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-412"
 		},
 {
 			"paths": [
@@ -2139,7 +2139,7 @@
 				"AtGen_6_0122"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-512"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-512"
 		},
 {
 			"paths": [
@@ -2156,7 +2156,7 @@
 				"AtGen_6_0122"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-612"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-612"
 		},
 {
 			"paths": [
@@ -2173,7 +2173,7 @@
 				"AtGen_6_0122"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-712"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-712"
 		},
 {
 			"paths": [
@@ -2190,7 +2190,7 @@
 				"AtGen_6_0122"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-812"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-812"
 		},
 {
 			"paths": [
@@ -2207,7 +2207,7 @@
 				"AtGen_6_0122"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-912"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-912"
 		},
 {
 	
@@ -2226,7 +2226,7 @@
 				"AtGen_6_0212"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-021"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-021"
 		},
 {
 			"paths": [
@@ -2243,7 +2243,7 @@
 				"AtGen_6_0212"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-121"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-121"
 		},
 {
 			"paths": [
@@ -2260,7 +2260,7 @@
 				"AtGen_6_0212"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-221"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-221"
 		},
 {
 			"paths": [
@@ -2277,7 +2277,7 @@
 				"AtGen_6_0212"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-321"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-321"
 		},
 {
 			"paths": [
@@ -2294,7 +2294,7 @@
 				"AtGen_6_0212"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-421"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-421"
 		},
 {
 			"paths": [
@@ -2311,7 +2311,7 @@
 				"AtGen_6_0212"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-521"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-521"
 		},
 {
 			"paths": [
@@ -2328,7 +2328,7 @@
 				"AtGen_6_0212"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-621"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-621"
 		},
 {
 			"paths": [
@@ -2345,7 +2345,7 @@
 				"AtGen_6_0212"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-721"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-721"
 		},
 {
 			"paths": [
@@ -2362,7 +2362,7 @@
 				"AtGen_6_0212"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-821"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-821"
 		},
 {
 			"paths": [
@@ -2379,7 +2379,7 @@
 				"AtGen_6_0212"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-921"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-921"
 		},
 {
 	
@@ -2397,7 +2397,7 @@
 				"AtGen_6_0221",
 				"AtGen_6_0222"
 		],
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-022"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-022"
 		},
 {
 			"paths": [
@@ -2414,7 +2414,7 @@
 				"AtGen_6_0222"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-122"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-122"
 		},
 {
 			"paths": [	
@@ -2431,7 +2431,7 @@
 				"AtGen_6_0222"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-222"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-222"
 		},
 {
 			"paths": [	
@@ -2448,7 +2448,7 @@
 				"AtGen_6_0222"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-322"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-322"
 		},
 {
 			"paths": [	
@@ -2465,7 +2465,7 @@
 				"AtGen_6_0222"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-422"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-422"
 		},
 {
 			"paths": [	
@@ -2482,7 +2482,7 @@
 				"AtGen_6_0222"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-522"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-522"
 		},
 {
 			"paths": [	
@@ -2499,7 +2499,7 @@
 				"AtGen_6_0222"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-622"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-622"
 		},
 {
 			"paths": [	
@@ -2516,7 +2516,7 @@
 				"AtGen_6_0222"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-722"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-722"
 		},
 {
 			"paths": [	
@@ -2533,7 +2533,7 @@
 				"AtGen_6_0222"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-822"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-822"
 		},
 {
 			"paths": [	
@@ -2550,7 +2550,7 @@
 				"AtGen_6_0222"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-922"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-922"
 		},
 {
 	
@@ -2569,7 +2569,7 @@
 				"AtGen_6_0312"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-031"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-031"
 		},
 {
 			"paths": [	
@@ -2586,7 +2586,7 @@
 				"AtGen_6_0312"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-131"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-131"
 		},
 {
 			"paths": [	
@@ -2603,7 +2603,7 @@
 				"AtGen_6_0312"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-231"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-231"
 		},
 {
 			"paths": [	
@@ -2620,7 +2620,7 @@
 				"AtGen_6_0312"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-331"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-331"
 		},
 {
 			"paths": [	
@@ -2637,7 +2637,7 @@
 				"AtGen_6_0312"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-431"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-431"
 		},
 {
 			"paths": [	
@@ -2654,7 +2654,7 @@
 				"AtGen_6_0312"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-531"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-531"
 		},
 {
 			"paths": [	
@@ -2671,7 +2671,7 @@
 				"AtGen_6_0312"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-631"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-631"
 		},
 {
 			"paths": [	
@@ -2688,7 +2688,7 @@
 				"AtGen_6_0312"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-731"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-731"
 		},
 {
 			"paths": [	
@@ -2705,7 +2705,7 @@
 				"AtGen_6_0312"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-831"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-831"
 		},
 {
 			"paths": [	
@@ -2722,7 +2722,7 @@
 				"AtGen_6_0312"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-931"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-931"
 		},
 {
 	
@@ -2741,7 +2741,7 @@
 				"AtGen_6_0322"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-032"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-032"
 		},
 {
 			"paths": [	
@@ -2758,7 +2758,7 @@
 				"AtGen_6_0322"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-132"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-132"
 		},
 {
 			"paths": [	
@@ -2775,7 +2775,7 @@
 				"AtGen_6_0322"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-232"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-232"
 		},
 {
 			"paths": [	
@@ -2792,7 +2792,7 @@
 				"AtGen_6_0322"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-332"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-332"
 		},
 {
 			"paths": [	
@@ -2809,7 +2809,7 @@
 				"AtGen_6_0322"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-432"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-432"
 		},
 {
 			"paths": [	
@@ -2826,7 +2826,7 @@
 				"AtGen_6_0322"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-532"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-532"
 		},
 {
 			"paths": [	
@@ -2843,7 +2843,7 @@
 				"AtGen_6_0322"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-632"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-632"
 		},
 {
 			"paths": [	
@@ -2860,7 +2860,7 @@
 				"AtGen_6_0322"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-732"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-732"
 		},
 {
 			"paths": [	
@@ -2877,7 +2877,7 @@
 				"AtGen_6_0322"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-832"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-832"
 		},
 {
 			"paths": [	
@@ -2894,7 +2894,7 @@
 				"AtGen_6_0322"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-932"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-932"
 		},
 {
 	
@@ -2913,7 +2913,7 @@
 				"AtGen_6_0812"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-081"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-081"
 		},
 {
 			"paths": [	
@@ -2930,7 +2930,7 @@
 				"AtGen_6_0812"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-981"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-981"
 		},
 {
 	
@@ -2949,7 +2949,7 @@
 				"AtGen_6_0822"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-082"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-082"
 		},
 {
 			"paths": [	
@@ -2966,7 +2966,7 @@
 				"AtGen_6_0822"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-982"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-982"
 		},
 {
 	
@@ -2984,7 +2984,7 @@
 				"AtGen_6_0411",
 				"AtGen_6_0412"
 		],
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-041"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-041"
 		},
 {
 			"paths": [	
@@ -3001,7 +3001,7 @@
 				"AtGen_6_0412"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-141"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-141"
 		},
 {
 			"paths": [	
@@ -3018,7 +3018,7 @@
 				"AtGen_6_0412"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-241"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-241"
 		},
 {
 			"paths": [	
@@ -3035,7 +3035,7 @@
 				"AtGen_6_0412"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-341"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-341"
 		},
 {
 			"paths": [	
@@ -3052,7 +3052,7 @@
 				"AtGen_6_0412"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-441"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-441"
 		},
 {
 			"paths": [	
@@ -3069,7 +3069,7 @@
 				"AtGen_6_0412"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-541"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-541"
 		},
 {
 			"paths": [	
@@ -3086,7 +3086,7 @@
 				"AtGen_6_0412"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-641"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-641"
 		},
 {
 			"paths": [	
@@ -3103,7 +3103,7 @@
 				"AtGen_6_0412"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-741"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-741"
 		},
 {
 			"paths": [	
@@ -3120,7 +3120,7 @@
 				"AtGen_6_0412"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-841"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-841"
 		},
 {
 			"paths": [	
@@ -3137,7 +3137,7 @@
 				"AtGen_6_0412"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-941"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-941"
 		},
 {
 	
@@ -3156,7 +3156,7 @@
 				"AtGen_6_0422"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-042"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-042"
 		},
 {
 			"paths": [	
@@ -3173,7 +3173,7 @@
 				"AtGen_6_0422"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-142"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-142"
 		},
 {
 			"paths": [	
@@ -3190,7 +3190,7 @@
 				"AtGen_6_0422"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-242"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-242"
 		},
 {
 			"paths": [	
@@ -3207,7 +3207,7 @@
 				"AtGen_6_0422"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-342"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-342"
 		},
 {
 			"paths": [	
@@ -3224,7 +3224,7 @@
 				"AtGen_6_0422"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-442"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-442"
 		},
 {
 			"paths": [	
@@ -3241,7 +3241,7 @@
 				"AtGen_6_0422"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-542"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-542"
 		},
 {
 			"paths": [	
@@ -3258,7 +3258,7 @@
 				"AtGen_6_0422"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-642"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-642"
 		},
 {
 			"paths": [	
@@ -3275,7 +3275,7 @@
 				"AtGen_6_0422"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-742"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-742"
 		},
 {
 			"paths": [	
@@ -3292,7 +3292,7 @@
 				"AtGen_6_0422"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-842"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-842"
 		},
 {
 			"paths": [	
@@ -3309,7 +3309,7 @@
 				"AtGen_6_0422"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-942"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-942"
 		},
 {
 	
@@ -3328,7 +3328,7 @@
 				"AtGen_6_0512"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-051"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-051"
 		},
 {
 			"paths": [	
@@ -3345,7 +3345,7 @@
 				"AtGen_6_0512"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-151"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-151"
 		},
 {
 			"paths": [	
@@ -3362,7 +3362,7 @@
 				"AtGen_6_0512"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-251"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-251"
 		},
 {
 			"paths": [	
@@ -3379,7 +3379,7 @@
 				"AtGen_6_0512"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-351"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-351"
 		},
 {
 			"paths": [	
@@ -3396,7 +3396,7 @@
 				"AtGen_6_0512"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-451"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-451"
 		},
 {
 			"paths": [	
@@ -3413,7 +3413,7 @@
 				"AtGen_6_0512"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-551"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-551"
 		},
 {
 			"paths": [	
@@ -3430,7 +3430,7 @@
 				"AtGen_6_0512"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-651"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-651"
 		},
 {
 			"paths": [	
@@ -3447,7 +3447,7 @@
 				"AtGen_6_0512"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-751"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-751"
 		},
 {
 			"paths": [	
@@ -3464,7 +3464,7 @@
 				"AtGen_6_0512"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-851"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-851"
 		},
 {
 			"paths": [	
@@ -3481,7 +3481,7 @@
 				"AtGen_6_0512"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-951"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-951"
 		},
 {
 	
@@ -3501,7 +3501,7 @@
 				"AtGen_6_0522"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-052"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-052"
 		},
 {
 			"paths": [	
@@ -3518,7 +3518,7 @@
 				"AtGen_6_0522"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-152"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-152"
 		},
 {
 			"paths": [	
@@ -3535,7 +3535,7 @@
 				"AtGen_6_0522"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-252"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-252"
 		},
 {
 			"paths": [	
@@ -3552,7 +3552,7 @@
 				"AtGen_6_0522"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-352"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-352"
 		},
 {
 			"paths": [	
@@ -3569,7 +3569,7 @@
 				"AtGen_6_0522"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-452"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-452"
 		},
 {
 			"paths": [	
@@ -3586,7 +3586,7 @@
 				"AtGen_6_0522"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-552"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-552"
 		},
 {
 			"paths": [	
@@ -3603,7 +3603,7 @@
 				"AtGen_6_0522"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-652"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-652"
 		},
 {
 			"paths": [	
@@ -3620,7 +3620,7 @@
 				"AtGen_6_0522"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-752"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-752"
 		},
 {
 			"paths": [	
@@ -3637,7 +3637,7 @@
 				"AtGen_6_0522"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-852"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-852"
 		},
 {
 			"paths": [	
@@ -3654,7 +3654,7 @@
 				"AtGen_6_0522"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-952"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-952"
 		},
 {
 	
@@ -3672,7 +3672,7 @@
 				"AtGen_6_0611",
 				"AtGen_6_0612"
 		],
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-061"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-061"
 		},
 {
 			"paths": [	
@@ -3689,7 +3689,7 @@
 				"AtGen_6_0612"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-161"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-161"
 		},
 {
 			"paths": [	
@@ -3706,7 +3706,7 @@
 				"AtGen_6_0612"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-261"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-261"
 		},
 {
 			"paths": [	
@@ -3723,7 +3723,7 @@
 				"AtGen_6_0612"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-361"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-361"
 		},
 {
 			"paths": [	
@@ -3740,7 +3740,7 @@
 				"AtGen_6_0612"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-461"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-461"
 		},
 {
 			"paths": [	
@@ -3757,7 +3757,7 @@
 				"AtGen_6_0612"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-561"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-561"
 		},
 {
 			"paths": [	
@@ -3774,7 +3774,7 @@
 				"AtGen_6_0612"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-661"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-661"
 		},
 {
 			"paths": [	
@@ -3791,7 +3791,7 @@
 				"AtGen_6_0612"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-761"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-761"
 		},
 {
 			"paths": [	
@@ -3808,7 +3808,7 @@
 				"AtGen_6_0612"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-861"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-861"
 		},
 {
 			"paths": [	
@@ -3825,7 +3825,7 @@
 				"AtGen_6_0612"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-961"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-961"
 		},
 {
 	
@@ -3842,7 +3842,7 @@
 				"AtGen_6_0621",
 				"AtGen_6_0622"
 		],
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-062"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-062"
 		},
 {
 			"paths": [	
@@ -3859,7 +3859,7 @@
 				"AtGen_6_0622"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-162"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-162"
 		},
 {
 			"paths": [	
@@ -3876,7 +3876,7 @@
 				"AtGen_6_0622"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-262"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-262"
 		},
 {
 			"paths": [	
@@ -3893,7 +3893,7 @@
 				"AtGen_6_0622"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-362"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-362"
 		},
 {
 			"paths": [	
@@ -3910,7 +3910,7 @@
 				"AtGen_6_0622"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-462"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-462"
 		},
 {
 			"paths": [	
@@ -3927,7 +3927,7 @@
 				"AtGen_6_0622"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-562"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-562"
 		},
 {
 			"paths": [	
@@ -3944,7 +3944,7 @@
 				"AtGen_6_0622"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-662"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-662"
 		},
 {
 			"paths": [	
@@ -3961,7 +3961,7 @@
 				"AtGen_6_0622"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-762"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-762"
 		},
 {
 			"paths": [	
@@ -3978,7 +3978,7 @@
 				"AtGen_6_0622"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-862"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-862"
 		},
 {
 			"paths": [	
@@ -3995,7 +3995,7 @@
 				"AtGen_6_0622"
 		],
 
-			"source": "http://www.bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-962"
+			"source": "//bar.utoronto.ca/NASCArrays/index.php?SlideID=AtGen_6-962"
 		}
 
 

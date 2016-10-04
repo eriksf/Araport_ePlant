@@ -13,5 +13,13 @@
 "Tissue Specific Stem Epidermis",
 "Tissue Specific Stigma And Ovaries", 
 "Tissue Specific Trichomes", 
-"Tissue Specific Xylem And Cork"
+"Tissue Specific Xylem And Cork",
+"Biotic Stress Botrytis Cinerea",
+"Biotic Stress Elicitors",
+"Biotic Stress ErysipheOrontii",
+"Biotic Stress Hyaloperonospora Arabidopsis",
+"Biotic Stress Myzus Persicaere",
+"Biotic Stress Phytophthora Infestans",
+"Biotic Stress Pseusdomonas Syringae"
+				
 ]

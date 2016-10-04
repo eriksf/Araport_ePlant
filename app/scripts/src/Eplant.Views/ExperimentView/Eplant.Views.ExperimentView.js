@@ -16,7 +16,8 @@ Eplant.Views.ExperimentView = function() {
 
 	// Call parent constructor
 	Eplant.View.call(this,
-		constructor.viewName,			// Name of the View visible to the user
+		constructor.displayName,			// Name of the View visible to the user
+		constructor.viewName,
 		constructor.hierarchy,			// Hierarchy of the View
 		constructor.magnification,			// Magnification level of the View
 		constructor.description,			// Description of the View visible to the user
@@ -34,12 +35,13 @@ Eplant.Views.ExperimentView = function() {
 	/* Create SelectList */
 	this.selectList = new Eplant.Views.ExperimentView.SelectList(this);
 
-		this.loadFinish();
+		//this.loadFinish();
 
 };
 ZUI.Util.inheritClass(Eplant.View, Eplant.Views.ExperimentView);		// Inherit parent prototype
 
-Eplant.Views.ExperimentView.viewName = "Tissue & Experiment eFP viewers";
+Eplant.Views.ExperimentView.viewName = "ExperimentView";
+Eplant.Views.ExperimentView.displayName = "Tissue & Experiment eFP viewers";
 Eplant.Views.ExperimentView.hierarchy = "species";
 Eplant.Views.ExperimentView.magnification = 30;
 Eplant.Views.ExperimentView.description = "Tissue & Experiment eFP viewers";

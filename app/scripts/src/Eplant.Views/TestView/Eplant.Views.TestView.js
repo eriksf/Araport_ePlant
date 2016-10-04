@@ -281,7 +281,7 @@
             url: this.efpURL,
             dataType: "xml",
             success: $.proxy(function(response) {
-		this.webService = "http://bar.utoronto.ca/eplant/cgi-bin/plantefp.cgi?datasource=atgenexp_plus&";
+		this.webService = "//bar.utoronto.ca/eplant/cgi-bin/plantefp.cgi?datasource=atgenexp_plus&";
                 /* Prepare array for samples loading */
             var samples = [];
 
