@@ -148,8 +148,8 @@
 			Eplant.Views.MoleculeView.Params.htmlPage = data;
 		});
 
-		Eplant.Views.MoleculeView.Params.acidLetterMap = $.get(Eplant.Views.MoleculeView.Params.acidLetterMapUrl, function(data) {
-			Eplant.Views.MoleculeView.Params.acidLetterMap = JSON.parse( data );
+		Eplant.Views.MoleculeView.Params.acidLetterMap = $.getJSON(Eplant.Views.MoleculeView.Params.acidLetterMapUrl, function(data) {
+			Eplant.Views.MoleculeView.Params.acidLetterMap =  data;
 		});
 
 	};

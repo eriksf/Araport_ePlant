@@ -1813,6 +1813,11 @@
 						
 						/* Add Species to ePlant */
 						Eplant.addSpecies(species);
+
+						/* Araport: Set Arabidopsis as active species */
+						if (n == 0) {
+							Eplant.setActiveSpecies(species);
+						}
 					}
 					
 					/* Set Species load status */

@@ -167,5 +167,8 @@
     "scripts/js/jquery.mCustomScrollbar.css",
     "styles/eplant.css"
   ],
+  "tags": [
+    "arabidopsis", "eplant", "BAR"
+  ],
   "fullscreen": "require"
 }
