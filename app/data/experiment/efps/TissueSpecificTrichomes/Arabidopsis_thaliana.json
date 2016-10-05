@@ -1,7 +1,7 @@
 {
 	"width": 900,
 	"height": 600,
-	"webService": "//bar.utoronto.ca/eplant/cgi-bin/plantefp.cgi?datasource=atgenexp_plus&",
+	"webService": "plantefp.cgi?datasource=atgenexp_plus&",
 	"labels": [
 		{
 			"x": 110,

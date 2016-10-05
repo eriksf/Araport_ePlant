@@ -4,6 +4,5 @@ $ = jQuery;
   'use strict';
 
   console.log('Hello, Araport_ePlant!');
-  Agave = window.Agave;
 
 })(window, jQuery);

@@ -644,7 +644,7 @@
 					dataType: "json",
 					async: false,
 					cache: false,
-					url: this.webService + "id=" + this.geneticElement.identifier, 
+					url: Eplant.ServiceUrl + "cellefp.cgi?id=" + this.geneticElement.identifier, 
 					success: $.proxy(function(response) {
 						this.eFPView.Xhrs.loadSamplesXhr=null;
 						this.eFPView.rawSampleData= JSON.stringify(response);

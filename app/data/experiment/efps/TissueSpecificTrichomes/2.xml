@@ -2,7 +2,7 @@
 <!DOCTYPE specimen SYSTEM "//bar.utoronto.ca/efp/cgi-bin/data/efp_config.dtd">
 <specimen name="Arabidopsis">
 <view name="all" class="" db="atgenexp_plus" img="TissueSpecific-Trichomes.svg">
-<webservice>//bar.utoronto.ca/eplant/cgi-bin/plantefp.cgi?datasource=atgenexp_plus&amp;</webservice>
+<webservice>plantefp.cgi?datasource=atgenexp_plus&amp;</webservice>
 	<info>
 		<li>WT Col-0 and mutant plants were grown for 28 days in continuous light (at the University of Minnesota) or a 16/8 h light/dark cycle at the Noble Foundation (Oklahoma), under perforated metal sheets such that leaves could be rapidly harvested with a razor blade</li>
 		<li>Trichomes were dislodged by vortexing with small glass beads 60-80 mm in diameter in 1x PBS   in the presence of 50 mM EGTA, and were retrieved with a 100 mm cell strainer</li>

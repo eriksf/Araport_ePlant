@@ -2,7 +2,7 @@
 <!DOCTYPE specimen SYSTEM "//bar.utoronto.ca/efp/cgi-bin/data/efp_config.dtd">
 <specimen name="Arabidopsis">
 <view name="all" class="" db="atgenexp_plus" img="TissueSpecific-Microgametogenesis.svg">
-	<webservice>//bar.utoronto.ca/eplant/cgi-bin/plantefp.cgi?datasource=atgenexp_plus&amp;</webservice>
+	<webservice>plantefp.cgi?datasource=atgenexp_plus&amp;</webservice>
 	<info>
 		<li>Plant material from the pollen of 5.10 growth stage wild-type Arabidopsis thaliana plants of Ler-0 ecotype was analyzed</li>
 		<li>Plants grown under 16/8 hour light/dark conditions at 21°C</li>

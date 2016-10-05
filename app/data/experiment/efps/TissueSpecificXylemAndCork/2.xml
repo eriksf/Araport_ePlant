@@ -2,7 +2,7 @@
 <!DOCTYPE specimen SYSTEM "//bar.utoronto.ca/efp/cgi-bin/data/efp_config.dtd">
 <specimen name="Arabidopsis">
 <view name="all" class="" db="atgenexp_plus" img="TissueSpecific-XylemAndCork.svg">
-<webservice>//bar.utoronto.ca/eplant/cgi-bin/plantefp.cgi?datasource=atgenexp_plus&amp;</webservice>
+<webservice>plantefp.cgi?datasource=atgenexp_plus&amp;</webservice>
 <info>
 	<li>Plant material from the xylem and cork of Arabidopsis thaliana plants of Columbia-0 ecotype was analyzed</li>
 	<li>Secondary thickened hypocotyl was induced by continual removal of the inflorescence stem for 10 weeks</li>

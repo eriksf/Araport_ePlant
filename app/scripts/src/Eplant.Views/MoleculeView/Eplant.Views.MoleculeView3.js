@@ -134,7 +134,7 @@
 		Eplant.Views.MoleculeView.Params = {
 			htmlPage: '',
 			jsFile: "WebContent/mysj/molViewer41.js",
-			page_fragment: "pages/molviewer.html",
+			page_fragment: "app/pages/molviewer.html",
 			page_css: "WebContent/css/styles41.css",
 			acidLetterMapUrl: "app/data/molecule/AcidLetterMap.json",
 			acidLetterMap:null,
@@ -148,8 +148,8 @@
 			Eplant.Views.MoleculeView.Params.htmlPage = data;
 		});
 
-		Eplant.Views.MoleculeView.Params.acidLetterMap = $.get(Eplant.Views.MoleculeView.Params.acidLetterMapUrl, function(data) {
-			Eplant.Views.MoleculeView.Params.acidLetterMap = JSON.parse( data );
+		Eplant.Views.MoleculeView.Params.acidLetterMap = $.getJSON(Eplant.Views.MoleculeView.Params.acidLetterMapUrl, function(data) {
+			Eplant.Views.MoleculeView.Params.acidLetterMap =  data;
 		});
 
 	};
@@ -173,9 +173,14 @@
 							var divided = this.divideSequence(raw, moleculeSequenceStringArr, response);
 
 							$.ajax({
-								url: '//bar.utoronto.ca/webservices/araport/api/bar_get_protein_sequence_by_identifier.php/search?identifier='+this.geneticElement.identifier+'.1&source=Araport',
+								beforeSend: function(request) {
+									request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+								},
+								dataType: "json",
+								async: false,
+								cache: false,
+								url: 'https://api.araport.org/community/v0.3/aip/get_protein_sequence_by_identifier_v0.2/search?identifier='+this.geneticElement.identifier+'.1',
 								type: 'GET',
-								timeout: 50000,
 								error: $.proxy(function() {
 									this.getConfig(data,response,divided.moleculeSequenceStringArr,divided.gaps);
 								},this),

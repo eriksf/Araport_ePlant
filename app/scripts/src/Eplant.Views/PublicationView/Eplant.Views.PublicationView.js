@@ -85,7 +85,7 @@
 
 		Eplant.Views.PublicationView.Params = {
 			htmlPage: '',
-			page_fragment: "pages/publication.html"
+			page_fragment: "app/pages/publication.html"
 		}
 
 		Eplant.Views.PublicationView.Params.htmlPage = $.get(Eplant.Views.PublicationView.Params.page_fragment, function(data) {
@@ -165,10 +165,13 @@
 				searching: true,
 				select: true,
 				ajax: {
-					type: 'GET',
-					url: '//bar.utoronto.ca/webservices/araport/api/bar_publications_by_locus.php',
-					async: true,
-					data: { locus: this.geneticElement.identifier },
+					beforeSend: function(request) {
+						request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+					},
+					async: false,
+					cache: false,
+					type: "GET",
+					url: 'https://api.araport.org/community/v0.3/araport/publications_by_locus_v0.1/search?locus=' + this.geneticElement.identifier,
 					dataType: 'json',
 					"dataSrc": "result"
 				},
@@ -203,10 +206,13 @@
 				searching: true,
 				select: true,
 				ajax: {
-					type: 'GET',
-					url: '//bar.utoronto.ca/webservices/araport/api/bar_generifs_by_locus.php',
-					async: true,
-					data: { locus: this.geneticElement.identifier },
+					beforeSend: function(request) {
+						request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+					},
+					async: false,
+					cache: false,
+					type: "GET",
+					url: 'https://api.araport.org/community/v0.3/araport/generifs_by_locus_v0.1/search?locus=' + this.geneticElement.identifier,
 					dataType: 'json',
 					"dataSrc": "result"
 				},
