@@ -1793,6 +1793,7 @@
 				beforeSend: function(request) {
 					request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
 				},
+				type: "GET",
 				dataType: "json",
 				async: false,
 				cache: false,

@@ -86,35 +86,42 @@
 	*/
 	Eplant.BaseViews.EFPView.GeneDistributionChart.prototype.update = function(exp) {
 		if(!this.pinUpdated){
-			$.get("//bar.utoronto.ca/eplant/cgi-bin/get_rank.php?expression="+exp, $.proxy(function(data) {
-				if(data.status==="success"){
-					var value = parseInt(data.result[0].percentile,10);
-					var svgDoc = this.svg[0];
+			$.ajax({
+				beforeSend: function(request) {
+					request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+				},
+				async: false,
+				cache: false,
+				type: "GET",
+				url: Eplant.ServiceUrl + "get_rank.php?expression="+exp, 
+				success: $.proxy(function(data) {
+					if(data.status==="success"){
+						var value = parseInt(data.result[0].percentile,10);
+						var svgDoc = this.svg[0];
 
-					// map incoming value onto chart to get mappedValue
-					var baseline = svgDoc.getElementById("baseline");
-					var x1 = parseInt( baseline.getAttributeNode("x1").nodeValue );
-					var x2 = parseInt( baseline.getAttributeNode("x2").nodeValue );
-					var mappedValue = ( x1 + ((value/100) * (x2-x1)) );
+						// map incoming value onto chart to get mappedValue
+						var baseline = svgDoc.getElementById("baseline");
+						var x1 = parseInt( baseline.getAttributeNode("x1").nodeValue );
+						var x2 = parseInt( baseline.getAttributeNode("x2").nodeValue );
+						var mappedValue = ( x1 + ((value/100) * (x2-x1)) );
 
-					// move the pin and adjust the value label
-					var circle = svgDoc.getElementById("pinMarkerCircle");
-					circle.setAttributeNS(null, "cx", mappedValue);
+						// move the pin and adjust the value label
+						var circle = svgDoc.getElementById("pinMarkerCircle");
+						circle.setAttributeNS(null, "cx", mappedValue);
 
-					var line = svgDoc.getElementById("pinMarkerLine");
-					line.setAttributeNS(null, "x1", mappedValue);
-					line.setAttributeNS(null, "x2", mappedValue);
+						var line = svgDoc.getElementById("pinMarkerLine");
+						line.setAttributeNS(null, "x1", mappedValue);
+						line.setAttributeNS(null, "x2", mappedValue);
 
-					var text = svgDoc.getElementById("pinMarkerValue");
-					text.setAttributeNS(null, "x", mappedValue);
-					text.textContent = value+"%";
-					this.pinUpdated = true;
-				}
+						var text = svgDoc.getElementById("pinMarkerValue");
+						text.setAttributeNS(null, "x", mappedValue);
+						text.textContent = value+"%";
+						this.pinUpdated = true;
+					}
 
-			},this));
-
+				},this)
+			});
 		}
-
 	};
 
 	/**

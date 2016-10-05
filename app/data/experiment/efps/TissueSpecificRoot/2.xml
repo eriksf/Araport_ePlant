@@ -2,7 +2,7 @@
 <!DOCTYPE specimen SYSTEM "//bar.utoronto.ca/efp/cgi-bin/data/efp_config.dtd">
 <specimen name="Arabidopsis">
 	<view name="all" class="" db="atgenexp_plus" img="TissueSpecific-Root.svg">
-	<webservice>//bar.utoronto.ca/eplant/cgi-bin/plantefp.cgi?datasource=atgenexp_plus&amp;</webservice>
+	<webservice>plantefp.cgi?datasource=atgenexp_plus&amp;</webservice>
 	<info>
 		<li>Material from the roots of 6 day old wild-type Col-0 Arabidopsis thaliana plants was analyzed</li>
 		<li>Plants grown under 16/8 hour light/dark conditions on MS + 4.5% sucrose media</li>

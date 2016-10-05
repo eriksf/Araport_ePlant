@@ -581,7 +581,7 @@
 			url: this.xmlURL,
 			dataType: "xml",
 			success: $.proxy(function(response) {
-				this.Xhrs.loadDataXhr =null;
+				// this.Xhrs.loadDataXhr =null; // Araport: Not sure what this does
 				var infoXml = $(response).find('info');
 				if (infoXml.length > 0) {
 					this.infoHtml = infoXml.html();
@@ -705,11 +705,12 @@
 				};
 			
 				/* Query */
- 				$.ajax({
+ 				this.Xhrs.loadSamplesXhr = $.ajax({
 					beforeSend: function(request) {
 						request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
 					},
 					dataType: "json",
+					type: "GET",
 					async: false,
 					cache: false,
 					url: this.webService + "id=" + this.geneticElement.identifier + "&samples=" + JSON.stringify(sampleNames), 
@@ -746,7 +747,7 @@
 						this.eFPView.processValues();
 					}, wrapper)
 				});
-			})
+			}, this)
 		});
 	};
 	

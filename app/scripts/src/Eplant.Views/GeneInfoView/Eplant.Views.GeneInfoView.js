@@ -174,10 +174,13 @@
 
 			// Gene Summary information from Araport:
 			$.ajax({
+				beforeSend: function(request) {
+					request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+				},
+				async: false,
+				cache: false,
 				type: 'GET',
-				url: '//bar.utoronto.ca/webservices/araport/api/bar_gene_summary_by_locus.php',
-				async: true,
-				data: { locus: this.geneticElement.identifier },
+				url: 'https://api.araport.org/community/v0.3/araport/gene_summary_by_locus_v0.2/search?locus=' + this.geneticElement.identifier,
 				dataType: 'json',
 				success: $.proxy(function(data) {
 					this.geneSummaryRawData = JSON.stringify(data);
@@ -220,11 +223,15 @@
 
 					// Get Data For Gene Model
 					$.ajax({
-						//url: '//bar.utoronto.ca/webservices/araport/api/bar_araport11_gene_structure_by_locus.php',
-						url: '//bar.utoronto.ca/webservices/araport/api/bar_araport11_gff_region_to_jbrowse.php?q=features&chr='+this.geneticElement.chromosome.identifier+'&start='+this.chromosome_start+'&end='+this.chromosome_end+'&completely_within=true&interbase=true',
+						beforeSend: function(request) {
+							request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+						},
+						type: "GET",
+						dataType: "json",
+						async: false,
+						cache: false,
+						url: 'https://api.araport.org/community/v0.3/araport/araport11_gff_region_to_jbrowse_v0.1/search?q=features&chr='+this.geneticElement.chromosome.identifier+'&start='+this.chromosome_start+'&end='+this.chromosome_end+'&completely_within=true&interbase=true',
 						//data: { locus: this.geneticElement.identifier },
-						type: 'GET',
-						dataType: 'json',
 						success: $.proxy(function(data) {
 
 							this.geneModelRawData = JSON.stringify(data);
@@ -369,10 +376,14 @@
 
 			// Get DNA sequence
 			$.ajax({
-				url: '//bar.utoronto.ca/webservices/araport/api/bar_get_sequence_by_identifier.php',
-				data: { identifier: this.geneticElement.identifier },
-				type: 'GET',
-				dataType: 'json',
+				beforeSend: function(request) {
+					request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+				},
+				type: "GET",
+				dataType: "json",
+				async: false,
+				cache: false,
+				url: 'https://api.araport.org/community/v0.3/aip/get_sequence_by_identifier_v0.3/search?identifier=' + this.geneticElement.identifier,
 				success: $.proxy(function(data) {
 
 					this.DNARawData = JSON.stringify(data);
@@ -389,9 +400,14 @@
 			});
 
 			$.ajax({
-				url: '//bar.utoronto.ca/webservices/araport/api/bar_get_protein_sequence_by_identifier.php/search?identifier='+this.geneticElement.identifier+'.1&source=Araport',
-				type: 'GET',
-				timeout: 50000,
+				beforeSend: function(request) {
+					request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+				},
+				type: "GET",
+				dataType: "json",
+				async: false,
+				cache: false,
+				url: 'https://api.araport.org/community/v0.3/aip/get_protein_sequence_by_identifier_v0.2/search?identifier='+this.geneticElement.identifier+'.1',
 				error: $.proxy(function() {
 					$("#"+config.IDs.divProteinSequenceId,this.domContainer).text("The service is not responding, please try again later.");
 					this.loadFail();

@@ -2,7 +2,7 @@
 <!DOCTYPE specimen SYSTEM "//bar.utoronto.ca/efp/cgi-bin/data/efp_config.dtd">
 <specimen name="Arabidopsis">
 	<view name="all" class="" db="atgenexp_plus" img="TissueSpecific-EmbryoDevelopment-2015-01-12.svg">
-		<webservice>//bar.utoronto.ca/eplant/cgi-bin/plantefp.cgi?datasource=atgenexp_plus&amp;</webservice>
+		<webservice>plantefp.cgi?datasource=atgenexp_plus&amp;</webservice>
 		<info>
 			<p>Plant material from embryos of wild type Col-0 Arabidopsis thaliana plants of was isolated by laser capture microdissection</p>
 			<p>Plants grown under 16/8 hour light/dark conditions</p>

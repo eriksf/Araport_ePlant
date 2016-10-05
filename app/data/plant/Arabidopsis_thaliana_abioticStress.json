@@ -1,7 +1,7 @@
 {
 	"width": 800,
 	"height": 600,
-	"webService": "//bar.utoronto.ca/eplant/cgi-bin/plantefp.cgi?",
+	"webService": "plantefp.cgi?",
 	"labels": [
 		{
 			"x": 100,

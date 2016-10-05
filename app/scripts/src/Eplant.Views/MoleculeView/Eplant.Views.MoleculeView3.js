@@ -173,9 +173,14 @@
 							var divided = this.divideSequence(raw, moleculeSequenceStringArr, response);
 
 							$.ajax({
-								url: '//bar.utoronto.ca/webservices/araport/api/bar_get_protein_sequence_by_identifier.php/search?identifier='+this.geneticElement.identifier+'.1&source=Araport',
+								beforeSend: function(request) {
+									request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+								},
+								dataType: "json",
+								async: false,
+								cache: false,
+								url: 'https://api.araport.org/community/v0.3/aip/get_protein_sequence_by_identifier_v0.2/search?identifier='+this.geneticElement.identifier+'.1',
 								type: 'GET',
-								timeout: 50000,
 								error: $.proxy(function() {
 									this.getConfig(data,response,divided.moleculeSequenceStringArr,divided.gaps);
 								},this),

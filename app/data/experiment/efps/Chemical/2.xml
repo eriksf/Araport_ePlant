@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE specimen SYSTEM "//bar.utoronto.ca/efp/cgi-bin/data/efp_config.dtd">
 <specimen name="Arabidopsis">
-	<webservice>//bar.utoronto.ca/eplant/cgi-bin/plantefp.cgi?datasource=atgenexp_hormone&amp;</webservice>
+	<webservice>plantefp.cgi?datasource=atgenexp_hormone&amp;</webservice>
 	<info>
 		<li>Plant material from 7 day old wild-type Arabidopsis thaliana seedlings of Columbia-0 ecotype was analyzed</li>
 		<li>Plants grown in liquid MS media under continuous light conditions at 23°C</li>
