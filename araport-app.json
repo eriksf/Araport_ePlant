@@ -139,8 +139,6 @@
     "scripts/src/Eplant.Views/ChromosomeView/Eplant.Views.ChromosomeView.AnnotateDialog.js",
     "scripts/src/Eplant.Views/ChromosomeView/Eplant.Views.ChromosomeView.AnnotateDialog.AnnotationTag.js",
     "scripts/src/Eplant.Views/ChromosomeView/Eplant.Views.ChromosomeView.GeneticElementDialog.js",
-    "scripts/src/Eplant.Views/MoleculeView/Eplant.Views.MoleculeView3.js",
-    "scripts/src/Eplant.Views/MoleculeView/Eplant.Views.MoleculeView.Base.js",
     "scripts/src/Eplant.Views/SequenceView/Eplant.Views.SequenceView.js",
     "scripts/src/Eplant.Views/LinkoutView/Eplant.Views.LinkoutView.js",
 	"scripts/start.js"	  
