@@ -71,16 +71,16 @@
 		'cartoons on;' +		//Turn on cartoons
 		'color structure;'		//Color structures
 		;
-		/*this.info = {
+		this.info = {
 			width: ZUI.width,
 			height: ZUI.height,
 			use: "HTML5",
-			j2sPath: "lib/JSmol/j2s",
+			j2sPath: "app/scripts/lib/JSmol/j2s",
 			script: 'set defaultloadscript "' + this.defaultLoadScript + '";',
 			disableJ2SLoadMonitor: true,
 			disableInitialConsole: true
-			};
-		*/
+		};
+		
 		// define loaded function to jsmol
 		Eplant.Views.MoleculeView.loadedFunctions[this.geneticElement.identifier+'_loaded']=$.proxy(this.structureLoaded,this);
 		//this.info.loadstructcallback = 'Eplant.Views.MoleculeView.loadedFunctions.'+this.geneticElement.identifier+'_loaded';
@@ -133,9 +133,9 @@
 
 		Eplant.Views.MoleculeView.Params = {
 			htmlPage: '',
-			jsFile: "WebContent/mysj/molViewer41.js",
+			jsFile: "app/scripts/js/molViewer41.js",
 			page_fragment: "app/pages/molviewer.html",
-			page_css: "WebContent/css/styles41.css",
+			page_css: "app/styles//styles41.css",
 			acidLetterMapUrl: "app/data/molecule/AcidLetterMap.json",
 			acidLetterMap:null,
 			mycounter: 0,
