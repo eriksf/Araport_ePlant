@@ -62,48 +62,48 @@ var allDisplayViews = [ "PlantView",
 
 
 var allInfoFiles = [];
-var allSVGfiles = [ 	"data/plant/Arabidopsis_thaliana.svg",
-	"data/experiment/efps/Chemical/Arabidopsis_thaliana.svg",
-	"data/experiment/efps/AbioticStress/Arabidopsis_thaliana.svg",
-	"data/experiment/efps/TissueSpecificRoot/Arabidopsis_thaliana.svg",
-	"data/experiment/efps/TissueSpecificEmbryoDevelopment/Arabidopsis_thaliana.svg",
-	"data/experiment/efps/TissueSpecificGuardAndMesophyllCells/Arabidopsis_thaliana.svg",
-	"data/experiment/efps/TissueSpecificMicrogametogenesis/Arabidopsis_thaliana.svg",
-	"data/experiment/efps/TissueSpecificPollenGermination/Arabidopsis_thaliana.svg",
-	"data/experiment/efps/TissueSpecificShootApicalMeristem/Arabidopsis_thaliana.svg",
-	"data/experiment/efps/TissueSpecificStemEpidermis/Arabidopsis_thaliana.svg",
-	"data/experiment/efps/TissueSpecificStigmaAndOvaries/Arabidopsis_thaliana.svg",
-	"data/experiment/efps/TissueSpecificTrichomes/Arabidopsis_thaliana.svg",
-	"data/experiment/efps/TissueSpecificXylemAndCork/Arabidopsis_thaliana.svg",
-	"data/experiment/efps/BioticStressBotrytiscinerea/Arabidopsis_thaliana.svg",
-	"data/experiment/efps/BioticStressElicitors/Arabidopsis_thaliana.svg",
-	"data/experiment/efps/BioticStressErysipheorontii/Arabidopsis_thaliana.svg",
-	//"data/experiment/efps/BioticStressHyaloperonosporaArabidopsis/Arabidopsis_thaliana.svg",
-	//"data/experiment/efps/BioticStressMyzusPersicaere/Arabidopsis_thaliana.svg",
-	"data/experiment/efps/BioticStressPhytophthorainfestans/Arabidopsis_thaliana.svg",
-	"data/experiment/efps/BioticStressPseudomonassyringae/Arabidopsis_thaliana.svg"
+var allSVGfiles = [ 	"../data/plant/Arabidopsis_thaliana.svg",
+	"../data/experiment/efps/Chemical/Arabidopsis_thaliana.svg",
+	"../data/experiment/efps/AbioticStress/Arabidopsis_thaliana.svg",
+	"../data/experiment/efps/TissueSpecificRoot/Arabidopsis_thaliana.svg",
+	"../data/experiment/efps/TissueSpecificEmbryoDevelopment/Arabidopsis_thaliana.svg",
+	"../data/experiment/efps/TissueSpecificGuardAndMesophyllCells/Arabidopsis_thaliana.svg",
+	"../data/experiment/efps/TissueSpecificMicrogametogenesis/Arabidopsis_thaliana.svg",
+	"../data/experiment/efps/TissueSpecificPollenGermination/Arabidopsis_thaliana.svg",
+	"../data/experiment/efps/TissueSpecificShootApicalMeristem/Arabidopsis_thaliana.svg",
+	"../data/experiment/efps/TissueSpecificStemEpidermis/Arabidopsis_thaliana.svg",
+	"../data/experiment/efps/TissueSpecificStigmaAndOvaries/Arabidopsis_thaliana.svg",
+	"../data/experiment/efps/TissueSpecificTrichomes/Arabidopsis_thaliana.svg",
+	"../data/experiment/efps/TissueSpecificXylemAndCork/Arabidopsis_thaliana.svg",
+	"../data/experiment/efps/BioticStressBotrytiscinerea/Arabidopsis_thaliana.svg",
+	"../data/experiment/efps/BioticStressElicitors/Arabidopsis_thaliana.svg",
+	"../data/experiment/efps/BioticStressErysipheorontii/Arabidopsis_thaliana.svg",
+	//"../data/experiment/efps/BioticStressHyaloperonosporaArabidopsis/Arabidopsis_thaliana.svg",
+	//"../data/experiment/efps/BioticStressMyzusPersicaere/Arabidopsis_thaliana.svg",
+	"../data/experiment/efps/BioticStressPhytophthorainfestans/Arabidopsis_thaliana.svg",
+	"../data/experiment/efps/BioticStressPseudomonassyringae/Arabidopsis_thaliana.svg"
 ];
 
-var allXMLfiles = [ 	"data/plant/Arabidopsis_thaliana.xml",
-	"data/experiment/efps/Chemical/Arabidopsis_thaliana.xml",
-	"data/experiment/efps/AbioticStress/Arabidopsis_thaliana.xml",
-	"data/experiment/efps/TissueSpecificRoot/Arabidopsis_thaliana.xml",
-	"data/experiment/efps/TissueSpecificEmbryoDevelopment/Arabidopsis_thaliana.xml",
-	"data/experiment/efps/TissueSpecificGuardAndMesophyllCells/Arabidopsis_thaliana.xml",
-	"data/experiment/efps/TissueSpecificMicrogametogenesis/Arabidopsis_thaliana.xml",
-	"data/experiment/efps/TissueSpecificPollenGermination/Arabidopsis_thaliana.xml",
-	"data/experiment/efps/TissueSpecificShootApicalMeristem/Arabidopsis_thaliana.xml",
-	"data/experiment/efps/TissueSpecificStemEpidermis/Arabidopsis_thaliana.xml",
-	"data/experiment/efps/TissueSpecificStigmaAndOvaries/Arabidopsis_thaliana.xml",
-	"data/experiment/efps/TissueSpecificTrichomes/Arabidopsis_thaliana.xml",
-	"data/experiment/efps/TissueSpecificXylemAndCork/Arabidopsis_thaliana.xml",
-	"data/experiment/efps/BioticStressBotrytiscinerea/Arabidopsis_thaliana.xml",
-	"data/experiment/efps/BioticStressElicitors/Arabidopsis_thaliana.xml",
-	"data/experiment/efps/BioticStressErysipheorontii/Arabidopsis_thaliana.xml",
-	//"data/experiment/efps/BioticStressHyaloperonosporaArabidopsis/Arabidopsis_thaliana.xml",
-	//"data/experiment/efps/BioticStressMyzusPersicaere/Arabidopsis_thaliana.xml",
-	"data/experiment/efps/BioticStressPhytophthorainfestans/Arabidopsis_thaliana.xml",
-	"data/experiment/efps/BioticStressPseudomonassyringae/Arabidopsis_thaliana.xml"
+var allXMLfiles = [ 	"../data/plant/Arabidopsis_thaliana.xml",
+	"../data/experiment/efps/Chemical/Arabidopsis_thaliana.xml",
+	"../data/experiment/efps/AbioticStress/Arabidopsis_thaliana.xml",
+	"../data/experiment/efps/TissueSpecificRoot/Arabidopsis_thaliana.xml",
+	"../data/experiment/efps/TissueSpecificEmbryoDevelopment/Arabidopsis_thaliana.xml",
+	"../data/experiment/efps/TissueSpecificGuardAndMesophyllCells/Arabidopsis_thaliana.xml",
+	"../data/experiment/efps/TissueSpecificMicrogametogenesis/Arabidopsis_thaliana.xml",
+	"../data/experiment/efps/TissueSpecificPollenGermination/Arabidopsis_thaliana.xml",
+	"../data/experiment/efps/TissueSpecificShootApicalMeristem/Arabidopsis_thaliana.xml",
+	"../data/experiment/efps/TissueSpecificStemEpidermis/Arabidopsis_thaliana.xml",
+	"../data/experiment/efps/TissueSpecificStigmaAndOvaries/Arabidopsis_thaliana.xml",
+	"../data/experiment/efps/TissueSpecificTrichomes/Arabidopsis_thaliana.xml",
+	"../data/experiment/efps/TissueSpecificXylemAndCork/Arabidopsis_thaliana.xml",
+	"../data/experiment/efps/BioticStressBotrytiscinerea/Arabidopsis_thaliana.xml",
+	"../data/experiment/efps/BioticStressElicitors/Arabidopsis_thaliana.xml",
+	"../data/experiment/efps/BioticStressErysipheorontii/Arabidopsis_thaliana.xml",
+	//"../data/experiment/efps/BioticStressHyaloperonosporaArabidopsis/Arabidopsis_thaliana.xml",
+	//"../data/experiment/efps/BioticStressMyzusPersicaere/Arabidopsis_thaliana.xml",
+	"../data/experiment/efps/BioticStressPhytophthorainfestans/Arabidopsis_thaliana.xml",
+	"../data/experiment/efps/BioticStressPseudomonassyringae/Arabidopsis_thaliana.xml"
 ];
 
 // now store all tissues from all the XML files in an array called allTissues[]
@@ -1464,8 +1464,8 @@ $('#GoButtonGeneInput').popover({content:'Hang on, this may take a minute'});
 
 /* -------------------------------------------------- */
 // generate serach query
-var mapUrl = "data/lookUp.json";
-var allTissuesLookUpJson = "data/AllTissuesLookUp.json";
+var mapUrl = "../data/lookUp.json";
+var allTissuesLookUpJson = "../data/AllTissuesLookUp.json";
 function generateStandardSearchQuery() {
 	$.getJSON(allTissuesLookUpJson, $.proxy(
 	function(allTissuesLookUp) {
