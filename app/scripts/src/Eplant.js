@@ -545,7 +545,7 @@
 	};
 	
 	Eplant.phenotypeClick = function() {
-		DialogManager.artDialogUrl('MutantPhenotypeSelector',{
+		DialogManager.artDialogUrl('app/MutantPhenotypeSelector',{
 			close: function () {
 				var mutantPhenotypeSelectorGenes = art.dialog.data('mutantPhenotypeSelectorGenes');
 				if (mutantPhenotypeSelectorGenes !== undefined) Eplant.queryIdentifier(mutantPhenotypeSelectorGenes.split(','));
