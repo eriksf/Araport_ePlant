@@ -71,6 +71,7 @@
 		'cartoons on;' +		//Turn on cartoons
 		'color structure;'		//Color structures
 		;
+		/*
 		this.info = {
 			width: ZUI.width,
 			height: ZUI.height,
@@ -80,6 +81,7 @@
 			disableJ2SLoadMonitor: true,
 			disableInitialConsole: true
 		};
+		*/
 		
 		// define loaded function to jsmol
 		Eplant.Views.MoleculeView.loadedFunctions[this.geneticElement.identifier+'_loaded']=$.proxy(this.structureLoaded,this);
@@ -169,6 +171,7 @@
 						this.moleculeModelRawText = JSON.stringify(response);
 						$.get( response.link, $.proxy(function( raw ) {
 							var divided = this.divideSequence(raw, moleculeSequenceStringArr, response);
+
 
 							$.ajax({
 								beforeSend: function(request) {

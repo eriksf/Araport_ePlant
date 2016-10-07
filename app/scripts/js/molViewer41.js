@@ -45,11 +45,11 @@
 				//custom cdd webservice url if not using dev or eplant
 				cddUrl : null,
 				//
-				pfamUrlBar : '//bar.utoronto.ca/~gfucile/cdd3d/cgi-bin/PfamAnnot.cgi',
+				pfamUrlBar : Eplant.cdd3Url +  'PfamAnnot.cgi',
 				//
 				pfamUrlDev : 'ProxyServlet',
 				//
-				cddUrlBar : '//bar.utoronto.ca/~gfucile/cdd3d/cgi-bin/CDDannot.cgi',
+				cddUrlBar : Eplant.cdd3Url + 'CDDannot.cgi',
 				//
 				cddUrlDev : 'ProxyServlet',
 				/*
@@ -80,10 +80,11 @@
 			width : '100%',
 			use : "HTML5",
 			//to use the php from my server http://104.197.50.15/myphptest/php/jsmol.php
-			serverURL : "http://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+			//serverURL : "http://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+			serverURL : "https//bar.utoronto.ca/eplant/cgi-bin/jsmol.php",
 			src : null,
 			LoadStructCallback : config.CSS.IDs.jsMolViewer+".setControls",
-			script: "set defaultLoadScript '" + config.application.defaultLoadScript + "';",
+			script: "set defaultLoadScript '" + config.application.defaultLoadScript + "';" + config.application.load,
 			debug : false,
 			disableJ2SLoadMonitor : true,
 			disableInitialConsole : true,//If set true, avoids the display of messages ('console') in the Jmol panel while the Jmol object is being built initially.
