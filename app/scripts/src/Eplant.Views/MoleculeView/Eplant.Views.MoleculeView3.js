@@ -162,8 +162,6 @@
 					request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
 				},
 				dataType: "json",
-				async: false,
-				cache: false,
 				url: Eplant.ServiceUrl + 'JSMol.cgi?agi=' + this.geneticElement.identifier, 
 				success: $.proxy(function(response) {
 					var moleculeSequenceStringArr = [];
@@ -177,8 +175,6 @@
 									request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
 								},
 								dataType: "json",
-								async: false,
-								cache: false,
 								url: 'https://api.araport.org/community/v0.3/aip/get_protein_sequence_by_identifier_v0.2/search?identifier='+this.geneticElement.identifier+'.1',
 								type: 'GET',
 								error: $.proxy(function() {

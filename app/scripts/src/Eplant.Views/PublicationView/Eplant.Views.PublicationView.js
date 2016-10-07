@@ -168,8 +168,6 @@
 					beforeSend: function(request) {
 						request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
 					},
-					async: false,
-					cache: false,
 					type: "GET",
 					url: 'https://api.araport.org/community/v0.3/araport/publications_by_locus_v0.1/search?locus=' + this.geneticElement.identifier,
 					dataType: 'json',
@@ -209,8 +207,6 @@
 					beforeSend: function(request) {
 						request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
 					},
-					async: false,
-					cache: false,
 					type: "GET",
 					url: 'https://api.araport.org/community/v0.3/araport/generifs_by_locus_v0.1/search?locus=' + this.geneticElement.identifier,
 					dataType: 'json',

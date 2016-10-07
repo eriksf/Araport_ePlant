@@ -59,10 +59,16 @@
 						url: ExpressionAnglerUrl + 'getData.php?id=' + dataId,
 						type: 'get',
 						success: $.proxy(function( res) {
-							$.get( tempDistributionLink,  $.proxy(function(distribution) {
-								var jsondis = $.parseJSON( distribution.replace(/bin/g,'"bin"').replace(/val/g,'"val"'));
-							},this));
-							Eplant.rawEAText=res;
+							$.ajax({
+									beforeSend: function(request) {
+									request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+								},
+								url: ExpressionAnglerUrl + 'getHistogram.php?id=' + dataId,
+								type: 'get',
+								success: $.proxy(function(distribution) {
+									var jsondis = $.parseJSON( distribution.replace(/bin/g,'"bin"').replace(/val/g,'"val"'));
+								},this)
+							});
 							var list = Eplant.processEAList(res,mainIdentifier,resultCount);
 							Eplant.closeEADialog();
 							this.showFoundGenes(list,mainIdentifier,URL,resultCount);
@@ -83,10 +89,8 @@
 					Eplant.closeEADialog();
 					Eplant.expressionAnglerResultDialog = DialogManager.artDialogDynamic(dom[0],{
 						close:Eplant.cancelXhr
-					});
-					
+					});				
 				}
-				
 			},this)
 		});
 	};
@@ -231,52 +235,65 @@
 		var eaRegEx = /(.*)\?(agi_id=.*)/gmi;
 		var eaMatch = eaRegEx.exec(Eplant.currentEAQuery);
 		
-		Eplant.expressionXhrService = $.post(eaMatch[1], eaMatch[2], $.proxy(function( data ) {
-			var doc = $.parseHTML(data)
-			var tempLinkEle = $('b:contains("View data set as text")', doc);
-			if(tempLinkEle.length>0){
-				var tempFileLink = tempLinkEle.parent().attr('href').replace('..','//bar.utoronto.ca/ntools');
-				var tempDistributionLink = tempFileLink.replace("ExpressionAngler","pcc_histogram");
-				Eplant.expressionXhrLink = $.get( tempFileLink,  $.proxy(function( res ) {
-					$.get( tempDistributionLink,  $.proxy(function( distribution ) {
-						var jsondis = $.parseJSON( distribution.replace(/bin/g,'"bin"').replace(/val/g,'"val"'));
-					},this));
-					var list = this.processEAList(res,Eplant.mainIdentifier,resultCount);
-					if(list.length<resultCount){
-						alert("Only "+(list.length-resultCount+5)+" more genes are found and loaded.");
-					}
-					var sliceCount = Math.abs(resultCount);
-					list = list.slice(sliceCount - 5, sliceCount);
-					this.loadExpressionAnglerGenes(list,Eplant.mainIdentifier);
-				},this))		
-				.always(function() {
+		Eplant.expressionXhrService = $.ajax({
+			beforeSend: function(request) {
+				request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+			},
+			url: eaMatch[1],
+			data: eaMatch[2], 
+			type: "post",
+			success: $.proxy(function( data ) {
+				var doc = $.parseHTML(data)
+				var tempLinkEle = $('b:contains("View data set as text")', doc);
+				if(tempLinkEle.length>0){
+					
+					var tempFileLink = tempLinkEle.parent().attr('href').replace(/..\/.+_/i,'');
+					var dataId = tempFileLink.replace(/.txt/i,'');
+					var tempDistributionLink = tempFileLink.replace("ExpressionAngler","pcc_histogram");
+
+					Eplant.expressionXhrLink = $.ajax({
+						beforeSend: function(request) {
+							request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+						},
+						url: ExpressionAnglerUrl + 'getData.php?id=' + dataId,
+						type: 'get',
+						success: $.proxy(function( res) {
+							$.ajax({
+									beforeSend: function(request) {
+									request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+								},
+								url: ExpressionAnglerUrl + 'getHistogram.php?id=' + dataId,
+								type: 'get',
+								success: $.proxy(function(distribution) {
+									var jsondis = $.parseJSON( distribution.replace(/bin/g,'"bin"').replace(/val/g,'"val"'));
+								},this)
+							});
+							var list = Eplant.processEAList(res,mainIdentifier,resultCount);
+							Eplant.closeEADialog();
+							this.showFoundGenes(list,mainIdentifier,URL,resultCount);
+						},this)
+					});		
+				} else {
+					var dom = $('<div/>', {
+					});
+					dom.css({'text-align':'center'});
+					var p = $('<div/>', {
+						html: '<h4 style="font-weight:bold;font-size:25px">Results</h4> <br> Expression Angler found 0 matches. <br>'
+						}).css({
+						'max-height': '400px',
+						'overflow': 'auto'
+					});
+					$(dom).append(p);
 					Eplant.closeEADialog();
-				});
-			}
-			else{
-				var dom = $('<div/>', {
-				});
-				dom.css({'text-align':'center'});
-				var p = $('<div/>', {
-					html: '<h4 style="font-weight:bold;font-size:25px">Results</h4> <br> Expression Angler found 0 matches. <br>'
-					}).css({
-					'max-height': '400px',
-					'overflow': 'auto'
-				});
-				$(dom).append(p);
-				Eplant.closeEADialog();
-				Eplant.expressionAnglerResultDialog = DialogManager.artDialogDynamic(dom[0],{
-					close:Eplant.cancelXhr
-				});
+					Eplant.expressionAnglerResultDialog = DialogManager.artDialogDynamic(dom[0],{
+						close:Eplant.cancelXhr
+					});
 				
-			}
-			
-		},this))
-		.always(function() {
+				}
+			},this)
 		});
-		
 	};
-	
+
 	Eplant.showFoundGenes = function(list,mainIdentifier,URL,resultCount) {
 		var dom = $('<div/>', {
 		});
