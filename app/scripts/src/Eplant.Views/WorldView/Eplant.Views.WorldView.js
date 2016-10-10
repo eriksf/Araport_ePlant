@@ -145,7 +145,7 @@
 			});
 			
 			// Get tile source
-			var tileSrc = 'src/Eplant.Views/WorldView/Tiles/';
+			var tileSrc = 'https://bar.utoronto.ca/eplant/src/Eplant.Views/WorldView/Tiles/';
 			// Create annual precipitation layer
 			var precipLayer = Eplant.Views.WorldView.createOverlay(
 			tileSrc + 'AnnualPrecip/Annual_Precipitation');
