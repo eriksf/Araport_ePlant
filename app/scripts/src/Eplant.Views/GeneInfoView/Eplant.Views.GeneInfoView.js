@@ -177,8 +177,6 @@
 				beforeSend: function(request) {
 					request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
 				},
-				async: false,
-				cache: false,
 				type: 'GET',
 				url: 'https://api.araport.org/community/v0.3/araport/gene_summary_by_locus_v0.2/search?locus=' + this.geneticElement.identifier,
 				dataType: 'json',
@@ -228,8 +226,6 @@
 						},
 						type: "GET",
 						dataType: "json",
-						async: false,
-						cache: false,
 						url: 'https://api.araport.org/community/v0.3/araport/araport11_gff_region_to_jbrowse_v0.1/search?q=features&chr='+this.geneticElement.chromosome.identifier+'&start='+this.chromosome_start+'&end='+this.chromosome_end+'&completely_within=true&interbase=true',
 						//data: { locus: this.geneticElement.identifier },
 						success: $.proxy(function(data) {
@@ -381,8 +377,6 @@
 				},
 				type: "GET",
 				dataType: "json",
-				async: false,
-				cache: false,
 				url: 'https://api.araport.org/community/v0.3/aip/get_sequence_by_identifier_v0.3/search?identifier=' + this.geneticElement.identifier,
 				success: $.proxy(function(data) {
 
@@ -405,8 +399,6 @@
 				},
 				type: "GET",
 				dataType: "json",
-				async: false,
-				cache: false,
 				url: 'https://api.araport.org/community/v0.3/aip/get_protein_sequence_by_identifier_v0.2/search?identifier='+this.geneticElement.identifier+'.1',
 				error: $.proxy(function() {
 					$("#"+config.IDs.divProteinSequenceId,this.domContainer).text("The service is not responding, please try again later.");

@@ -145,7 +145,7 @@
 			});
 			
 			// Get tile source
-			var tileSrc = 'src/Eplant.Views/WorldView/Tiles/';
+			var tileSrc = 'https://bar.utoronto.ca/eplant/src/Eplant.Views/WorldView/Tiles/';
 			// Create annual precipitation layer
 			var precipLayer = Eplant.Views.WorldView.createOverlay(
 			tileSrc + 'AnnualPrecip/Annual_Precipitation');
@@ -657,7 +657,7 @@
 			// Store world view for simplicity
 			var worldView = Eplant.Views.WorldView;
 			// Image source location
-			var src = 'img/';
+			var src = 'app/img/';
 			// Create legend DOM elements
 			var precip = worldView.createLegendDOM(['Annual', 'Precipitation'],
 			src + 'climateLegend.png', 'overlayLegendPrecip', '10577 mm', '13 mm');
@@ -981,6 +981,10 @@
 			$.getJSON(this.efpURL, $.proxy(function(response) {
 				/* Get web service URL */
 				this.webService = response.webService;
+
+				/* Override for Araport */
+				this.webService = Eplant.ServiceUrl + 'worldefp.cgi';
+	
 				
 				/* Get marker shape */
 				this.markerIcon = response.marker;

@@ -711,8 +711,6 @@
 					},
 					dataType: "json",
 					type: "GET",
-					async: false,
-					cache: false,
 					url: this.webService + "id=" + this.geneticElement.identifier + "&samples=" + JSON.stringify(sampleNames), 
 					success: $.proxy(function(response) {
 						this.eFPView.Xhrs.loadSamplesXhr =null;

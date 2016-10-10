@@ -87,7 +87,23 @@ jQuery(document).ready(function() {
 	});
 	
 	jQuery("#optionHolder .search-input").autocomplete({
-		source: "//bar.utoronto.ca/ntools/cgi-bin/get_alias.pl",
+		source: function(request, response) {
+			$.ajax({
+				beforeSend: function(request) {
+					request.setRequestHeader('Authorization', 'Bearer ' + APIToken);
+				},
+				dataType: "json",
+				data: {
+					term: request.term
+				},
+				async: false,
+				cache: false,
+				url: ADAMAUrl + "get_alias.pl",
+				success: function(data) {
+					response(data);
+				}
+			});
+		},
 		minLength: 2,
 		select: function(event, ui) {
 			//jQuery("#user_agi").val(ui.item.label);

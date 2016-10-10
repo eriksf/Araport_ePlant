@@ -50,11 +50,11 @@
 				//custom cdd webservice url if not using dev or eplant
 				cddUrl : null,
 				//
-				pfamUrlBar : '//bar.utoronto.ca/~gfucile/cdd3d/cgi-bin/PfamAnnot.cgi',
+				pfamUrlBar : Eplant.cdd3dUrl + 'PfamAnnot.cgi',
 				//
 				pfamUrlDev : 'ProxyServlet',
 				//
-				cddUrlBar : '//bar.utoronto.ca/~gfucile/cdd3d/cgi-bin/CDDannot.cgi',
+				cddUrlBar : Eplant.cdd3dUrl + 'CDDannot.cgi',
 				//
 				cddUrlDev : 'ProxyServlet',
 				/*
@@ -84,9 +84,9 @@
 			height : '100%',
 			width : '100%',
 			use : "HTML5",
-			j2sPath: "j2s",
+			j2sPath: "app/scripts/lib/JSmol/j2s",
 			//to use the php from my server http://104.197.50.15/myphptest/php/jsmol.php
-			serverURL : "http://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php",
+			serverURL : "https://bar.utoronto.ca/eplant/cgi-bin/jsmol.php",
 			src : null,
 			LoadStructCallback : this.config.CSS.IDs.jsMolViewer+".setControls",
 			script: "set defaultLoadScript '" + this.config.application.defaultLoadScript + "';",
@@ -1315,6 +1315,9 @@
 		u = this.config.application.cddUrlDev;
 		
 		this.viewer.Xhrs.getCDDXhr = $.ajax({
+			beforeSend: function(request) {
+				request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+			},
 			type: 'POST',
 			dataType: 'json',
 			url: u,
@@ -1382,9 +1385,12 @@
 		//console.log('calling pfam ajax');
 		$(this.pDiv+this.jq(this.config.CSS.IDs.PCBindingSites)).empty().append("<span class='loading'>Loading Pfam domains</span>");
 		
-		var u='//bar.utoronto.ca/eplant/cgi-bin/get_trp_data.php?locus='+this.info.identifier;
+		var u=Eplant.ServiceUrl + 'get_trp_data.php?locus='+this.info.identifier;
 		
 		this.viewer.Xhrs.getPCBXhr = $.ajax({
+			beforeSend: function(request) {
+				request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+			},
 			type: 'GET',
 			dataType: 'json',
 			url: u,
@@ -1462,6 +1468,9 @@
 		u = this.config.application.pfamUrlDev;
 		
 		this.viewer.Xhrs.getPfamXhr = $.ajax({
+			beforeSend: function(request) {
+				request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+			},
 			type: 'POST',
 			dataType: 'json',
 			url: u,
@@ -1552,9 +1561,12 @@
 		'L':'LEU','K':'LYS','M':'MET','F':'PHE','P':'PRO','S':'SER','T':'THR','W':'TRP','Y':'TYR','V':'VAL'};
 		//var that = this;
 		this.viewer.Xhrs.getSNPXhr=$.ajax({
+			beforeSend: function(request) {
+				request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+			},
 			type: 'GET',
 			dataType: 'json',
-			url: '//bar.utoronto.ca/eplant/cgi-bin/get_snp_data.php?agi=AT3G24650.1&service=nssnps',
+			url: Eplant.ServiceUrl + 'get_snp_data.php',
 			timeout: 25000,
 			data: {"agi": agi, "service": 'nssnps'},
 			cache: false,

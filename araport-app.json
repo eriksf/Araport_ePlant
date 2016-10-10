@@ -127,6 +127,7 @@
     "scripts/src/Eplant.Views/BioticStressMyzuspersicaereView/Eplant.Views.BioticStressMyzuspersicaereView.js",
     "scripts/src/Eplant.Views/BioticStressPhytophthorainfestansView/Eplant.Views.BioticStressPhytophthorainfestansView.js",
     "scripts/src/Eplant.Views/BioticStressPseudomonassyringaeView/Eplant.Views.BioticStressPseudomonassyringaeView.js",
+    "scripts/src/Eplant.Views/WorldView/Eplant.Views.WorldView.js",
     "scripts/src/Eplant.Views/ExperimentView/Eplant.Views.ExperimentView.js",
     "scripts/src/Eplant.Views/ExperimentView/Eplant.Views.ExperimentView.SelectList.js",
     "scripts/src/Eplant.Views/ExperimentView/Eplant.Views.ExperimentView.SelectList.Choice.js",
@@ -140,7 +141,7 @@
     "scripts/src/Eplant.Views/ChromosomeView/Eplant.Views.ChromosomeView.GeneticElementDialog.js",
     "scripts/src/Eplant.Views/MoleculeView/Eplant.Views.MoleculeView3.js",
     "scripts/src/Eplant.Views/MoleculeView/Eplant.Views.MoleculeView.Base.js",
-    "scripts/src/Eplant.Views/SequenceView/Eplant.Views.SequenceView.js",
+	"scripts/src/Eplant.Views/SequenceView/Eplant.Views.SequenceView.js",
     "scripts/src/Eplant.Views/LinkoutView/Eplant.Views.LinkoutView.js",
 	"scripts/start.js"	  
   ],
