@@ -53,13 +53,13 @@
 				//the name to use to create the jmol object
 				jMolObject : 'myJmol',
 				//
-				pfamUrlBar : '//bar.utoronto.ca/~gfucile/cdd3d/cgi-bin/PfamAnnot.cgi',
+				pfamUrlBar : Eplant.cdd3dUrl + 'PfamAnnot.cgi',
 				//
 				pfamUrlDev : 'ProxyServlet',
 				//
 				pfamParams : 'FASTAseq',
 				//
-				cddUrlBar : '//bar.utoronto.ca/~gfucile/cdd3d/cgi-bin/CDDannot.cgi',
+				cddUrlBar : Eplant.cdd3dUrl + 'CDDannot.cgi',
 				//
 				cddUrlDev : 'ProxyServlet',
 				//
