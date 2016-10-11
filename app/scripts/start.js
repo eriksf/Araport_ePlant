@@ -53,9 +53,10 @@ function inputBlur(i) {
 		$(document).ready(function() {
 			console.log('jQuery ready, starting ePlant...');
 			// Deleting Araport css
-			$('link[rel=stylesheet][href*="https://www.araport.org/sites/default/files/css/"]').remove();
+			//$('link[rel=stylesheet][href*="https://www.araport.org/sites/default/files/css/"]').remove();
+			$('link[rel=stylesheet][href*="https://araport-dev.tacc.utexas.edu/sites/default/files/css/"]').remove();
 			/* Google maps initailiz */
-			
+
 			//	GoogleMapsLoader.KEY = "AIzaSyAj876MbMPM8roSi2JZFgGFUzTPpZ56kzU";
 			//	GoogleMapsLoader.load(function(google) {
 			Eplant.initialize();
