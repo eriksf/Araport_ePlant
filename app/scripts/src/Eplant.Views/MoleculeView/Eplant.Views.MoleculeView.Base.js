@@ -52,11 +52,11 @@
 				//
 				pfamUrlBar : Eplant.cdd3dUrl + 'PfamAnnot.cgi',
 				//
-				pfamUrlDev : 'ProxyServlet',
+				//pfamUrlDev : 'ProxyServlet',
 				//
 				cddUrlBar : Eplant.cdd3dUrl + 'CDDannot.cgi',
 				//
-				cddUrlDev : 'ProxyServlet',
+				//cddUrlDev : 'ProxyServlet',
 				/*
 					* background HOVER - background color for the hover label when letting mouse over atom
 					* color HOVER - text color for the hover label when letting mouse over atom
@@ -1312,7 +1312,7 @@
 		else if(window.location.hostname.indexOf('bar.utoronto.ca') > -1)//running at bar.utoronto.ca server
 		u = this.config.application.cddUrlBar;
 		else//dev environment
-		u = this.config.application.cddUrlDev;
+		u = this.config.application.cddUrlBar;	// Araport
 		
 		this.viewer.Xhrs.getCDDXhr = $.ajax({
 			beforeSend: function(request) {
@@ -1465,7 +1465,7 @@
 		else if(window.location.hostname.indexOf('bar.utoronto.ca') > -1)//running at bar.utoronto.ca server
 		u = this.config.application.pfamUrlBar;
 		else//dev environment
-		u = this.config.application.pfamUrlDev;
+		u = this.config.application.pfamUrlBar; // Araport!
 		
 		this.viewer.Xhrs.getPfamXhr = $.ajax({
 			beforeSend: function(request) {

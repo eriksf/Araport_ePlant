@@ -169,32 +169,41 @@
 					var moleculeSequenceStringArr = [];
 					if (response.link != "") {
 						this.moleculeModelRawText = JSON.stringify(response);
-						$.get( response.link, $.proxy(function( raw ) {
-							var divided = this.divideSequence(raw, moleculeSequenceStringArr, response);
+						var fileLink = response.link.match("Phyre2_AT.+pdb");
+						$.ajax({
+							beforeSend: function(request) {
+								request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+							},
+							url: Eplant.ServiceUrl + 'getPhyre2Data.php?file=' + fileLink,
+
+							success: $.proxy(function( raw ) {
+								var divided = this.divideSequence(raw, moleculeSequenceStringArr, response);
 
 
-							$.ajax({
-								beforeSend: function(request) {
-									request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
-								},
-								dataType: "json",
-								url: 'https://api.araport.org/community/v0.3/aip/get_protein_sequence_by_identifier_v0.2/search?identifier='+this.geneticElement.identifier+'.1',
-								type: 'GET',
-								error: $.proxy(function() {
-									this.getConfig(data,response,divided.moleculeSequenceStringArr,divided.gaps);
-								},this),
-								success: $.proxy(function(summary) {
-									if(summary.result&&summary.result.length>0){
-
-										this.fullSequenceRawText = JSON.stringify(summary);
-										var sequenceArr = summary.result[0].sequence.split("");
-										this.getConfig(data,response,divided.moleculeSequenceStringArr,divided.gaps,sequenceArr);
-									}
-									else{
+								$.ajax({
+									beforeSend: function(request) {
+										request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+									},
+									dataType: "json",
+									url: 'https://api.araport.org/community/v0.3/aip/get_protein_sequence_by_identifier_v0.2/search?identifier='+this.geneticElement.identifier+'.1',
+									type: 'GET',
+									error: $.proxy(function() {
 										this.getConfig(data,response,divided.moleculeSequenceStringArr,divided.gaps);
-									}
-								},this)});
-						},this));
+									},this),
+									success: $.proxy(function(summary) {
+										if(summary.result&&summary.result.length>0){
+
+											this.fullSequenceRawText = JSON.stringify(summary);
+											var sequenceArr = summary.result[0].sequence.split("");
+											this.getConfig(data,response,divided.moleculeSequenceStringArr,divided.gaps,sequenceArr);
+										}
+										else{
+											this.getConfig(data,response,divided.moleculeSequenceStringArr,divided.gaps);
+										}
+									},this)
+								});
+							}, this)
+						});
 					}
 					else{
 						this.errorLoadingMessage="No molecule structure found for this gene";
@@ -682,10 +691,4 @@
 		}
 
 	};
-
-
-
-
-
-
-	})();
+})();
