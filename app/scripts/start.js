@@ -54,6 +54,7 @@ function inputBlur(i) {
 			console.log('jQuery ready, starting ePlant...');
 			// Deleting Araport css
 			$('link[rel=stylesheet][href*="https://www.araport.org/sites/default/files/css/"]').remove();
+			$('link[rel=stylesheet][href*="https://maxcdn.bootstrapcdn.com/"]').remove();
 			/* Google maps initailiz */
 			
 			//	GoogleMapsLoader.KEY = "AIzaSyAj876MbMPM8roSi2JZFgGFUzTPpZ56kzU";
