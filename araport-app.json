@@ -4,7 +4,9 @@
   "description": "Araport ePlant",
   "html": "main.html",
   "scripts": [
-    "scripts/app.js",  
+    "scripts/app.js",
+	"scripts/js/jquery-1.12.3.min.js",
+	"scripts/js/jquery-ui-1.10.4.min.js",
     "scripts/js/artDialog.source.js",
     "scripts/js/iframeTools.js",
     "scripts/lib/spectrum/spectrum.js",
@@ -154,7 +156,6 @@
     "styles/datatablesStyleSheet.css",
     "styles/jquery.svg.css",
     "scripts/lib/hint/hint.css",
-    "styles/hint.css",
     "scripts/js/sequencejs-theme.modern-slide-in.css",
     "styles/animate.min.css",
     "scripts/js/jquery.dropdown.css",
