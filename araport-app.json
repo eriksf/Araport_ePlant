@@ -1,5 +1,5 @@
 {
-  "icon": "",
+  "icon": "app/img/BAR.png",
   "name": "Araport_ePlant",
   "description": "Araport ePlant",
   "html": "main.html",
@@ -145,7 +145,7 @@
     "scripts/src/Eplant.Views/MoleculeView/Eplant.Views.MoleculeView.Base.js",
 	"scripts/src/Eplant.Views/SequenceView/Eplant.Views.SequenceView.js",
     "scripts/src/Eplant.Views/LinkoutView/Eplant.Views.LinkoutView.js",
-	"scripts/start.js"	  
+	"scripts/start.js"
   ],
   "styles": [
     "styles/reset.css",
