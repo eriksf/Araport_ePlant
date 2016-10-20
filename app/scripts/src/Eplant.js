@@ -1168,7 +1168,7 @@
 				}, 500);
 				$('#settings_container').animate({
 					marginLeft: left,
-					width: $(window).width()-Eplant.viewPortLeftOffset+"px"
+					width: $(window).width() - 312 + "px"
 				}, 500);
 				
 				
@@ -1200,7 +1200,7 @@
 				}, 500);
 				$('#settings_container').animate({
 					marginLeft: left,
-					width: $(window).width()-Eplant.viewPortLeftOffset+"px"
+					width: $(window).width()- 68 + "px"
 				}, 500);
 				$(".toggleArrow").attr('src',"app/img/arrow-right-clear-bg.png");
 				Eplant.sidebarOpen = false;
