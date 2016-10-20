@@ -1171,9 +1171,8 @@
 					width: $(window).width() - 312 + "px"
 				}, 500);
 				
-				
 				$(".toggleArrow").attr('src',"app/img/arrow-left-clear-bg.png");
-				
+
 				Eplant.sidebarOpen = true;
 				$(":animated").promise().done(function() {
 					var evt = document.createEvent('UIEvents');
@@ -1202,6 +1201,7 @@
 					marginLeft: left,
 					width: $(window).width()- 68 + "px"
 				}, 500);
+
 				$(".toggleArrow").attr('src',"app/img/arrow-right-clear-bg.png");
 				Eplant.sidebarOpen = false;
 				
@@ -1211,7 +1211,6 @@
 					window.dispatchEvent(evt);
 					respondCanvas();
 				});
-				
 			}
 		});
 		/*$(document).mousemove(function(e){
