@@ -53,7 +53,7 @@ function inputBlur(i) {
 		$(document).ready(function() {
 			console.log('jQuery ready, starting ePlant...');
 			// Deleting Araport css
-			//$('link[rel=stylesheet][href*="https://www.araport.org/sites/default/files/css/"]').remove();
+			$('link[rel=stylesheet][href*="https://www.araport.org/sites/default/files/css/"]').remove();
 			$('link[rel=stylesheet][href*="https://araport-dev.tacc.utexas.edu/sites/default/files/css/"]').remove();
 			$('link[rel=stylesheet][href*="https://maxcdn.bootstrapcdn.com/"]').remove();
 			/* Google maps initailiz */
