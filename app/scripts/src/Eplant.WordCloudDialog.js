@@ -55,8 +55,11 @@
 			queryString = queryString.substring(0,queryString.length-1);
 		}
 		$.ajax({
+			beforeSend: function(request) {
+				request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+			},
 			type: "GET",
-			url: "//bar.utoronto.ca/eplant/cgi-bin/gene_cloud.php?" + queryString,//"https://m2sb.org/php/GeneCloudBAR.php?output=graphic&" + queryString,
+			url: Eplant.ServiceUrl + "gene_cloud.php?" + queryString,//"https://m2sb.org/php/GeneCloudBAR.php?output=graphic&" + queryString,
 			timeout:3000
 		})
 		.done(function(response) {
