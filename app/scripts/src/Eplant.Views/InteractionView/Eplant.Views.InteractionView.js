@@ -1701,60 +1701,67 @@
 		}];
 		
 		// URL location of webservices
-		var urlInteractions =
-		'//bar.utoronto.ca/eplant/cgi-bin/get_interactions.php?request=';
+		//var urlInteractions =	'//bar.utoronto.ca/eplant/cgi-bin/get_interactions.php?request=';
 		// Gets JSON file from web services
-		$.getJSON(urlInteractions + JSON.stringify(queryParam), $.proxy(function (response) {
-			// Get interaction data for all interactions from JSON
-			var interactionsData = response[queryParam[0].agi];
-			// Get recursive status
-			var recursiveObject = interactionsData[interactionsData.length - 1];
-			// Notify users if search is not recursive
-			if (recursiveObject.recursive === 'false') {
-				// Set recursive query status
-				this.nonRecursiveQuery = true;
-				if ($('#nonRecursiveLabel').length === 0){
-					// Create non-recursive label
-					var cytoContainer = $('#Cytoscape_container');
-					// Create DOM elements
-					var recContainer = document.createElement('div');
-					recContainer.id = 'nonRecursiveLabel';
-					var recLabel = document.createElement('div');
-					recLabel.innerHTML = 'Recursive interactions not shown';
-					// Set CSS for DOM elements
-					$(recLabel).css({
-						'color': '#444444',
-						'font-size': '1.3em',
-						'left': '20px',
-						'line-height': '1.5em',
-						'position': 'absolute',
-						'top': '40px',
-						'z-index': '1'
-					});
-					$(recContainer).hide();
-					// Append DOM elements to containers
-					$(recContainer).append(recLabel);
-					$(cytoContainer).append(recContainer);
+		$.ajax({
+			beforeSend: function(request) {
+				request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+			},
+			url = Eplant.ServiceUrl + "get_interactions.php?request=" + JSON.stringify(queryParam), 
+			type: "GET",
+			dataType: "json",	
+			success: $.proxy(function (response) {
+				// Get interaction data for all interactions from JSON
+				var interactionsData = response[queryParam[0].agi];
+				// Get recursive status
+				var recursiveObject = interactionsData[interactionsData.length - 1];
+				// Notify users if search is not recursive
+				if (recursiveObject.recursive === 'false') {
+					// Set recursive query status
+					this.nonRecursiveQuery = true;
+					if ($('#nonRecursiveLabel').length === 0){
+						// Create non-recursive label
+						var cytoContainer = $('#Cytoscape_container');
+						// Create DOM elements
+						var recContainer = document.createElement('div');
+						recContainer.id = 'nonRecursiveLabel';
+						var recLabel = document.createElement('div');
+						recLabel.innerHTML = 'Recursive interactions not shown';
+						// Set CSS for DOM elements
+						$(recLabel).css({
+							'color': '#444444',
+							'font-size': '1.3em',
+							'left': '20px',
+							'line-height': '1.5em',
+							'position': 'absolute',
+							'top': '40px',
+							'z-index': '1'
+						});
+						$(recContainer).hide();
+						// Append DOM elements to containers
+						$(recContainer).append(recLabel);
+						$(cytoContainer).append(recContainer);
+					}
 				}
-			}
-			// Remove recursive object
-			interactionsData.splice(interactionsData.length - 1, 1);
-			// Get element arrays
-			var nodes = this.cyConf.elements.nodes;
-			var edges = this.cyConf.elements.edges;
-			
-			// Get query ID
-			var query = Object.keys(response)[0];
-			// Create query node
-			this.createQueryNode(nodes, query);
-			
-			// Checks for PDI, load into compound nodes if PDIs are found
-			var containsPDI = this.checkExistsPDI(response, queryParam[0].agi);
-			this.loadInteractionElements(nodes, edges, interactionsData, containsPDI);
-			
-			cb1.apply(cbObj);
-			cb2.apply(cbObj);
-		}, this));
+				// Remove recursive object
+				interactionsData.splice(interactionsData.length - 1, 1);
+				// Get element arrays
+				var nodes = this.cyConf.elements.nodes;
+				var edges = this.cyConf.elements.edges;
+				
+				// Get query ID
+				var query = Object.keys(response)[0];
+				// Create query node
+				this.createQueryNode(nodes, query);
+				
+				// Checks for PDI, load into compound nodes if PDIs are found
+				var containsPDI = this.checkExistsPDI(response, queryParam[0].agi);
+				this.loadInteractionElements(nodes, edges, interactionsData, containsPDI);
+				
+				cb1.apply(cbObj);
+				cb2.apply(cbObj);
+			}, this)
+		});
 	};
 	
 	/**
@@ -1773,17 +1780,25 @@
 			}
 			
 			// URL for sublocalization webservices
-			var urlSUBA = '//bar.utoronto.ca/eplant/cgi-bin/groupsuba3.cgi?ids=';
+			//var urlSUBA = '//bar.utoronto.ca/eplant/cgi-bin/groupsuba3.cgi?ids=';
 			// Get data from webservices
-			$.getJSON(urlSUBA + JSON.stringify(ids), $.proxy(function (response) {
-				// Go through localizations data
-				for (var n = 0; n < response.length; n = n + 1) {
-					// Get localization data
-					var localizationData = response[n];
-					// Assign localization colors to nodes
-					this.setLocalizationData(nodes, localizationData);
-				}
-			}, this));
+			$.ajax({
+				beforeSend: function(request) {
+					request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+				},
+				type: "GET",
+				dataType: "json",
+				url: Eplant.ServiceUrl + 'groupsuba3.cgi?ids=' + JSON.stringify(ids),
+				success: $.proxy(function (response) {
+					// Go through localizations data
+					for (var n = 0; n < response.length; n = n + 1) {
+						// Get localization data
+						var localizationData = response[n];
+						// Assign localization colors to nodes
+						this.setLocalizationData(nodes, localizationData);
+					}
+				}, this)
+			});
 			
 			// Initialize cytoscape
 			Eplant.queue.add(function () {
