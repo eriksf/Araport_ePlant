@@ -30,12 +30,12 @@
 		 * Height of the legend
 		 * @type {Number}
 		 */
-		this.height = 500;
+		this.height = 300;
 		/**
 		 * Width of the legend
 		 * @type {Number}
 		 */
-		this.width = 285;
+		this.width = 171;
 		/**
 		 * The default x coordinate of the legend
 		 * @type {Number}
@@ -45,17 +45,17 @@
 		 * The default y coordinate of the legend
 		 * @type {Number}
 		 */
-		this.y = 250;
+		this.y = 20;
 
 		/* Asher: Create DOM container */
 		this.domContainer = document.createElement('div');
 
 		this.domImg = document.createElement('img');
-		this.domImg.src = 'img/legendAIV.png';
+		this.domImg.src = 'app/img/legendAIV.png';
 		$(this.domContainer).css({
 			position: 'absolute',
 			left: this.x,
-			bottom: this.y,
+			top: this.y,
 			width: this.width,
 			height: this.height,
 			opacity: '0.95'
@@ -67,7 +67,7 @@
 			this.hide();
 		}, this));
 		$(this.domClose).text('X');
-		this.domImg.src = 'img/legendAIV.png';
+		this.domImg.src = 'app/img/legendAIV.png';
 		$(this.domClose).css({
 			position: 'absolute',
 			right: 0

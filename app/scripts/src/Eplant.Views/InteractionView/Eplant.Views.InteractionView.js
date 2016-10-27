@@ -215,6 +215,10 @@
 			this.cy.resize();
 			this.resize();
 			this.cy.forceRender();
+			// Zoom in slightly to fit screen
+			if (this.nodeAlign && this.nodeAlign.circular) {
+				this.cy.zoom(this.cy.zoom() * 1.5);
+			}
 		}
 		
 		// Attach legend
@@ -498,6 +502,7 @@
 		.css({
 			shape: 'roundrectangle',
 			'background-color': '#F3F3F3',
+			'background-opacity': '0.4',
 			'text-background-color': '#FFF',
 			'text-background-opacity': '0',
 			'border-width': '0px',
@@ -700,6 +705,11 @@
 		var nodeDialogDOM = $(geneticElementDialog.dialog.DOM.wrap[0]);
 		// Set height by distance from dialog bottom to node top
 		nodeDialogDOM.css('top', nodePosition.y - nodeDialogHeight);
+
+		// Move dialog down if height exceeds bounds
+		if (positionDialog.y - nodeDialogHeight <= 0) {
+			nodeDialogDOM.css('top', "20%");
+		}
 		return geneticElementDialog;
 	};
 	
@@ -1692,7 +1702,7 @@
 		
 		// URL location of webservices
 		var urlInteractions =
-		'//bar.utoronto.ca/~asher/webservices/new_get_interactions_new.php?request=';
+		'//bar.utoronto.ca/eplant/cgi-bin/get_interactions.php?request=';
 		// Gets JSON file from web services
 		$.getJSON(urlInteractions + JSON.stringify(queryParam), $.proxy(function (response) {
 			// Get interaction data for all interactions from JSON
@@ -1735,7 +1745,6 @@
 			
 			// Get query ID
 			var query = Object.keys(response)[0];
-			
 			// Create query node
 			this.createQueryNode(nodes, query);
 			
@@ -2141,6 +2150,15 @@
 	Eplant.Views.InteractionView.prototype.createEdge = function (interactionData) {
 		// Determine interaction type
 		var interactionType = interactionData.index > 1 ? 'PDI' : 'PPI';
+		var published;
+		if (interactionData.reference === false) {
+			published = false;
+		} else if (interactionData.reference === "PubMed27117388") {
+			published = false;
+		} else {
+			published = true;
+		}
+
 		// Create edge object
 		var edge = {
 			group: 'edges',
@@ -2150,16 +2168,15 @@
 				correlation: interactionData.correlation_coefficient,
 				confidence: interactionData.interolog_confidence,
 				tooltip: null,
-				published: interactionData.published,
+				published: published,
 				reference: interactionData.reference,
 				interactionType: interactionType
 			}
 		};
 		
-		
 		// Set edge style and size based on confidence
 		if (interactionType === 'PPI') {
-			if (interactionData.published) {
+			if (published) {
 				edge.data.lineStyle = 'solid';
 				edge.data.size = 6;
 				} else if (interactionData.interolog_confidence > 10) {
@@ -2175,41 +2192,44 @@
 				edge.data.lineStyle = 'dashed';
 				edge.data.size = 1;
 			}
-			} else if (interactionType === 'PDI') {
-			if (interactionData.published) {
+		} else if (interactionType === 'PDI') {
+			if (published) {
 				edge.data.lineStyle = 'solid';
 				edge.data.size = 6;
-				} else if (interactionData.interolog_confidence >= 0.000001) {
+			} else if (interactionData.interolog_confidence <= 0.0000000001) {
 				edge.data.lineStyle = 'solid';
 				edge.data.size = 6;
-				} else if (interactionData.interolog_confidence >= 0.00000001) {
+			} else if (interactionData.interolog_confidence <= 0.00000001) {
 				edge.data.lineStyle = 'solid';
 				edge.data.size = 4;
-				} else if (interactionData.interolog_confidence > 0.0000000001) {
-				edge.data.lineStyle = 'solid';
-				edge.data.size = 1;
-				} else {
-				edge.data.lineStyle = 'dashed';
-				edge.data.size = 1;
+			} else if (interactionData.interolog_confidence < 0.000001) {
+					edge.data.lineStyle = 'solid';
+					edge.data.size = 1;
+			} else {
+					edge.data.lineStyle = 'dashed';
+					edge.data.size = 1;
 			}
 		}
 		
 		// Set edge color based on correlation
-		if (interactionType === 'PDI' && interactionData.published) {
+		if (interactionType === 'PDI' && published) {
 			edge.data.lineColor = '#669900';
-			} else if (interactionData.published) {
+		} else if (interactionType === 'PDI') {
+			edge.data.lineColor = '#A0A0A0';
+		} else if (published) {
 			edge.data.lineColor = '#99CC00';
-			} else if (interactionData.correlation_coefficient > 0.8) {
+		} else if (interactionData.correlation_coefficient > 0.8) {
 			edge.data.lineColor = '#B1171D';
-			} else if (interactionData.correlation_coefficient > 0.7) {
+		} else if (interactionData.correlation_coefficient > 0.7) {
 			edge.data.lineColor = '#D32E09';
-			} else if (interactionData.correlation_coefficient > 0.6) {
+		} else if (interactionData.correlation_coefficient > 0.6) {
 			edge.data.lineColor = '#E97911';
-			} else if (interactionData.correlation_coefficient > 0.5) {
+		} else if (interactionData.correlation_coefficient > 0.5) {
 			edge.data.lineColor = '#EEB807';
-			} else {
+		} else {
 			edge.data.lineColor = '#A0A0A0';
 		}
+		
 		
 		// Distinguish PDI edges by arc
 		edge.data.curveStyle = edge.data.interactionType === 'PDI' ? 'unbundled-bezier' : 'bezier';
@@ -2314,7 +2334,7 @@
 			if (this.cy.noInteraction) {
 				this.cy.animate({
 					fit: {
-						padding: 300
+						padding: 150
 					}
 					}, {
 					duration: 1000
@@ -2365,7 +2385,7 @@
 			if (this.cy.noInteraction) {
 				this.cy.animate({
 					fit: {
-						padding: 300
+						padding: 150
 					}
 					}, {
 					duration: 1000
@@ -2407,8 +2427,8 @@
 		if (ZUI.activeView === this) {
 			if (this.cy) {
 				if (this.cy.noInteraction) {
-					this.cy.fit(300);
-					} else {
+					this.cy.fit(150);
+				} else {
 					this.cy.fit(100);
 				}
 				
