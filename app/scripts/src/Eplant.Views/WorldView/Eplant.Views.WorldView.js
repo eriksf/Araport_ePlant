@@ -1233,8 +1233,6 @@
 						},
 						dataType: "json",
 						type: "get",
-						async: false,
-						cache: false,
 						url: this.webService + "?id=" + this.geneticElement.identifier + "&samples=" + JSON.stringify(sampleNames), 
 						success: $.proxy(function(response) {
 							var haveNulls = false;

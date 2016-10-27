@@ -160,8 +160,6 @@
 				},
 				dataType: "json",
 				url: Eplant.ServiceUrl + 'chromosomeinfo.cgi?species=' + this.scientificName.replace(' ', '_'),
-				async: false,
-				cache: false,
 				success: $.proxy(function(response) {
 
 					/* Loop through chromosomes */
@@ -357,8 +355,6 @@
 					request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
 				},
 				dataType: "json",
-				async: false,
-				cache: false,
 				url: Eplant.ServiceUrl + 'querygene.cgi?species=' + this.scientificName.split(' ').join('_') + '&term=' + identifier,
 				success: $.proxy(function(response) {
 

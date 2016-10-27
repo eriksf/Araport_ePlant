@@ -616,8 +616,6 @@
 					beforeSend: function(request) {
 						request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
 					},
-					async: false,
-					cache: false,
 					type: "GET",
 					url: Eplant.ServiceUrl +  "idautocomplete.cgi?species=" + Eplant.activeSpecies.scientificName.split(" ").join("_") + "&term=" + last,
 					dataType: "json"
@@ -1794,8 +1792,6 @@
 				},
 				type: "GET",
 				dataType: "json",
-				async: false,
-				cache: false,
 				url: Eplant.ServiceUrl + 'speciesinfo.cgi',
 				success: $.proxy(function(response) {
 					/* Loop through species */
