@@ -1707,7 +1707,7 @@
 			beforeSend: function(request) {
 				request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
 			},
-			url = Eplant.ServiceUrl + "get_interactions.php?request=" + JSON.stringify(queryParam), 
+			url: Eplant.ServiceUrl + "get_interactions.php?request=" + JSON.stringify(queryParam), 
 			type: "GET",
 			dataType: "json",	
 			success: $.proxy(function (response) {

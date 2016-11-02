@@ -285,7 +285,7 @@
 					for (var n = 0; n < this.chromosomes.length; n++) {
 						this.chromosomes[n].heatmap = null;
 					}
-					} else {
+				} else {
 					this.heatmapOn = true;
 				}
 
@@ -312,6 +312,8 @@
 					});
 				}
 			}, this),
+			{	// Data
+			}
 		);
 		this.viewSpecificUIButtons.push(viewSpecificUIButton);
 	};
