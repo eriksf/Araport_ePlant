@@ -2465,7 +2465,8 @@
 		
 		$('div.tab').width(width);
 		$('div#ZUI_container').width(width);
-		$('div.tab').css('margin-left',leftMargin );
+		//$('div.tab').css('margin-left',leftMargin ); // Araport
+		$('div.tab').css('left',leftMargin );
 		var settings = $('div#settings_container');
 		settings.width( $(window).width()- parseInt(settings.css('marginLeft'),10) );
 		$('div#tabUl').width( $(window).width()- parseInt(settings.css('marginLeft'),10) );
