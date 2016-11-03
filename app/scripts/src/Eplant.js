@@ -12,7 +12,7 @@
 	
 	/* Constants */
 	Eplant.ServiceUrl = 'https://api.araport.org/community/v0.3/asher-dev/eplant_service_v0.4/access/'; // Base services url
-	Eplant.cdd3dUrl = 'https://api.araport.org/community/v0.3/asher-dev/cdd3d_service_v0.1/access/'; // CDD3D url
+	//Eplant.cdd3dUrl = 'https://api.araport.org/community/v0.3/asher-dev/cdd3d_service_v0.1/access/'; // CDD3D url // Not needed anymore
 	ExpressionAnglerUrl = 'https://api.araport.org/community/v0.3/asher-dev/expression_angler_service_v0.2/access/'; // Expression Angler URL
 
 	Eplant.Year = "2016";

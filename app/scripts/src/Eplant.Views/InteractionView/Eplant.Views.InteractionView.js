@@ -117,7 +117,7 @@
 			height: '100%'
 		});
 		$(this.domHolder).append(this.domContainer);
-		$(document.body).append(this.domHolder);
+		document.getElementById("Cytoscape_container").appendChild(this.domHolder); // Araport
 		// Load interaction data, then load sulocalization data and layout
 		this.loadInteractionData(this.loadSublocalizationData, this.setLayout, this);
 		

@@ -923,7 +923,7 @@
 			beforeSend: function(request) {
 				request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
 			},
-			url: Eplant.ServiceUrl + "cgi-bin/citation.cgi?view=" + ZUI.activeView.name,
+			url: Eplant.ServiceUrl + "citation.cgi?view=" + ZUI.activeView.name,
 			dataType: "json"
 			}).done($.proxy(function(response) {
 

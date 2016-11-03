@@ -22,6 +22,7 @@
 
 	};
 
+
 	/**
 		* Creates the DOM elements of this dialog.
 	*/
@@ -59,12 +60,12 @@
 				request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
 			},
 			type: "GET",
-			url: Eplant.ServiceUrl + "gene_cloud.php?" + queryString,//"https://m2sb.org/php/GeneCloudBAR.php?output=graphic&" + queryString,
+			url: Eplant.ServiceUrl + "gene_cloud_base64.php?" + queryString,//"https://m2sb.org/php/GeneCloudBAR.php?output=graphic&" + queryString,
 			timeout:3000
 		})
 		.done(function(response) {
 			var filename="GeneCloud";
-
+			
 			/* Create container DOM element */
 			var domContainer= document.createElement("div");
 
@@ -80,8 +81,8 @@
 
 			var img = $('<img />', {
 				alt: 'Screenshot',
-				src:"//bar.utoronto.ca/eplant/cgi-bin/gene_cloud.php?" + queryString
-				}).css({
+				src: 'data:image/png;base64,'+ response
+			}).css({
 				'max-width': '100%',
 				'max-height': '100%',
 				width: 'auto',
@@ -89,7 +90,7 @@
 			});
 			var link = $('<a />', {
 				'download':"wordCloud.png",
-				'href':'https://m2sb.org/php/GeneCloudBAR.php?output=graphic&'+ queryString
+				'href':'//bar.utoronto.ca/eplant/cgi-bin/gene_cloud.php?' + queryString
 			}).append(img);
 			var domImageContainer= document.createElement("div");
 			$(domImageContainer).css({
