@@ -14,7 +14,7 @@ EAMode = "search";
 
 /* -------------------------------------------------- */
 // Build JSON array to hold all XML group names and sample Names
-var ADAMAUrl = "https://api.araport.org/community/v0.3/asher-dev/expression_angler_service_v0.2/access/"
+var ADAMAUrl = "https://api.araport.org/community/v0.3/asher-live/expression_angler_service_v0.3/access/"
 var allViews = [ "DevelopmentalMap",
 	"Chemical",
 	"AbioticStress"	,

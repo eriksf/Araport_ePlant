@@ -11,9 +11,8 @@
 	Eplant = {};
 	
 	/* Constants */
-	Eplant.ServiceUrl = 'https://api.araport.org/community/v0.3/asher-dev/eplant_service_v0.4/access/'; // Base services url
-	//Eplant.cdd3dUrl = 'https://api.araport.org/community/v0.3/asher-dev/cdd3d_service_v0.1/access/'; // CDD3D url // Not needed anymore
-	ExpressionAnglerUrl = 'https://api.araport.org/community/v0.3/asher-dev/expression_angler_service_v0.2/access/'; // Expression Angler URL
+	Eplant.ServiceUrl = 'https://api.araport.org/community/v0.3/asher-live/eplant_service_v0.5/access/'; // Base services url
+	ExpressionAnglerUrl = 'https://api.araport.org/community/v0.3/asher-live/expression_angler_service_v0.3/access/'; // Expression Angler URL
 
 	Eplant.Year = "2016";
 	Eplant.Authours = "Waese, Fan, Yu, Pasha & Provart";
@@ -274,7 +273,8 @@
 		var hasQueryString = false;
 		var geneIdentifiers;
 		var activeSpeciesName = Eplant.activeSpecies.scientificName;
-		var url = [location.protocol, '//', location.host, location.pathname].join('');
+		//var url = [location.protocol, '//', location.host, location.pathname].join('');
+		var url = "http://bar.utoronto.ca/eplant/";	// Araport
 		if(Eplant.activeSpecies)
 		{
 			url += hasQueryString ? '&' : '?';
