@@ -28,12 +28,12 @@
 		 * The status of interaction filters
 		 * @type {List}
 		 */
-		this.filterStatus = [false, false, false, false, false, false];
+		this.filterStatus = [false, false, false, false, false, false, false, false];
 		/**
-		 * The value of the confidence spinner
+		 * The value of the EPPI correlation spinner
 		 * @type {Number}
 		 */
-		this.confidenceValue = null;
+		this.EPPICorrValue = null;
 		/**
 		 * The value of the correlation spinner
 		 * @type {Number}
@@ -45,10 +45,10 @@
 		 */
 		this.domContainer = null;
 		/**
-		 * DOM element for confidence input
+		 * DOM element for EPPI correlation input
 		 * @type {HTMLElement}
 		 */
-		this.domConfidence = null;
+		this.domEPPICorr = null;
 		/**
 		 * DOM element for correlation input
 		 * @type {HTMLElement}
@@ -58,7 +58,7 @@
 		 * DOM element for confidence checkbox
 		 * @type {HTMLElementCheckbox}
 		 */
-		this.domConfidendenceCheckbox = null;
+		this.domEPPICorrCheckbox = null;
 		/**
 		 * DOM element for correlation checkbox
 		 * @type {HTMLElementCheckbox}
@@ -99,22 +99,35 @@
 		 * String selector to filter EPPI
 		 * @type {String}
 		 */
-		this.EPPISelector = '[interactionType = "PPI"][?published]';
+		this.EPPISelector = '[type = "PPI"][method = "E"]';
+		/**
+		 * String selector to filter by correlation
+		 * @type {String}
+		 */
+		this.corrSelector = '[correlation <= ';
 		/**
 		 * String selector to filter PPDI
 		 * @type {String}
 		 */
-		this.PPPISelector = '[interactionType = "PPI"][!published]';
+		this.PPPISelector = '[type = "PPI"][method = "P"]';
+		/**
+		 * String selector to filter by interolog confidence
+		 */
+		this.interConfSelector = '[interolog_conf <='
 		/**
 		 * String selector to filter EPDI
 		 * @type {String}
 		 */
-		this.EPDISelector = '[interactionType = "PDI"][?published]';
+		this.EPDISelector = '[type = "PDI"][method = "E"]';
 		/**
 		 * String selector to filter PPDI
 		 * @type {String}
 		 */
-		this.PPDISelector = '[interactionType = "PDI"][!published]';
+		this.PPDISelector = '[type = "PDI"][method = "P"]';
+		/**
+		 * String selector to filter by fimo confidence
+		 */
+		this.fimoConfSelector = '[fimo_conf >= '
 
 		// Create DOM elements
 		this.createDOM();
@@ -133,29 +146,28 @@
 		// Create DOM container
 		this.domContainer = document.createElement('div');
 
-		// Create container for spinners
-		var spinnerContainer = document.createElement('div');
 		// Create spinner labels
-		var confidenceLabel = 'Hide interactions with confidence less than:';
-		var correlationLabel = 'Hide interactions with correlation less than:';
-		// Create and append spinners
-		spinnerContainer.appendChild(this.createSpinner('conf', confidenceLabel, 1, 2));
-		spinnerContainer.appendChild(this.createSpinner('corr', correlationLabel, 0.1, 0.5));
-
-		$(this.domContainer).append(spinnerContainer);
+		var corrLabel = 'Hide only with correlation less than:';
+		var confPLabel = 'Hide only with confidence less than';
+		var confDLabel = 'Hide only with confidence greater than';
 
 		// Create container for checkboxes
 		var checkboxContainer = document.createElement('div');
 		// Create checkbox labels
-		var EPPILabel = 'Hide experimentally determined Protein-Protein interactions';
-		var PPPILabel = 'Hide predicted Protein-Protein interactions';
-		var EPDILabel = 'Hide experimentally determined Protein-DNA interactions';
-		var PPDILabel = 'Hide predicted Protein-DNA interactions';
+		var EPPILabel = 'Hide ALL experimentally determined Protein-Protein interactions';
+		var PPPILabel = 'Hide ALL predicted Protein-Protein interactions';
+		var EPDILabel = 'Hide ALL experimentally determined Protein-DNA interactions';
+		var PPDILabel = 'Hide ALL predicted Protein-DNA interactions';
 		// Create and append checkbox elements
-		checkboxContainer.appendChild(this.createCheckbox('EPPI', EPPILabel, '15px'));
-		checkboxContainer.appendChild(this.createCheckbox('PPPI', PPPILabel));
-		checkboxContainer.appendChild(this.createCheckbox('EPDI', EPDILabel, '15px'));
-		checkboxContainer.appendChild(this.createCheckbox('PPDI', PPDILabel));
+		var domContainer = this.domContainer;
+		domContainer.appendChild(this.createCheckbox('EPPI', EPPILabel, '15px'));
+		domContainer.appendChild(this.createSpinner('eppi-corr', corrLabel, 0.1, 0.5));
+		domContainer.appendChild(this.createCheckbox('PPPI', PPPILabel));
+		domContainer.appendChild(this.createSpinner('pppi-corr', corrLabel, 0.1, 0.5));
+		domContainer.appendChild(this.createSpinner('pppi-conf', confPLabel, 1, 2));
+		domContainer.appendChild(this.createCheckbox('EPDI', EPDILabel, '15px'));
+		domContainer.appendChild(this.createCheckbox('PPDI', PPDILabel));
+		domContainer.appendChild(this.createPDISpinner('ppdi-conf', confDLabel));
 
 		$(this.domContainer).append(checkboxContainer);
 	};
@@ -172,6 +184,7 @@
 		step, value) {
 		// Create DOM container
 		var container = document.createElement('div');
+		container.style.marginLeft = '40px';
 		// Create DOM checkbox
 		var checkbox = this.createCheckbox(id, description);
 		// Create DOM spinner container
@@ -202,6 +215,55 @@
 
 		return container;
 	};
+
+	/**
+	 * Construct spinner for PDI confidence, displays values in exponential notation
+	 * @param  {string} id The name of the spinner
+	 * @param  {string} description The description appearing as DOM text
+	 * @return {HTMLElement} The container of all created elements
+	 */
+	Eplant.Views.InteractionView.FilterDialog.prototype.createPDISpinner = function (id, 
+		description) {
+		// Create DOM container
+		var container = document.createElement('div');
+		container.style.marginLeft = '40px';
+		// Create DOM checkbox
+		var checkbox = this.createCheckbox(id, description);
+		// Create DOM spinner container
+		var spinnerContainer = document.createElement('div');
+		$(spinnerContainer).css({
+			'margin-left': '25px',
+			'margin-top': '5px'
+		});
+		// Create DOM spinner
+		var spinner = document.createElement('input');
+		$(spinnerContainer).append(spinner);
+		$(spinner).attr('id', id + '-spinner');
+		$(spinner).attr('value', '1e-4');
+		$(spinner).width(60);
+		$.widget("ui.pdispinner", $.ui.spinner, {
+		    options: {
+		        min: 2,
+		        max: 12
+		    },
+		    _parse: function(value) {
+		        if (typeof value === "string") {
+		            return parseInt(value.charAt(3));
+		        }
+		        return value;
+		    },
+		    _format: function(value2) {
+		        return "1e-" + value2;
+		    },
+		    step: 1,
+		});
+		$(spinner).pdispinner();
+		// Construct DOM structure
+		container.appendChild(checkbox);
+		container.appendChild(spinnerContainer);
+
+		return container;
+	}
 
 	/**
 	 * Constructs checkbox elements
@@ -242,10 +304,14 @@
 	 * @returns {void}
 	 */
 	Eplant.Views.InteractionView.FilterDialog.prototype.assignProperties = function () {
-		this.domConfidence = $('#conf-spinner');
-		this.domCorrelation = $('#corr-spinner');
-		this.domConfidenceCheckbox = $('#conf-checkbox');
-		this.domCorrelationCheckbox = $('#corr-checkbox');
+		this.domEPPICorr = $('#eppi-corr-spinner');
+		this.domEPPICorrCheckbox = $('#eppi-corr-checkbox');
+		this.domPPPICorr = $('#pppi-corr-spinner');
+		this.domPPPICorrCheckbox = $('#pppi-corr-checkbox');
+		this.domPPPIConf = $('#pppi-conf-spinner');
+		this.domPPPIConfCheckbox = $('#pppi-conf-checkbox');
+		this.domPPDIConf = $('#ppdi-conf-spinner');
+		this.domPPDIConfCheckbox = $('#ppdi-conf-checkbox');
 		this.domEPPICheckbox = $('#EPPI-checkbox');
 		this.domPPPICheckbox = $('#PPPI-checkbox');
 		this.domEPDICheckbox = $('#EPDI-checkbox');
@@ -283,21 +349,21 @@
 			// Update spinner values
 			this.updateValues();
 
-			// Create confidence selector
-			this.confidenceSelector = '[confidence <= ' + this.confidenceValue + ']';
-			// Create correlation selector
-			this.correlationSelector = '[correlation <= ' + this.correlationValue + ']';
-
-			// Apply value filters
-			this.filterStatus[0] = this.applyFilter(this.domConfidenceCheckbox, 0,
-				this.confidenceSelector);
-			this.filterStatus[1] = this.applyFilter(this.domCorrelationCheckbox, 1,
-				this.correlationSelector);
-			// Apply type filters
-			this.filterStatus[2] = this.applyFilter(this.domEPPICheckbox, 2, this.EPPISelector);
-			this.filterStatus[3] = this.applyFilter(this.domPPPICheckbox, 3, this.PPPISelector);
-			this.filterStatus[4] = this.applyFilter(this.domEPDICheckbox, 4, this.EPDISelector);
-			this.filterStatus[5] = this.applyFilter(this.domPPDICheckbox, 5, this.PPDISelector);
+			// Create selectors
+			var eppiCorr = this.EPPISelector + this.corrSelector + this.EPPICorrValue + ']';
+			var pppiCorr = this.PPPISelector + this.corrSelector + this.PPPICorrValue + ']';
+			var pppiConf = this.PPPISelector + this.interConfSelector + this.PPPIConfValue + ']';
+			var ppdiConf = this.PPDISelector + this.fimoConfSelector + this.PPDIConfValue + ']';
+			console.log(ppdiConf);
+			// Apply filters
+			this.filterStatus[0] = this.applyFilter(this.domEPPICheckbox, 0, this.EPPISelector);
+			this.filterStatus[1] = this.applyFilter(this.domEPPICorrCheckbox, 1, eppiCorr);
+			this.filterStatus[2] = this.applyFilter(this.domPPPICheckbox, 2, this.PPPISelector);
+			this.filterStatus[3] = this.applyFilter(this.domPPPICorrCheckbox, 3, pppiCorr);
+			this.filterStatus[4] = this.applyFilter(this.domPPPIConfCheckbox, 4, pppiConf);
+			this.filterStatus[5] = this.applyFilter(this.domEPDICheckbox, 5, this.EPDISelector);
+			this.filterStatus[6] = this.applyFilter(this.domPPDICheckbox, 6, this.PPDISelector);
+			this.filterStatus[7] = this.applyFilter(this.domPPDIConfCheckbox, 7, ppdiConf);
 			// Hide orphaned nodes
 			this.filter.cleanNodes();
 			// Hide parent nodes
@@ -321,6 +387,7 @@
 		}, this);
 
 		var dialog = window.top.art.dialog(options);
+
 		// TODO move to constructor
 		// Change cancel button class
 		$('.aui_buttons:eq(0) button:eq(1)').addClass('aui_state_highlight_grey');
@@ -390,24 +457,44 @@
 	 * @returns {void}
 	 */
 	Eplant.Views.InteractionView.FilterDialog.prototype.updateValues = function () {
-		// Get confidence
-		var confidence = $(this.domConfidence).spinner('value');
-		// Set confidence to 0 if below 0
-		if (confidence < 0) {
-			confidence = 0;
+		// Get EPPI correlation values
+		var correlationEPPI = $(this.domEPPICorr).spinner('value');
+		// Set correlation to values between -1 and 1
+		if (correlationEPPI < -1) {
+			correlationEPPI = -1;
 		}
-		// Get correlation
-		var correlation = $(this.domCorrelation).spinner('value');
-		// Set correlation to values between -1 and 10px
-		if (correlation < -1) {
-			correlation = -1;
+		if (correlationEPPI > 1) {
+			correlationEPPI = 1;
 		}
-		if (correlation > 1) {
-			correlation = 1;
+		// Get PPPI correlation
+		var correlationPPPI = $(this.domPPPICorr).spinner('value');
+		// Set correlation to values between -1 and 1
+		if (correlationPPPI < -1) {
+			correlationPPPI = -1;
+		}
+		if (correlationPPPI > 1) {
+			correlationPPPI = 1;
+		}
+		// Get PPPI confidence
+		var confPPPI = $(this.domPPPIConf).spinner('value');
+		// Set correlation to values between -1 and 1
+		if (confPPPI < 0) {
+			confPPPI = 0;
+		}
+		// Get PPPI correlation
+		var confPPDI = parseFloat('1e-' + $(this.domPPDIConf).attr('aria-valuenow'));
+		// Set correlation to values between -1 and 1
+		if (confPPDI < 0) {
+			confPPDI = 0;
+		}
+		if (confPPDI > 1) {
+			confPPDI = 1;
 		}
 		// Pass confidence and correlation to global attributes
-		this.confidenceValue = confidence;
-		this.correlationValue = correlation;
+		this.EPPICorrValue = correlationEPPI;
+		this.PPPICorrValue = correlationPPPI;
+		this.PPPIConfValue = confPPPI;
+		this.PPDIConfValue = confPPDI;
 	};
 
 

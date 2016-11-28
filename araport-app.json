@@ -1,5 +1,5 @@
 {
-  "icon": "",
+  "icon": "app/img/BAR.png",
   "name": "Araport_ePlant",
   "description": "Araport ePlant",
   "html": "main.html",
@@ -170,7 +170,7 @@
     "styles/eplant.css"
   ],
   "tags": [
-    "arabidopsis", "eplant", "BAR"
+    "Arabidopsis", "ePlant", "BAR"
   ],
   "fullscreen": "require"
 }

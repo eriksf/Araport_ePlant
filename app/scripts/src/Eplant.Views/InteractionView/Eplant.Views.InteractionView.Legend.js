@@ -30,7 +30,7 @@
 		 * Height of the legend
 		 * @type {Number}
 		 */
-		this.height = 300;
+		this.height = '80%';
 		/**
 		 * Width of the legend
 		 * @type {Number}
@@ -45,13 +45,13 @@
 		 * The default y coordinate of the legend
 		 * @type {Number}
 		 */
-		this.y = 20;
+		this.y = '15%';
 
 		/* Asher: Create DOM container */
 		this.domContainer = document.createElement('div');
-
 		this.domImg = document.createElement('img');
 		this.domImg.src = 'app/img/legendAIV.png';
+		this.domImg.style.height = '100%';
 		$(this.domContainer).css({
 			position: 'absolute',
 			left: this.x,
