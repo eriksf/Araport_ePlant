@@ -2,7 +2,7 @@
 
 This is ePlant from the BAR developed for the Araport project. This was developed by the BAR team with help from Araport team.
 
-## How to run on Araport
+## How to install and run on Araport
 1. Clear web browser cache and log into araport.org
 2. Click "Tools" then "My Workspace".
 3. Workspace page will load. On the top right, there is a wheel. Click the wheel, and click "Install an App".
