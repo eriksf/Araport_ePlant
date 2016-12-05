@@ -7,7 +7,7 @@ This is ePlant from the BAR developed for the Araport project. This was develope
 2. Click "Tools" then "My Workspace".
 3. Workspace page will load. On the top right, there is a wheel. Click the wheel, and click "Install an App".
 4. Enter the following: <br />
-URL: https://github.com/asherpasha/Araport_ePlant.git <br />
+URL: https://github.com/BioAnalyticResource/Araport_ePlant.git <br />
 Release version: v0.1.19 <br />
 and click "Save" <br />
 5. The page will reload. Click on "View App Full Screen"
