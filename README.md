@@ -11,8 +11,7 @@ URL: https://github.com/BioAnalyticResource/Araport_ePlant.git <br />
 Release version: v0.1.19 <br />
 and click "Save" <br />
 5. The page will reload. Click on "View App Full Screen"
-6. On the new page, add "/" at the end of URL and press enter.
-7. Enter a gene, and it should work.
+6. Enter a gene, and it should work.
 
 ## Funding Acknowledgement
 
