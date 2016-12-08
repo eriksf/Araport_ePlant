@@ -266,56 +266,54 @@
 
 		/* Heatmap toggle */
 		var viewSpecificUIButton = new Eplant.ViewSpecificUIButton(
-		"app/img/heatmap.png",		// imageSource
-		"Toggle heatmap of gene density. Dark - more dense. Light - less dense.",		// Description
-		$.proxy(function() {			// click
-			/* Loop through chromosomes to get the visible segments
-				Asher this section may not be needed any more
-				for (var n = 0; n < this.chromosomes.length; n++) {
-				/* Get chromosome
-				var chromosome = this.chromosomes[n];
+			"app/img/heatmap.png",		// imageSource
+			"Toggle heatmap of gene density. Dark - more dense. Light - less dense.",		// Description
+			$.proxy(function() {			// click
+				/* Loop through chromosomes to get the visible segments
+					Asher this section may not be needed any more
+					for (var n = 0; n < this.chromosomes.length; n++) {
+					/* Get chromosome
+					var chromosome = this.chromosomes[n];
 
-				/* Determine the visible segment
-				// TODO
-			} */
+					/* Determine the visible segment
+					// TODO
+				} */
 
-			/* If the heatmap is on, thurn it of and clear the heatmap information */
-			if (this.heatmapOn) {
-				this.heatmapOn = false;
-				for (var n = 0; n < this.chromosomes.length; n++) {
-					this.chromosomes[n].heatmap = null;
-				}
+				/* If the heatmap is on, thurn it of and clear the heatmap information */
+				if (this.heatmapOn) {
+					this.heatmapOn = false;
+					for (var n = 0; n < this.chromosomes.length; n++) {
+						this.chromosomes[n].heatmap = null;
+					}
 				} else {
-				this.heatmapOn = true;
-			}
+					this.heatmapOn = true;
+				}
 
-			/* Request heatmap */
-			if (this.heatmapOn) {
-				var binSize = ZUI.camera.unprojectDistance(1) / 0.000015;
-				$.ajax({
-					beforeSend: function(request) {
-						request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
-					},
-					type: "GET",
-					async: false,
-					cache: false,
-					dataType: "json",			
-					url: Eplant.ServiceUrl + "genedensity.cgi?species=" + this.species.scientificName.replace(" ", "_") + "&binSize=" + binSize, 
-					success: $.proxy(function(response) {
-						for (var n = 0; n < this.chromosomes.length; n++) {
-							for (var m = 0; m < response.length; m++) {
-								if (this.chromosomes[n].chromosome.name == response[m].name) {
-									this.chromosomes[n].heatmap = response[n].density;
-									break;
+				/* Request heatmap */
+				if (this.heatmapOn) {
+					var binSize = ZUI.camera.unprojectDistance(1) / 0.000015;
+					$.ajax({
+						beforeSend: function(request) {
+							request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+						},
+						type: "GET",
+						dataType: "json",			
+						url: Eplant.ServiceUrl + "genedensity.cgi?species=" + this.species.scientificName.replace(" ", "_") + "&binSize=" + binSize, 
+						success: $.proxy(function(response) {
+							for (var n = 0; n < this.chromosomes.length; n++) {
+								for (var m = 0; m < response.length; m++) {
+									if (this.chromosomes[n].chromosome.name == response[m].name) {
+										this.chromosomes[n].heatmap = response[n].density;
+										break;
+									}
 								}
 							}
-						}
-					}, this)
-				});
+						}, this)
+					});
+				}
+			}, this),
+			{	// Data
 			}
-		}, this),
-		{				// data
-		}
 		);
 		this.viewSpecificUIButtons.push(viewSpecificUIButton);
 	};

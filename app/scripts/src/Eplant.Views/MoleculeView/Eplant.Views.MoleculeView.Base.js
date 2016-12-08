@@ -50,11 +50,11 @@
 				//custom cdd webservice url if not using dev or eplant
 				cddUrl : null,
 				//
-				pfamUrlBar : Eplant.cdd3dUrl + 'PfamAnnot.cgi',
+				pfamUrlBar : Eplant.ServiceUrl + 'PfamAnnot.cgi',
 				//
 				//pfamUrlDev : 'ProxyServlet',
 				//
-				cddUrlBar : Eplant.cdd3dUrl + 'CDDannot.cgi',
+				cddUrlBar : Eplant.ServiceUrl + 'CDDannot.cgi',
 				//
 				//cddUrlDev : 'ProxyServlet',
 				/*

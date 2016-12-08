@@ -62,7 +62,7 @@
 		});
 
 		// Check if interaction is published
-		if (edgeData.published) {
+		if (edgeData.reference && edgeData.reference != "None") {
 			// Append hyperlinks to parent of container
 			$(this.domContainer).parent().append(this.generateLinkDOM());
 		}

@@ -611,22 +611,8 @@ greyText {
 	height:100%;
 	margin:0 auto;
 	position:absolute;
-	//border-radius:20px;
 	background:#fff;
 	overflow:hidden;
-	
-	//-webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
-	
-	//subtle internal shading effect
-	//-webkit-box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.05);
-	//-moz-box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.05);
-	//box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.05);
-	
-	
-	//transition: left .5s ease;
-	//-webkit-transition: left .5s ease;
-	//-moz-transition: left .5s ease;
-	//-o-transition: left .5s ease;
 }
 
 
@@ -733,7 +719,6 @@ greyText {
 
 /* Navigation container */
 #navigationContainer, #genePanel_container {
-	//padding: 15px;
 	font-size: 1.2em;
 	opacity: 0;
 	transition: opacity .5s ease;
@@ -873,9 +858,6 @@ greyText {
 
 /* Content */
 #content {
-	//margin: 5px auto 0px auto;
-	//padding: 0px 5px 5px 5px;
-	//width: 1374px;
 	margin:0px;
 	width:100%;
 	height:100%;
@@ -884,8 +866,8 @@ greyText {
 
 /* gene input text box */
 #enterIdentifier {
-	width: 92%;
-	height: 30px;
+	width: 85%;
+	height: 15px;
 	padding: 5px;
 	margin-top: 5px;
 	margin-bottom: 5px;
@@ -896,13 +878,11 @@ greyText {
 	margin-right-6px;
 	box-shadow:         inset 0 0 3px #EDEDED;
 	-moz-box-shadow:    inset 0 0 3px #EDEDED;
-	-webkit-box-shadow: inset 0 0 3#px #EDEDED;
+	-webkit-box-shadow: inset 0 0 3px #EDEDED;
 	font-size:14px;
 }
 /* select plant */
 #selectIdentifier {
-	//background: url('down-arrow.png') no-repeat right, -moz-linear-gradient(top, #FBFBFB 0%, #E9E9E9 100%);
-	//background: url('down-arrow.png') no-repeat right, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FBFBFB), color-stop(100%,#E9E9E9));
 	text-indent: 0.01px;
 	text-overflow: '';
 	width: 92%;
@@ -1456,10 +1436,6 @@ button.experimentListTopButton img {
 /* Panel */
 .panel {
     display: inline-block;
-    //opacity: 0.8;
-    //-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
-    // IE8 filter: alpha(opacity=80);
-    // IE 5-7;
 }
 /* left sidebar */
 .left {
@@ -2412,7 +2388,6 @@ button.aui_state_highlight:active {     background:#80A24A;color:#fff;}
 }
 
 /*! changing default Green tooltip (qtip2 library) style 
-//cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.css */
 
 /*! Green tooltip style */
 .a_qtip-green{

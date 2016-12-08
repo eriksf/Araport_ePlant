@@ -193,8 +193,6 @@ Eplant.Views.BioticStressErysipheorontiiView.unavailableIconImageURL = "";
 					},
 					dataType: "json",
 					type: "GET",
-					async: false,
-					cache: false,
 					url: this.webService + "id=" + this.geneticElement.identifier + "&samples=" + JSON.stringify(sampleNames), 
 					success: $.proxy(function(response) {
 						/* Match results with samples and copy values to samples */

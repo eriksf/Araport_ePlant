@@ -117,7 +117,7 @@
 			height: '100%'
 		});
 		$(this.domHolder).append(this.domContainer);
-		$(document.body).append(this.domHolder);
+		document.getElementById("Cytoscape_container").appendChild(this.domHolder); // Araport
 		// Load interaction data, then load sulocalization data and layout
 		this.loadInteractionData(this.loadSublocalizationData, this.setLayout, this);
 		
@@ -215,6 +215,10 @@
 			this.cy.resize();
 			this.resize();
 			this.cy.forceRender();
+			// Zoom in slightly to fit screen
+			if (this.nodeAlign && this.nodeAlign.circular) {
+				this.cy.zoom(this.cy.zoom() * 1.5);
+			}
 		}
 		
 		// Attach legend
@@ -498,6 +502,7 @@
 		.css({
 			shape: 'roundrectangle',
 			'background-color': '#F3F3F3',
+			'background-opacity': '0.4',
 			'text-background-color': '#FFF',
 			'text-background-opacity': '0',
 			'border-width': '0px',
@@ -700,6 +705,11 @@
 		var nodeDialogDOM = $(geneticElementDialog.dialog.DOM.wrap[0]);
 		// Set height by distance from dialog bottom to node top
 		nodeDialogDOM.css('top', nodePosition.y - nodeDialogHeight);
+
+		// Move dialog down if height exceeds bounds
+		if (positionDialog.y - nodeDialogHeight <= 0) {
+			nodeDialogDOM.css('top', "20%");
+		}
 		return geneticElementDialog;
 	};
 	
@@ -969,12 +979,9 @@
 					if (_this.tooltip) {
 						clearTimeout(exitTimer);
 						_this.tooltip.close();
-						_this.tooltip = null;
+						_this.tooltip = null;	
 					}
 					
-					// Check if a reference exists
-					var confidence = interaction.published ? 'Experimentally determined' :
-					interaction.confidence;
 					
 					// Instantiate mouse position
 					var mouseX = null;
@@ -983,17 +990,16 @@
 					// Set mouse position
 					if (currCoords) {
 						mouseX = currCoords.x;
-						mouseY = currCoords.y;
-						} else {
+						mouseY = currCoords.y - 5;
+					} else {
 						mouseX = event.originalEvent.clientX;
-						mouseY = event.originalEvent.clientY;
+						mouseY = event.originalEvent.clientY - 5;
 					}
 					
 					// Create tooltip
 					var tooltip = new Eplant.Views.InteractionView.EdgeInfoTooltip({
 						// Tooltip content
-						content: 'Co-expression coefficient:' + interaction.correlation +
-						'<br>Confidence Value:' + confidence + '<br>',
+						content: edge._private.data.tooltipContent,
 						// Set position
 						x: mouseX,
 						y: mouseY
@@ -1518,11 +1524,9 @@
 			data: {
 				source: sourceID,
 				target: transNode.data.id,
-				published: true,
 				targetArrowShape: 'none',
 				'target-arrow-color': '#669900',
-				interactionType: 'PDI',
-				reference: ''
+				type: 'PDI',
 			},
 			classes: 'trans'
 		};
@@ -1691,61 +1695,67 @@
 		}];
 		
 		// URL location of webservices
-		var urlInteractions =
-		'//bar.utoronto.ca/~asher/webservices/new_get_interactions_new.php?request=';
+		//var urlInteractions =	'//bar.utoronto.ca/eplant/cgi-bin/get_interactions.php?request=';
 		// Gets JSON file from web services
-		$.getJSON(urlInteractions + JSON.stringify(queryParam), $.proxy(function (response) {
-			// Get interaction data for all interactions from JSON
-			var interactionsData = response[queryParam[0].agi];
-			// Get recursive status
-			var recursiveObject = interactionsData[interactionsData.length - 1];
-			// Notify users if search is not recursive
-			if (recursiveObject.recursive === 'false') {
-				// Set recursive query status
-				this.nonRecursiveQuery = true;
-				if ($('#nonRecursiveLabel').length === 0){
-					// Create non-recursive label
-					var cytoContainer = $('#Cytoscape_container');
-					// Create DOM elements
-					var recContainer = document.createElement('div');
-					recContainer.id = 'nonRecursiveLabel';
-					var recLabel = document.createElement('div');
-					recLabel.innerHTML = 'Recursive interactions not shown';
-					// Set CSS for DOM elements
-					$(recLabel).css({
-						'color': '#444444',
-						'font-size': '1.3em',
-						'left': '20px',
-						'line-height': '1.5em',
-						'position': 'absolute',
-						'top': '40px',
-						'z-index': '1'
-					});
-					$(recContainer).hide();
-					// Append DOM elements to containers
-					$(recContainer).append(recLabel);
-					$(cytoContainer).append(recContainer);
+		$.ajax({
+			beforeSend: function(request) {
+				request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+			},
+			url: Eplant.ServiceUrl + "get_interactions.php?request=" + JSON.stringify(queryParam), 
+			type: "GET",
+			dataType: "json",	
+			success: $.proxy(function (response) {
+				// Get interaction data for all interactions from JSON
+				var interactionsData = response[queryParam[0].agi];
+				// Get recursive status
+				var recursiveObject = interactionsData[interactionsData.length - 1];
+				// Notify users if search is not recursive
+				if (recursiveObject.recursive === 'false') {
+					// Set recursive query status
+					this.nonRecursiveQuery = true;
+					if ($('#nonRecursiveLabel').length === 0){
+						// Create non-recursive label
+						var cytoContainer = $('#Cytoscape_container');
+						// Create DOM elements
+						var recContainer = document.createElement('div');
+						recContainer.id = 'nonRecursiveLabel';
+						var recLabel = document.createElement('div');
+						recLabel.innerHTML = 'Recursive interactions not shown';
+						// Set CSS for DOM elements
+						$(recLabel).css({
+							'color': '#444444',
+							'font-size': '1.3em',
+							'left': '20px',
+							'line-height': '1.5em',
+							'position': 'absolute',
+							'top': '40px',
+							'z-index': '1'
+						});
+						$(recContainer).hide();
+						// Append DOM elements to containers
+						$(recContainer).append(recLabel);
+						$(cytoContainer).append(recContainer);
+					}
 				}
-			}
-			// Remove recursive object
-			interactionsData.splice(interactionsData.length - 1, 1);
-			// Get element arrays
-			var nodes = this.cyConf.elements.nodes;
-			var edges = this.cyConf.elements.edges;
-			
-			// Get query ID
-			var query = Object.keys(response)[0];
-			
-			// Create query node
-			this.createQueryNode(nodes, query);
-			
-			// Checks for PDI, load into compound nodes if PDIs are found
-			var containsPDI = this.checkExistsPDI(response, queryParam[0].agi);
-			this.loadInteractionElements(nodes, edges, interactionsData, containsPDI);
-			
-			cb1.apply(cbObj);
-			cb2.apply(cbObj);
-		}, this));
+				// Remove recursive object
+				interactionsData.splice(interactionsData.length - 1, 1);
+				// Get element arrays
+				var nodes = this.cyConf.elements.nodes;
+				var edges = this.cyConf.elements.edges;
+				
+				// Get query ID
+				var query = Object.keys(response)[0];
+				// Create query node
+				this.createQueryNode(nodes, query);
+				
+				// Checks for PDI, load into compound nodes if PDIs are found
+				var containsPDI = this.checkExistsPDI(response, queryParam[0].agi);
+				this.loadInteractionElements(nodes, edges, interactionsData, containsPDI);
+				
+				cb1.apply(cbObj);
+				cb2.apply(cbObj);
+			}, this)
+		});
 	};
 	
 	/**
@@ -1764,17 +1774,25 @@
 			}
 			
 			// URL for sublocalization webservices
-			var urlSUBA = '//bar.utoronto.ca/eplant/cgi-bin/groupsuba3.cgi?ids=';
+			//var urlSUBA = '//bar.utoronto.ca/eplant/cgi-bin/groupsuba3.cgi?ids=';
 			// Get data from webservices
-			$.getJSON(urlSUBA + JSON.stringify(ids), $.proxy(function (response) {
-				// Go through localizations data
-				for (var n = 0; n < response.length; n = n + 1) {
-					// Get localization data
-					var localizationData = response[n];
-					// Assign localization colors to nodes
-					this.setLocalizationData(nodes, localizationData);
-				}
-			}, this));
+			$.ajax({
+				beforeSend: function(request) {
+					request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
+				},
+				type: "GET",
+				dataType: "json",
+				url: Eplant.ServiceUrl + 'groupsuba3.cgi?ids=' + JSON.stringify(ids),
+				success: $.proxy(function (response) {
+					// Go through localizations data
+					for (var n = 0; n < response.length; n = n + 1) {
+						// Get localization data
+						var localizationData = response[n];
+						// Assign localization colors to nodes
+						this.setLocalizationData(nodes, localizationData);
+					}
+				}, this)
+			});
 			
 			// Initialize cytoscape
 			Eplant.queue.add(function () {
@@ -2131,6 +2149,31 @@
 		// Return node object
 		return node;
 	};
+	/**
+		* Prepares interactions data for edge creation
+		* @param {Object} interactionData The data prepare for further use
+		* @return {Array} Returns an array of relevant information for edge creation
+	*/
+	Eplant.Views.InteractionView.prototype.prepCreateEdge = function (interactionData) {
+		// Determine interaction type
+		var interactionType = interactionData.index > 1 ? 'PDI' : 'PPI';		
+		// Get predicted/exp.determined status of interaction
+		var detMethod;
+		if (interactionType === 'PDI') {
+			if (interactionData.index === "2") {
+				detMethod = 'E';
+			} else if (interactionData.index === "3") {
+				detMethod = 'P';
+			}
+		} else if (interactionType == 'PPI') {
+			if (interactionData.reference != 'None') {
+				detMethod = 'E';
+			} else {
+				detMethod = 'P';
+			}
+		}
+		return {type: interactionType, method: detMethod};
+	};
 	
 	/**
 		* Creates an edge object for feeding to Cytoscape.
@@ -2138,86 +2181,140 @@
 		* @param {Object} interactionData Data that is to be represented by the edge.
 		* @return {Object} Edge object that can be fed to Cytoscape.
 	*/
+
 	Eplant.Views.InteractionView.prototype.createEdge = function (interactionData) {
-		// Determine interaction type
-		var interactionType = interactionData.index > 1 ? 'PDI' : 'PPI';
-		// Create edge object
+		// Prepare data for usage
+		var prepData = this.prepCreateEdge(interactionData);
+		// Create core edge object
 		var edge = {
 			group: 'edges',
 			data: {
 				source: interactionData.source.toUpperCase(),
 				target: interactionData.target.toUpperCase(),
-				correlation: interactionData.correlation_coefficient,
-				confidence: interactionData.interolog_confidence,
 				tooltip: null,
-				published: interactionData.published,
-				reference: interactionData.reference,
-				interactionType: interactionType
+				type: prepData.type,
+				method: prepData.method
 			}
 		};
+		// Add additional relevant data
+		if (edge.data.type === 'PDI' && edge.data.method === 'P') {
+			// Note: interlog_confidence actually stores fimo conf in this case
+			edge.data.fimo_conf = interactionData.interolog_confidence;
+		} else if (edge.data.type === 'PPI') {
+			edge.data.correlation = interactionData.correlation_coefficient;
+			if (edge.data.method === 'P') {
+				edge.data.interolog_conf = interactionData.interolog_confidence;
+			}
+		}
+
+		if (interactionData.reference != 'None') {
+			edge.data.reference = interactionData.reference;
+		}
 		
-		
+		// Set styles using helper function
+		edge = this.setEdgeStyles(edge);
+		// Generate tooltip content
+		edge.data.tooltipContent = this.setEdgeTooltipContent(edge);
+		return edge;
+	};
+	
+	/**
+		* Sets edge styles for edges with processed data
+		* @param {Object} edge The edge object with completed data entry
+		* @return {Object} Edge object with styles
+	*/
+	Eplant.Views.InteractionView.prototype.setEdgeStyles = function (edge) {
+		// Set edge shape
+		edge.data.curveStyle = edge.data.type === 'PDI' ? 'unbundled-bezier' : 'bezier';
+		edge.data.targetArrowShape = edge.data.type === 'PDI' ? 'triangle' : 'none';
+
 		// Set edge style and size based on confidence
-		if (interactionType === 'PPI') {
-			if (interactionData.published) {
-				edge.data.lineStyle = 'solid';
+		if (edge.data.type === 'PPI') {
+			edge.data.lineStyle = 'solid';
+			if (edge.data.method === 'E') {
 				edge.data.size = 6;
-				} else if (interactionData.interolog_confidence > 10) {
-				edge.data.lineStyle = 'solid';
+			} else if (edge.data.interolog_confidence > 10) {
 				edge.data.size = 6;
-				} else if (interactionData.interolog_confidence > 5) {
-				edge.data.lineStyle = 'solid';
+			} else if (edge.data.interolog_confidence > 5) {
 				edge.data.size = 4;
-				} else if (interactionData.interolog_confidence > 2) {
-				edge.data.lineStyle = 'solid';
+			} else if (edge.data.interolog_confidence > 2) {
 				edge.data.size = 1;
-				} else {
+			} else {
 				edge.data.lineStyle = 'dashed';
 				edge.data.size = 1;
 			}
-			} else if (interactionType === 'PDI') {
-			if (interactionData.published) {
-				edge.data.lineStyle = 'solid';
+		} else if (edge.data.type === 'PDI') {
+			edge.data.lineStyle = 'solid';
+			if (edge.data.method === 'E') {
 				edge.data.size = 6;
-				} else if (interactionData.interolog_confidence >= 0.000001) {
-				edge.data.lineStyle = 'solid';
+			} else if (edge.data.fimo_conf <= 0.0000000001) {
 				edge.data.size = 6;
-				} else if (interactionData.interolog_confidence >= 0.00000001) {
-				edge.data.lineStyle = 'solid';
+			} else if (edge.data.fimo_conf <= 0.00000001) {
 				edge.data.size = 4;
-				} else if (interactionData.interolog_confidence > 0.0000000001) {
-				edge.data.lineStyle = 'solid';
-				edge.data.size = 1;
-				} else {
-				edge.data.lineStyle = 'dashed';
-				edge.data.size = 1;
+			} else if (edge.data.fimo_conf < 0.000001) {
+					edge.data.size = 1;
+			} else {
+					edge.data.lineStyle = 'dashed';
+					edge.data.size = 1;
 			}
 		}
 		
 		// Set edge color based on correlation
-		if (interactionType === 'PDI' && interactionData.published) {
-			edge.data.lineColor = '#669900';
-			} else if (interactionData.published) {
-			edge.data.lineColor = '#99CC00';
-			} else if (interactionData.correlation_coefficient > 0.8) {
-			edge.data.lineColor = '#B1171D';
-			} else if (interactionData.correlation_coefficient > 0.7) {
-			edge.data.lineColor = '#D32E09';
-			} else if (interactionData.correlation_coefficient > 0.6) {
-			edge.data.lineColor = '#E97911';
-			} else if (interactionData.correlation_coefficient > 0.5) {
-			edge.data.lineColor = '#EEB807';
+		if (edge.data.type === 'PDI') {
+			if (edge.data.method === 'E') {
+				edge.data.lineColor = '#669900';
 			} else {
-			edge.data.lineColor = '#A0A0A0';
+				edge.data.lineColor = '#A0A0A0';
+			}
+		} else if (edge.data.type === 'PPI') {
+			if (edge.data.method === 'E') {
+				edge.data.lineColor = '#99CC00';
+			} else if (edge.data.correlation_coefficient > 0.8) {
+				edge.data.lineColor = '#B1171D';
+			} else if (edge.data.correlation_coefficient > 0.7) {
+				edge.data.lineColor = '#D32E09';
+			} else if (edge.data.correlation_coefficient > 0.6) {
+				edge.data.lineColor = '#E97911';
+			} else if (edge.data.correlation_coefficient > 0.5) {
+				edge.data.lineColor = '#EEB807';
+			} else {
+				edge.data.lineColor = '#A0A0A0';
+			}
 		}
-		
-		// Distinguish PDI edges by arc
-		edge.data.curveStyle = edge.data.interactionType === 'PDI' ? 'unbundled-bezier' : 'bezier';
-		edge.data.targetArrowShape = edge.data.interactionType === 'PDI' ? 'triangle' : 'none';
-		// Return edge object
+
 		return edge;
 	};
-	
+
+	Eplant.Views.InteractionView.prototype.setEdgeTooltipContent = function (edge) {
+		// First line declaring type
+		var typeString = (edge.data.type === 'PDI') ? 'DNA' : 'Protein';
+		var firstLine = 'Protein-' + typeString + ' Interaction'; 
+		// Add method of determination
+		if (edge.data.method === 'E') {
+			firstLine += ' (E)';
+		} else {
+			firstLine += ' (P)';
+		}
+		// Remaining lines containing data
+		var dataLines = '';
+		if (edge.data.type === 'PDI') {
+			if (edge.data.method === 'P') {
+				dataLines += 'Confidence(FIMO): ' + edge.data.fimo_conf + '<br>';
+			}
+		} else {
+			if (edge.data.method === 'P') {
+				dataLines += 'Confidence(Interolog): ' + edge.data.interolog_conf + '<br>';
+			} 
+			dataLines += 'Co-expression coefficient: ' + edge.data.correlation + '<br>';
+		}
+
+		//if (edge.data.reference) {
+		//	dataLines = dataLines + 'Reference' + 
+		//}
+		var final = firstLine + '<br>' + dataLines;
+		return final;
+	}
+
 	/**
 		* Returns the color corresponding to a subcellular compartment.
 		*
@@ -2314,7 +2411,7 @@
 			if (this.cy.noInteraction) {
 				this.cy.animate({
 					fit: {
-						padding: 300
+						padding: 150
 					}
 					}, {
 					duration: 1000
@@ -2365,7 +2462,7 @@
 			if (this.cy.noInteraction) {
 				this.cy.animate({
 					fit: {
-						padding: 300
+						padding: 150
 					}
 					}, {
 					duration: 1000
@@ -2385,7 +2482,7 @@
 	
 	Eplant.Views.InteractionView.prototype.zoomIn = function () {
 		if (this.cy) {
-			this.zoom = this.zoom + 0.2;
+			this.zoom = this.zoom + 0.05;
 			this.cy.zoom({
 				level: this.zoom,
 				position: this.queryNode.position()
@@ -2395,7 +2492,7 @@
 	
 	Eplant.Views.InteractionView.prototype.zoomOut = function () {
 		if (this.cy) {
-			this.zoom = this.zoom - 0.2;
+			this.zoom = this.zoom - 0.05;
 			this.cy.zoom({
 				level: this.zoom,
 				position: this.queryNode.position()
@@ -2407,8 +2504,8 @@
 		if (ZUI.activeView === this) {
 			if (this.cy) {
 				if (this.cy.noInteraction) {
-					this.cy.fit(300);
-					} else {
+					this.cy.fit(150);
+				} else {
 					this.cy.fit(100);
 				}
 				

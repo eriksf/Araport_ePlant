@@ -22,6 +22,7 @@
 
 	};
 
+
 	/**
 		* Creates the DOM elements of this dialog.
 	*/
@@ -46,25 +47,36 @@
 		containerElement.innerHTML = "Loading citation...";
 		var content = '';
 
-		var queryString = "";
+		// Query String for the BAR
+		var queryStringBAR = "";
 		for(var i =0;i<Eplant.activeSpecies.displayGeneticElements.length;i++){
 			var geneticElement = Eplant.activeSpecies.displayGeneticElements[i];
-			queryString+="gene="+geneticElement.identifier+"&";
+			queryStringBAR += "gene=" + geneticElement.identifier +"&";
 		}
-		if(queryString.length>0){
-			queryString = queryString.substring(0,queryString.length-1);
+		if(queryStringBAR.length>0){
+			queryStringBAR = queryStringBAR.substring(0,queryStringBAR.length-1);
+		}
+
+		// Query String for Araport
+		var queryStringAraport = "";
+		for(var i =0;i<Eplant.activeSpecies.displayGeneticElements.length;i++){
+			var geneticElement = Eplant.activeSpecies.displayGeneticElements[i];
+			queryStringAraport += geneticElement.identifier+"_";
+		}
+		if(queryStringAraport.length>0){
+			queryStringAraport = queryStringAraport.substring(0,queryStringAraport.length-1);
 		}
 		$.ajax({
 			beforeSend: function(request) {
 				request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
 			},
 			type: "GET",
-			url: Eplant.ServiceUrl + "gene_cloud.php?" + queryString,//"https://m2sb.org/php/GeneCloudBAR.php?output=graphic&" + queryString,
+			url: Eplant.ServiceUrl + "gene_cloud_base64.php?genes=" + queryStringAraport, // Used to be: "https://m2sb.org/php/GeneCloudBAR.php?output=graphic&" + queryString,
 			timeout:3000
 		})
 		.done(function(response) {
 			var filename="GeneCloud";
-
+			
 			/* Create container DOM element */
 			var domContainer= document.createElement("div");
 
@@ -80,8 +92,8 @@
 
 			var img = $('<img />', {
 				alt: 'Screenshot',
-				src:"//bar.utoronto.ca/eplant/cgi-bin/gene_cloud.php?" + queryString
-				}).css({
+				src: 'data:image/png;base64,'+ response
+			}).css({
 				'max-width': '100%',
 				'max-height': '100%',
 				width: 'auto',
@@ -89,7 +101,7 @@
 			});
 			var link = $('<a />', {
 				'download':"wordCloud.png",
-				'href':'https://m2sb.org/php/GeneCloudBAR.php?output=graphic&'+ queryString
+				'href':'//bar.utoronto.ca/eplant/cgi-bin/gene_cloud.php?' + queryStringBAR
 			}).append(img);
 			var domImageContainer= document.createElement("div");
 			$(domImageContainer).css({
@@ -110,11 +122,11 @@
 				color:'#000'
 			});
 
-			var pngLink = $('<a href="https://m2sb.org/php/GeneCloudBAR.php?output=graphic&'+ queryString+'" download="'+filename+'.png">Save PNG Image</a>').addClass("greenDownloadButton");
+			var pngLink = $('<a href="https://m2sb.org/php/GeneCloudBAR.php?output=graphic&'+ queryStringBAR +'" download="'+filename+'.png">Save PNG Image</a>').addClass("greenDownloadButton");
 
 			$(domOtherFormat).append(pngLink);
 
-			var rawLink = $('<a href="https://m2sb.org/php/GeneCloudBAR.php?output=table&'+ queryString+'" download="'+filename+'.tsv">Save Raw Data</a>').addClass("greenDownloadButton");
+			var rawLink = $('<a href="https://m2sb.org/php/GeneCloudBAR.php?output=table&'+ queryStringBAR+'" download="'+filename+'.tsv">Save Raw Data</a>').addClass("greenDownloadButton");
 			$(domOtherFormat).append(rawLink);
 
 

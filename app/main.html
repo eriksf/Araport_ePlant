@@ -3,6 +3,13 @@
 <div class="science-app" data-app-name="araport-eplant" style="height=100%;">
 		<div id="testoverlay"style="position:fixed;width:100%;height:100%;pointer-events:none;z-index:10"></div>
 		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=202969319841821&version=v2.0";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
 		<div id="contact" style="-moz-user-select: auto ; -webkit-user-select: auto ; -ms-user-select:none; user-select:auto ;"></div>
 		<div id="help" style="-moz-user-select: auto ; -webkit-user-select: auto ; -ms-user-select:none; user-select:auto ;"></div>
 		<div id="about" style="-moz-user-select: auto ; -webkit-user-select: auto ; -ms-user-select:none; user-select:auto ;"></div>
@@ -181,7 +188,7 @@
 								padding: 6px;
 								margin-top: -2px;
 								margin-left: -2px;
-								vertical-align: middle;"><img src="app/img/search.png"></img></div>
+								vertical-align: middle;"><img src="app/img/search.png" style="vertical-align: top;"></img></div>
 								<p style="padding: 0 12px;">Example: <a class="loadABI3">ABI3</a> or <a class="loadAT5G60200">AT5G60200</a></p>
 								<!-- Get Data button
 									<div style="width:94%;margin:0 3%;">
@@ -195,11 +202,11 @@
 									</div>
 								<h4 class="geneSearchPanelBoldText">Load genes by pattern:</h4>-->
 								<div style="width:96%;margin:0 3%;" class="hint--right hint--success hint--rounded" data-hint="Load genes by expression pattern" data-enabled="true">
-									<input type="button" id="expressionAnglerButton" class="greyButton"  value="Expression Angler" style="width:97%;height:30px;"></input>
+									<input type="button" id="expressionAnglerButton" class="greybutton"  value="Expression Angler" style="width:97%;height:30px;"></input>
 								</div>
 								<!--<h4 class="geneSearchPanelBoldText">Load genes by phenotype:</h4>-->
 								<div style="width:96%;margin:0 3%;" class="hint--right hint--success hint--rounded" data-hint="Load genes by phenotype" data-enabled="true">
-									<input type="button" id="phenotypeButton" class="greyButton"  value="Mutant Phenotype Selector" style="width:97%;height:30px;"></input>
+									<input type="button" id="phenotypeButton" class="greybutton"  value="Mutant Phenotype Selector" style="width:97%;height:30px;"></input>
 								</div>
 							</div>
 							<div style="width:100%;margin:0 2%;">
@@ -573,28 +580,18 @@
 									</div>
 								</div>
 							</div>
-
 							<div id="ZUI_container" style="width:100%;
 							height:100%;
 							position:absolute;">
-								<div id="JSmol_container" style="width:100%;height:100%;position:absolute;left:0;top:0;opacity:0.99;">
-								</div>
-								<div id="dalliance_container" style="width:100%;height:100%;position:absolute;left:0;top:0;opacity:0.99;visibility:hidden;"> 
-								</div> 
+								<div id="JSmol_container" style="width:100%;height:100%;position:absolute;left:0;top:0;opacity:0.99;"></div>
+								<div id="dalliance_container" style="width:100%;height:100%;position:absolute;left:0;top:0;opacity:0.99;visibility:hidden;"></div> 
 								<canvas id="ZUI_canvas" width="900px" height="600px" style="position:absolute;left:0;top:0;outline:none;">
 									Canvas is not supported by your browser, please upgrade.
 								</canvas>
-
-
 							</div>
-							<div id="GeneInfo_container" style="overflow:hidden;width:100%;height:100%;position:absolute;left:0;top:0;opacity:0.99;">
-							</div><!--
-							<div id="GeneSlider_container" style="overflow:hidden;width:100%;height:100%;position:absolute;left:0;top:0;opacity:0.99;">
-							</div>
-							<div id="Cytoscape_container" style="width:100%;height:100%;position:absolute;left:0;top:0;opacity:0.99;">
-							</div>-->
-							<div id="World_container" style="width:100%;height:100%;position:absolute;left:0;top:0;">
-							</div>
+							<div id="GeneInfo_container" style="overflow:hidden;width:100%;height:100%;position:absolute;left:0;top:0;opacity:0.99;"></div>
+							<div id="Cytoscape_container" style="width:100%;height:100%;position:absolute;left:0;top:0;opacity:0.99;"></div>
+							<div id="World_container" style="width:100%;height:100%;position:absolute;left:0;top:0;"></div>
 						</div>
 					</div>
 
@@ -608,5 +605,5 @@
 			</div>
 		</div>
 	</div>
-	<!--<div id='molHolder' style="position:relative;width:100%;height:100%"></div>-->
+<!--<div id='molHolder' style="position:relative;width:100%;height:100%;"></div> -->
 </div>

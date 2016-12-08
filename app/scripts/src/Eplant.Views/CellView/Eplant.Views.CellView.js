@@ -642,8 +642,6 @@
 						request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
 					},
 					dataType: "json",
-					async: false,
-					cache: false,
 					url: Eplant.ServiceUrl + "cellefp.cgi?id=" + this.geneticElement.identifier, 
 					success: $.proxy(function(response) {
 						this.eFPView.Xhrs.loadSamplesXhr=null;

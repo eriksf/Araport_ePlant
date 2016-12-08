@@ -91,27 +91,8 @@
 			/* Create GoogleMaps object */
 			
 			var mapTypeIds = ['roadmap', 'satellite', 'hybrid', 'terrain', 'OSM'];
-			
-			
-			var mapOptions = {
-				zoom: 4,
-				center: new google.maps.LatLng(39.6, -95.3),
-				mapTypeId: google.maps.MapTypeId.ROADMAP,
-				//mapTypeId: 'OSM',
-				mapTypeControlOptions:
-				{
-					mapTypeIds: mapTypeIds
-				},
-				draggableCursor: 'crosshair' ,
-				panControl: false,
-				zoomControlOptions: {style: google.maps.ZoomControlStyle.SMALL, position: google.maps.ControlPosition.LEFT_TOP},
-				streetViewControlOptions: {position: google.maps.ControlPosition.LEFT_TOP
-				},
-				
-				
-			};
-			
-			Eplant.Views.WorldView.map = new google.maps.Map(Eplant.Views.WorldView.domContainer, mapOptions/*{
+		
+			Eplant.Views.WorldView.map = new google.maps.Map(Eplant.Views.WorldView.domContainer, {
 				center: new google.maps.LatLng(25, 0),
 				zoom: 2,
 				streetViewControl: false,
@@ -123,8 +104,8 @@
 				mapTypeIds: []
 				},
 				zoomControl: false
-			}*/);
-			
+			});
+	
 			// Store map as local variable
 			var map = Eplant.Views.WorldView.map;
 			
@@ -653,7 +634,7 @@
 			imgDiv.id = 'overlayLegendContainer';
 			// Set css styles
 			imgDiv.style.zIndex = '0';
-			
+			imgDiv.style.marginTop = '20%';
 			// Store world view for simplicity
 			var worldView = Eplant.Views.WorldView;
 			// Image source location
@@ -1233,8 +1214,6 @@
 						},
 						dataType: "json",
 						type: "get",
-						async: false,
-						cache: false,
 						url: this.webService + "?id=" + this.geneticElement.identifier + "&samples=" + JSON.stringify(sampleNames), 
 						success: $.proxy(function(response) {
 							var haveNulls = false;

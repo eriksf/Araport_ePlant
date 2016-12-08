@@ -25,10 +25,13 @@ module.exports = function(grunt) {
         tasks: ['jshint']
       },
       js: {
-        files: ['<%= config.app %>/scripts/{,*/}*.js'],
+        files: ['app/scripts/{,*/}*.js'],
         tasks: ['jshint'],
         options: {
-          livereload: true
+          livereload: {
+            host: '0.0.0.0',
+            port: 8081
+          }
         }
       },
       jstest: {
@@ -39,29 +42,46 @@ module.exports = function(grunt) {
         files: [
           'index.html',
           'lib/*.*',
-          '<%= config.app %>/{,*/}*.html',
-          '<%= config.app %>/images/{,*/}*',
-          '<%= config.app %>/styles/{,*/}*.css',
+          'app/{,*/}*.html',
+          'app/images/{,*/}*',
+          'app/styles/{,*/}*.css',
           '.tmp/styles/{,*/}*.css'
         ],
         tasks: ['includes'],
         options: {
-          livereload: '<%= connect.options.livereload %>'
+          livereload: {
+            host: '0.0.0.0',
+            port: 8081
+          }
         }
       }
     },
 
     // The actual grunt server settings
     connect: {
-      options: {
-        port: 54321,
-        open: true,
-        livereload: 35729,
-        // Change this to '0.0.0.0' to access the server from outside
-        hostname: '0.0.0.0'
+      cloud9: {
+        options: {
+          port: 8080,
+          open: true,
+          hostname: '0.0.0.0',
+          livereload: 8081,
+          middleware: function(connect) {
+            return [
+              connect.static('.tmp'),
+              connect().use('/lib', connect.static('lib')),
+              connect().use('/bower_components', connect.static('./bower_components')),
+              connect().use('/app', connect.static(config.app)),
+              connect().use('/assets', connect.static('./assets')),
+              connect().use('/', connect.static('./'))
+            ];
+          }
+        }
       },
       dist: {
         options: {
+          port: 9000,
+          open: true,
+          // Change this to '0.0.0.0' to access the server from outside
           hostname: '0.0.0.0',
           livereload: false,
           middleware: function(connect) {
@@ -78,6 +98,10 @@ module.exports = function(grunt) {
       },
       livereload: {
         options: {
+          port: 9000,
+          open: true,
+          hostname: 'localhost',
+          livereload: 8081,
           middleware: function(connect) {
             return [
               connect.static('.tmp'),
@@ -98,7 +122,7 @@ module.exports = function(grunt) {
       dist: {
         files: [{
           dot: true,
-          src: ['.tmp', '<%= config.dist %>/*', '!<%= config.dist %>/.git*']
+          src: ['.tmp', 'dist/*', '!dist/.git*']
         }]
       }
     },
@@ -107,13 +131,14 @@ module.exports = function(grunt) {
     jshint: {
       options: {
         jshintrc: '.jshintrc',
-        reporter: require('jshint-stylish')
+        reporter: require('jshint-stylish'),
+        reporterOutput: ''
       },
       all: [
         'Gruntfile.js',
         'lib/*.js',
-        '<%= config.app %>/scripts/{,*/}*.js',
-        '!<%= config.app %>/scripts/vendor/*',
+        'app/scripts/{,*/}*.js',
+        '!app/scripts/vendor/*',
         'test/spec/{,*/}*.js'
       ]
     },
@@ -161,9 +186,9 @@ module.exports = function(grunt) {
     copy: {
       libraries: {
         expand: true,
-        cwd: '<%= config.app %>/vendor',
+        cwd: 'app/vendor',
         src: '**',
-        dest: '.tmp/sites/all/libraries/<%= config.appName %>/'
+        dest: '.tmp/sites/all/libraries/araport-eplant/'
       }
     },
 
@@ -314,7 +339,19 @@ module.exports = function(grunt) {
         'connect:dist:keepalive'
       ]);
     }
-
+    else if (target === 'cloud9') {
+      return grunt.task.run([
+        'clean:server',
+        'jshint',
+        'checkdeps',
+        'araport-wiredep',
+        'wiredep',
+        'includes',
+        'copy',
+        'connect:cloud9',
+        'watch'
+      ]);
+    }
     grunt.task.run([
       'clean:server',
       'jshint',

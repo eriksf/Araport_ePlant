@@ -90,8 +90,6 @@
 				beforeSend: function(request) {
 					request.setRequestHeader('Authorization', 'Bearer ' + Agave.token.accessToken);
 				},
-				async: false,
-				cache: false,
 				type: "GET",
 				url: Eplant.ServiceUrl + "get_rank.php?expression="+exp, 
 				success: $.proxy(function(data) {
